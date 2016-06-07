@@ -25,10 +25,10 @@ repositories {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "${minecraft_version}-${modularutilities_version}." + System.getenv("bamboo_buildNumber")
+version = "${minecraft_version}-${mod_version}." + System.getenv("bamboo_buildNumber")
 
 group= "xyz.brassgoggledcoders.modularutilities"
-archivesBaseName = "ModularUtilities"
+archivesBaseName = "${mod_name}"
 
 minecraft {
     version = "${minecraft_version}-${forge_version}-${minecraft_version}"
@@ -38,7 +38,7 @@ minecraft {
     useDepAts = true
 
     replace "@VERSION@", project.version
-    replaceIn "ModularUtilities.java"
+    replaceIn "${mod_name}.java"
 }
 
 dependencies {
@@ -104,13 +104,13 @@ task("uploadJars", dependsOn: "reobf") {
                             description 'ModularUtilities'
                             url ''
                             scm {
-                                url 'https://github.com/BrassGoggledCoders/ModularUtilities'
-                                connection 'scm:git:git@github.com:BrassGoggledCoders/ModularUtilities.git'
-                                developerConnection 'scm:git:git@github.com:BrassGoggledCoders/ModularUtilities.git'
+                                url 'https://github.com/BrassGoggledCoders/${mod_name}'
+                                connection 'scm:git:git@github.com:BrassGoggledCoders/${mod_name}.git'
+                                developerConnection 'scm:git:git@github.com:BrassGoggledCoders/${mod_name}.git'
                             }
                             issueManagement {
                                 system 'github'
-                                url 'https://github.com/BrassGoggledCoders/ModularUtilities/issues'
+                                url 'https://github.com/BrassGoggledCoders/${mod_name}/issues'
                             }
                             licenses {
                                 license {
@@ -123,6 +123,11 @@ task("uploadJars", dependsOn: "reobf") {
                                 developer {
                                     id 'SkySom'
                                     name 'SkySom'
+                                    roles { role 'developer' }
+                                }
+				developer {
+                                    id 'warlordjones'
+                                    name 'warlordjones'
                                     roles { role 'developer' }
                                 }
                             }
