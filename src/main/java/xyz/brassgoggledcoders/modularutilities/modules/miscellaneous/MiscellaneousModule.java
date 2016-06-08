@@ -6,8 +6,9 @@ import net.minecraftforge.oredict.OreDictionary;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
+import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module
+@Module(mod = ModularUtilities.MODID)
 public class MiscellaneousModule extends ModuleBase {
 	
 	public static BlockBase blockFeathers;

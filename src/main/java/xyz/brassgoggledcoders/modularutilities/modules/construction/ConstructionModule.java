@@ -3,9 +3,10 @@ package xyz.brassgoggledcoders.modularutilities.modules.construction;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
+import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 import xyz.brassgoggledcoders.modularutilities.modules.tools.ItemMachete;
 
-@Module
+@Module(mod = ModularUtilities.MODID)
 public class ConstructionModule extends ModuleBase {
 	
 	@Override
