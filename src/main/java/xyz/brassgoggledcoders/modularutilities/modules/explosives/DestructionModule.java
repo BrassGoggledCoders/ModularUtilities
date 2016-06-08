@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.modularutilities.modules.construction;
+package xyz.brassgoggledcoders.modularutilities.modules.explosives;
 
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
@@ -6,20 +6,21 @@ import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
-public class ConstructionModule extends ModuleBase {
+public class DestructionModule extends ModuleBase {
 	
 	@Override
 	public String getName() {
-		return "Construction";
+		return "Destruction";
 	}
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		/*
 		 * TODO:
-		 * - Filler Fluid (turns into dirt)
-		 * - Liquid Concrete: hardens into concrete 
-		 * - Rebar: Makes solid concrete harder
+		 * - Splitter TNT 
+		 * - Incendiary TNT
+		 * - Modular TNT
+		 * - Flamethrower
 		 */
 	}
 }

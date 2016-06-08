@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
+package xyz.brassgoggledcoders.modularutilities.modules.redstone;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
