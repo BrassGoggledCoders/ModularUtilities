@@ -17,8 +17,12 @@ public class DecorationModule extends ModuleBase {
 	{
 		/*	TODO:
 		 * -  
-		 * - Stairs version of Path/Grass/Dirt.
-		 * - Turf & Leaf Covers  
+		 * - Stairs version of Path/Grass/Dirt/Smoothstone
+		 * - Turf & Leaf Covers
+		 * - Smooth Glowstone https://i.imgur.com/lywsYXl.jpg
+		 * - Polished Endstone and Obsidian. 4x4.
+		 * - Brick + Netherbrick in 4x4 is special brick texture http://imgur.com/a/PVvHP#4 
+		 * - Ender Pearl storage block 
 		 */
 	}
 }

@@ -31,19 +31,13 @@ public class MiscellaneousModule extends ModuleBase {
 		 * - Blockdrop extension
 		 * - Enchantments
 		 * - Commands
-		 * - Throwable Rocks 
 		 * - Jump Pad: Increases Jump height, slime block + piston 
 		 * - Sticky Slime Block: Slime Block + water. No Jumping. 
-		 * - Gunpowder + String = Fuses. Place like redstone, light one end, and fire will quickly travel down it 
 		 * - Enchanting water bottle = Bottle of Enchanting? 
-		 * - Polished Endstone and Obsidian. 4x4. 
 		 * - Bedroll from Hay Bales/Feather Block. Durability, somehow? Won't set spawn. 
 		 * - Splash Water bottle for fire extinguishing.
 		 * - Desert Golem that throws sand, giving you blindness? 
-		 * - Smoothstone Stairs 
 		 * - Ping sound when your name is said in chat?  
-		 * - Brick + Netherbrick in 4x4 is special brick texture http://imgur.com/a/PVvHP#4 
-		 * - Ender Pearl storage block  
 		 * - https://www.reddit.com/r/MinecraftModIdeas/comments/3azim0/simple_client_side_mod_for_measuring/
 		 */
 	}

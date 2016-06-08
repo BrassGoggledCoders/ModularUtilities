@@ -44,25 +44,6 @@ public class ModularUtilities extends BoilerplateModBase {
 		{
 			super.postInit(event);
 		}
-
-		@Override
-		public void modPreInit(FMLPreInitializationEvent event)
-		{
-
-		}
-
-		@Override
-		public void modInit(FMLInitializationEvent event)
-		{
-
-		}
-
-		@Override
-		protected void modPostInit(FMLPostInitializationEvent event)
-		{
-			
-		}
-
 		
 		@Override
 		public Object getInstance()

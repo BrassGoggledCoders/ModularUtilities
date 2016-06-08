@@ -14,7 +14,6 @@ public class ItemMachete extends ItemBase {
 		super("machete");
 		this.setMaxStackSize(1);
         this.setMaxDamage(238);
-        this.setCreativeTab(ModularUtilities.tab);
 	}
 	public float getStrVsBlock(ItemStack stack, IBlockState state)
     {
