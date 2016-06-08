@@ -1,6 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
 import net.minecraft.init.Blocks;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
@@ -22,8 +23,6 @@ public class MiscellaneousModule extends ModuleBase {
 	{
 		blockFeathers = new BlockFeathers();
 		this.getBlockRegistry().registerBlock(blockFeathers);
-		OreDictionary.registerOre("wool", blockFeathers);
-		OreDictionary.registerOre("wool", Blocks.WOOL);
 		/*
 		 * TODO:
 		 * - Dungeon loot extension
@@ -40,5 +39,11 @@ public class MiscellaneousModule extends ModuleBase {
 		 * - Ping sound when your name is said in chat?  
 		 * - https://www.reddit.com/r/MinecraftModIdeas/comments/3azim0/simple_client_side_mod_for_measuring/
 		 */
+	}
+	@Override
+	public void init(FMLInitializationEvent event)
+	{
+		OreDictionary.registerOre("wool", blockFeathers);
+		OreDictionary.registerOre("wool", Blocks.WOOL);
 	}
 }
