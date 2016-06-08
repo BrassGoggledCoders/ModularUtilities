@@ -13,15 +13,12 @@ public class BlockFusedQuartz extends BlockBase {
 		//Non-transparent block
 		super(Material.ROCK, "fusedquartz");
 	}
-	//Never allow the block to be powered.
-	@Override
-	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side)
     {
-        return 0;
+		return true;
     }
-	@Override
-	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	public boolean shouldCheckWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
     {
-        return 0;
+        return false;
     }
 }
