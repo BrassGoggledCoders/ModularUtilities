@@ -14,19 +14,18 @@ import xyz.brassgoggledcoders.boilerplate.BoilerplateModBase;
 
 @Mod(modid = ModularUtilities.MODID, name = ModularUtilities.MODNAME, version = ModularUtilities.MODVERSION)
 public class ModularUtilities extends BoilerplateModBase {
-	
 		public ModularUtilities() {
 			super(MODID, MODNAME, MODVERSION, tab);
 		}
 
-		@Instance("steamagerevolution")
+		@Instance("modularutilities")
 		public static ModularUtilities instance;
 
-		public static final String MODID = "steamagerevolution";
-		public static final String MODNAME = "Steam Age Revolution";
+		public static final String MODID = "modularutilities";
+		public static final String MODNAME = "Modular Utilities";
 		public static final String MODVERSION = "@VERSION@";
 
-		public static CreativeTabs tab = new SARTab();
+		public static CreativeTabs tab = new MUTab();
 		
 		@EventHandler
 		public void preInit(FMLPreInitializationEvent event)
@@ -70,10 +69,10 @@ public class ModularUtilities extends BoilerplateModBase {
 		{
 			return instance;
 		}
-		public static class SARTab extends BaseCreativeTab
+		public static class MUTab extends BaseCreativeTab
 		{
 
-			public SARTab()
+			public MUTab()
 			{
 				super(MODID);
 			}
