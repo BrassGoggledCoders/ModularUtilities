@@ -1,7 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -61,7 +61,7 @@ public class ModularUtilities extends BoilerplateModBase {
 			@Override
 			public Item getTabIconItem()
 			{
-				return Items.APPLE;
+				return Item.getItemFromBlock(Blocks.SPONGE);
 			}
 
 		}
