@@ -8,31 +8,37 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import xyz.brassgoggledcoders.boilerplate.items.ItemBase;
+import xyz.brassgoggledcoders.boilerplate.items.BaseSword;
 
-public class ItemMachete extends ItemBase {
+public class ItemMachete extends BaseSword  {
 
 	public ItemMachete() {
-		super("machete");
-		this.setFull3D();
-		this.setMaxStackSize(1);
-        this.setMaxDamage(238);
+		super(ToolMaterial.IRON, "machete");
 	}
-	public float getStrVsBlock(ItemStack stack, IBlockState state)
+	
+	@Override
+	 public float getStrVsBlock(ItemStack stack, IBlockState state)
+    {
+        return getStrVsBlock(state);
+    }
+	public float getStrVsBlock(IBlockState state)
     {
         Block block = state.getBlock();
         Material m = state.getMaterial();
         //Tool can fast-break web and plant type blocks
-        return (block == Blocks.WEB || (m == Material.LEAVES || m == Material.GOURD || m == Material.CACTUS || m == Material.PLANTS)) ? 15.0F : 5.0F;
+        return (block == Blocks.WEB || (m == Material.LEAVES || m == Material.GOURD || m == Material.CACTUS || m == Material.PLANTS)) ? 15.0F : 1.0F;
     }
 	
-	/**
-     * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
-     */
+	@Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
     {
         stack.damageItem(1, entityLiving);
-        return (getStrVsBlock(stack, state) == 15) ? true : false; 
+        return (getStrVsBlock(state) == 15) ? true : false; 
     }
-
+    
+    @Override
+    public boolean canHarvestBlock(IBlockState blockIn)
+    {
+        return (getStrVsBlock(blockIn.getBlock().getDefaultState()) == 15) ? true : false;
+    }
 }
