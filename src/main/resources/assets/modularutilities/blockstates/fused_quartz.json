@@ -2,10 +2,11 @@
     "forge_marker": 1,
     "defaults": {
         "textures": {
-            "all": "modularutilities:blocks/fusedquartz"
+            "all": "modularutilities:blocks/fused_quartz"
         },
         "model": "cube_all",
-        "uvlock": true
+        "uvlock": true,
+        "transform": "forge:default-block"
     },
     "variants": {
         "normal": [{}],

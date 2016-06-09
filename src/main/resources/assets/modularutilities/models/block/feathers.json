@@ -1,6 +1,0 @@
-{
-    "parent":"modularutilities:block/base",
-    "textures":{
-        "all":"modularutilities:blocks/feathers"
-    }
-}

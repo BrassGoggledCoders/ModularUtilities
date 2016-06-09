@@ -11,7 +11,7 @@ public class BlockFusedQuartz extends BlockBase {
 	
 	public BlockFusedQuartz() {
 		//Non-transparent block
-		super(Material.ROCK, "fusedquartz");
+		super(Material.ROCK, "fused_quartz");
 	}
 	public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side)
     {
