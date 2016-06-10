@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.BaseCreativeTab;
 import xyz.brassgoggledcoders.boilerplate.BoilerplateModBase;
-import xyz.brassgoggledcoders.modularutilities.modules.enchantments.BaseEnchantment;
+import xyz.brassgoggledcoders.modularutilities.modules.enchantments.CustomEnchantment;
 
 @Mod(modid = ModularUtilities.MODID, name = ModularUtilities.MODNAME, version = ModularUtilities.MODVERSION)
 public class ModularUtilities extends BoilerplateModBase {
@@ -75,7 +75,7 @@ public class ModularUtilities extends BoilerplateModBase {
 		        for (Enchantment enchantment : Enchantment.REGISTRY)
 		        {
 		        	//A little expensive, but its on load, so shouldn't be a big deal
-		        	if(enchantment instanceof BaseEnchantment)
+		        	if(enchantment instanceof CustomEnchantment)
 		        		itemList.add(Items.ENCHANTED_BOOK.getEnchantedItemStack(new EnchantmentData(enchantment, enchantment.getMaxLevel())));
 		        }
 		    }
