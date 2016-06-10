@@ -32,8 +32,7 @@ public class EnchantmentEventHandler {
 	
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onBlockHarvest(BlockEvent.HarvestDropsEvent event)
-	{
-		//TODO Fancy flame particles (Also fortune?)
+	{;
 		if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer)
 		{
 			if((EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.flame_touch, event.getHarvester().inventory.getCurrentItem()) > 0))
@@ -43,9 +42,17 @@ public class EnchantmentEventHandler {
 				{
 					if(ItemStackUtils.isSmeltable(stack))
 					{
-						//We can, however, add and remove from the original array without Exceptions. 
-						event.getDrops().add(FurnaceRecipes.instance().getSmeltingResult(stack));
-						event.getDrops().remove(stack);
+						//Only handle drops on server
+						if(!event.getWorld().isRemote)
+						{
+							//We can, however, add and remove from the original array without Exceptions.
+							event.getDrops().remove(stack);
+							event.getDrops().add(FurnaceRecipes.instance().getSmeltingResult(stack).copy()); //TODO Fortune
+						}
+						else {
+							//TODO Fancy flame particles 
+							return; 
+						}
 					}
 				}
 			}
