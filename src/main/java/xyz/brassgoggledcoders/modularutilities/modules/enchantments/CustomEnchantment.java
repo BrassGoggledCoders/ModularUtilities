@@ -6,28 +6,19 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 
 public class CustomEnchantment extends Enchantment {
 	
-	private int multiplier; 
+	private int multiplier;
+	private int minEnchant;
 	private int maxLevel;
-	private int minEnchant = 0;
-	private Enchantment[] conflicts;
 
-	
-	public CustomEnchantment(Rarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot[] slots, int multiplier, int maxLevel) {
+	public CustomEnchantment(Rarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot[] slots, int multiplier, int minEnchant, int maxLevel) {
 		super(rarityIn, typeIn, slots);
 		this.multiplier = multiplier;
-		this.maxLevel = maxLevel;
-	}
-	
-	public CustomEnchantment(Rarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot[] slots, int maxLevel, int minEnchant, Enchantment[] conflicts) {
-		super(rarityIn, typeIn, slots);
-		this.multiplier = 0;
-		this.maxLevel = maxLevel;
 		this.minEnchant = minEnchant;
-		this.conflicts = conflicts;
+		this.maxLevel = maxLevel;
 	}
 	
 	//TODO Doesn't appear to work, or anvil overrides. Requires Testing
-	@Override
+	/*@Override
 	public boolean canApplyTogether(Enchantment enchantment)
 	{
 		boolean isConflicted = false;
@@ -37,7 +28,7 @@ public class CustomEnchantment extends Enchantment {
 				isConflicted = true;
 		}
 		return isConflicted;
-	}
+	}*/
 	
 	@Override
 	public int getMinEnchantability(int level)

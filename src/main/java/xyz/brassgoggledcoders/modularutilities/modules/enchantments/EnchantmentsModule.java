@@ -14,8 +14,7 @@ import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 public class EnchantmentsModule extends ModuleBase {
 
 	static EntityEquipmentSlot[] hand = new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND};
-	public static Enchantment affluency;
-	public static Enchantment flame_touch; 
+	public static Enchantment affluency, flame_touch, prospector; 
 	
 	@Override
 	public String getName() {
@@ -24,12 +23,13 @@ public class EnchantmentsModule extends ModuleBase {
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		//int enchID = 80;
-		//TODO Expand to work on swords
-		affluency = addEnchantment(/*enchID,*/"affluency", new CustomEnchantment(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.DIGGER, EnchantmentsModule.hand, 11, 3));
-		//TODO: Expand to axes. Likely needs to be done by changing EnchType to breakable, but overriding canEnchant to ensure it only gets put on picks and axes. No use on anything else...
-		flame_touch = addEnchantment(/*++enchID,*/"flame_touch", new CustomEnchantment(Enchantment.Rarity.RARE, EnumEnchantmentType.DIGGER, EnchantmentsModule.hand, 1, 21, new Enchantment[]{Enchantment.getEnchantmentByLocation("silk_touch")}));
-
+																															//multiplier, min (flat), maxLevel 
+		affluency = addEnchantment("affluency", new CustomEnchantment(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.DIGGER, hand, 11, 0, 3)); //TODO Expand to work on swords
+		flame_touch = addEnchantment("flame_touch", new CustomEnchantment(Enchantment.Rarity.RARE, EnumEnchantmentType.DIGGER, hand, 0, 21, 1));
+		//TODO Magnetism enchant
+		prospector = addEnchantment("prospector", new CustomEnchantment(Enchantment.Rarity.COMMON, EnumEnchantmentType.DIGGER, hand, 11, 3, 4));
+		
+		
 		MinecraftForge.EVENT_BUS.register(new EnchantmentEventHandler());
 	}
 
