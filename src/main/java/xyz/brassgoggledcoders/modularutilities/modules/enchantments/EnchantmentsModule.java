@@ -25,8 +25,10 @@ public class EnchantmentsModule extends ModuleBase {
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		//int enchID = 80;
-		affluency = addEnchantment(/*enchID,*/"affluency", new CustomEnchantment(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.DIGGER, EnchantmentsModule.hand, 11, 3)); //TODO Expand to work on swords
-		flame_touch = addEnchantment(/*++enchID,*/"flame_touch", new CustomEnchantment(Enchantment.Rarity.RARE, EnumEnchantmentType.DIGGER, EnchantmentsModule.hand, 1, 21, new Enchantment[]{Enchantment.getEnchantmentByLocation("silk_touch")})); //TODO: Expand to axes
+		//TODO Expand to work on swords
+		affluency = addEnchantment(/*enchID,*/"affluency", new CustomEnchantment(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.DIGGER, EnchantmentsModule.hand, 11, 3));
+		//TODO: Expand to axes. Likely needs to be done by changing EnchType to breakable, but overriding canEnchant to ensure it only gets put on picks and axes. No use on anything else...
+		flame_touch = addEnchantment(/*++enchID,*/"flame_touch", new CustomEnchantment(Enchantment.Rarity.RARE, EnumEnchantmentType.DIGGER, EnchantmentsModule.hand, 1, 21, new Enchantment[]{Enchantment.getEnchantmentByLocation("silk_touch")}));
 
 		MinecraftForge.EVENT_BUS.register(new EnchantmentEventHandler());
 	}

@@ -37,18 +37,21 @@ public class ModularUtilities extends BoilerplateModBase {
 
 		public static CreativeTabs tab = new MUTab();
 		
+		@Override
 		@EventHandler
 		public void preInit(FMLPreInitializationEvent event)
 		{
 			super.preInit(event);
 		}
 
+		@Override
 		@EventHandler
 		public void init(FMLInitializationEvent event)
 		{
 			super.init(event);
 		}
 
+		@Override
 		@EventHandler
 		public void postInit(FMLPostInitializationEvent event)
 		{

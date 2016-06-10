@@ -26,7 +26,7 @@ public class CustomEnchantment extends Enchantment {
 		this.conflicts = conflicts;
 	}
 	
-	//TODO Doesn't appear to work, or anvil overrides
+	//TODO Doesn't appear to work, or anvil overrides. Requires Testing
 	@Override
 	public boolean canApplyTogether(Enchantment enchantment)
 	{
