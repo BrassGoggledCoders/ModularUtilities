@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -51,10 +52,12 @@ public class EnchantmentEventHandler {
 							//We can, however, add and remove from the original array without Exceptions.
 							event.getDrops().remove(stack);
 							event.getDrops().add(FurnaceRecipes.instance().getSmeltingResult(stack).copy()); //TODO Fortune
-						}
-						else {
-							//TODO Fancy flame particles 
-							return; 
+							//TODO
+							//for (int i = 0; i < 10; ++i)
+							//{
+							//	event.getWorld().spawnParticle(EnumParticleTypes.FLAME, event.getPos().getX() + event.getWorld().rand.nextDouble(), event.getPos().getY() + event.getWorld().rand.nextDouble(), event.getWorld().rand.nextDouble(), 0, -event.getWorld().rand.nextDouble(), 0, new int[0]);
+							//}
+							return;
 						}
 					}
 				}
@@ -66,9 +69,9 @@ public class EnchantmentEventHandler {
 				if (m == Material.GROUND || m == Material.ROCK)
 				{
 					Random rand = new Random();
-					if (rand.nextInt(10 - prosAmount) == 0)
+					if (rand.nextInt(10 - prosAmount) == 0 && !event.getWorld().isRemote)
 					{
-						event.getDrops().add(new ItemStack(Items.GOLD_NUGGET, 1 + rand.nextInt(3 + prosAmount), 1)); //TODO Custom loot table
+						event.getDrops().add(new ItemStack(Items.GOLD_NUGGET, 1 + rand.nextInt(3 + prosAmount))); //TODO Custom loot table
 					}
 				}
 			}
