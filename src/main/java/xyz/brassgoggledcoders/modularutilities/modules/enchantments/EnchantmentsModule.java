@@ -23,11 +23,24 @@ public class EnchantmentsModule extends ModuleBase {
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
-																															//multiplier, min (flat), maxLevel 
+		/*TODO 
+		 * Magnetism (attracts items)
+		 * Salvage (like prospector for glass etc)
+		 * Reach
+		 * Teleport
+		 * Spelunker (gives night vision when tool is held)
+		 * Armour Enchant that increases regen
+		 * Exploding arrow enchant
+		 * Lightning arrow enchant
+		 * Homing arrow enchant
+		 * Critical arrow enchant
+		 * May only have one of the above arrow enchs
+		 * Perm jump/speed boost boots - generalise? 
+		 * Vampirism - lifesteal
+		 */
 		affluency = addEnchantment("affluency", new CustomEnchantment(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.DIGGER, hand, 11, 0, 3)); //TODO Expand to work on swords
 		flame_touch = addEnchantment("flame_touch", new CustomEnchantment(Enchantment.Rarity.RARE, EnumEnchantmentType.DIGGER, hand, 0, 21, 1));
-		//TODO Magnetism enchant
-		prospector = addEnchantment("prospector", new CustomEnchantment(Enchantment.Rarity.COMMON, EnumEnchantmentType.DIGGER, hand, 11, 3, 4));
+		prospector = addEnchantment("prospector", new CustomEnchantment(Enchantment.Rarity.COMMON, EnumEnchantmentType.DIGGER, hand, 5, 0, 4));
 		
 		
 		MinecraftForge.EVENT_BUS.register(new EnchantmentEventHandler());

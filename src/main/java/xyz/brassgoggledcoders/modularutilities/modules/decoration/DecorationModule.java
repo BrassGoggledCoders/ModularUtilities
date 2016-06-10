@@ -16,7 +16,6 @@ public class DecorationModule extends ModuleBase {
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		/*	TODO:
-		 * -  
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
 		 * - Turf & Leaf Covers
 		 * - Smooth Glowstone https://i.imgur.com/lywsYXl.jpg

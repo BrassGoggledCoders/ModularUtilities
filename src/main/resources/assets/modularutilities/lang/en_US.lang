@@ -2,8 +2,10 @@ itemGroup.modularutilities=Modular Utilities
 
 tile.feathers.name=Block of Feathers
 tile.fused_quartz.name=Fused Quartz
+tile.redstone_sand.name=Redstone Sand
 
 item.machete.name=Machete
 
 enchantment.affluency=Affluency
 enchantment.flame_touch=Flame Touch
+enchantment.prospector=Prospector

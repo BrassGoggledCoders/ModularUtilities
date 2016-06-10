@@ -27,7 +27,6 @@ public class MiscellaneousModule extends ModuleBase {
 		 * TODO:
 		 * - Dungeon loot extension
 		 * - Villager trade & house type (Stable) extension
-		 * - Blockdrop extension
 		 * - Enchantments
 		 * - Commands
 		 * - Achievement Extension
@@ -37,7 +36,6 @@ public class MiscellaneousModule extends ModuleBase {
 		 * - Bedroll from Hay Bales/Feather Block. Durability, somehow? Won't set spawn. 
 		 * - Splash Water bottle for fire extinguishing.
 		 * - Desert Golem that throws sand, giving you blindness? 
-		 * - https://www.reddit.com/r/MinecraftModIdeas/comments/3azim0/simple_client_side_mod_for_measuring/
 		 * - Use for rotten flesh
 		 * - Tool/Armour breakdown
 		 */

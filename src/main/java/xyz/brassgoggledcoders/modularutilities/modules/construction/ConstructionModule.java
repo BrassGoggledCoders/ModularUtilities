@@ -20,6 +20,7 @@ public class ConstructionModule extends ModuleBase {
 		 * - Filler Fluid (turns into dirt)
 		 * - Liquid Concrete: hardens into concrete 
 		 * - Rebar: Makes solid concrete harder 
+		 * - Laser level
 		 */
 	}
 }

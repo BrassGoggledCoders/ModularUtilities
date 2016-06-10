@@ -68,7 +68,7 @@ public class EnchantmentEventHandler {
 					Random rand = new Random();
 					if (rand.nextInt(10 - prosAmount) == 0)
 					{
-						event.getDrops().add(new ItemStack(Items.GOLD_NUGGET, 1 + rand.nextInt(3 + prosAmount), 1)); //TODO Expand possible drops
+						event.getDrops().add(new ItemStack(Items.GOLD_NUGGET, 1 + rand.nextInt(3 + prosAmount), 1)); //TODO Custom loot table
 					}
 				}
 			}
