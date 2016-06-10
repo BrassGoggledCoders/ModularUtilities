@@ -25,7 +25,8 @@ public class RedstoneModule extends ModuleBase {
 		 * - Redstone Sand
 		 * - Resistor: opposite of repeater, changing settings changes resistance rather than delay
 		 * - Redstone cable that's waterproof and freestanding
-		 *
+		 * - Second colour of redstone. Wire only.
+		 * - Logic Gates
 		 */
 	}
 }

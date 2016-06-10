@@ -19,6 +19,7 @@ public class TweaksModule extends ModuleBase {
 		 * TODO:
 		 * - TNT tweaked to have contact with other entities. e.g. can be punched
 		 * - In-game messages (not chat) appear in the 'info' (music disks etc) slot rather than chatbar
+		 * - Gold Tools/Armor Tweaked to be useful 
 		 * - Ding Sound when getting achievements (excluding starter ones) and when your name is mentioned in chat
 		 */
 	}

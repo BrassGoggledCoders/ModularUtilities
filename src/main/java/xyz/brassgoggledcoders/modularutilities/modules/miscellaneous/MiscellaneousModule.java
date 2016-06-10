@@ -30,14 +30,16 @@ public class MiscellaneousModule extends ModuleBase {
 		 * - Blockdrop extension
 		 * - Enchantments
 		 * - Commands
+		 * - Achievement Extension
 		 * - Jump Pad: Increases Jump height, slime block + piston 
 		 * - Sticky Slime Block: Slime Block + water. No Jumping. 
 		 * - Enchanting water bottle = Bottle of Enchanting? 
 		 * - Bedroll from Hay Bales/Feather Block. Durability, somehow? Won't set spawn. 
 		 * - Splash Water bottle for fire extinguishing.
 		 * - Desert Golem that throws sand, giving you blindness? 
-		 * - Ping sound when your name is said in chat?  
 		 * - https://www.reddit.com/r/MinecraftModIdeas/comments/3azim0/simple_client_side_mod_for_measuring/
+		 * - Use for rotten flesh
+		 * - Tool/Armour breakdown
 		 */
 	}
 	@Override
