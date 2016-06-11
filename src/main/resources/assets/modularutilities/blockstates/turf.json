@@ -1,0 +1,18 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "modularutilities:blocks/turf_normal"  
+        },
+        "model": "block/carpet",
+        "uvlock": true,
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "variant=dry": [{
+        	"textures": {
+        		"all": "modularutilities:blocks/turf_dry"
+        	}
+        }]
+    }
+}

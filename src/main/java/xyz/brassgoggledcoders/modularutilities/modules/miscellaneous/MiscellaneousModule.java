@@ -27,7 +27,6 @@ public class MiscellaneousModule extends ModuleBase {
 		 * TODO:
 		 * - Dungeon loot extension
 		 * - Villager trade & house type (Stable) extension
-		 * - Enchantments
 		 * - Commands
 		 * - Achievement Extension
 		 * - Jump Pad: Increases Jump height, slime block + piston 
@@ -38,6 +37,7 @@ public class MiscellaneousModule extends ModuleBase {
 		 * - Desert Golem that throws sand, giving you blindness? 
 		 * - Use for rotten flesh
 		 * - Tool/Armour breakdown
+		 * - Sound & Particle expansion
 		 */
 	}
 	@Override

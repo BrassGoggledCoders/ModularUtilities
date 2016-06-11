@@ -3,6 +3,14 @@ itemGroup.modularutilities=Modular Utilities
 tile.feathers.name=Block of Feathers
 tile.fused_quartz.name=Fused Quartz
 tile.redstone_sand.name=Redstone Sand
+tile.turf.name=Turf
+tile.turf.normal.name=Turf
+tile.turf.dry.name=Parched Turf
+tile.turf.frozen.name=Frozen Turf
+tile.turf.jungle.name=Rich Turf
+tile.turf.mycelium.name=Spooky Turf
+tile.turf.podzol.name=Leached Turf
+tile.turf.swamp.name=Moist Turf
 
 item.machete.name=Machete
 
