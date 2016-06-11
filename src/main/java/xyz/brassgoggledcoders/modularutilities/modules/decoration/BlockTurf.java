@@ -19,7 +19,7 @@ import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 
 public class BlockTurf extends BlockBase {
 
-	public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.<EnumType>create("variant", EnumType.class);
+	public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.<EnumType>create("type", EnumType.class);
 	
 	public BlockTurf() {
 		super(Material.GRASS);

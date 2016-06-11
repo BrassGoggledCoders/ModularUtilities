@@ -1,18 +1,17 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "textures": {
-            "all": "modularutilities:blocks/turf_normal"  
-        },
-        "model": "block/carpet",
-        "uvlock": true,
+        "model": "carpet",
         "transform": "forge:default-block"
     },
     "variants": {
-        "variant=dry": [{
-        	"textures": {
-        		"all": "modularutilities:blocks/turf_dry"
-        	}
-        }]
+    	"type=normal": { "texture": { "layer0": "modularutilities:blocks/turf_normal" } },
+        "type=dry": { "texture": { "layer0": "modularutilities:blocks/turf_dry" } },
+        "type=frozen": { "texture": { "layer0": "modularutilities:blocks/turf_frozen" } },
+        "type=jungle": { "texture": { "layer0": "modularutilities:blocks/turf_jungle" } },
+        "type=mycelium": { "texture": { "layer0": "modularutilities:blocks/turf_mycelium" } },
+        "type=podzol": { "texture": { "layer0": "modularutilities:blocks/turf_podzol" } },
+        "type=swamp": { "texture": { "layer0": "modularutilities:blocks/turf_swamp" } },
+        "inventory": [{ "texture": { "layer0": "modularutilities:blocks/turf_dry" } }]
     }
-}
+} 	
