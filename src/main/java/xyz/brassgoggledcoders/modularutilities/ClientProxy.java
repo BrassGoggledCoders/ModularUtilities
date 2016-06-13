@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockTurf;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.DecorationModule;
 
@@ -14,7 +15,11 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerModels()
 	{
-		registerVariantsDefaulted(DecorationModule.turf, BlockTurf.EnumTurfBlockType.class, "type");
+		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Decoration"))
+		{
+			registerVariantsDefaulted(DecorationModule.turf, BlockTurf.EnumTurfBlockType.class, "type");
+			registerVariantsDefaulted(DecorationModule.leaf_cover, BlockLeafCover.EnumLeafCoverBlockType.class, "type");
+		}
 	}
 
 	private static <T extends Enum<T> & IStringSerializable> void registerVariantsDefaulted(Block b, Class<T> enumclazz,

@@ -5,14 +5,12 @@
         "transform": "forge:default-block"
     },
     "variants": {
-    	"type": { 
-    		"oak": { "textures": { "wool": "minecraft:blocks/leaves_oak" } },
-    		"dry": { "textures": { "wool": "modularutilities:blocks/turf_dry" } },
-    		"frozen": { "textures": { "wool": "modularutilities:blocks/turf_frozen" } },
-    		"jungle": { "textures": { "wool": "modularutilities:blocks/turf_jungle" } },
-    		"swamp": { "textures": { "wool": "modularutilities:blocks/turf_swamp" } },
-    		"podzol": { "textures": { "wool": "modularutilities:blocks/turf_podzol" } },
-    		"mycelium": { "textures": { "wool": "modularutilities:blocks/turf_mycelium" } }
-    	}
+    	"type=oak": [{ "textures": { "wool": "minecraft:blocks/leaves_oak" } }],
+    	"type=dry": [{ "textures": { "wool": "modularutilities:blocks/turf_dry" } }],
+    	"type=frozen": [{ "textures": { "wool": "modularutilities:blocks/turf_frozen" } }],
+    	"type=jungle": [{ "textures": { "wool": "modularutilities:blocks/turf_jungle" } }],
+    	"type=swamp": [{ "textures": { "wool": "modularutilities:blocks/turf_swamp" } }],
+    	"type=podzol": [{ "textures": { "wool": "modularutilities:blocks/turf_podzol" } }],
+    	"type=mycelium": [{ "textures": { "wool": "modularutilities:blocks/turf_mycelium" } }]
     }
 } 	

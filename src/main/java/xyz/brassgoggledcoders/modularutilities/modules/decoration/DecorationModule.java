@@ -26,7 +26,7 @@ public class DecorationModule extends ModuleBase
 		this.getBlockRegistry().registerBlock(turf);
 
 		leaf_cover = new BlockLeafCover();
-		// this.getBlockRegistry().registerBlock(leaf_cover);
+		this.getBlockRegistry().registerBlock(leaf_cover);
 		/*
 		 * TODO:
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
