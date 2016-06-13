@@ -1,6 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
 import net.minecraft.block.Block;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
@@ -25,7 +26,7 @@ public class DecorationModule extends ModuleBase
 		this.getBlockRegistry().registerBlock(turf);
 
 		leaf_cover = new BlockLeafCover();
-		this.getBlockRegistry().registerBlock(leaf_cover);
+		// this.getBlockRegistry().registerBlock(leaf_cover);
 		/*
 		 * TODO:
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
@@ -36,4 +37,11 @@ public class DecorationModule extends ModuleBase
 		 * - Ender Pearl storage block
 		 */
 	}
+
+	@Override
+	public void init(FMLInitializationEvent event)
+	{
+
+	}
+
 }

@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -33,6 +34,10 @@ public class ModularUtilities extends BoilerplateModBase
 	@Instance("modularutilities")
 	public static ModularUtilities instance;
 
+	@SidedProxy(clientSide = "xyz.brassgoggledcoders.modularutilities.ClientProxy",
+			serverSide = "xyz.brassgoggledcoders.modularutilities.CommonProxy")
+	public static CommonProxy proxy;
+
 	public static final String MODID = "modularutilities";
 	public static final String MODNAME = "Modular Utilities";
 	public static final String MODVERSION = "@VERSION@";
@@ -44,6 +49,7 @@ public class ModularUtilities extends BoilerplateModBase
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		super.preInit(event);
+		proxy.registerModels();
 	}
 
 	@Override

@@ -5,17 +5,12 @@
         "transform": "forge:default-block"
     },
     "variants": {
-    	"type": { 
-    		"normal": { "textures": { "wool": "modularutilities:blocks/turf_normal", "particle": "#wool" } },
-    		"dry": { "textures": { "wool": "modularutilities:blocks/turf_dry", "particle": "#wool" } },
-    		"frozen": { "textures": { "wool": "modularutilities:blocks/turf_frozen", "particle": "#wool" } },
-    		"jungle": { "textures": { "wool": "modularutilities:blocks/turf_jungle", "particle": "#wool" } },
-    		"swamp": { "textures": { "wool": "modularutilities:blocks/turf_swamp", "particle": "#wool" } },
-    		"podzol": { "textures": { "wool": "modularutilities:blocks/turf_podzol", "particle": "#wool" } },
-    		"mycelium": { "textures": { "wool": "modularutilities:blocks/turf_mycelium", "particle": "#wool" } }
-    	},
-    	"inventory": [{
-    		"textures": { "wool": "modularutilities:blocks/turf_normal" }
-    	}]
-    }
+    	"type=normal": [{ "textures": { "wool": "modularutilities:blocks/turf_normal", "particle": "#wool" } }],
+    	"type=dry": [{ "textures": { "wool": "modularutilities:blocks/turf_dry", "particle": "#wool" } }],
+    	"type=frozen": [{ "textures": { "wool": "modularutilities:blocks/turf_frozen", "particle": "#wool" } }],
+    	"type=jungle": [{ "textures": { "wool": "modularutilities:blocks/turf_jungle", "particle": "#wool" } }],
+    	"type=swamp": [{ "textures": { "wool": "modularutilities:blocks/turf_swamp", "particle": "#wool" } }],
+    	"type=podzol": [{ "textures": { "wool": "modularutilities:blocks/turf_podzol", "particle": "#wool" } }],
+    	"type=mycelium": [{ "textures": { "wool": "modularutilities:blocks/turf_mycelium", "particle": "#wool" } }]
+    	}
 } 	
