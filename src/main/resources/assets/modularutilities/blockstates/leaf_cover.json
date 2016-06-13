@@ -5,11 +5,11 @@
         "transform": "forge:default-block"
     },
     "variants": {
-    	"type=oak": [{ "textures": { "wool": "minecraft:blocks/leaves_oak" } }],
-    	"type=spruce": [{ "textures": { "wool": "minecraft:blocks/leaves_spruce" } }],
-    	"type=jungle": [{ "textures": { "wool": "minecraft:blocks/leaves_jungle" } }],
-    	"type=birch": [{ "textures": { "wool": "minecraft:blocks/leaves_birch" } }],
-    	"type=acacia": [{ "textures": { "wool": "minecraft:blocks/leaves_acacia" } }],
-    	"type=big_oak": [{ "textures": { "wool": "minecraft:blocks/leaves_big_oak" } }]
+    	"type=oak": [{ "textures": { "wool": "minecraft:blocks/leaves_oak", "particle": "#wool" } }],
+    	"type=spruce": [{ "textures": { "wool": "minecraft:blocks/leaves_spruce", "particle": "#wool" } }],
+    	"type=jungle": [{ "textures": { "wool": "minecraft:blocks/leaves_jungle", "particle": "#wool" } }],
+    	"type=birch": [{ "textures": { "wool": "minecraft:blocks/leaves_birch", "particle": "#wool" } }],
+    	"type=acacia": [{ "textures": { "wool": "minecraft:blocks/leaves_acacia", "particle": "#wool" } }],
+    	"type=big_oak": [{ "textures": { "wool": "minecraft:blocks/leaves_big_oak", "particle": "#wool" } }]
     }
 } 	
