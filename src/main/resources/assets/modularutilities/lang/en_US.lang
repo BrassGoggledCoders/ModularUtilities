@@ -11,6 +11,13 @@ tile.turf.jungle.name=Rich Turf
 tile.turf.mycelium.name=Spooky Turf
 tile.turf.podzol.name=Leached Turf
 tile.turf.swamp.name=Moist Turf
+tile.leaf_cover.name=Leaf Cover
+tile.leaf_cover.oak.name=Oak Leaf Cover
+tile.leaf_cover.spruce.name=Spruce Leaf Cover
+tile.leaf_cover.jungle.name=Jungle Leaf Cover
+tile.leaf_cover.birch.name=Birch Leaf Cover
+tile.leaf_cover.acacia.name=Acacia Leaf Cover
+tile.leaf_cover.dark_oak.name=Dark Oak Leaf Cover
 
 item.machete.name=Machete
 
