@@ -7,7 +7,7 @@ public class CommonProxy
 
 	}
 
-	public void registerBlockColors()
+	public void registerColors()
 	{
 
 	}

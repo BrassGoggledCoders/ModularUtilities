@@ -7,7 +7,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
@@ -32,18 +34,14 @@ public class ClientProxy extends CommonProxy
 	}
 
 	@Override
-	public void registerBlockColors()
+	public void registerColors()
 	{
 		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Decoration"))
 		{
-			Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
-				public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos,
-						int tintIndex)
-				{
-					return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos)
-							: ColorizerFoliage.getFoliageColorBasic();
-				}
-			}, new Block[] {DecorationModule.leaf_cover});
+			Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new LeafColors(),
+					new Block[] {DecorationModule.leaf_cover});
+			Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new LeafColors(),
+					new Block[] {DecorationModule.leaf_cover});
 		}
 	}
 
@@ -57,6 +55,22 @@ public class ClientProxy extends CommonProxy
 			String variantName = variantHeader + "=" + e.getName();
 			ModelLoader.setCustomModelResourceLocation(item, e.ordinal(),
 					new ModelResourceLocation(baseName, variantName));
+		}
+	}
+
+	public class LeafColors implements IBlockColor, IItemColor
+	{
+		public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos,
+				int tintIndex)
+		{
+			return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos)
+					: ColorizerFoliage.getFoliageColorBasic();
+		}
+
+		@Override
+		public int getColorFromItemstack(ItemStack stack, int tintIndex)
+		{
+			return ColorizerFoliage.getFoliageColorBasic();
 		}
 	}
 }
