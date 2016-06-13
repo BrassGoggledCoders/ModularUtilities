@@ -5,7 +5,7 @@ import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+//@Module(mod = ModularUtilities.MODID)
 public class ConstructionModule extends ModuleBase {
 	
 	@Override

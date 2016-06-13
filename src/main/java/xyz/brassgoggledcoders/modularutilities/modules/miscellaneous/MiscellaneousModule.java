@@ -25,8 +25,15 @@ public class MiscellaneousModule extends ModuleBase {
 		this.getBlockRegistry().registerBlock(blockFeathers);
 		/*
 		 * TODO:
+		 * Gen
 		 * - Dungeon loot extension
 		 * - Villager trade & house type (Stable) extension
+		 * - Skeleton skulls spawn rarely on the desert surface
+		 * - Patches of surface block appear under biomes
+		 * - Large Dark Oak trees
+		 * - Villager Blacksmith Slab -> Anvil
+		 * - Red Netherbrick for floor in Nether Fortresses
+		 * ---
 		 * - Commands
 		 * - Achievement Extension
 		 * - Jump Pad: Increases Jump height, slime block + piston 
@@ -38,6 +45,7 @@ public class MiscellaneousModule extends ModuleBase {
 		 * - Use for rotten flesh
 		 * - Tool/Armour breakdown
 		 * - Sound & Particle expansion
+		 * - onFirstLogin screen for servers/pack devs
 		 */
 	}
 	@Override

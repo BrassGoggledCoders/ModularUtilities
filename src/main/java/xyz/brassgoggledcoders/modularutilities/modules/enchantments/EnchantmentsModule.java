@@ -37,6 +37,8 @@ public class EnchantmentsModule extends ModuleBase {
 		 * May only have one of the above arrow enchs
 		 * Perm jump/speed boost boots - generalise? 
 		 * Vampirism - lifesteal
+		 * Shield Enchant: repel
+		 * Soulbound - remains after death
 		 */
 		affluency = addEnchantment("affluency", new CustomEnchantment(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.DIGGER, hand, 11, 0, 3)); //TODO Expand to work on swords
 		flame_touch = addEnchantment("flame_touch", new CustomEnchantment(Enchantment.Rarity.RARE, EnumEnchantmentType.DIGGER, hand, 0, 21, 1));

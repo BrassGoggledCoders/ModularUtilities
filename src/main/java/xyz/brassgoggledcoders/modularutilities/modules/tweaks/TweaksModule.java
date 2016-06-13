@@ -5,7 +5,7 @@ import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+//@Module(mod = ModularUtilities.MODID)
 public class TweaksModule extends ModuleBase {
 	
 	@Override
@@ -21,6 +21,8 @@ public class TweaksModule extends ModuleBase {
 		 * - In-game messages (not chat) appear in the 'info' (music disks etc) slot rather than chatbar
 		 * - Gold Tools/Armor Tweaked to be useful 
 		 * - Ding Sound when getting achievements (excluding starter ones) and when your name is mentioned in chat
+		 * - Spectator mode on death in hardcore
+		 * - Wild wolves become agressive during a full moon
 		 */
 	}
 }
