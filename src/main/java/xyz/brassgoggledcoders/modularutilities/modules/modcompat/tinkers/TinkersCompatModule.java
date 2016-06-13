@@ -1,9 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.modcompat.tinkers;
 
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
-import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 //@Module(mod = ModularUtilities.MODID)
 public class TinkersCompatModule extends ModuleBase {
