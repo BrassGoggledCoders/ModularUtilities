@@ -20,6 +20,7 @@ tile.leaf_cover.acacia.name=Acacia Leaf Cover
 tile.leaf_cover.dark_oak.name=Dark Oak Leaf Cover
 
 item.machete.name=Machete
+item.ender_glove.name=Ender Glove
 
 enchantment.affluency=Affluency
 enchantment.flame_touch=Flame Touch

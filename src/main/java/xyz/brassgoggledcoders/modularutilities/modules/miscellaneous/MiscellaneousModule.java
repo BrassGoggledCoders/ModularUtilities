@@ -49,6 +49,9 @@ public class MiscellaneousModule extends ModuleBase
 		 * - Tool/Armour breakdown
 		 * - Sound & Particle expansion
 		 * - onFirstLogin screen for servers/pack devs
+		 * - Splatter: swamp creeper that explodes into lingering potion effects
+		 * - Quicksand
+		 * https://www.reddit.com/r/minecraftsuggestions/comments/4nug0e/dweller_zombie_variant/
 		 */
 	}
 
