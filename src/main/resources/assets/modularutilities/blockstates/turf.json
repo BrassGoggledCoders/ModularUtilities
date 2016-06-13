@@ -1,20 +1,21 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "block/thin_block",
+        "model": "carpet",
         "transform": "forge:default-block"
     },
     "variants": {
     	"type": { 
     		"normal": {
     			"textures": { 
-    				"all": "modularutilities:blocks/turf_normal" 
+    				"wool": "modularutilities:blocks/turf_normal"
     			} 
     		},
     		"dry": {
     			"textures": {
-    				"all": "modularutilities:blocks/turf_dry"
-    			} 
+    				"wool": "modularutilities:blocks/turf_dry"
+    			}
+    		}
     	}
     }
 } 	
