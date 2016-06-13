@@ -3,20 +3,23 @@ package xyz.brassgoggledcoders.modularutilities.modules.modcompat.tinkers;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 
-//@Module(mod = ModularUtilities.MODID)
-public class TinkersCompatModule extends ModuleBase {
-	
+// @Module(mod = ModularUtilities.MODID)
+public class TinkersCompatModule extends ModuleBase
+{
+
 	@Override
-	public String getName() {
+	public String getName()
+	{
 		return "Mod Compat: Tinkers";
 	}
+
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		/*
 		 * TODO:
 		 * - MATT
-		 * - 
+		 * -
 		 */
 	}
 }

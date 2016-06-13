@@ -7,14 +7,17 @@ import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
-public class RedstoneModule extends ModuleBase {
-	
+public class RedstoneModule extends ModuleBase
+{
+
 	public static Block fused_quartz, redstone_sand;
-	
+
 	@Override
-	public String getName() {
+	public String getName()
+	{
 		return "Redstone";
 	}
+
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -28,7 +31,7 @@ public class RedstoneModule extends ModuleBase {
 		 * - Redstone cable that's waterproof and freestanding
 		 * - Second colour of redstone. Wire only.
 		 * - Very basic Logic Gates
-		 * - Variable strength emmitter 
+		 * - Variable strength emmitter
 		 */
 	}
 }

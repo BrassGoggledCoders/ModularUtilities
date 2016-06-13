@@ -10,14 +10,17 @@ import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
-public class MiscellaneousModule extends ModuleBase {
-	
-	public static BlockBase blockFeathers; 
-	
+public class MiscellaneousModule extends ModuleBase
+{
+
+	public static BlockBase blockFeathers;
+
 	@Override
-	public String getName() {
+	public String getName()
+	{
 		return "Miscellaneous";
 	}
+
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -36,18 +39,19 @@ public class MiscellaneousModule extends ModuleBase {
 		 * ---
 		 * - Commands
 		 * - Achievement Extension
-		 * - Jump Pad: Increases Jump height, slime block + piston 
-		 * - Sticky Slime Block: Slime Block + water. No Jumping. 
-		 * - Enchanting water bottle = Bottle of Enchanting? 
-		 * - Bedroll from Hay Bales/Feather Block. Durability, somehow? Won't set spawn. 
+		 * - Jump Pad: Increases Jump height, slime block + piston
+		 * - Sticky Slime Block: Slime Block + water. No Jumping.
+		 * - Enchanting water bottle = Bottle of Enchanting?
+		 * - Bedroll from Hay Bales/Feather Block. Durability, somehow? Won't set spawn.
 		 * - Splash Water bottle for fire extinguishing.
-		 * - Desert Golem that throws sand, giving you blindness? 
+		 * - Desert Golem that throws sand, giving you blindness?
 		 * - Use for rotten flesh
 		 * - Tool/Armour breakdown
 		 * - Sound & Particle expansion
 		 * - onFirstLogin screen for servers/pack devs
 		 */
 	}
+
 	@Override
 	public void init(FMLInitializationEvent event)
 	{

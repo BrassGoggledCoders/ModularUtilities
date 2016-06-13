@@ -23,70 +23,72 @@ import xyz.brassgoggledcoders.boilerplate.BoilerplateModBase;
 import xyz.brassgoggledcoders.modularutilities.modules.enchantments.CustomEnchantment;
 
 @Mod(modid = ModularUtilities.MODID, name = ModularUtilities.MODNAME, version = ModularUtilities.MODVERSION)
-public class ModularUtilities extends BoilerplateModBase {
-		public ModularUtilities() {
-			super(MODID, MODNAME, MODVERSION, tab);
+public class ModularUtilities extends BoilerplateModBase
+{
+	public ModularUtilities()
+	{
+		super(MODID, MODNAME, MODVERSION, tab);
+	}
+
+	@Instance("modularutilities")
+	public static ModularUtilities instance;
+
+	public static final String MODID = "modularutilities";
+	public static final String MODNAME = "Modular Utilities";
+	public static final String MODVERSION = "@VERSION@";
+
+	public static CreativeTabs tab = new MUTab();
+
+	@Override
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event)
+	{
+		super.preInit(event);
+	}
+
+	@Override
+	@EventHandler
+	public void init(FMLInitializationEvent event)
+	{
+		super.init(event);
+	}
+
+	@Override
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event)
+	{
+		super.postInit(event);
+	}
+
+	@Override
+	public Object getInstance()
+	{
+		return instance;
+	}
+
+	public static class MUTab extends BaseCreativeTab
+	{
+		public MUTab()
+		{
+			super(MODID);
+			this.setRelevantEnchantmentTypes(EnumEnchantmentType.values());
 		}
 
-		@Instance("modularutilities")
-		public static ModularUtilities instance;
-
-		public static final String MODID = "modularutilities";
-		public static final String MODNAME = "Modular Utilities";
-		public static final String MODVERSION = "@VERSION@";
-
-		public static CreativeTabs tab = new MUTab();
-		
+		@SideOnly(Side.CLIENT)
 		@Override
-		@EventHandler
-		public void preInit(FMLPreInitializationEvent event)
+		public void addEnchantmentBooksToList(List<ItemStack> itemList, EnumEnchantmentType... enchantmentType)
 		{
-			super.preInit(event);
+			for(Enchantment enchantment : Enchantment.REGISTRY)
+				// A little expensive, but its on load, so shouldn't be a big deal
+				if(enchantment instanceof CustomEnchantment)
+					itemList.add(Items.ENCHANTED_BOOK
+							.getEnchantedItemStack(new EnchantmentData(enchantment, enchantment.getMaxLevel())));
 		}
 
 		@Override
-		@EventHandler
-		public void init(FMLInitializationEvent event)
+		public Item getTabIconItem()
 		{
-			super.init(event);
-		}
-
-		@Override
-		@EventHandler
-		public void postInit(FMLPostInitializationEvent event)
-		{
-			super.postInit(event);
-		}
-		
-		@Override
-		public Object getInstance()
-		{
-			return instance;
-		}
-		public static class MUTab extends BaseCreativeTab
-		{
-			public MUTab()
-			{
-				super(MODID);
-				this.setRelevantEnchantmentTypes(EnumEnchantmentType.values());
-			}
-			
-		    @SideOnly(Side.CLIENT)
-		    @Override
-		    public void addEnchantmentBooksToList(List<ItemStack> itemList, EnumEnchantmentType... enchantmentType)
-		    {
-		        for (Enchantment enchantment : Enchantment.REGISTRY)
-		        {
-		        	//A little expensive, but its on load, so shouldn't be a big deal
-		        	if(enchantment instanceof CustomEnchantment)
-		        		itemList.add(Items.ENCHANTED_BOOK.getEnchantedItemStack(new EnchantmentData(enchantment, enchantment.getMaxLevel())));
-		        }
-		    }
-
-			@Override
-			public Item getTabIconItem()
-			{
-				return Item.getItemFromBlock(Blocks.SPONGE);
-			}
+			return Item.getItemFromBlock(Blocks.SPONGE);
 		}
 	}
+}

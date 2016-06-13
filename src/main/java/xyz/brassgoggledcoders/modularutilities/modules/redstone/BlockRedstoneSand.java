@@ -23,17 +23,17 @@ public class BlockRedstoneSand extends BlockFalling implements IModAware, IHasIt
 	}
 
 	@Override
-    public boolean canProvidePower(IBlockState state)
-    {
-        return true;
-    }
-	
+	public boolean canProvidePower(IBlockState state)
+	{
+		return true;
+	}
+
 	@Override
-    public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-    {
-        return 15;
-    }
-	
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	{
+		return 15;
+	}
+
 	@Override
 	public IBoilerplateMod getMod()
 	{
@@ -47,17 +47,17 @@ public class BlockRedstoneSand extends BlockFalling implements IModAware, IHasIt
 	}
 
 	@Override
-	public ItemBlock getItemBlockClass(Block block) {
+	public ItemBlock getItemBlockClass(Block block)
+	{
 		return new ItemBlock(block);
 	}
 
 	@Override
-	public String[] getResourceLocations() {
+	public String[] getResourceLocations()
+	{
 		String name = this.getUnlocalizedName();
 		if(name.startsWith("tile."))
-		{
 			name = name.substring(5);
-		}
-		return new String[] { name };
+		return new String[] {name};
 	}
 }

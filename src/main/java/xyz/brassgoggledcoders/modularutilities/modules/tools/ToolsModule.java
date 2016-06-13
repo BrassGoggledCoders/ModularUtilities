@@ -6,14 +6,17 @@ import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
-public class ToolsModule extends ModuleBase {
-	
+public class ToolsModule extends ModuleBase
+{
+
 	public static ItemMachete machete;
-	
+
 	@Override
-	public String getName() {
+	public String getName()
+	{
 		return "Tools";
 	}
+
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
