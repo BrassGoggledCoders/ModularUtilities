@@ -6,4 +6,9 @@ public class CommonProxy
 	{
 
 	}
+
+	public void registerBlockColors()
+	{
+
+	}
 }

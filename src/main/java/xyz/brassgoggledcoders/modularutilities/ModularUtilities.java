@@ -57,6 +57,7 @@ public class ModularUtilities extends BoilerplateModBase
 	public void init(FMLInitializationEvent event)
 	{
 		super.init(event);
+		proxy.registerBlockColors();
 	}
 
 	@Override

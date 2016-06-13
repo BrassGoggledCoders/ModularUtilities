@@ -1,9 +1,18 @@
 package xyz.brassgoggledcoders.modularutilities;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover;
@@ -19,6 +28,22 @@ public class ClientProxy extends CommonProxy
 		{
 			registerVariantsDefaulted(DecorationModule.turf, BlockTurf.EnumTurfBlockType.class, "type");
 			registerVariantsDefaulted(DecorationModule.leaf_cover, BlockLeafCover.EnumLeafCoverBlockType.class, "type");
+		}
+	}
+
+	@Override
+	public void registerBlockColors()
+	{
+		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Decoration"))
+		{
+			Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
+				public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos,
+						int tintIndex)
+				{
+					return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos)
+							: ColorizerFoliage.getFoliageColorBasic();
+				}
+			}, new Block[] {DecorationModule.leaf_cover});
 		}
 	}
 
