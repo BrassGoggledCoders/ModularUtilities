@@ -1,7 +1,12 @@
 package xyz.brassgoggledcoders.modularutilities.modules.tools;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
@@ -49,10 +54,11 @@ public class ToolsModule extends ModuleBase
 			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
 			if(ItemStackUtils.doItemsMatch(player.inventory.offHandInventory[0], ender_glove))
 			{
-				for(int i = 0; i < event.getDrops().size(); i++)
+				List<EntityItem> items = new ArrayList<EntityItem>(event.getDrops());
+				for(int i = 0; i < items.size(); i++)
 				{
-					if(player.getInventoryEnderChest().addItem(event.getDrops().get(i).getEntityItem()) == null)
-						event.getDrops().remove(0);
+					if(player.getInventoryEnderChest().addItem(items.get(i).getEntityItem()) == null)
+						event.getDrops().remove(i);
 				}
 			}
 		}
@@ -66,10 +72,11 @@ public class ToolsModule extends ModuleBase
 			EntityPlayer player = event.getHarvester();
 			if(ItemStackUtils.doItemsMatch(player.inventory.offHandInventory[0], ender_glove))
 			{
-				for(int i = 0; i < event.getDrops().size(); i++)
+				List<ItemStack> items = new ArrayList<ItemStack>(event.getDrops());
+				for(int i = 0; i < items.size(); i++)
 				{
-					if(player.getInventoryEnderChest().addItem(event.getDrops().get(i)) == null)
-						event.getDrops().remove(0);
+					if(player.getInventoryEnderChest().addItem(items.get(i)) == null)
+						event.getDrops().remove(i);
 				}
 			}
 		}
