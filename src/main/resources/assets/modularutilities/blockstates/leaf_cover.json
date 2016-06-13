@@ -6,11 +6,10 @@
     },
     "variants": {
     	"type=oak": [{ "textures": { "wool": "minecraft:blocks/leaves_oak" } }],
-    	"type=dry": [{ "textures": { "wool": "modularutilities:blocks/turf_dry" } }],
-    	"type=frozen": [{ "textures": { "wool": "modularutilities:blocks/turf_frozen" } }],
-    	"type=jungle": [{ "textures": { "wool": "modularutilities:blocks/turf_jungle" } }],
-    	"type=swamp": [{ "textures": { "wool": "modularutilities:blocks/turf_swamp" } }],
-    	"type=podzol": [{ "textures": { "wool": "modularutilities:blocks/turf_podzol" } }],
-    	"type=mycelium": [{ "textures": { "wool": "modularutilities:blocks/turf_mycelium" } }]
+    	"type=spruce": [{ "textures": { "wool": "minecraft:blocks/leaves_spruce" } }],
+    	"type=jungle": [{ "textures": { "wool": "minecraft:blocks/leaves_jungle" } }],
+    	"type=birch": [{ "textures": { "wool": "minecraft:blocks/leaves_birch" } }],
+    	"type=acacia": [{ "textures": { "wool": "minecraft:blocks/leaves_acacia" } }],
+    	"type=big_oak": [{ "textures": { "wool": "minecraft:blocks/leaves_big_oak" } }]
     }
 } 	
