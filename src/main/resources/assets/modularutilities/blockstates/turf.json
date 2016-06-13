@@ -6,16 +6,13 @@
     },
     "variants": {
     	"type": { 
-    		"normal": {
-    			"textures": { 
-    				"wool": "modularutilities:blocks/turf_normal"
-    			} 
-    		},
-    		"dry": {
-    			"textures": {
-    				"wool": "modularutilities:blocks/turf_dry"
-    			}
-    		}
+    		"normal": { "textures": { "wool": "modularutilities:blocks/turf_normal" } },
+    		"dry": { "textures": { "wool": "modularutilities:blocks/turf_dry" } },
+    		"frozen": { "textures": { "wool": "modularutilities:blocks/turf_frozen" } },
+    		"jungle": { "textures": { "wool": "modularutilities:blocks/turf_jungle" } },
+    		"swamp": { "textures": { "wool": "modularutilities:blocks/turf_swamp" } },
+    		"podzol": { "textures": { "wool": "modularutilities:blocks/turf_podzol" } },
+    		"mycelium": { "textures": { "wool": "modularutilities:blocks/turf_mycelium" } }
     	}
     }
 } 	

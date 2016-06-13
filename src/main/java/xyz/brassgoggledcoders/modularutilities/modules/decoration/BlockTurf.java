@@ -118,7 +118,12 @@ public class BlockTurf extends BlockBase {
 	
 	public enum EnumBlockType implements IStringSerializable {
 		NORMAL(0),
-		DRY(1);
+		DRY(1),
+		FROZEN(2),
+		JUNGLE(3),
+		SWAMP(4),
+		PODZOL(5),
+		MYCELIUM(6);
 		
 		public static final EnumBlockType[] VALUES = values();
 		
