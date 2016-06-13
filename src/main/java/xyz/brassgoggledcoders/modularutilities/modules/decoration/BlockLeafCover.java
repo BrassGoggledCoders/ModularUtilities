@@ -1,15 +1,18 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -20,6 +23,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockThin;
 import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
+import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
 
 public class BlockLeafCover extends BlockThin
 {
@@ -31,6 +35,12 @@ public class BlockLeafCover extends BlockThin
 		super(Material.LEAVES);
 		this.setUnlocalizedName("leaf_cover");
 		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumLeafCoverBlockType.OAK));
+	}
+
+	@Override
+	public ItemBlock getItemBlockClass(Block block)
+	{
+		return new ItemSubBlock(block, EnumLeafCoverBlockType.names());
 	}
 
 	@Override
@@ -107,6 +117,15 @@ public class BlockLeafCover extends BlockThin
 		public String getName()
 		{
 			return name().toLowerCase();
+		}
+
+		public static String[] names()
+		{
+			ArrayList<String> names = new ArrayList<String>();
+			for(int i = 0; i < VALUES.length; i++)
+				names.add(VALUES[i].toString().toLowerCase());
+
+			return names.toArray(new String[0]);
 		}
 	}
 }
