@@ -12,8 +12,8 @@ import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 @Module(mod = ModularUtilities.MODID)
 public class MiscellaneousModule extends ModuleBase
 {
-
 	public static BlockBase blockFeathers;
+	public static ItemMachete machete;
 
 	@Override
 	public String getName()
@@ -26,6 +26,9 @@ public class MiscellaneousModule extends ModuleBase
 	{
 		blockFeathers = new BlockFeathers();
 		this.getBlockRegistry().registerBlock(blockFeathers);
+
+		machete = new ItemMachete();
+		this.getItemRegistry().registerItem(machete);
 		/*
 		 * TODO:
 		 * Gen

@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.modularutilities.modules.tools;
+package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
