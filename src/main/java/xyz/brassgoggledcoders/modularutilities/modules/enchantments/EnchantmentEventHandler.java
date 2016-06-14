@@ -71,10 +71,8 @@ public class EnchantmentEventHandler
 				{
 					Random rand = new Random();
 					if(rand.nextInt(10 - prosAmount) == 0 && !event.getWorld().isRemote)
-						event.getDrops().add(new ItemStack(Items.GOLD_NUGGET, 1 + rand.nextInt(3 + prosAmount))); // TODO
-																													// Custom
-																													// loot
-																													// table
+						event.getDrops().add(new ItemStack(Items.GOLD_NUGGET, 1 + rand.nextInt(3 + prosAmount)));
+					// TODO Custom loot table
 				}
 			}
 		}

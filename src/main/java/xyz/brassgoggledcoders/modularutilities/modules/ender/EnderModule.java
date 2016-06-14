@@ -1,8 +1,9 @@
-package xyz.brassgoggledcoders.modularutilities.modules.tools;
+package xyz.brassgoggledcoders.modularutilities.modules.ender;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -19,30 +20,30 @@ import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
-public class ToolsModule extends ModuleBase
+public class EnderModule extends ModuleBase
 {
-
-	public static ItemMachete machete;
 	public static Item ender_glove, ender_pocket;
+
+	public static Block ender_proxy;
 
 	@Override
 	public String getName()
 	{
-		return "Tools";
+		return "Ender";
 	}
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		machete = new ItemMachete();
-		this.getItemRegistry().registerItem(machete);
-
 		// TODO EnderStorage compatibility.
 		ender_glove = new ItemBase("ender_glove");
 		getItemRegistry().registerItem(ender_glove);
 		ender_pocket = new ItemEnderPocket();
 		getItemRegistry().registerItem(ender_pocket);
-		// TODO Ender Totem (experience) and Ender X - transfers items out of ender chest.
+		// TODO Ender Totem (experience) and Ender Dispenser/Dropper
+
+		ender_proxy = new BlockEnderChestProxy();
+		getBlockRegistry().registerBlock(ender_proxy);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}
@@ -55,12 +56,15 @@ public class ToolsModule extends ModuleBase
 			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
 			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove))
 			{
+				/// TODO Test if needed
 				List<EntityItem> items = new ArrayList<EntityItem>(event.getDrops());
+				List<EntityItem> toRemove = new ArrayList<EntityItem>();
 				for(int i = 0; i < items.size(); i++)
 				{
 					if(player.getInventoryEnderChest().addItem(items.get(i).getEntityItem()) == null)
-						event.getDrops().remove(i);
+						toRemove.add(items.get(i));
 				}
+				event.getDrops().removeAll(toRemove);
 			}
 		}
 	}

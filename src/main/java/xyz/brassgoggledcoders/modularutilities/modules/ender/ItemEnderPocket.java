@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.modularutilities.modules.tools;
+package xyz.brassgoggledcoders.modularutilities.modules.ender;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

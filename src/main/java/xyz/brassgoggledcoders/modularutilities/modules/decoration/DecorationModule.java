@@ -64,6 +64,9 @@ public class DecorationModule extends ModuleBase
 			GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, i), "XX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
 		GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, 4), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
 		GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, 5), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
+
+		GameRegistry.addRecipe(new ItemStack(clinker_brick, 4), "NB", "BN", 'N', Blocks.NETHER_BRICK, 'B',
+				Blocks.BRICK_BLOCK);
 	}
 
 	@SubscribeEvent
