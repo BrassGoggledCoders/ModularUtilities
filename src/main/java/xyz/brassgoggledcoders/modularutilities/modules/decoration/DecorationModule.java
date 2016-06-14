@@ -95,7 +95,8 @@ public class DecorationModule extends ModuleBase
 				flag = true;
 			}
 			else if(bl == Blocks.DIRT
-					&& bl.getBlockState().getProperty("variant").getName() == BlockDirt.DirtType.PODZOL.getName())
+					&& bl.getMetaFromState(event.getWorld().getBlockState(event.getPos())) == BlockDirt.DirtType.PODZOL
+							.getMetadata())
 			{
 				meta = 5;
 				flag = true;
