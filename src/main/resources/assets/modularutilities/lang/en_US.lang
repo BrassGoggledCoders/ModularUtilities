@@ -17,7 +17,8 @@ tile.leaf_cover.spruce.name=Spruce Leaf Cover
 tile.leaf_cover.jungle.name=Jungle Leaf Cover
 tile.leaf_cover.birch.name=Birch Leaf Cover
 tile.leaf_cover.acacia.name=Acacia Leaf Cover
-tile.leaf_cover.dark_oak.name=Dark Oak Leaf Cover
+tile.leaf_cover.big_oak.name=Dark Oak Leaf Cover
+tile.clinker_brick.name=Clinker Brick
 
 item.machete.name=Machete
 item.ender_glove.name=Ender Glove

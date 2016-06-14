@@ -96,7 +96,7 @@ public class BlockLeafCover extends BlockThin
 
 	public enum EnumLeafCoverBlockType implements IBlockType
 	{
-		OAK(0), SPRUCE(1), JUNGLE(2), BIRCH(3), ACACIA(4), BIG_OAK(5);
+		OAK(0), SPRUCE(1), BIRCH(2), JUNGLE(3), ACACIA(4), BIG_OAK(5);
 
 		public static final EnumLeafCoverBlockType[] VALUES = values();
 

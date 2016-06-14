@@ -2,12 +2,16 @@ package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
+import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover.EnumLeafCoverBlockType;
 
 @Module(mod = ModularUtilities.MODID)
 public class DecorationModule extends ModuleBase
@@ -43,9 +47,12 @@ public class DecorationModule extends ModuleBase
 	}
 
 	@Override
-	public void init(FMLInitializationEvent event)
+	public void postInit(FMLPostInitializationEvent event)
 	{
-
+		for(int i = 0; i < EnumLeafCoverBlockType.VALUES.length - 2; i++)
+			GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, i), "XX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
+		GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, 4), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, 5), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
 	}
 
 }
