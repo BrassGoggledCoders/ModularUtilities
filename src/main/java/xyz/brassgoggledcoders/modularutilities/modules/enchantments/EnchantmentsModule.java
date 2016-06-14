@@ -44,13 +44,9 @@ public class EnchantmentsModule extends ModuleBase
 		 * Shield Enchant: repel
 		 * Soulbound - remains after death
 		 */
+		// TODO: Expand to work on swords
 		affluency = addEnchantment("affluency",
-				new CustomEnchantment(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.DIGGER, hand, 11, 0, 3)); // TODO
-																													// Expand
-																													// to
-																													// work
-																													// on
-																													// swords
+				new CustomEnchantment(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.DIGGER, hand, 11, 0, 3));
 		flame_touch = addEnchantment("flame_touch",
 				new CustomEnchantment(Enchantment.Rarity.RARE, EnumEnchantmentType.DIGGER, hand, 0, 21, 1));
 		prospector = addEnchantment("prospector",
@@ -59,11 +55,10 @@ public class EnchantmentsModule extends ModuleBase
 		MinecraftForge.EVENT_BUS.register(new EnchantmentEventHandler());
 	}
 
-	private Enchantment addEnchantment(/* int id, */ String name, Enchantment ench)
+	private Enchantment addEnchantment(String name, Enchantment ench)
 	{
-		// ConfigEntry cEntry = new ConfigEntry("Enchantment IDs", name, Type.INTEGER, String.valueOf(id));
-		// this.getConfigRegistry().addEntry(cEntry);
-		Enchantment.REGISTRY.register(0, new ResourceLocation(name), ench);
+		// TODO Is this the correct way to do things?
+		Enchantment.REGISTRY.register(0, new ResourceLocation(ModularUtilities.MODID, name), ench);
 		ench.setName(name);
 		return ench;
 	}
