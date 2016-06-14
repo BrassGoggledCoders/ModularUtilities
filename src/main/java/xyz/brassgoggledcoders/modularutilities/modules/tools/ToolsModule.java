@@ -53,7 +53,7 @@ public class ToolsModule extends ModuleBase
 		if(event.getSource().getDamageType() == "player")
 		{
 			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
-			if(ItemStackUtils.doItemsMatch(player.inventory.offHandInventory[0], ender_glove))
+			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove))
 			{
 				List<EntityItem> items = new ArrayList<EntityItem>(event.getDrops());
 				for(int i = 0; i < items.size(); i++)
@@ -71,7 +71,7 @@ public class ToolsModule extends ModuleBase
 		if(event.getHarvester() != null)
 		{
 			EntityPlayer player = event.getHarvester();
-			if(ItemStackUtils.doItemsMatch(player.inventory.offHandInventory[0], ender_glove))
+			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove))
 			{
 				List<ItemStack> items = new ArrayList<ItemStack>(event.getDrops());
 				for(int i = 0; i < items.size(); i++)
