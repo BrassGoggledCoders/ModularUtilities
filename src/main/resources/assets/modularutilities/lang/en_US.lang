@@ -21,6 +21,7 @@ tile.leaf_cover.dark_oak.name=Dark Oak Leaf Cover
 
 item.machete.name=Machete
 item.ender_glove.name=Ender Glove
+item.ender_pocket.name=Ender Pocket
 
 enchantment.affluency=Affluency
 enchantment.flame_touch=Flame Touch

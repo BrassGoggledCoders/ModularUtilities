@@ -23,7 +23,7 @@ public class ToolsModule extends ModuleBase
 {
 
 	public static ItemMachete machete;
-	public static Item ender_glove;
+	public static Item ender_glove, ender_pocket;
 
 	@Override
 	public String getName()
@@ -37,12 +37,12 @@ public class ToolsModule extends ModuleBase
 		machete = new ItemMachete();
 		this.getItemRegistry().registerItem(machete);
 
+		// TODO Non-vanilla ender chest compatibility.
 		ender_glove = new ItemBase("ender_glove");
 		getItemRegistry().registerItem(ender_glove);
-		/*
-		 * TODO:
-		 * - Ender Pocket
-		 */
+		ender_pocket = new ItemEnderPocket();
+		getItemRegistry().registerItem(ender_pocket);
+
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
