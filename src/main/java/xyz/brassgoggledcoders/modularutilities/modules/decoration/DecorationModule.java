@@ -1,8 +1,10 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
@@ -11,7 +13,7 @@ import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 public class DecorationModule extends ModuleBase
 {
 
-	public static Block turf, leaf_cover;
+	public static Block turf, leaf_cover, clinker_brick;
 
 	@Override
 	public String getName()
@@ -27,13 +29,15 @@ public class DecorationModule extends ModuleBase
 
 		leaf_cover = new BlockLeafCover();
 		this.getBlockRegistry().registerBlock(leaf_cover);
+
+		clinker_brick = new BlockBase(Material.ROCK, "clinker_brick");
+		getBlockRegistry().registerBlock(clinker_brick);
 		/*
 		 * TODO:
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
 		 * - Turf & Leaf Covers
 		 * - Smooth Glowstone https://i.imgur.com/lywsYXl.jpg
 		 * - Polished Endstone and Obsidian. 4x4.
-		 * - Brick + Netherbrick in 4x4 is special brick texture http://imgur.com/a/PVvHP#4
 		 * - Ender Pearl storage block
 		 */
 	}

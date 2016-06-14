@@ -37,11 +37,12 @@ public class ToolsModule extends ModuleBase
 		machete = new ItemMachete();
 		this.getItemRegistry().registerItem(machete);
 
-		// TODO Non-vanilla ender chest compatibility.
+		// TODO EnderStorage compatibility.
 		ender_glove = new ItemBase("ender_glove");
 		getItemRegistry().registerItem(ender_glove);
 		ender_pocket = new ItemEnderPocket();
 		getItemRegistry().registerItem(ender_pocket);
+		// TODO Ender Totem (experience) and Ender X - transfers items out of ender chest.
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}
