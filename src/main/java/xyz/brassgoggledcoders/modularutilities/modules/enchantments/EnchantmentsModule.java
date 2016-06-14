@@ -50,7 +50,7 @@ public class EnchantmentsModule extends ModuleBase
 		flame_touch = addEnchantment("flame_touch",
 				new CustomEnchantment(Enchantment.Rarity.RARE, EnumEnchantmentType.DIGGER, hand, 0, 21, 1));
 		prospector = addEnchantment("prospector",
-				new CustomEnchantment(Enchantment.Rarity.COMMON, EnumEnchantmentType.DIGGER, hand, 5, 0, 4));
+				new EnchantmentProspector(Enchantment.Rarity.COMMON, EnumEnchantmentType.DIGGER, hand, 5, 0, 4));
 
 		MinecraftForge.EVENT_BUS.register(new EnchantmentEventHandler());
 	}
