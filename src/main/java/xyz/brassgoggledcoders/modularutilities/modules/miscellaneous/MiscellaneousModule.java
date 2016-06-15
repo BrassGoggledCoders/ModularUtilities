@@ -1,8 +1,13 @@
 package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
@@ -29,6 +34,7 @@ public class MiscellaneousModule extends ModuleBase
 
 		machete = new ItemMachete();
 		this.getItemRegistry().registerItem(machete);
+
 		/*
 		 * TODO:
 		 * Gen
@@ -63,5 +69,27 @@ public class MiscellaneousModule extends ModuleBase
 	{
 		OreDictionary.registerOre("wool", blockFeathers);
 		OreDictionary.registerOre("wool", Blocks.WOOL);
+
+		Blocks.DRAGON_EGG.setCreativeTab(CreativeTabs.DECORATIONS);
+		Blocks.FARMLAND.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+	}
+
+	@Override
+	public void postInit(FMLPostInitializationEvent event)
+	{
+		// Extra Vanilla recipes
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.STRING, 2), new Object[] {new ItemStack(Blocks.WOOL)});
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 6, 15), new Object[] {Items.BONE, Items.ROTTEN_FLESH});
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.DISPENSER), new Object[] {Blocks.DROPPER, Items.BOW});
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PISTON),
+				new Object[] {Blocks.STICKY_PISTON, Items.WATER_BUCKET});
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SAND, 4),
+				new Object[] {new ItemStack(Blocks.SANDSTONE, 1, OreDictionary.WILDCARD_VALUE)});
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SAND, 4, 1), new Object[] {Blocks.RED_SANDSTONE});
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.QUARTZ, 6), new Object[] {Blocks.QUARTZ_STAIRS});
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.QUARTZ, 2),
+				new Object[] {new ItemStack(Blocks.STONE_SLAB, 1, 7)});
+
+		// Custom Recipes
 	}
 }
