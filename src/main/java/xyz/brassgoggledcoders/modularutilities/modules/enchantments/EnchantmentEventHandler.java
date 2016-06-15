@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -31,6 +32,23 @@ public class EnchantmentEventHandler
 			int affXP = XP + affAmount * affAmount / 2;
 
 			event.setExpToDrop(affXP);
+		}
+	}
+
+	@SubscribeEvent
+	public void onLivingXPDrop(LivingExperienceDropEvent event)
+	{
+		EntityPlayer player = event.getAttackingPlayer();
+
+		int affAmount =
+				EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.affluency, player.inventory.getCurrentItem());
+
+		if(event.getDroppedExperience() > 0)
+		{
+			int XP = event.getDroppedExperience();
+			int affXP = XP + affAmount * affAmount / 2;
+
+			event.setDroppedExperience(affXP);
 		}
 	}
 

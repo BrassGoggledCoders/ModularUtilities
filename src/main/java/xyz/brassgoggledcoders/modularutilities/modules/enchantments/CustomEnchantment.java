@@ -20,21 +20,6 @@ public class CustomEnchantment extends Enchantment
 		this.maxLevel = maxLevel;
 	}
 
-	// TODO Doesn't appear to work, or anvil overrides. Requires Testing
-	/*
-	 * @Override
-	 * public boolean canApplyTogether(Enchantment enchantment)
-	 * {
-	 * boolean isConflicted = false;
-	 * for(int i = 0; i < conflicts.length; i++)
-	 * {
-	 * if(conflicts[i] == enchantment)
-	 * isConflicted = true;
-	 * }
-	 * return isConflicted;
-	 * }
-	 */
-
 	@Override
 	public int getMinEnchantability(int level)
 	{
