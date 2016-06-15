@@ -1,7 +1,12 @@
 package xyz.brassgoggledcoders.modularutilities.modules.redstone;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
@@ -33,5 +38,13 @@ public class RedstoneModule extends ModuleBase
 		 * - Very basic Logic Gates
 		 * - Variable strength emmitter
 		 */
+	}
+
+	@Override
+	public void postInit(FMLPostInitializationEvent event)
+	{
+		GameRegistry.addSmelting(Blocks.QUARTZ_BLOCK, new ItemStack(fused_quartz), 0.2F);
+		GameRegistry.addRecipe(new ItemStack(redstone_sand),
+				new Object[] {"SR", "RS", 'S', Blocks.SAND, 'R', Items.REDSTONE});
 	}
 }

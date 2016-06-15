@@ -17,7 +17,7 @@ import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 @Module(mod = ModularUtilities.MODID)
 public class MiscellaneousModule extends ModuleBase
 {
-	public static BlockBase blockFeathers;
+	public static BlockBase feathers;
 	public static ItemMachete machete;
 
 	@Override
@@ -29,8 +29,8 @@ public class MiscellaneousModule extends ModuleBase
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		blockFeathers = new BlockFeathers();
-		this.getBlockRegistry().registerBlock(blockFeathers);
+		feathers = new BlockFeathers();
+		this.getBlockRegistry().registerBlock(feathers);
 
 		machete = new ItemMachete();
 		this.getItemRegistry().registerItem(machete);
@@ -67,7 +67,7 @@ public class MiscellaneousModule extends ModuleBase
 	@Override
 	public void init(FMLInitializationEvent event)
 	{
-		OreDictionary.registerOre("wool", blockFeathers);
+		OreDictionary.registerOre("wool", feathers);
 		OreDictionary.registerOre("wool", Blocks.WOOL);
 
 		Blocks.DRAGON_EGG.setCreativeTab(CreativeTabs.DECORATIONS);
@@ -92,5 +92,8 @@ public class MiscellaneousModule extends ModuleBase
 				new Object[] {new ItemStack(Blocks.STONE_SLAB, 1, 7)});
 
 		// Custom Recipes
+		GameRegistry.addRecipe(new ItemStack(feathers), new Object[] {"XXX", "XXX", "XXX", 'X', Items.FEATHER});
+		GameRegistry.addRecipe(new ItemStack(machete),
+				new Object[] {"SI", 'S', Items.IRON_SWORD, 'I', Items.IRON_INGOT});
 	}
 }
