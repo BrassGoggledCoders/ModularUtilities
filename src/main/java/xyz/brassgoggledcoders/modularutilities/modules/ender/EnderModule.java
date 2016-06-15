@@ -43,7 +43,7 @@ public class EnderModule extends ModuleBase
 		// TODO Ender Totem (experience) and Ender Dispenser/Dropper
 
 		ender_proxy = new BlockEnderChestProxy();
-		getBlockRegistry().registerBlock(ender_proxy);
+		// getBlockRegistry().registerBlock(ender_proxy);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

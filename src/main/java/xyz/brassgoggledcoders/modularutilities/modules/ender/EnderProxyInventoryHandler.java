@@ -11,12 +11,12 @@ public class EnderProxyInventoryHandler implements IItemHandler
 {
 	private IItemHandler enderChest;
 
-	public EnderProxyInventoryHandler(World world, UUID playerID)
+	public void setWrappedEnderInventory(World world, UUID playerID)
 	{
 		enderChest = new InvWrapper(world.getPlayerEntityByUUID(playerID).getInventoryEnderChest());
 	}
 
-	public IItemHandler getWrappedEnderInventory()
+	public IItemHandler getEInv()
 	{
 		return enderChest;
 	}
@@ -24,24 +24,24 @@ public class EnderProxyInventoryHandler implements IItemHandler
 	@Override
 	public int getSlots()
 	{
-		return getWrappedEnderInventory().getSlots();
+		return (getEInv() != null) ? getEInv().getSlots() : 0;
 	}
 
 	@Override
 	public ItemStack getStackInSlot(int slot)
 	{
-		return getWrappedEnderInventory().getStackInSlot(slot);
+		return getEInv().getStackInSlot(slot);
 	}
 
 	@Override
 	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate)
 	{
-		return getWrappedEnderInventory().insertItem(slot, stack, simulate);
+		return getEInv().insertItem(slot, stack, simulate);
 	}
 
 	@Override
 	public ItemStack extractItem(int slot, int amount, boolean simulate)
 	{
-		return getWrappedEnderInventory().extractItem(slot, amount, simulate);
+		return getEInv().extractItem(slot, amount, simulate);
 	}
 }

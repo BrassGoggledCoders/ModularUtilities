@@ -9,25 +9,30 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 
 public class TileEntityEnderChestProxy extends TileEntity
 {
 	private UUID playerID;
-	public IItemHandler handler;
+	public EnderProxyInventoryHandler handler = new EnderProxyInventoryHandler();
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
-		this.playerID = compound.getUniqueId("PlayerID");
-		handler = new EnderProxyInventoryHandler(this.getWorld(), playerID);
+		UUID id = UUID.fromString(compound.getString("player_id"));
+		if(id != null)
+			this.playerID = id;
+		else
+			this.playerID = UUID.randomUUID();
+
+		handler.setWrappedEnderInventory(this.getWorld(), playerID);
+
 		super.readFromNBT(compound);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
-		compound.setUniqueId("PlayerID", this.playerID);
+		compound.setString("player_id", this.playerID.toString());
 		super.writeToNBT(compound);
 		return compound;
 	}
@@ -60,6 +65,7 @@ public class TileEntityEnderChestProxy extends TileEntity
 		return super.hasCapability(capability, facing);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
 	{

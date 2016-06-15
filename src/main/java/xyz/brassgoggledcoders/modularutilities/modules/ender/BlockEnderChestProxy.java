@@ -24,12 +24,9 @@ public class BlockEnderChestProxy extends BlockTEBase
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		// if(playerIn.isSneaking())
-		// {
 		TileEntityEnderChestProxy ex = (TileEntityEnderChestProxy) worldIn.getTileEntity(pos);
-		ex.setPlacerUUID(playerIn.getUniqueID());
-		ex.handler = new EnderProxyInventoryHandler(worldIn, playerIn.getUniqueID());
-		// }
+		ex.setPlacerUUID(playerIn.getPersistentID());
+		ex.handler.setWrappedEnderInventory(worldIn, playerIn.getPersistentID());
 		// TODO Print linked player
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
 	}
