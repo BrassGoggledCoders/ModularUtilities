@@ -1,6 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.enchantments;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
@@ -39,33 +39,26 @@ public class EnchantmentEventHandler
 	{
 		if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer)
 		{
-			ItemStack current = event.getHarvester().inventory.getCurrentItem();
-			if(EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.flame_touch, current) > 0)
+			ItemStack held = event.getHarvester().inventory.getCurrentItem();
+			if(EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.flame_touch, held) > 0)
 			{
-				// MUST iterate over a copy to avoid ConcurrentModificationException if another mod attempts to iterate
-				// over event.getDrops()
-				for(ItemStack stack : new ArrayList<ItemStack>(event.getDrops()))
-					if(ItemStackUtils.isSmeltable(stack))
-						// Only handle drops on server
-						if(!event.getWorld().isRemote)
-						{
-						// We can, however, add and remove from the original array without Exceptions.
-						event.getDrops().remove(stack);
-						event.getDrops().add(FurnaceRecipes.instance().getSmeltingResult(stack).copy()); // TODO Fortune
-						// TODO
-						// for (int i = 0; i < 10; ++i)
-						// {
-						// event.getWorld().spawnParticle(EnumParticleTypes.FLAME, event.getPos().getX() +
-						// event.getWorld().rand.nextDouble(), event.getPos().getY() +
-						// event.getWorld().rand.nextDouble(), event.getWorld().rand.nextDouble(), 0,
-						// -event.getWorld().rand.nextDouble(), 0, new int[0]);
-						// }
-						return;
-						}
+				if(event.getWorld().isRemote)
+					return;
+
+				Iterator<ItemStack> drops = event.getDrops().iterator();
+				while(drops.hasNext())
+				{
+					ItemStack current = drops.next();
+					if(ItemStackUtils.isSmeltable(current))
+					{
+						event.getDrops().remove(current);
+						event.getDrops().add(FurnaceRecipes.instance().getSmeltingResult(current));
+					}
+				}
 			}
-			else if(EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.prospector, current) > 0)
+			else if(EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.prospector, held) > 0)
 			{
-				int prosAmount = EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.prospector, current);
+				int prosAmount = EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.prospector, held);
 				Material m = event.getState().getMaterial();
 				if(m == Material.GROUND || m == Material.ROCK)
 				{

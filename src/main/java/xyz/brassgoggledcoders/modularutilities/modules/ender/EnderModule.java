@@ -1,7 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.ender;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
@@ -69,15 +68,13 @@ public class EnderModule extends ModuleBase
 			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
 			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove))
 			{
-				/// TODO Test if needed
-				List<EntityItem> items = new ArrayList<EntityItem>(event.getDrops());
-				List<EntityItem> toRemove = new ArrayList<EntityItem>();
-				for(int i = 0; i < items.size(); i++)
+				Iterator<EntityItem> drops = event.getDrops().iterator();
+				while(drops.hasNext())
 				{
-					if(player.getInventoryEnderChest().addItem(items.get(i).getEntityItem()) == null)
-						toRemove.add(items.get(i));
+					ItemStack current = drops.next().getEntityItem();
+					if(player.getInventoryEnderChest().addItem(current) == null)
+						event.getDrops().remove(current);
 				}
-				event.getDrops().removeAll(toRemove);
 			}
 		}
 	}
@@ -90,11 +87,12 @@ public class EnderModule extends ModuleBase
 			EntityPlayer player = event.getHarvester();
 			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove))
 			{
-				List<ItemStack> items = new ArrayList<ItemStack>(event.getDrops());
-				for(int i = 0; i < items.size(); i++)
+				Iterator<ItemStack> drops = event.getDrops().iterator();
+				while(drops.hasNext())
 				{
-					if(player.getInventoryEnderChest().addItem(items.get(i)) == null)
-						event.getDrops().remove(i);
+					ItemStack current = drops.next();
+					if(player.getInventoryEnderChest().addItem(current) == null)
+						event.getDrops().remove(current);
 				}
 			}
 		}
