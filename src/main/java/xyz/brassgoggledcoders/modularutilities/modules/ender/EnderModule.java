@@ -43,10 +43,10 @@ public class EnderModule extends ModuleBase
 		getItemRegistry().registerItem(ender_glove);
 		ender_pocket = new ItemEnderPocket();
 		getItemRegistry().registerItem(ender_pocket);
-		// TODO Ender Totem (experience) and Ender Dispenser/Dropper
+		// TODO Ender Totem (experience) and Ender Dispenser/Dropper. Also inverse ender glove...
 
 		ender_proxy = new BlockEnderChestProxy();
-		// getBlockRegistry().registerBlock(ender_proxy);
+		getBlockRegistry().registerBlock(ender_proxy);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

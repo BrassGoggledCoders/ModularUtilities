@@ -13,19 +13,12 @@ import net.minecraftforge.items.CapabilityItemHandler;
 public class TileEntityEnderChestProxy extends TileEntity
 {
 	private UUID playerID;
-	public EnderProxyInventoryHandler handler = new EnderProxyInventoryHandler();
+	public EnderProxyInventoryHandler handler;
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
-		UUID id = UUID.fromString(compound.getString("player_id"));
-		if(id != null)
-			this.playerID = id;
-		else
-			this.playerID = UUID.randomUUID();
-
-		handler.setWrappedEnderInventory(this.getWorld(), playerID);
-
+		this.playerID = UUID.fromString(compound.getString("player_id"));
 		super.readFromNBT(compound);
 	}
 
@@ -60,7 +53,7 @@ public class TileEntityEnderChestProxy extends TileEntity
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
 	{
-		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && this.playerID != null)
 			return true;
 		return super.hasCapability(capability, facing);
 	}
@@ -69,8 +62,12 @@ public class TileEntityEnderChestProxy extends TileEntity
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
 	{
-		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && this.playerID != null)
+		{
+			EnderProxyInventoryHandler handler = new EnderProxyInventoryHandler();
+			handler.player = getWorld().getPlayerEntityByUUID(playerID);
 			return (T) handler;
+		}
 		return super.getCapability(capability, facing);
 	}
 }

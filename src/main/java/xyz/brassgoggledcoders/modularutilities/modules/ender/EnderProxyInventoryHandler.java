@@ -1,23 +1,19 @@
 package xyz.brassgoggledcoders.modularutilities.modules.ender;
 
-import java.util.UUID;
-
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class EnderProxyInventoryHandler implements IItemHandler
 {
 	private IItemHandler enderChest;
-
-	public void setWrappedEnderInventory(World world, UUID playerID)
-	{
-		enderChest = new InvWrapper(world.getPlayerEntityByUUID(playerID).getInventoryEnderChest());
-	}
+	public EntityPlayer player;
 
 	public IItemHandler getEInv()
 	{
+		if(enderChest == null && player != null)
+			enderChest = new InvWrapper(player.getInventoryEnderChest());
 		return enderChest;
 	}
 
