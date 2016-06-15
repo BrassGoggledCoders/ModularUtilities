@@ -85,7 +85,8 @@ public class MiscellaneousModule extends ModuleBase
 				new Object[] {Blocks.STICKY_PISTON, Items.WATER_BUCKET});
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SAND, 4),
 				new Object[] {new ItemStack(Blocks.SANDSTONE, 1, OreDictionary.WILDCARD_VALUE)});
-		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SAND, 4, 1), new Object[] {Blocks.RED_SANDSTONE});
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SAND, 4, 1),
+				new Object[] {new ItemStack(Blocks.RED_SANDSTONE, 1, OreDictionary.WILDCARD_VALUE)});
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.QUARTZ, 6), new Object[] {Blocks.QUARTZ_STAIRS});
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.QUARTZ, 2),
 				new Object[] {new ItemStack(Blocks.STONE_SLAB, 1, 7)});
