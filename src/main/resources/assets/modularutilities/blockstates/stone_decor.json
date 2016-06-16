@@ -1,0 +1,11 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+    	"type=clinker_brick": [{ "textures": { "all": "modularutilities:blocks/clinker_brick", "particle": "#all" } }],
+    	"type=carved_stone": [{ "textures": { "all": "modularutilities:blocks/carved_stone", "particle": "#all" } }]
+    }
+} 	

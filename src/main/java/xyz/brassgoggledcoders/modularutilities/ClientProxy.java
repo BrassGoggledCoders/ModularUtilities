@@ -18,6 +18,7 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover;
+import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockStoneDecor;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockTurf;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.DecorationModule;
 
@@ -30,6 +31,7 @@ public class ClientProxy extends CommonProxy
 		{
 			registerVariantsDefaulted(DecorationModule.turf, BlockTurf.EnumTurfBlockType.class, "type");
 			registerVariantsDefaulted(DecorationModule.leaf_cover, BlockLeafCover.EnumLeafCoverBlockType.class, "type");
+			registerVariantsDefaulted(DecorationModule.stone_decor, BlockStoneDecor.EnumBlockType.class, "type");
 		}
 	}
 

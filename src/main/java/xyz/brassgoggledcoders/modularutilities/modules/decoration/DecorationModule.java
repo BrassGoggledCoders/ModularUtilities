@@ -2,7 +2,6 @@ package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -16,7 +15,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
@@ -27,7 +25,7 @@ import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover
 public class DecorationModule extends ModuleBase
 {
 
-	public static Block turf, leaf_cover, clinker_brick;
+	public static Block turf, leaf_cover, stone_decor;
 
 	@Override
 	public String getName()
@@ -44,8 +42,8 @@ public class DecorationModule extends ModuleBase
 		leaf_cover = new BlockLeafCover();
 		this.getBlockRegistry().registerBlock(leaf_cover);
 
-		clinker_brick = new BlockBase(Material.ROCK, "clinker_brick");
-		getBlockRegistry().registerBlock(clinker_brick);
+		stone_decor = new BlockStoneDecor();
+		getBlockRegistry().registerBlock(stone_decor);
 		/*
 		 * TODO:
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
@@ -65,8 +63,9 @@ public class DecorationModule extends ModuleBase
 		GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, 4), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
 		GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, 5), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
 
-		GameRegistry.addRecipe(new ItemStack(clinker_brick, 4), "NB", "BN", 'N', Blocks.NETHER_BRICK, 'B',
+		GameRegistry.addRecipe(new ItemStack(stone_decor, 4, 0), "NB", "BN", 'N', Blocks.NETHER_BRICK, 'B',
 				Blocks.BRICK_BLOCK);
+		GameRegistry.addRecipe(new ItemStack(stone_decor, 4, 1), "NB", "BN", 'N', Blocks.STONE, 'B', Blocks.STONEBRICK);
 	}
 
 	@SubscribeEvent
