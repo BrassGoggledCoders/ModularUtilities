@@ -5,10 +5,12 @@ import java.util.Random;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -24,7 +26,7 @@ public class EnchantmentEventHandler
 		EntityPlayer player = event.getPlayer();
 
 		int affAmount =
-				EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.affluency, player.inventory.getCurrentItem());
+				EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.affluency, player.getHeldItemMainhand());
 
 		if(event.getExpToDrop() > 0)
 		{
@@ -41,7 +43,7 @@ public class EnchantmentEventHandler
 		EntityPlayer player = event.getAttackingPlayer();
 
 		int affAmount =
-				EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.affluency, player.inventory.getCurrentItem());
+				EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.affluency, player.getHeldItemMainhand());
 
 		if(event.getDroppedExperience() > 0)
 		{
@@ -57,7 +59,7 @@ public class EnchantmentEventHandler
 	{
 		if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer)
 		{
-			ItemStack held = event.getHarvester().inventory.getCurrentItem();
+			ItemStack held = event.getHarvester().getHeldItemMainhand();
 			if(EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.flame_touch, held) > 0)
 			{
 				if(event.getWorld().isRemote)
@@ -85,6 +87,28 @@ public class EnchantmentEventHandler
 						event.getDrops().add(new ItemStack(Items.GOLD_NUGGET, 1 + rand.nextInt(3 + prosAmount)));
 					// TODO Custom loot table
 				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onEntityAttacked(LivingAttackEvent event)
+	{
+		if(event.getAmount() == 0)
+			return;
+		if(event.getSource().getDamageType() == "player")
+		{
+			EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
+			ItemStack held = player.getHeldItemMainhand();
+			int vampAmount = EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.vampirism, held);
+			if(vampAmount == 1)
+			{
+				if(event.getEntityLiving() instanceof EntityMob)
+					player.heal(event.getAmount() * 0.25F);
+			}
+			else if(vampAmount == 2)
+			{
+				player.heal(event.getAmount() * 0.25F);
 			}
 		}
 	}

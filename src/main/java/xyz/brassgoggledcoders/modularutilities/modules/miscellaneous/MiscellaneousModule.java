@@ -54,7 +54,6 @@ public class MiscellaneousModule extends ModuleBase
 		 * - Bedroll from Hay Bales/Feather Block. Durability, somehow? Won't set spawn.
 		 * - Splash Water bottle for fire extinguishing.
 		 * - Desert Golem that throws sand, giving you blindness?
-		 * - Use for rotten flesh
 		 * - Tool/Armour breakdown
 		 * - Sound & Particle expansion
 		 * - onFirstLogin screen for servers/pack devs

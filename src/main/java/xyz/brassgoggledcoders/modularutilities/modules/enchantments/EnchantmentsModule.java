@@ -15,7 +15,7 @@ public class EnchantmentsModule extends ModuleBase
 {
 
 	static EntityEquipmentSlot[] hand = new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND};
-	public static Enchantment affluency, flame_touch, prospector;
+	public static Enchantment affluency, flame_touch, prospector, vampirism;
 
 	@Override
 	public String getName()
@@ -51,6 +51,8 @@ public class EnchantmentsModule extends ModuleBase
 				new CustomEnchantment(Enchantment.Rarity.RARE, EnumEnchantmentType.DIGGER, hand, 0, 21, 1));
 		prospector = addEnchantment("prospector",
 				new EnchantmentProspector(Enchantment.Rarity.COMMON, EnumEnchantmentType.DIGGER, hand, 5, 0, 4));
+		vampirism = addEnchantment("vampirism",
+				new CustomEnchantment(Enchantment.Rarity.VERY_RARE, EnumEnchantmentType.WEAPON, hand, 20, 10, 2));
 
 		MinecraftForge.EVENT_BUS.register(new EnchantmentEventHandler());
 	}
