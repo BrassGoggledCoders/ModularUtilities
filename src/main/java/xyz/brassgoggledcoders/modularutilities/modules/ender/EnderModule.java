@@ -40,7 +40,7 @@ public class EnderModule extends ModuleBase
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		// TODO EnderStorage compatibility.
-		ender_glove = new ItemBase("ender_glove");
+		ender_glove = new ItemBase("ender_glove").setMaxStackSize(1);
 		getItemRegistry().registerItem(ender_glove);
 		ender_pocket = new ItemEnderPocket();
 		getItemRegistry().registerItem(ender_pocket);
