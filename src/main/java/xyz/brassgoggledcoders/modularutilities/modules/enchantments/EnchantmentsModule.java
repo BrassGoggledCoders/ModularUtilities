@@ -15,7 +15,7 @@ public class EnchantmentsModule extends ModuleBase
 {
 
 	static EntityEquipmentSlot[] hand = new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND};
-	public static Enchantment affluency, flame_touch, prospector, vampirism;
+	public static Enchantment affluency, flame_touch, prospector, vampirism, soulbound;
 
 	@Override
 	public String getName()
@@ -40,9 +40,7 @@ public class EnchantmentsModule extends ModuleBase
 		 * Critical arrow enchant
 		 * May only have one of the above arrow enchs
 		 * Perm jump/speed boost boots - generalise?
-		 * Vampirism - lifesteal
 		 * Shield Enchant: repel
-		 * Soulbound - remains after death
 		 */
 		// TODO: Expand to work on swords
 		affluency = addEnchantment("affluency",
@@ -53,6 +51,8 @@ public class EnchantmentsModule extends ModuleBase
 				new EnchantmentProspector(Enchantment.Rarity.COMMON, EnumEnchantmentType.DIGGER, hand, 5, 0, 4));
 		vampirism = addEnchantment("vampirism",
 				new CustomEnchantment(Enchantment.Rarity.VERY_RARE, EnumEnchantmentType.WEAPON, hand, 20, 10, 2));
+		soulbound = addEnchantment("soulbound", new CustomEnchantment(Enchantment.Rarity.VERY_RARE,
+				EnumEnchantmentType.ALL, EntityEquipmentSlot.values(), 30, 0, 1));
 
 		MinecraftForge.EVENT_BUS.register(new EnchantmentEventHandler());
 	}
