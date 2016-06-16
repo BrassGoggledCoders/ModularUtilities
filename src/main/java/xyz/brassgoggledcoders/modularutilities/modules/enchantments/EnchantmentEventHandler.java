@@ -44,6 +44,10 @@ public class EnchantmentEventHandler
 	{
 		EntityPlayer player = event.getAttackingPlayer();
 
+		// Occurs when using /kill...
+		if(player == null || player.getHeldItemMainhand() == null)
+			return;
+
 		int affAmount =
 				EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.affluency, player.getHeldItemMainhand());
 
