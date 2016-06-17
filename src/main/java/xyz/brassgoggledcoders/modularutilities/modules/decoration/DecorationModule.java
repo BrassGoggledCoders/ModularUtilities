@@ -47,9 +47,7 @@ public class DecorationModule extends ModuleBase
 		/*
 		 * TODO:
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
-		 * - Turf & Leaf Covers
 		 * - Smooth Glowstone https://i.imgur.com/lywsYXl.jpg
-		 * - Polished Endstone and Obsidian. 4x4.
 		 * - Ender Pearl storage block
 		 */
 		MinecraftForge.EVENT_BUS.register(this);

@@ -3,10 +3,14 @@ package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
@@ -34,6 +38,8 @@ public class MiscellaneousModule extends ModuleBase
 
 		machete = new ItemMachete();
 		this.getItemRegistry().registerItem(machete);
+
+		MinecraftForge.EVENT_BUS.register(this);
 
 		/*
 		 * TODO:
@@ -94,5 +100,15 @@ public class MiscellaneousModule extends ModuleBase
 		GameRegistry.addRecipe(new ItemStack(feathers), new Object[] {"XXX", "XXX", "XXX", 'X', Items.FEATHER});
 		GameRegistry.addRecipe(new ItemStack(machete),
 				new Object[] {"SI", 'S', Items.IRON_SWORD, 'I', Items.IRON_INGOT});
+	}
+
+	@SubscribeEvent
+	public void onItemExpire(ItemExpireEvent event)
+	{
+		if(event.getEntityItem().getEntityItem().getRarity() == EnumRarity.EPIC)
+		{
+			event.setExtraLife(600);
+			event.setCanceled(true);
+		}
 	}
 }
