@@ -53,7 +53,7 @@ public class EnchantmentsModule extends ModuleBase
 		vampirism = addEnchantment("vampirism",
 				new CustomEnchantment(Enchantment.Rarity.VERY_RARE, EnumEnchantmentType.WEAPON, hand, 20, 10, 2));
 		soulbound = addEnchantment("soulbound", new CustomEnchantment(Enchantment.Rarity.VERY_RARE,
-				EnumEnchantmentType.ALL, EntityEquipmentSlot.values(), 30, 0, 1));
+				EnumEnchantmentType.ALL, EntityEquipmentSlot.values(), 30, 0, 1).setTreasureEnchantment());
 
 		MinecraftForge.EVENT_BUS.register(new EnchantmentEventHandler());
 	}

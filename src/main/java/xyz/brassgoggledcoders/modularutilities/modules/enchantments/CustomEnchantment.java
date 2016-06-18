@@ -10,6 +10,7 @@ public class CustomEnchantment extends Enchantment
 	private int multiplier;
 	private int minEnchant;
 	private int maxLevel;
+	private boolean isTreasure;
 
 	public CustomEnchantment(Rarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot[] slots, int multiplier,
 			int minEnchant, int maxLevel)
@@ -37,5 +38,17 @@ public class CustomEnchantment extends Enchantment
 	public int getMaxLevel()
 	{
 		return maxLevel;
+	}
+
+	@Override
+	public boolean isTreasureEnchantment()
+	{
+		return isTreasure;
+	}
+
+	public Enchantment setTreasureEnchantment()
+	{
+		this.isTreasure = true;
+		return this;
 	}
 }
