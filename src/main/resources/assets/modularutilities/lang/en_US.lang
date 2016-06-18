@@ -22,6 +22,7 @@ tile.stone_decor.clinker_brick.name=Clinker Brick
 tile.stone_decor.carved_stone.name=Carved Stone
 tile.ender_proxy.name=Ender Crate
 tile.smooth_glowstone.name=Smooth Glowstone
+tile.splitter_tnt.name=Splitter TNT
 
 item.machete.name=Machete
 item.ender_glove.name=Ender Glove

@@ -22,6 +22,7 @@ public class ConstructionModule extends ModuleBase
 		 * - Liquid Concrete: hardens into concrete
 		 * - Rebar: Makes solid concrete harder
 		 * - Laser level
+		 * - Blast resistant glass
 		 */
 	}
 }

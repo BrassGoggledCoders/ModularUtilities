@@ -1,11 +1,15 @@
-package xyz.brassgoggledcoders.modularutilities.modules.explosives;
+package xyz.brassgoggledcoders.modularutilities.modules.destruction;
 
+import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
+import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-// @Module(mod = ModularUtilities.MODID)
+@Module(mod = ModularUtilities.MODID)
 public class DestructionModule extends ModuleBase
 {
+	public static Block splitter_tnt;
 
 	@Override
 	public String getName()
@@ -16,9 +20,10 @@ public class DestructionModule extends ModuleBase
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		splitter_tnt = new BlockSplitterTNT("splitter_tnt");
+		getBlockRegistry().registerBlock(splitter_tnt);
 		/*
 		 * TODO:
-		 * - Splitter TNT
 		 * - Incendiary TNT
 		 * - Modular TNT
 		 * - Mining Charge: drops all exploded blocks
