@@ -40,7 +40,7 @@ public class EnchantmentsModule extends ModuleBase
 		 * Critical arrow enchant
 		 * May only have one of the above arrow enchs
 		 * Perm jump/speed boost boots - generalise?
-		 * Shield Enchant: repel
+		 * Shield Enchant: repel mobs/arrows, explosive absorbtion, convert blocked damage to health
 		 * Flamethorns
 		 */
 		// TODO: Expand to work on swords

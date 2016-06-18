@@ -26,6 +26,7 @@ public class TweaksModule extends ModuleBase
 		 * - Wild wolves become agressive during a full moon
 		 * - Easier slimeballs?
 		 * - Maps show biome colour
+		 * - Fire converts grass to dirt
 		 */
 	}
 }

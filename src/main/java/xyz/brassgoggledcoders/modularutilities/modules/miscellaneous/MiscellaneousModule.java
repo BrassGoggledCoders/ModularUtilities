@@ -68,6 +68,21 @@ public class MiscellaneousModule extends ModuleBase
 		 * https://www.reddit.com/r/minecraftsuggestions/comments/4nug0e/dweller_zombie_variant/
 		 * - Super sponges
 		 * - 'Booster' that adds velocity to entites in a direction.
+		 * - Golden Shield
+		 * - Spreading fire
+		 * - Burnt grass?
+		 * - New death messages
+		 * - https://www.reddit.com/r/minecraftsuggestions/comments/4o4oho/suggestion_new_death_messages/
+		 * -
+		 * https://www.reddit.com/r/minecraftsuggestions/comments/4nxnrd/farms_in_zombie_villages_should_be_barren_and/
+		 * -
+		 * https://www.reddit.com/r/minecraftsuggestions/comments/4o3nhr/zombies_and_skeletons_that_spawn_with_leather/
+		 * - https://www.reddit.com/r/minecraftsuggestions/comments/4o4h9y/dripping_water_should_have_sound_effects/
+		 * - Easier item filtering
+		 * - Either tweak water to not look flowing next to glass, or add a special glass that allows seeing through
+		 * water.
+		 * - https://www.reddit.com/r/minecraftsuggestions/comments/4ok9ob/appropriate_water_texture/
+		 * - Interdictor - a block that prevents hostile mobs from spawning within 15 blocks
 		 */
 	}
 
