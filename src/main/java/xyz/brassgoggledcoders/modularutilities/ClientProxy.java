@@ -55,7 +55,7 @@ public class ClientProxy extends CommonProxy
 		World world = Minecraft.getMinecraft().theWorld;
 		if(type == EnumParticleTypes.PORTAL)
 		{
-			for(int j = 0; j < 100; ++j)
+			for(int j = 0; j < 70; ++j)
 			{
 				world.spawnParticle(type, pos.getX() + (-0.2 + world.rand.nextDouble()), pos.getY(),
 						pos.getZ() + (-0.2 + world.rand.nextDouble()), 0, 0, 0, new int[0]);
@@ -63,17 +63,17 @@ public class ClientProxy extends CommonProxy
 		}
 		else if(type == EnumParticleTypes.FLAME)
 		{
-			for(int j = 0; j < 20; ++j)
+			for(int j = 0; j < 5; ++j)
 			{
-				world.spawnParticle(type, pos.getX() + (-0.2 + world.rand.nextDouble()), pos.getY(),
-						pos.getZ() + (-0.2 + world.rand.nextDouble()), world.rand.nextDouble(), world.rand.nextDouble(),
-						world.rand.nextDouble(), new int[0]);
+				world.spawnParticle(EnumParticleTypes.LAVA, pos.getX() + (-0.2 + world.rand.nextDouble()), pos.getY(),
+						pos.getZ() + (-0.2 + world.rand.nextDouble()), world.rand.nextGaussian(),
+						world.rand.nextGaussian(), world.rand.nextGaussian(), new int[0]);
 			}
-			for(int j = 0; j < 20; ++j)
+			for(int j = 0; j < 5; ++j)
 			{
-				world.spawnParticle(type, pos.getX() + (-0.2 + world.rand.nextDouble()), pos.getY(),
-						pos.getZ() + (-0.2 + world.rand.nextDouble()), -world.rand.nextDouble(),
-						-world.rand.nextDouble(), -world.rand.nextDouble(), new int[0]);
+				world.spawnParticle(EnumParticleTypes.LAVA, pos.getX() + (-0.2 + world.rand.nextDouble()), pos.getY(),
+						pos.getZ() + (-0.2 + world.rand.nextDouble()), -world.rand.nextGaussian(),
+						-world.rand.nextGaussian(), -world.rand.nextGaussian(), new int[0]);
 			}
 		}
 	}

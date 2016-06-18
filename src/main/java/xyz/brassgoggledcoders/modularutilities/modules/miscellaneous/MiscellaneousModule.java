@@ -66,6 +66,7 @@ public class MiscellaneousModule extends ModuleBase
 		 * - Splatter: swamp creeper that explodes into lingering potion effects
 		 * - Quicksand
 		 * https://www.reddit.com/r/minecraftsuggestions/comments/4nug0e/dweller_zombie_variant/
+		 * Super sponges
 		 */
 	}
 
