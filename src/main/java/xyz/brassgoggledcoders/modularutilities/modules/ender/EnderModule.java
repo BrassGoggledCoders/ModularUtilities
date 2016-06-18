@@ -1,5 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.ender;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import net.minecraft.block.Block;
@@ -73,12 +74,14 @@ public class EnderModule extends ModuleBase
 			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove))
 			{
 				Iterator<EntityItem> drops = event.getDrops().iterator();
+				ArrayList<EntityItem> toRemove = new ArrayList<EntityItem>();
 				while(drops.hasNext())
 				{
-					ItemStack current = drops.next().getEntityItem();
-					if(player.getInventoryEnderChest().addItem(current) == null)
-						drops.remove();
+					EntityItem current = drops.next();
+					if(player.getInventoryEnderChest().addItem(current.getEntityItem()) == null)
+						toRemove.add(current);
 				}
+				event.getDrops().removeAll(toRemove);
 			}
 		}
 	}
@@ -92,15 +95,17 @@ public class EnderModule extends ModuleBase
 			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove))
 			{
 				Iterator<ItemStack> drops = event.getDrops().iterator();
+				ArrayList<ItemStack> toRemove = new ArrayList<ItemStack>();
 				while(drops.hasNext())
 				{
 					ItemStack current = drops.next();
 					if(player.getInventoryEnderChest().addItem(current) == null)
 					{
-						drops.remove();
+						toRemove.add(current);
 						ModularUtilities.proxy.spawnFX(EnumParticleTypes.PORTAL, event.getPos());
 					}
 				}
+				event.getDrops().removeAll(toRemove);
 			}
 		}
 	}

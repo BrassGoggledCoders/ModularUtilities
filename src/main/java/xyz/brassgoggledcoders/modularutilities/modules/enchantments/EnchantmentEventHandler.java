@@ -1,5 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.enchantments;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -71,20 +72,25 @@ public class EnchantmentEventHandler
 			ItemStack held = event.getHarvester().getHeldItemMainhand();
 			if(EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.flame_touch, held) > 0)
 			{
-				if(event.getWorld().isRemote)
-					return;
-
 				Iterator<ItemStack> drops = event.getDrops().iterator();
+				ArrayList<ItemStack> toRemove = new ArrayList<ItemStack>();
+				ArrayList<ItemStack> smelted = new ArrayList<ItemStack>();
 				while(drops.hasNext())
 				{
 					ItemStack current = drops.next();
 					if(ItemStackUtils.isSmeltable(current))
 					{
-						drops.remove();
-						event.getDrops().add(FurnaceRecipes.instance().getSmeltingResult(current));
+						if(!event.getWorld().isRemote)
+						{
+							smelted.add(FurnaceRecipes.instance().getSmeltingResult(current).copy());
+							toRemove.add(current);
+						}
 						ModularUtilities.proxy.spawnFX(EnumParticleTypes.FLAME, event.getPos());
 					}
 				}
+				event.getDrops().removeAll(toRemove);
+				event.getDrops().addAll(smelted);
+
 			}
 			else if(EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.prospector, held) > 0)
 			{
