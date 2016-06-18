@@ -2,6 +2,7 @@ package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
@@ -25,7 +27,7 @@ import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover
 public class DecorationModule extends ModuleBase
 {
 
-	public static Block turf, leaf_cover, stone_decor;
+	public static Block turf, leaf_cover, stone_decor, smooth_glowstone;
 
 	@Override
 	public String getName()
@@ -44,6 +46,9 @@ public class DecorationModule extends ModuleBase
 
 		stone_decor = new BlockStoneDecor();
 		getBlockRegistry().registerBlock(stone_decor);
+
+		smooth_glowstone = new BlockBase(Material.GLASS, "smooth_glowstone").setLightLevel(1F);
+		getBlockRegistry().registerBlock(smooth_glowstone);
 		/*
 		 * TODO:
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
@@ -64,6 +69,8 @@ public class DecorationModule extends ModuleBase
 		GameRegistry.addRecipe(new ItemStack(stone_decor, 4, 0), "NB", "BN", 'N', Blocks.NETHER_BRICK, 'B',
 				Blocks.BRICK_BLOCK);
 		GameRegistry.addRecipe(new ItemStack(stone_decor, 4, 1), "NB", "BN", 'N', Blocks.STONE, 'B', Blocks.STONEBRICK);
+
+		GameRegistry.addSmelting(Blocks.GLOWSTONE, new ItemStack(smooth_glowstone), 0);
 	}
 
 	@SubscribeEvent
