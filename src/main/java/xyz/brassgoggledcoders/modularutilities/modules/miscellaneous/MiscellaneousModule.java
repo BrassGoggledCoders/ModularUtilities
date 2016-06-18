@@ -1,5 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
+import java.util.Arrays;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -83,6 +85,7 @@ public class MiscellaneousModule extends ModuleBase
 		 * water.
 		 * - https://www.reddit.com/r/minecraftsuggestions/comments/4ok9ob/appropriate_water_texture/
 		 * - Interdictor - a block that prevents hostile mobs from spawning within 15 blocks
+		 * - Method of obtaining multiple dragon eggs
 		 */
 	}
 
@@ -122,7 +125,9 @@ public class MiscellaneousModule extends ModuleBase
 	@SubscribeEvent
 	public void onItemExpire(ItemExpireEvent event)
 	{
-		if(event.getEntityItem().getEntityItem().getRarity() == EnumRarity.EPIC)
+		ItemStack[] rareStuff = new ItemStack[] {new ItemStack(Items.ELYTRA)};
+		if(event.getEntityItem().getEntityItem().getRarity() == EnumRarity.EPIC
+				|| Arrays.asList(rareStuff).contains(event.getEntityItem().getEntityItem()))
 		{
 			event.setExtraLife(600);
 			event.setCanceled(true);
