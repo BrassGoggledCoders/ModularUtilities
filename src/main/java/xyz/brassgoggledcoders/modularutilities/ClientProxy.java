@@ -10,10 +10,12 @@ import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -44,6 +46,35 @@ public class ClientProxy extends CommonProxy
 					new Block[] {DecorationModule.leaf_cover});
 			Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new LeafColors(),
 					new Block[] {DecorationModule.leaf_cover});
+		}
+	}
+
+	@Override
+	public void spawnFX(EnumParticleTypes type, BlockPos pos)
+	{
+		World world = Minecraft.getMinecraft().theWorld;
+		if(type == EnumParticleTypes.PORTAL)
+		{
+			for(int j = 0; j < 100; ++j)
+			{
+				world.spawnParticle(type, pos.getX() + (-0.2 + world.rand.nextDouble()), pos.getY(),
+						pos.getZ() + (-0.2 + world.rand.nextDouble()), 0, 0, 0, new int[0]);
+			}
+		}
+		else if(type == EnumParticleTypes.FLAME)
+		{
+			for(int j = 0; j < 20; ++j)
+			{
+				world.spawnParticle(type, pos.getX() + (-0.2 + world.rand.nextDouble()), pos.getY(),
+						pos.getZ() + (-0.2 + world.rand.nextDouble()), world.rand.nextDouble(), world.rand.nextDouble(),
+						world.rand.nextDouble(), new int[0]);
+			}
+			for(int j = 0; j < 20; ++j)
+			{
+				world.spawnParticle(type, pos.getX() + (-0.2 + world.rand.nextDouble()), pos.getY(),
+						pos.getZ() + (-0.2 + world.rand.nextDouble()), -world.rand.nextDouble(),
+						-world.rand.nextDouble(), -world.rand.nextDouble(), new int[0]);
+			}
 		}
 	}
 

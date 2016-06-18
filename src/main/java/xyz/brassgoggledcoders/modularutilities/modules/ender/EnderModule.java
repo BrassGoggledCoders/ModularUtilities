@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
@@ -76,7 +77,7 @@ public class EnderModule extends ModuleBase
 				{
 					ItemStack current = drops.next().getEntityItem();
 					if(player.getInventoryEnderChest().addItem(current) == null)
-						event.getDrops().remove(current);
+						drops.remove();
 				}
 			}
 		}
@@ -95,7 +96,10 @@ public class EnderModule extends ModuleBase
 				{
 					ItemStack current = drops.next();
 					if(player.getInventoryEnderChest().addItem(current) == null)
-						event.getDrops().remove(current);
+					{
+						drops.remove();
+						ModularUtilities.proxy.spawnFX(EnumParticleTypes.PORTAL, event.getPos());
+					}
 				}
 			}
 		}

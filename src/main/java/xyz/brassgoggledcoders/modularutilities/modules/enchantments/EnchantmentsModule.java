@@ -41,6 +41,7 @@ public class EnchantmentsModule extends ModuleBase
 		 * May only have one of the above arrow enchs
 		 * Perm jump/speed boost boots - generalise?
 		 * Shield Enchant: repel
+		 * Flamethorns
 		 */
 		// TODO: Expand to work on swords
 		affluency = addEnchantment("affluency",

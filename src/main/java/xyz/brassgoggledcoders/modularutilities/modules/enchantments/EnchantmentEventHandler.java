@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
@@ -19,6 +20,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
+import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 public class EnchantmentEventHandler
 {
@@ -78,8 +80,9 @@ public class EnchantmentEventHandler
 					ItemStack current = drops.next();
 					if(ItemStackUtils.isSmeltable(current))
 					{
-						event.getDrops().remove(current);
+						drops.remove();
 						event.getDrops().add(FurnaceRecipes.instance().getSmeltingResult(current));
+						ModularUtilities.proxy.spawnFX(EnumParticleTypes.FLAME, event.getPos());
 					}
 				}
 			}
