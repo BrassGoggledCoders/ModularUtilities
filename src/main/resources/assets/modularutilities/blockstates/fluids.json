@@ -1,0 +1,11 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "forge:fluid"
+    },
+    "variants": {
+        "filler_fluid": [{
+            "custom": { "fluid": "filler_fluid" }
+        }]
+    }
+}
