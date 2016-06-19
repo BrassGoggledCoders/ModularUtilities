@@ -3,10 +3,13 @@ package xyz.brassgoggledcoders.modularutilities.modules.construction;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -53,5 +56,9 @@ public class ConstructionModule extends ModuleBase
 	{
 		GameRegistry.addShapedRecipe(new ItemStack(blast_glass, 9),
 				new Object[] {"OGO", "GOG", "OGO", 'O', Blocks.OBSIDIAN, 'G', Blocks.GLASS});
+		GameRegistry.addShapedRecipe(
+				UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, filler_fluid),
+				new Object[] {"CDC", "DWD", /* AMX */"CDC", 'C', Blocks.CLAY, 'D', Blocks.DIRT, 'W',
+						Items.WATER_BUCKET});
 	}
 }
