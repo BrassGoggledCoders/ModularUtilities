@@ -26,7 +26,7 @@ public class BlockSplitterTNT extends BlockCustomTNT
 			EntityTNTPrimed entitytntprimed = new EntityTNTPrimed(worldIn, (double) ((float) pos.getX() + 0.5F),
 					(double) pos.getY(), (double) ((float) pos.getZ() + 0.5F), null);
 			worldIn.spawnEntityInWorld(entitytntprimed);
-			for(int i = 0; i < 5; i++)
+			for(int i = 0; i < 3; i++)
 			{
 				EntityTNTPrimed entitytntprimed2 = new EntityTNTPrimed(worldIn, (double) ((float) pos.getX() + 0.5F),
 						(double) pos.getY(), (double) ((float) pos.getZ() + 0.5F), null);
@@ -46,7 +46,7 @@ public class BlockSplitterTNT extends BlockCustomTNT
 				EntityTNTPrimed entitytntprimed = new EntityTNTPrimed(worldIn, (double) ((float) pos.getX() + 0.5F),
 						(double) pos.getY(), (double) ((float) pos.getZ() + 0.5F), igniter);
 				worldIn.spawnEntityInWorld(entitytntprimed);
-				for(int i = 0; i < 5; i++)
+				for(int i = 0; i < 3; i++)
 				{
 					EntityTNTPrimed entitytntprimed2 =
 							new EntityTNTPrimed(worldIn, (double) ((float) pos.getX() + 0.5F), (double) pos.getY(),

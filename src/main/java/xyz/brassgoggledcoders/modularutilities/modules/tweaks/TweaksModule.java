@@ -28,6 +28,7 @@ public class TweaksModule extends ModuleBase
 		 * - Maps show biome colour
 		 * - Fire converts grass to dirt
 		 * - Make portal particles overridable
+		 * - Ability to defuse tnt by right clicking with shears
 		 */
 	}
 }
