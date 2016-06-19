@@ -35,9 +35,8 @@ public class ConstructionModule extends ModuleBase
 		blast_glass = new BlockBlastGlass(Material.GLASS, "blast_glass").setHardness(25F).setResistance(500F);
 		getBlockRegistry().registerBlock(blast_glass);
 
-		filler_fluid =
-				new Fluid("filler_fluid", new ResourceLocation(ModularUtilities.MODID, "blocks/filler_fluid_still"),
-						new ResourceLocation(ModularUtilities.MODID, "blocks/filler_fluid_flowing"));
+		filler_fluid = new Fluid("filler_fluid", new ResourceLocation(ModularUtilities.MODID, "blocks/filler_fluid"),
+				new ResourceLocation(ModularUtilities.MODID, "blocks/filler_fluid"));
 		FluidRegistry.registerFluid(filler_fluid);
 		FluidRegistry.addBucketForFluid(filler_fluid);
 
