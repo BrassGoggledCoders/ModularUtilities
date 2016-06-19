@@ -10,7 +10,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -98,6 +100,16 @@ public class ModularUtilities extends BoilerplateModBase
 				if(enchantment instanceof CustomEnchantment)
 					itemList.add(Items.ENCHANTED_BOOK
 							.getEnchantedItemStack(new EnchantmentData(enchantment, enchantment.getMaxLevel())));
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void displayAllRelevantItems(List<ItemStack> items)
+		{
+			if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction"))
+				items.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket,
+						ConstructionModule.filler_fluid));
+			super.displayAllRelevantItems(items);
 		}
 
 		@Override

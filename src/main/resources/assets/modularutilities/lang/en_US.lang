@@ -24,7 +24,7 @@ tile.ender_proxy.name=Ender Crate
 tile.smooth_glowstone.name=Smooth Glowstone
 tile.splitter_tnt.name=Splitter TNT
 tile.blast_glass.name=Blast Glass
-tile.filler_fluid_block.name=Liquid Dirt
+tile.filler_fluid.name=Liquid Dirt
 fluid.filler_fluid=Liquid Dirt
 
 item.machete.name=Machete

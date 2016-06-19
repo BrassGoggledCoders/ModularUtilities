@@ -5,12 +5,15 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
 import xyz.brassgoggledcoders.boilerplate.IModAware;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasItemBlock;
@@ -60,6 +63,12 @@ public class BlockFillerFluid extends BlockFluidClassic implements IModAware, IH
 	@Override
 	public ItemBlock getItemBlockClass(Block block)
 	{
-		return new ItemBlock(block);
+		return new ItemBlock(block) {
+			@SideOnly(Side.CLIENT)
+			public CreativeTabs getCreativeTab()
+			{
+				return null;
+			}
+		};
 	}
 }
