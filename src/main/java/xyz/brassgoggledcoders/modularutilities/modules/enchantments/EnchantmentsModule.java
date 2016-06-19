@@ -42,6 +42,7 @@ public class EnchantmentsModule extends ModuleBase
 		 * Perm jump/speed boost boots - generalise?
 		 * Shield Enchant: repel mobs/arrows, explosive absorbtion, convert blocked damage to health
 		 * Flamethorns
+		 * Infinity II that doesn't need an arrow
 		 */
 		// TODO: Expand to work on swords
 		affluency = addEnchantment("affluency",

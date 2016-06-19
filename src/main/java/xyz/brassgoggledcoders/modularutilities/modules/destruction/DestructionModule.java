@@ -29,6 +29,7 @@ public class DestructionModule extends ModuleBase
 		 * - Mining Charge: drops all exploded blocks
 		 * - Flamethrower
 		 * - Gunpowder + String = Fuses. Place like redstone, light one end, and fire will quickly travel down it
+		 * - Method of land flattening
 		 */
 	}
 }

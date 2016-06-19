@@ -27,6 +27,7 @@ public class TweaksModule extends ModuleBase
 		 * - Easier slimeballs?
 		 * - Maps show biome colour
 		 * - Fire converts grass to dirt
+		 * - Make portal particles overridable
 		 */
 	}
 }

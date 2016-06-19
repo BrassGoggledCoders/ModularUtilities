@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -43,6 +44,11 @@ public class ModularUtilities extends BoilerplateModBase
 	public static final String MODVERSION = "@VERSION@";
 
 	public static CreativeTabs tab = new MUTab();
+
+	static
+	{
+		FluidRegistry.enableUniversalBucket();
+	}
 
 	@Override
 	@EventHandler
