@@ -32,7 +32,7 @@ public class ConstructionModule extends ModuleBase
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		blast_glass = new BlockBlastGlass(Material.GLASS, "blast_glass").setHardness(25F).setResistance(500F);
+		blast_glass = new BlockBlastGlass().setHardness(25F).setResistance(500F);
 		getBlockRegistry().registerBlock(blast_glass);
 
 		filler_fluid = new Fluid("filler_fluid", new ResourceLocation(ModularUtilities.MODID, "blocks/filler_fluid"),
@@ -48,6 +48,7 @@ public class ConstructionModule extends ModuleBase
 		 * - Rebar: Makes solid concrete harder
 		 * - Laser level
 		 * - Scaffolding
+		 * - Blast resistant door, pushable blast blocks.
 		 */
 	}
 
