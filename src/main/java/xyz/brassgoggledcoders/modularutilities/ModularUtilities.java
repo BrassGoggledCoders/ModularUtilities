@@ -22,7 +22,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.BaseCreativeTab;
 import xyz.brassgoggledcoders.boilerplate.BoilerplateModBase;
+import xyz.brassgoggledcoders.modularutilities.modules.construction.ConstructionModule;
 import xyz.brassgoggledcoders.modularutilities.modules.enchantments.CustomEnchantment;
+import xyz.brassgoggledcoders.modularutilities.modules.ender.EnderModule;
 
 @Mod(modid = ModularUtilities.MODID, name = ModularUtilities.MODNAME, version = ModularUtilities.MODVERSION)
 public class ModularUtilities extends BoilerplateModBase
@@ -101,7 +103,16 @@ public class ModularUtilities extends BoilerplateModBase
 		@Override
 		public Item getTabIconItem()
 		{
-			return Item.getItemFromBlock(Blocks.SPONGE);
+			if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Ender"))
+			{
+				return EnderModule.ender_glove;
+			}
+			else if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction"))
+			{
+				return Item.getItemFromBlock(ConstructionModule.blast_glass);
+			}
+			else
+				return Item.getItemFromBlock(Blocks.SPONGE);
 		}
 	}
 }
