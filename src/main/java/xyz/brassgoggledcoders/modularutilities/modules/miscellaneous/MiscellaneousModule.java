@@ -86,6 +86,9 @@ public class MiscellaneousModule extends ModuleBase
 		 * - https://www.reddit.com/r/minecraftsuggestions/comments/4ok9ob/appropriate_water_texture/
 		 * - Interdictor - a block that prevents hostile mobs from spawning within 15 blocks
 		 * - Method of obtaining multiple dragon eggs
+		 * - Barrels, maybe
+		 * - Some simple charset stuff?
+		 * - Mob spawner relocation method?
 		 */
 	}
 
