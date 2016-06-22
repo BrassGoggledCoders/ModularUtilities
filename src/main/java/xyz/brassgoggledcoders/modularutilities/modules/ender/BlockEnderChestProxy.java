@@ -18,19 +18,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.UsernameCache;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockTEBase;
 
-public class BlockEnderChestProxy extends BlockTEBase
-{
-	public BlockEnderChestProxy()
-	{
+public class BlockEnderChestProxy extends BlockTEBase {
+	public BlockEnderChestProxy() {
 		super(Material.ROCK, "ender_proxy");
 	}
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		if(!worldIn.isRemote)
-		{
+			EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if(!worldIn.isRemote) {
 			TileEntityEnderChestProxy ex = (TileEntityEnderChestProxy) worldIn.getTileEntity(pos);
 			UUID placerID = ex.getPlacerUUID();
 			if(placerID != null)
@@ -45,10 +41,8 @@ public class BlockEnderChestProxy extends BlockTEBase
 
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
-			ItemStack stack)
-	{
-		if(placer instanceof EntityPlayer)
-		{
+			ItemStack stack) {
+		if(placer instanceof EntityPlayer) {
 			TileEntityEnderChestProxy ex = (TileEntityEnderChestProxy) worldIn.getTileEntity(pos);
 			ex.setPlacerUUID(placer.getPersistentID());
 			// TODO Print linked player
@@ -56,14 +50,12 @@ public class BlockEnderChestProxy extends BlockTEBase
 	}
 
 	@Override
-	public boolean hasComparatorInputOverride(IBlockState state)
-	{
+	public boolean hasComparatorInputOverride(IBlockState state) {
 		return true;
 	}
 
 	@Override
-	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
-	{
+	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {
 		// TODO
 		return 0;
 		// return Container.calcRedstoneFromInventory(
@@ -71,20 +63,17 @@ public class BlockEnderChestProxy extends BlockTEBase
 	}
 
 	@Override
-	public Class<? extends TileEntity> getTileEntityClass()
-	{
+	public Class<? extends TileEntity> getTileEntityClass() {
 		return TileEntityEnderChestProxy.class;
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta)
-	{
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityEnderChestProxy();
 	}
 
 	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-	{
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		worldIn.updateComparatorOutputLevel(pos, this);
 		super.breakBlock(worldIn, pos, state);
 	}

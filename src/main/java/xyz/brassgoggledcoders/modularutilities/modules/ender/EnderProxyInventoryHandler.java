@@ -5,39 +5,33 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-public class EnderProxyInventoryHandler implements IItemHandler
-{
+public class EnderProxyInventoryHandler implements IItemHandler {
 	private IItemHandler enderChest;
 	public EntityPlayer player;
 
-	public IItemHandler getEInv()
-	{
+	public IItemHandler getEInv() {
 		if(enderChest == null && player != null)
 			enderChest = new InvWrapper(player.getInventoryEnderChest());
 		return enderChest;
 	}
 
 	@Override
-	public int getSlots()
-	{
-		return (getEInv() != null) ? getEInv().getSlots() : 0;
+	public int getSlots() {
+		return getEInv() != null ? getEInv().getSlots() : 0;
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int slot)
-	{
+	public ItemStack getStackInSlot(int slot) {
 		return getEInv().getStackInSlot(slot);
 	}
 
 	@Override
-	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate)
-	{
+	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
 		return getEInv().insertItem(slot, stack, simulate);
 	}
 
 	@Override
-	public ItemStack extractItem(int slot, int amount, boolean simulate)
-	{
+	public ItemStack extractItem(int slot, int amount, boolean simulate) {
 		return getEInv().extractItem(slot, amount, simulate);
 	}
 }

@@ -26,21 +26,18 @@ import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
-public class EnderModule extends ModuleBase
-{
+public class EnderModule extends ModuleBase {
 	public static Item ender_glove, ender_pocket;
 
 	public static Block ender_proxy;
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "Ender";
 	}
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		// TODO EnderStorage compatibility.
 		ender_glove = new ItemBase("ender_glove").setMaxStackSize(1);
 		getItemRegistry().registerItem(ender_glove);
@@ -55,8 +52,7 @@ public class EnderModule extends ModuleBase
 	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent event)
-	{
+	public void postInit(FMLPostInitializationEvent event) {
 		GameRegistry.addRecipe(new ItemStack(ender_glove),
 				new Object[] {"OOO", "OCO", "O O", 'O', Blocks.OBSIDIAN, 'C', Items.END_CRYSTAL});
 		GameRegistry.addRecipe(new ItemStack(ender_pocket),
@@ -66,17 +62,13 @@ public class EnderModule extends ModuleBase
 	}
 
 	@SubscribeEvent
-	public void onLivingDrops(LivingDropsEvent event)
-	{
-		if(event.getSource().getDamageType() == "player")
-		{
+	public void onLivingDrops(LivingDropsEvent event) {
+		if(event.getSource().getDamageType() == "player") {
 			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
-			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove))
-			{
+			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove)) {
 				Iterator<EntityItem> drops = event.getDrops().iterator();
 				ArrayList<EntityItem> toRemove = new ArrayList<EntityItem>();
-				while(drops.hasNext())
-				{
+				while(drops.hasNext()) {
 					EntityItem current = drops.next();
 					if(player.getInventoryEnderChest().addItem(current.getEntityItem()) == null)
 						toRemove.add(current);
@@ -87,20 +79,15 @@ public class EnderModule extends ModuleBase
 	}
 
 	@SubscribeEvent
-	public void onBlockDrops(HarvestDropsEvent event)
-	{
-		if(event.getHarvester() != null)
-		{
+	public void onBlockDrops(HarvestDropsEvent event) {
+		if(event.getHarvester() != null) {
 			EntityPlayer player = event.getHarvester();
-			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove))
-			{
+			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove)) {
 				Iterator<ItemStack> drops = event.getDrops().iterator();
 				ArrayList<ItemStack> toRemove = new ArrayList<ItemStack>();
-				while(drops.hasNext())
-				{
+				while(drops.hasNext()) {
 					ItemStack current = drops.next();
-					if(player.getInventoryEnderChest().addItem(current) == null)
-					{
+					if(player.getInventoryEnderChest().addItem(current) == null) {
 						toRemove.add(current);
 						ModularUtilities.proxy.spawnFX(EnumParticleTypes.PORTAL, event.getPos());
 					}

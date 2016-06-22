@@ -12,20 +12,17 @@ import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
-public class RedstoneModule extends ModuleBase
-{
+public class RedstoneModule extends ModuleBase {
 
 	public static Block fused_quartz, redstone_sand;
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "Redstone";
 	}
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		fused_quartz = new BlockFusedQuartz();
 		this.getBlockRegistry().registerBlock(fused_quartz);
 		redstone_sand = new BlockRedstoneSand();
@@ -41,8 +38,7 @@ public class RedstoneModule extends ModuleBase
 	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent event)
-	{
+	public void postInit(FMLPostInitializationEvent event) {
 		GameRegistry.addSmelting(Blocks.QUARTZ_BLOCK, new ItemStack(fused_quartz), 0.2F);
 		GameRegistry.addRecipe(new ItemStack(redstone_sand),
 				new Object[] {"SR", "RS", 'S', Blocks.SAND, 'R', Items.REDSTONE});

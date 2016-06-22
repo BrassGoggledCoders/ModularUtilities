@@ -25,105 +25,89 @@ import xyz.brassgoggledcoders.boilerplate.blocks.BlockThin;
 import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
 import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
 
-public class BlockLeafCover extends BlockThin
-{
+public class BlockLeafCover extends BlockThin {
 
 	public static PropertyEnum<EnumLeafCoverBlockType> type = PropertyEnum.create("type", EnumLeafCoverBlockType.class);
 
-	public BlockLeafCover()
-	{
+	public BlockLeafCover() {
 		super(Material.LEAVES);
 		this.setUnlocalizedName("leaf_cover");
 		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumLeafCoverBlockType.OAK));
 	}
 
 	@Override
-	public ItemBlock getItemBlockClass(Block block)
-	{
+	public ItemBlock getItemBlockClass(Block block) {
 		return new ItemSubBlock(block, EnumLeafCoverBlockType.names());
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return AABB;
 	}
 
 	@Override
 	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
-	{
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
 		return NULL_AABB;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override
-	public boolean canBlockStay(World worldIn, BlockPos pos)
-	{
+	public boolean canBlockStay(World worldIn, BlockPos pos) {
 		return true;
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(type).getMeta();
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(type, EnumLeafCoverBlockType.VALUES[meta]);
 	}
 
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList)
-	{
+	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
 		for(EnumLeafCoverBlockType resourceType : EnumLeafCoverBlockType.VALUES)
 			itemList.add(new ItemStack(item, 1, resourceType.getMeta()));
 	}
 
 	@Override
-	public BlockStateContainer createBlockState()
-	{
+	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, type);
 	}
 
-	public enum EnumLeafCoverBlockType implements IBlockType
-	{
+	public enum EnumLeafCoverBlockType implements IBlockType {
 		OAK(0), SPRUCE(1), BIRCH(2), JUNGLE(3), ACACIA(4), BIG_OAK(5);
 
 		public static final EnumLeafCoverBlockType[] VALUES = values();
 
 		private final int meta;
 
-		EnumLeafCoverBlockType(int meta)
-		{
+		EnumLeafCoverBlockType(int meta) {
 			this.meta = meta;
 		}
 
 		@Override
-		public int getMeta()
-		{
+		public int getMeta() {
 			return meta;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name().toLowerCase();
 		}
 
-		public static String[] names()
-		{
+		public static String[] names() {
 			ArrayList<String> names = new ArrayList<String>();
-			for(int i = 0; i < VALUES.length; i++)
-				names.add(VALUES[i].toString().toLowerCase());
+			for(EnumLeafCoverBlockType element : VALUES)
+				names.add(element.toString().toLowerCase());
 
 			return names.toArray(new String[0]);
 		}

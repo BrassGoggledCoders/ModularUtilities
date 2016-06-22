@@ -4,18 +4,15 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 
 // @Module(mod = ModularUtilities.MODID)
-public class TweaksModule extends ModuleBase
-{
+public class TweaksModule extends ModuleBase {
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "Tweaks";
 	}
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		/*
 		 * TODO:
 		 * - TNT tweaked to have contact with other entities. e.g. can be punched

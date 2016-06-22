@@ -21,20 +21,17 @@ import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
-public class MiscellaneousModule extends ModuleBase
-{
+public class MiscellaneousModule extends ModuleBase {
 	public static BlockBase feathers;
 	public static ItemMachete machete;
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "Miscellaneous";
 	}
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		feathers = new BlockFeathers();
 		this.getBlockRegistry().registerBlock(feathers);
 
@@ -93,8 +90,7 @@ public class MiscellaneousModule extends ModuleBase
 	}
 
 	@Override
-	public void init(FMLInitializationEvent event)
-	{
+	public void init(FMLInitializationEvent event) {
 		OreDictionary.registerOre("wool", feathers);
 		OreDictionary.registerOre("wool", Blocks.WOOL);
 
@@ -103,8 +99,7 @@ public class MiscellaneousModule extends ModuleBase
 	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent event)
-	{
+	public void postInit(FMLPostInitializationEvent event) {
 		// Extra Vanilla recipes
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.STRING, 2), new Object[] {new ItemStack(Blocks.WOOL)});
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 6, 15), new Object[] {Items.BONE, Items.ROTTEN_FLESH});
@@ -126,12 +121,10 @@ public class MiscellaneousModule extends ModuleBase
 	}
 
 	@SubscribeEvent
-	public void onItemExpire(ItemExpireEvent event)
-	{
+	public void onItemExpire(ItemExpireEvent event) {
 		ItemStack[] rareStuff = new ItemStack[] {new ItemStack(Items.ELYTRA)};
 		if(event.getEntityItem().getEntityItem().getRarity() == EnumRarity.EPIC
-				|| Arrays.asList(rareStuff).contains(event.getEntityItem().getEntityItem()))
-		{
+				|| Arrays.asList(rareStuff).contains(event.getEntityItem().getEntityItem())) {
 			event.setExtraLife(600);
 			event.setCanceled(true);
 		}

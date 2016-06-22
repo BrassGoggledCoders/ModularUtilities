@@ -12,19 +12,16 @@ import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
-public class DestructionModule extends ModuleBase
-{
+public class DestructionModule extends ModuleBase {
 	public static Block splitter_tnt;
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "Destruction";
 	}
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		splitter_tnt = new BlockSplitterTNT("splitter_tnt");
 		getBlockRegistry().registerBlock(splitter_tnt);
 		/*
@@ -39,8 +36,7 @@ public class DestructionModule extends ModuleBase
 	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent event)
-	{
+	public void postInit(FMLPostInitializationEvent event) {
 		GameRegistry.addRecipe(new ItemStack(splitter_tnt),
 				new Object[] {"TTT", "TST", "TTT", 'T', Blocks.TNT, 'S', Items.SLIME_BALL});
 	}

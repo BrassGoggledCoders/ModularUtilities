@@ -22,99 +22,84 @@ import xyz.brassgoggledcoders.boilerplate.blocks.BlockThin;
 import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
 import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
 
-public class BlockTurf extends BlockThin
-{
+public class BlockTurf extends BlockThin {
 
 	public static final PropertyEnum<EnumTurfBlockType> type = PropertyEnum.create("type", EnumTurfBlockType.class);
 	protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 
-	public BlockTurf()
-	{
+	public BlockTurf() {
 		super(Material.GRASS);
 		this.setUnlocalizedName("turf");
 		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumTurfBlockType.NORMAL));
 	}
 
 	@Override
-	public ItemBlock getItemBlockClass(Block block)
-	{
+	public ItemBlock getItemBlockClass(Block block) {
 		return new ItemSubBlock(block, EnumTurfBlockType.names());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 
 	@Override
-	public boolean isVisuallyOpaque()
-	{
+	public boolean isVisuallyOpaque() {
 		return false;
 	}
 
 	@Override
-	public boolean canBlockStay(World worldIn, BlockPos pos)
-	{
+	public boolean canBlockStay(World worldIn, BlockPos pos) {
 		return !worldIn.isAirBlock(pos.down());
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(type).getMeta();
 	}
 
 	@Override
-	public BlockStateContainer createBlockState()
-	{
+	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, type);
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(type, EnumTurfBlockType.VALUES[meta]);
 	}
 
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList)
-	{
+	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
 		for(EnumTurfBlockType resourceType : EnumTurfBlockType.VALUES)
 			itemList.add(new ItemStack(item, 1, resourceType.getMeta()));
 	}
 
-	public enum EnumTurfBlockType implements IBlockType
-	{
+	public enum EnumTurfBlockType implements IBlockType {
 		NORMAL(0), DRY(1), FROZEN(2), JUNGLE(3), SWAMP(4), PODZOL(5), MYCELIUM(6);
 
 		public static final EnumTurfBlockType[] VALUES = values();
 
 		private final int meta;
 
-		EnumTurfBlockType(int meta)
-		{
+		EnumTurfBlockType(int meta) {
 			this.meta = meta;
 		}
 
 		@Override
-		public int getMeta()
-		{
+		public int getMeta() {
 			return meta;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name().toLowerCase();
 		}
 
-		public static String[] names()
-		{
+		public static String[] names() {
 			ArrayList<String> names = new ArrayList<String>();
-			for(int i = 0; i < VALUES.length; i++)
-				names.add(VALUES[i].toString().toLowerCase());
+			for(EnumTurfBlockType element : VALUES)
+				names.add(element.toString().toLowerCase());
 
 			return names.toArray(new String[0]);
 		}

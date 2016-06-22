@@ -11,21 +11,18 @@ import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
-public class EnchantmentsModule extends ModuleBase
-{
+public class EnchantmentsModule extends ModuleBase {
 
 	static EntityEquipmentSlot[] hand = new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND};
 	public static Enchantment affluency, flame_touch, prospector, vampirism, soulbound;
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "Enchantments";
 	}
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		/*
 		 * TODO
 		 * Magnetism (attracts items)
@@ -43,6 +40,8 @@ public class EnchantmentsModule extends ModuleBase
 		 * Shield Enchant: repel mobs/arrows, explosive absorbtion, convert blocked damage to health
 		 * Flamethorns
 		 * Infinity II that doesn't need an arrow
+		 * Elytra enchants
+		 * Pass handling to enchantment classes themselves
 		 */
 		// TODO: Expand to work on swords
 		affluency = addEnchantment("affluency",
@@ -59,8 +58,7 @@ public class EnchantmentsModule extends ModuleBase
 		MinecraftForge.EVENT_BUS.register(new EnchantmentEventHandler());
 	}
 
-	private Enchantment addEnchantment(String name, Enchantment ench)
-	{
+	private Enchantment addEnchantment(String name, Enchantment ench) {
 		// TODO Is this the correct way to do things?
 		Enchantment.REGISTRY.register(0, new ResourceLocation(ModularUtilities.MODID, name), ench);
 		ench.setName(name);

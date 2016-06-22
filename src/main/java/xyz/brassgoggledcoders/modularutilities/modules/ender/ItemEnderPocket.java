@@ -8,17 +8,15 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.items.ItemBase;
 
-public class ItemEnderPocket extends ItemBase
-{
+public class ItemEnderPocket extends ItemBase {
 
-	public ItemEnderPocket()
-	{
+	public ItemEnderPocket() {
 		super("ender_pocket");
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn,
-			EnumHand hand)
-	{
+			EnumHand hand) {
 		playerIn.displayGUIChest(playerIn.getInventoryEnderChest());
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
 	}

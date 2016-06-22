@@ -12,84 +12,70 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.AxisAlignedBB;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
+import xyz.brassgoggledcoders.boilerplate.blocks.BlockSubBase;
 import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
 import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
 
-public class BlockStoneDecor extends BlockBase
-{
+public class BlockStoneDecor extends BlockSubBase {
 	public static final PropertyEnum<EnumBlockType> type = PropertyEnum.create("type", EnumBlockType.class);
-	protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 
-	public BlockStoneDecor()
-	{
+	public BlockStoneDecor() {
 		super(Material.ROCK);
 		this.setUnlocalizedName("stone_decor");
 		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumBlockType.CLINKER_BRICK));
 	}
 
 	@Override
-	public ItemBlock getItemBlockClass(Block block)
-	{
+	public ItemBlock getItemBlockClass(Block block) {
 		return new ItemSubBlock(block, EnumBlockType.names());
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(type).getMeta();
 	}
 
 	@Override
-	public BlockStateContainer createBlockState()
-	{
+	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, type);
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(type, EnumBlockType.VALUES[meta]);
 	}
 
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList)
-	{
+	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
 		for(EnumBlockType resourceType : EnumBlockType.VALUES)
 			itemList.add(new ItemStack(item, 1, resourceType.getMeta()));
 	}
 
-	public enum EnumBlockType implements IBlockType
-	{
+	public enum EnumBlockType implements IBlockType {
 		CLINKER_BRICK(0), CARVED_STONE(1);
 
 		public static final EnumBlockType[] VALUES = values();
 
 		private final int meta;
 
-		EnumBlockType(int meta)
-		{
+		EnumBlockType(int meta) {
 			this.meta = meta;
 		}
 
 		@Override
-		public int getMeta()
-		{
+		public int getMeta() {
 			return meta;
 		}
 
 		@Override
-		public String getName()
-		{
+		public String getName() {
 			return name().toLowerCase();
 		}
 
-		public static String[] names()
-		{
+		public static String[] names() {
 			ArrayList<String> names = new ArrayList<String>();
-			for(int i = 0; i < VALUES.length; i++)
-				names.add(VALUES[i].toString().toLowerCase());
+			for(EnumBlockType element : VALUES)
+				names.add(element.toString().toLowerCase());
 
 			return names.toArray(new String[0]);
 		}

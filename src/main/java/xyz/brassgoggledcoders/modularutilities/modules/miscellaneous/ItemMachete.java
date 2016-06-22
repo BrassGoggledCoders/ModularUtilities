@@ -10,22 +10,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import xyz.brassgoggledcoders.boilerplate.items.BaseSword;
 
-public class ItemMachete extends BaseSword
-{
+public class ItemMachete extends BaseSword {
 
-	public ItemMachete()
-	{
+	public ItemMachete() {
 		super(ToolMaterial.IRON, "machete");
 	}
 
 	@Override
-	public float getStrVsBlock(ItemStack stack, IBlockState state)
-	{
+	public float getStrVsBlock(ItemStack stack, IBlockState state) {
 		return getStrVsBlock(state);
 	}
 
-	public float getStrVsBlock(IBlockState state)
-	{
+	public float getStrVsBlock(IBlockState state) {
 		Block block = state.getBlock();
 		Material m = state.getMaterial();
 		// Tool can fast-break web and plant type blocks
@@ -35,15 +31,13 @@ public class ItemMachete extends BaseSword
 
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos,
-			EntityLivingBase entityLiving)
-	{
+			EntityLivingBase entityLiving) {
 		stack.damageItem(1, entityLiving);
 		return getStrVsBlock(state) == 15 ? true : false;
 	}
 
 	@Override
-	public boolean canHarvestBlock(IBlockState blockIn)
-	{
+	public boolean canHarvestBlock(IBlockState blockIn) {
 		return getStrVsBlock(blockIn.getBlock().getDefaultState()) == 15 ? true : false;
 	}
 }

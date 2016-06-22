@@ -18,20 +18,17 @@ import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
-public class ConstructionModule extends ModuleBase
-{
+public class ConstructionModule extends ModuleBase {
 	public static Block blast_glass, filler_fluid_block;
 	public static Fluid filler_fluid;
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "Construction";
 	}
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		blast_glass = new BlockBlastGlass().setHardness(25F).setResistance(500F);
 		getBlockRegistry().registerBlock(blast_glass);
 
@@ -53,8 +50,7 @@ public class ConstructionModule extends ModuleBase
 	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent event)
-	{
+	public void postInit(FMLPostInitializationEvent event) {
 		GameRegistry.addShapedRecipe(new ItemStack(blast_glass, 9),
 				new Object[] {"OGO", "GOG", "OGO", 'O', Blocks.OBSIDIAN, 'G', Blocks.GLASS});
 		GameRegistry.addShapedRecipe(

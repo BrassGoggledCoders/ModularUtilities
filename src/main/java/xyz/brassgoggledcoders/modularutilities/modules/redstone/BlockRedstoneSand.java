@@ -12,49 +12,41 @@ import xyz.brassgoggledcoders.boilerplate.IModAware;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasItemBlock;
 import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 
-public class BlockRedstoneSand extends BlockFalling implements IModAware, IHasItemBlock, IHasModel
-{
+public class BlockRedstoneSand extends BlockFalling implements IModAware, IHasItemBlock, IHasModel {
 	IBoilerplateMod mod;
 
-	public BlockRedstoneSand()
-	{
+	public BlockRedstoneSand() {
 		super();
 		this.setUnlocalizedName("redstone_sand");
 	}
 
 	@Override
-	public boolean canProvidePower(IBlockState state)
-	{
+	public boolean canProvidePower(IBlockState state) {
 		return true;
 	}
 
 	@Override
-	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-	{
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		return 15;
 	}
 
 	@Override
-	public IBoilerplateMod getMod()
-	{
+	public IBoilerplateMod getMod() {
 		return this.mod;
 	}
 
 	@Override
-	public void setMod(IBoilerplateMod mod)
-	{
+	public void setMod(IBoilerplateMod mod) {
 		this.mod = mod;
 	}
 
 	@Override
-	public ItemBlock getItemBlockClass(Block block)
-	{
+	public ItemBlock getItemBlockClass(Block block) {
 		return new ItemBlock(block);
 	}
 
 	@Override
-	public String[] getResourceLocations()
-	{
+	public String[] getResourceLocations() {
 		String name = this.getUnlocalizedName();
 		if(name.startsWith("tile."))
 			name = name.substring(5);

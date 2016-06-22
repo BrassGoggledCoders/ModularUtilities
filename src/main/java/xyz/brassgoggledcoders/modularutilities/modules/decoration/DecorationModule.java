@@ -24,20 +24,17 @@ import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover.EnumLeafCoverBlockType;
 
 @Module(mod = ModularUtilities.MODID)
-public class DecorationModule extends ModuleBase
-{
+public class DecorationModule extends ModuleBase {
 
 	public static Block turf, leaf_cover, stone_decor, smooth_glowstone;
 
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return "Decoration";
 	}
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event)
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		turf = new BlockTurf();
 		this.getBlockRegistry().registerBlock(turf);
 
@@ -60,8 +57,7 @@ public class DecorationModule extends ModuleBase
 	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent event)
-	{
+	public void postInit(FMLPostInitializationEvent event) {
 		for(int i = 0; i < EnumLeafCoverBlockType.VALUES.length - 2; i++)
 			GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, i), "XX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
 		GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, 4), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
@@ -75,20 +71,17 @@ public class DecorationModule extends ModuleBase
 	}
 
 	@SubscribeEvent
-	public void onBlockRightClicked(RightClickBlock event)
-	{
+	public void onBlockRightClicked(RightClickBlock event) {
 		if(event.getWorld().isRemote)
 			return;
 
-		if(ItemStackUtils.doItemsMatch(event.getEntityPlayer().getHeldItemMainhand(), Items.SHEARS))
-		{
+		if(ItemStackUtils.doItemsMatch(event.getEntityPlayer().getHeldItemMainhand(), Items.SHEARS)) {
 			Block bl = event.getWorld().getBlockState(event.getPos()).getBlock();
 			InventoryPlayer inv = event.getEntityPlayer().inventory;
 			int meta = 0;
 			boolean flag = false;
 
-			if(bl == Blocks.GRASS)
-			{
+			if(bl == Blocks.GRASS) {
 				Biome b = event.getWorld().getBiome(event.getPos());
 
 				if(BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.SANDY))
@@ -104,19 +97,16 @@ public class DecorationModule extends ModuleBase
 			}
 			else if(bl == Blocks.DIRT
 					&& bl.getMetaFromState(event.getWorld().getBlockState(event.getPos())) == BlockDirt.DirtType.PODZOL
-							.getMetadata())
-			{
+							.getMetadata()) {
 				meta = 5;
 				flag = true;
 			}
-			else if(bl == Blocks.MYCELIUM)
-			{
+			else if(bl == Blocks.MYCELIUM) {
 				meta = 6;
 				flag = true;
 			}
 
-			if(flag && inv.addItemStackToInventory(new ItemStack(turf, 1, meta)))
-			{
+			if(flag && inv.addItemStackToInventory(new ItemStack(turf, 1, meta))) {
 				event.getWorld().setBlockState(event.getPos(), Blocks.DIRT.getDefaultState());
 				event.setUseItem(Result.ALLOW);
 			}
