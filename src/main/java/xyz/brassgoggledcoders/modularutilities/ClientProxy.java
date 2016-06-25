@@ -37,9 +37,12 @@ public class ClientProxy extends CommonProxy {
 			xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy.registerVariantsDefaulted(
 					DecorationModule.stone_decor, BlockStoneDecor.EnumBlockType.class, "type");
 		}
-		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction"))
+		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction")) {
 			registerFluidModel(ConstructionModule.filler_fluid_block,
 					new ModelResourceLocation(ModularUtilities.MODID + ":fluids", "filler_fluid"));
+			registerFluidModel(ConstructionModule.concrete_fluid_block,
+					new ModelResourceLocation(ModularUtilities.MODID + ":fluids", "concrete"));
+		}
 	}
 
 	@Override

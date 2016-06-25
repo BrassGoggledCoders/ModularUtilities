@@ -5,7 +5,11 @@
     },
     "variants": {
         "filler_fluid": [{
-            "custom": { "fluid": "filler_fluid" }
+            "custom": { "fluid": "dirt" }
+        }],
+        "concrete":
+        [{
+        	"custom": { "fluid": "concrete" }
         }]
     }
 }
