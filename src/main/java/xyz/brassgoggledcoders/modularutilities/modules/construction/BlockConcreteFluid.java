@@ -9,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
+import xyz.brassgoggledcoders.boilerplate.blocks.BlockModFluid;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasTileEntity;
 
 public class BlockConcreteFluid extends BlockModFluid implements IHasTileEntity, ITileEntityProvider {

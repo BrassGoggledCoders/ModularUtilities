@@ -28,6 +28,7 @@ tile.filler_fluid.name=Liquid Dirt
 fluid.dirt=Liquid Dirt
 tile.concrete_fluid.name=Wet Concrete
 fluid.concrete=Wet Concrete
+tile.concrete.name=Concrete
 
 item.machete.name=Machete
 item.ender_glove.name=Ender Glove

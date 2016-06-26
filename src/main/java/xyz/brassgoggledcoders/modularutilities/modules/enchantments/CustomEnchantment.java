@@ -3,6 +3,10 @@ package xyz.brassgoggledcoders.modularutilities.modules.enchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
+import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 
 public class CustomEnchantment extends Enchantment {
 
@@ -43,5 +47,21 @@ public class CustomEnchantment extends Enchantment {
 	public Enchantment setTreasureEnchantment() {
 		this.isTreasure = true;
 		return this;
+	}
+
+	public void onBlockBreak(BlockEvent.BreakEvent event) {
+
+	}
+
+	public void onLivingXPDrop(LivingExperienceDropEvent event) {
+
+	}
+
+	public void onBlockHarvest(HarvestDropsEvent event) {
+
+	}
+
+	public void onEntityAttacked(LivingAttackEvent event) {
+
 	}
 }

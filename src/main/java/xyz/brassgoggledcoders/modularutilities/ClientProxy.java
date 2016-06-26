@@ -5,13 +5,9 @@ import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -19,7 +15,6 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColorHelper;
-import net.minecraftforge.client.model.ModelLoader;
 import xyz.brassgoggledcoders.modularutilities.modules.construction.ConstructionModule;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockStoneDecor;
@@ -38,9 +33,11 @@ public class ClientProxy extends CommonProxy {
 					DecorationModule.stone_decor, BlockStoneDecor.EnumBlockType.class, "type");
 		}
 		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction")) {
-			registerFluidModel(ConstructionModule.filler_fluid_block,
+			xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy.registerFluidModel(
+					ConstructionModule.filler_fluid_block,
 					new ModelResourceLocation(ModularUtilities.MODID + ":fluids", "filler_fluid"));
-			registerFluidModel(ConstructionModule.concrete_fluid_block,
+			xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy.registerFluidModel(
+					ConstructionModule.concrete_fluid_block,
 					new ModelResourceLocation(ModularUtilities.MODID + ":fluids", "concrete_fluid"));
 		}
 	}
@@ -72,23 +69,6 @@ public class ClientProxy extends CommonProxy {
 						pos.getZ() + (-0.2 + world.rand.nextDouble()), -world.rand.nextGaussian(),
 						-world.rand.nextGaussian(), -world.rand.nextGaussian(), new int[0]);
 		}
-	}
-
-	private static void registerFluidModel(Block fluidBlock, final ModelResourceLocation loc) {
-		Item fluidItem = Item.getItemFromBlock(fluidBlock);
-		ModelBakery.registerItemVariants(fluidItem);
-		ModelLoader.setCustomMeshDefinition(fluidItem, new ItemMeshDefinition() {
-			@Override
-			public ModelResourceLocation getModelLocation(ItemStack stack) {
-				return loc;
-			}
-		});
-		ModelLoader.setCustomStateMapper(fluidBlock, new StateMapperBase() {
-			@Override
-			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-				return loc;
-			}
-		});
 	}
 
 	public class LeafColors implements IBlockColor, IItemColor {
