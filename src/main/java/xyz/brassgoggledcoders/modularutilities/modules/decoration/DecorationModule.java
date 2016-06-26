@@ -21,7 +21,7 @@ import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
-import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover.EnumLeafCoverBlockType;
+import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover.EnumBlockType;
 
 @Module(mod = ModularUtilities.MODID)
 public class DecorationModule extends ModuleBase {
@@ -47,8 +47,9 @@ public class DecorationModule extends ModuleBase {
 		smooth_glowstone = new BlockBase(Material.GLASS, "smooth_glowstone").setLightLevel(1F);
 		getBlockRegistry().registerBlock(smooth_glowstone);
 
+		// TODO Fix z-fighting. Allow vertical connections
 		hedge = new BlockHedge("hedge");
-		// getBlockRegistry().registerBlock(hedge);
+		getBlockRegistry().registerBlock(hedge);
 
 		soul_glass = new BlockSoulGlass(Material.GLASS, "soul_glass");
 		getBlockRegistry().registerBlock(soul_glass);
@@ -56,6 +57,7 @@ public class DecorationModule extends ModuleBase {
 		 * TODO:
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
 		 * - Ender Pearl storage block
+		 * - Ghost glass - can be walked through
 		 * - Clear glass?
 		 */
 		MinecraftForge.EVENT_BUS.register(this);
@@ -63,7 +65,7 @@ public class DecorationModule extends ModuleBase {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
-		for(int i = 0; i < EnumLeafCoverBlockType.VALUES.length - 2; i++)
+		for(int i = 0; i < EnumBlockType.VALUES.length - 2; i++)
 			GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, i), "XX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
 		GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, 4), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
 		GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, 5), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));

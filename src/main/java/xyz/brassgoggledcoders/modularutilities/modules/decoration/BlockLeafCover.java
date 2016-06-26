@@ -24,20 +24,21 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockThin;
 import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
 import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
+import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
 
-public class BlockLeafCover extends BlockThin {
+public class BlockLeafCover extends BlockThin implements ISimpleVariant {
 
-	public static PropertyEnum<EnumLeafCoverBlockType> type = PropertyEnum.create("type", EnumLeafCoverBlockType.class);
+	public static PropertyEnum<EnumBlockType> type = PropertyEnum.create("type", EnumBlockType.class);
 
 	public BlockLeafCover() {
-		super(Material.LEAVES);
+		super(Material.LEAVES, EnumBlockType.names());
 		this.setUnlocalizedName("leaf_cover");
-		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumLeafCoverBlockType.OAK));
+		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumBlockType.OAK));
 	}
 
 	@Override
 	public ItemBlock getItemBlockClass(Block block) {
-		return new ItemSubBlock(block, EnumLeafCoverBlockType.names());
+		return new ItemSubBlock(block, EnumBlockType.names());
 	}
 
 	@Override
@@ -69,12 +70,12 @@ public class BlockLeafCover extends BlockThin {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(type, EnumLeafCoverBlockType.VALUES[meta]);
+		return getDefaultState().withProperty(type, EnumBlockType.VALUES[meta]);
 	}
 
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
-		for(EnumLeafCoverBlockType resourceType : EnumLeafCoverBlockType.VALUES)
+		for(EnumBlockType resourceType : EnumBlockType.VALUES)
 			itemList.add(new ItemStack(item, 1, resourceType.getMeta()));
 	}
 
@@ -83,14 +84,14 @@ public class BlockLeafCover extends BlockThin {
 		return new BlockStateContainer(this, type);
 	}
 
-	public enum EnumLeafCoverBlockType implements IBlockType {
+	public enum EnumBlockType implements IBlockType {
 		OAK(0), SPRUCE(1), BIRCH(2), JUNGLE(3), ACACIA(4), BIG_OAK(5);
 
-		public static final EnumLeafCoverBlockType[] VALUES = values();
+		public static final EnumBlockType[] VALUES = values();
 
 		private final int meta;
 
-		EnumLeafCoverBlockType(int meta) {
+		EnumBlockType(int meta) {
 			this.meta = meta;
 		}
 
@@ -106,10 +107,15 @@ public class BlockLeafCover extends BlockThin {
 
 		public static String[] names() {
 			ArrayList<String> names = new ArrayList<String>();
-			for(EnumLeafCoverBlockType element : VALUES)
+			for(EnumBlockType element : VALUES)
 				names.add(element.toString().toLowerCase());
 
 			return names.toArray(new String[0]);
 		}
+	}
+
+	@Override
+	public Class<? extends IBlockType> getEnumToSwitch() {
+		return BlockLeafCover.EnumBlockType.class;
 	}
 }

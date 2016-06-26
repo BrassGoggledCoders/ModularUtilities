@@ -15,12 +15,13 @@ import net.minecraft.item.ItemStack;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockSubBase;
 import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
 import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
+import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
 
-public class BlockStoneDecor extends BlockSubBase {
+public class BlockStoneDecor extends BlockSubBase implements ISimpleVariant {
 	public static final PropertyEnum<EnumBlockType> type = PropertyEnum.create("type", EnumBlockType.class);
 
 	public BlockStoneDecor() {
-		super(Material.ROCK);
+		super(Material.ROCK, EnumBlockType.names());
 		this.setUnlocalizedName("stone_decor");
 		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumBlockType.CLINKER_BRICK));
 	}
@@ -79,5 +80,10 @@ public class BlockStoneDecor extends BlockSubBase {
 
 			return names.toArray(new String[0]);
 		}
+	}
+
+	@Override
+	public Class<? extends IBlockType> getEnumToSwitch() {
+		return BlockStoneDecor.EnumBlockType.class;
 	}
 }

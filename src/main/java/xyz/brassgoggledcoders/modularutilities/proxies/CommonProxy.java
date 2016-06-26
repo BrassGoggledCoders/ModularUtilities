@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.modularutilities;
+package xyz.brassgoggledcoders.modularutilities.proxies;
 
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;

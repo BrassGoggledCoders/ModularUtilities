@@ -14,8 +14,8 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -26,7 +26,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockSubBase;
 import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
-import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
 
 public class BlockHedge extends BlockSubBase {
 
@@ -61,7 +60,7 @@ public class BlockHedge extends BlockSubBase {
 			AABB_BY_INDEX[13].setMaxY(1.5D), AABB_BY_INDEX[14].setMaxY(1.5D), AABB_BY_INDEX[15].setMaxY(1.5D)};
 
 	public BlockHedge(String name) {
-		super(Material.LEAVES);
+		super(Material.LEAVES, EnumBlockType.names());
 		this.setHardness(0.2F);
 		this.setResistance(0F);
 		this.setUnlocalizedName(name);
@@ -122,27 +121,29 @@ public class BlockHedge extends BlockSubBase {
 	private boolean canConnectTo(IBlockAccess worldIn, BlockPos pos) {
 		IBlockState iblockstate = worldIn.getBlockState(pos);
 		Block block = iblockstate.getBlock();
-		return (block instanceof BlockFenceGate) || (iblockstate.isFullCube());
+		return block == Blocks.BARRIER ? false
+				: (block != this && !(block instanceof BlockFenceGate)
+						? (block.isFullyOpaque(iblockstate) && iblockstate.isFullCube()
+								? block.getMaterial(iblockstate) != Material.GOURD : false)
+						: true);
 	}
 
-	@Override
-	public ItemBlock getItemBlockClass(Block block) {
-		return new ItemSubBlock(block, EnumBlockType.names());
+	/**
+	 * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
+	 */
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
+		for(BlockHedge.EnumBlockType blockwall$enumtype : BlockHedge.EnumBlockType.values()) {
+			list.add(new ItemStack(itemIn, 1, blockwall$enumtype.getMeta()));
+		}
 	}
 
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		return state.getValue(TYPE).getMeta();
-	}
-
-	@Override
-	public BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {TYPE, UP, NORTH, SOUTH, EAST, WEST});
-	}
-
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(TYPE, EnumBlockType.VALUES[meta]);
+	/**
+	 * Gets the metadata of the item this Block can drop. This method is called when the block gets destroyed. It
+	 * returns the metadata of the dropped item based on the old metadata of the block.
+	 */
+	public int damageDropped(IBlockState state) {
+		return ((BlockHedge.EnumBlockType) state.getValue(TYPE)).getMeta();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -151,6 +152,24 @@ public class BlockHedge extends BlockSubBase {
 		return side == EnumFacing.DOWN ? super.shouldSideBeRendered(blockState, blockAccess, pos, side) : true;
 	}
 
+	/**
+	 * Convert the given metadata into a BlockState for this Block
+	 */
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(TYPE, BlockHedge.EnumBlockType.values()[meta]);
+	}
+
+	/**
+	 * Convert the BlockState into the correct metadata value
+	 */
+	public int getMetaFromState(IBlockState state) {
+		return ((BlockHedge.EnumBlockType) state.getValue(TYPE)).getMeta();
+	}
+
+	/**
+	 * Get the actual Block state of this Block at the given position. This applies properties not visible in the
+	 * metadata, such as fence connections.
+	 */
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		boolean flag = this.canConnectTo(worldIn, pos.north());
 		boolean flag1 = this.canConnectTo(worldIn, pos.east());
@@ -162,10 +181,8 @@ public class BlockHedge extends BlockSubBase {
 				.withProperty(SOUTH, Boolean.valueOf(flag2)).withProperty(WEST, Boolean.valueOf(flag3));
 	}
 
-	@Override
-	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
-		for(EnumBlockType resourceType : EnumBlockType.VALUES)
-			itemList.add(new ItemStack(item, 1, resourceType.getMeta()));
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] {UP, NORTH, EAST, WEST, SOUTH, TYPE});
 	}
 
 	public enum EnumBlockType implements IBlockType {

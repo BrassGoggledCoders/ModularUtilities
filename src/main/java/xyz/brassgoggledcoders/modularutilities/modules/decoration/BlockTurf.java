@@ -21,21 +21,22 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockThin;
 import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
 import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
+import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
 
-public class BlockTurf extends BlockThin {
+public class BlockTurf extends BlockThin implements ISimpleVariant {
 
-	public static final PropertyEnum<EnumTurfBlockType> type = PropertyEnum.create("type", EnumTurfBlockType.class);
+	public static final PropertyEnum<EnumBlockType> type = PropertyEnum.create("type", EnumBlockType.class);
 	protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 
 	public BlockTurf() {
-		super(Material.GRASS);
+		super(Material.GRASS, EnumBlockType.names());
 		this.setUnlocalizedName("turf");
-		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumTurfBlockType.NORMAL));
+		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumBlockType.NORMAL));
 	}
 
 	@Override
 	public ItemBlock getItemBlockClass(Block block) {
-		return new ItemSubBlock(block, EnumTurfBlockType.names());
+		return new ItemSubBlock(block, EnumBlockType.names());
 	}
 
 	@Override
@@ -66,23 +67,23 @@ public class BlockTurf extends BlockThin {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(type, EnumTurfBlockType.VALUES[meta]);
+		return getDefaultState().withProperty(type, EnumBlockType.VALUES[meta]);
 	}
 
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
-		for(EnumTurfBlockType resourceType : EnumTurfBlockType.VALUES)
+		for(EnumBlockType resourceType : EnumBlockType.VALUES)
 			itemList.add(new ItemStack(item, 1, resourceType.getMeta()));
 	}
 
-	public enum EnumTurfBlockType implements IBlockType {
+	public enum EnumBlockType implements IBlockType {
 		NORMAL(0), DRY(1), FROZEN(2), JUNGLE(3), SWAMP(4), PODZOL(5), MYCELIUM(6);
 
-		public static final EnumTurfBlockType[] VALUES = values();
+		public static final EnumBlockType[] VALUES = values();
 
 		private final int meta;
 
-		EnumTurfBlockType(int meta) {
+		EnumBlockType(int meta) {
 			this.meta = meta;
 		}
 
@@ -98,10 +99,15 @@ public class BlockTurf extends BlockThin {
 
 		public static String[] names() {
 			ArrayList<String> names = new ArrayList<String>();
-			for(EnumTurfBlockType element : VALUES)
+			for(EnumBlockType element : VALUES)
 				names.add(element.toString().toLowerCase());
 
 			return names.toArray(new String[0]);
 		}
+	}
+
+	@Override
+	public Class<? extends IBlockType> getEnumToSwitch() {
+		return BlockTurf.EnumBlockType.class;
 	}
 }

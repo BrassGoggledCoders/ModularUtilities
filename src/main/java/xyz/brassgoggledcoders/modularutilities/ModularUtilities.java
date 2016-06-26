@@ -27,6 +27,7 @@ import xyz.brassgoggledcoders.boilerplate.BoilerplateModBase;
 import xyz.brassgoggledcoders.modularutilities.modules.construction.ConstructionModule;
 import xyz.brassgoggledcoders.modularutilities.modules.enchantments.CustomEnchantment;
 import xyz.brassgoggledcoders.modularutilities.modules.ender.EnderModule;
+import xyz.brassgoggledcoders.modularutilities.proxies.CommonProxy;
 
 @Mod(modid = ModularUtilities.MODID, name = ModularUtilities.MODNAME, version = ModularUtilities.MODVERSION)
 public class ModularUtilities extends BoilerplateModBase {
@@ -37,8 +38,8 @@ public class ModularUtilities extends BoilerplateModBase {
 	@Instance("modularutilities")
 	public static ModularUtilities instance;
 
-	@SidedProxy(clientSide = "xyz.brassgoggledcoders.modularutilities.ClientProxy",
-			serverSide = "xyz.brassgoggledcoders.modularutilities.CommonProxy")
+	@SidedProxy(clientSide = "xyz.brassgoggledcoders.modularutilities.proxies.ClientProxy",
+			serverSide = "xyz.brassgoggledcoders.modularutilities.proxies.CommonProxy")
 	public static CommonProxy proxy;
 
 	public static final String MODID = "modularutilities";
