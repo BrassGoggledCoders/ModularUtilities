@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColorHelper;
 import xyz.brassgoggledcoders.modularutilities.modules.construction.ConstructionModule;
+import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockHedge;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockStoneDecor;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockTurf;
@@ -31,6 +32,8 @@ public class ClientProxy extends CommonProxy {
 					DecorationModule.leaf_cover, BlockLeafCover.EnumLeafCoverBlockType.class, "type");
 			xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy.registerVariantsDefaulted(
 					DecorationModule.stone_decor, BlockStoneDecor.EnumBlockType.class, "type");
+			// xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy.registerVariantsDefaulted(DecorationModule.hedge,
+			// BlockHedge.EnumBlockType.class, "type");
 		}
 		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction")) {
 			xyz.brassgoggledcoders.boilerplate.proxies.ClientProxy.registerFluidModel(

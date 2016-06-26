@@ -29,6 +29,7 @@ fluid.dirt=Liquid Dirt
 tile.concrete_fluid.name=Wet Concrete
 fluid.concrete=Wet Concrete
 tile.concrete.name=Concrete
+tile.soul_glass.name=Soul Glass
 
 item.machete.name=Machete
 item.ender_glove.name=Ender Glove
@@ -39,3 +40,6 @@ enchantment.flame_touch=Flame Touch
 enchantment.prospector=Prospector
 enchantment.vampirism=Vampirism
 enchantment.soulbound=Soulbound
+
+achievment.banker=Banker
+achievement.banker.desc=Aquire a full stack of diamonds.

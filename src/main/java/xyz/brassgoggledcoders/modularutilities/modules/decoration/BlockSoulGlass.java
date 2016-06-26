@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.modularutilities.modules.construction;
+package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,16 +11,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 
-public class BlockBlastGlass extends BlockBase {
+public class BlockSoulGlass extends BlockBase {
 
-	public BlockBlastGlass() {
-		super(Material.GLASS, "blast_glass");
+	public BlockSoulGlass(Material mat, String name) {
+		super(mat, name);
+		this.setLightOpacity(255);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.CUTOUT;
+		return BlockRenderLayer.TRANSLUCENT;
 	}
 
 	@Override

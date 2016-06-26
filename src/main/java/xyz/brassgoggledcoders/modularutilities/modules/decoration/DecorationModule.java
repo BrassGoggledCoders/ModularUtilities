@@ -26,7 +26,7 @@ import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover
 @Module(mod = ModularUtilities.MODID)
 public class DecorationModule extends ModuleBase {
 
-	public static Block turf, leaf_cover, stone_decor, smooth_glowstone;
+	public static Block turf, leaf_cover, stone_decor, smooth_glowstone, hedge, soul_glass;
 
 	@Override
 	public String getName() {
@@ -46,6 +46,12 @@ public class DecorationModule extends ModuleBase {
 
 		smooth_glowstone = new BlockBase(Material.GLASS, "smooth_glowstone").setLightLevel(1F);
 		getBlockRegistry().registerBlock(smooth_glowstone);
+
+		hedge = new BlockHedge("hedge");
+		// getBlockRegistry().registerBlock(hedge);
+
+		soul_glass = new BlockSoulGlass(Material.GLASS, "soul_glass");
+		getBlockRegistry().registerBlock(soul_glass);
 		/*
 		 * TODO:
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
@@ -67,6 +73,7 @@ public class DecorationModule extends ModuleBase {
 		GameRegistry.addRecipe(new ItemStack(stone_decor, 4, 1), "NB", "BN", 'N', Blocks.STONE, 'B', Blocks.STONEBRICK);
 
 		GameRegistry.addSmelting(Blocks.GLOWSTONE, new ItemStack(smooth_glowstone), 0);
+		GameRegistry.addSmelting(Blocks.SOUL_SAND, new ItemStack(soul_glass), 0.3F);
 	}
 
 	@SubscribeEvent
