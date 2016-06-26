@@ -1,10 +1,13 @@
 package xyz.brassgoggledcoders.modularutilities.modules.construction;
 
-import net.minecraft.init.Blocks;
+import java.util.LinkedHashMap;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import xyz.brassgoggledcoders.boilerplate.api.IDebuggable;
 
-public class TileEntityLiquidConcrete extends TileEntity implements ITickable { // TODO Find a better way...
+public class TileEntityLiquidConcrete extends TileEntity implements ITickable, IDebuggable { // TODO Find a better
+																								// way...
 
 	private int dryingTicks = 150;
 
@@ -16,10 +19,17 @@ public class TileEntityLiquidConcrete extends TileEntity implements ITickable { 
 	public void update() {
 		if(dryingTicks == 0) {
 			getWorld().markTileEntityForRemoval(this);
-			getWorld().setBlockState(getPos(), Blocks.STONE.getDefaultState());
+			getWorld().setBlockState(getPos(), ConstructionModule.concrete.getDefaultState());
 		}
 		else {
 			dryingTicks--;
 		}
+	}
+
+	@Override
+	public LinkedHashMap<String, String> getDebugStrings() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+		map.put("dryingTicks", String.valueOf(dryingTicks));
+		return map;
 	}
 }

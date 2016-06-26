@@ -43,15 +43,15 @@ public class ConstructionModule extends ModuleBase {
 		filler_fluid_block = new BlockFillerFluid(Material.WATER, "filler_fluid", filler_fluid);
 		getBlockRegistry().registerBlock(filler_fluid_block);
 
-		concrete_fluid = new Fluid("concrete", new ResourceLocation(ModularUtilities.MODID, "blocks/concrete"),
-				new ResourceLocation(ModularUtilities.MODID, "blocks/concrete_flow")).setDensity(2000)
+		concrete_fluid = new Fluid("concrete", new ResourceLocation(ModularUtilities.MODID, "blocks/concrete_fluid"),
+				new ResourceLocation(ModularUtilities.MODID, "blocks/concrete_fluid_flow")).setDensity(2000)
 						.setViscosity(2000);
 		if(!FluidRegistry.isFluidRegistered("concrete")) {
 			FluidRegistry.registerFluid(concrete_fluid);
 			FluidRegistry.addBucketForFluid(concrete_fluid);
 		}
 
-		concrete_fluid_block = new BlockConcreteFluid(Material.WATER, "concrete", concrete_fluid);
+		concrete_fluid_block = new BlockConcreteFluid(Material.WATER, "concrete_fluid", concrete_fluid);
 		getBlockRegistry().registerBlock(concrete_fluid_block);
 
 		concrete = new BlockBase(Material.ROCK, "concrete").setHardness(3).setResistance(18);

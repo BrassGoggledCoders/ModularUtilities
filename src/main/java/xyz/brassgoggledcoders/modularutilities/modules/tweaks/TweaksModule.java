@@ -21,11 +21,11 @@ public class TweaksModule extends ModuleBase {
 		 * - Ding Sound when getting achievements (excluding starter ones) and when your name is mentioned in chat
 		 * - Spectator mode on death in hardcore
 		 * - Wild wolves become agressive during a full moon
-		 * - Easier slimeballs?
 		 * - Maps show biome colour
 		 * - Fire converts grass to dirt
 		 * - Make portal particles overridable
 		 * - Ability to defuse tnt by right clicking with shears
+		 * - Garunteed Pearl drop from endermens
 		 */
 	}
 }

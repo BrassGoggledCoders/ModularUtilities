@@ -2,25 +2,17 @@ package xyz.brassgoggledcoders.modularutilities.modules.construction;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.oredict.OreDictionary;
 import xyz.brassgoggledcoders.boilerplate.blocks.IHasTileEntity;
-import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 
 public class BlockConcreteFluid extends BlockModFluid implements IHasTileEntity, ITileEntityProvider {
-	// TODO Ensure drying time doesn't reset when fluid block changes
+
 	public BlockConcreteFluid(Material mat, String name, Fluid fluid) {
 		super(mat, name, fluid);
 		this.setQuantaPerBlock(6);
@@ -100,21 +92,23 @@ public class BlockConcreteFluid extends BlockModFluid implements IHasTileEntity,
 	}
 
 	// TODO
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if(!worldIn.isRemote) {
-			if(ItemStackUtils.isItemNonNull(heldItem)) {
-				if(OreDictionary.containsMatch(false, OreDictionary.getOres("sand"), new ItemStack[] {heldItem})) {
-					if(worldIn.getTileEntity(pos) instanceof TileEntityLiquidConcrete) {
-						((TileEntityLiquidConcrete) worldIn.getTileEntity(pos)).setDryingTicks(1);
-					}
-				}
-			}
-			return true;
-		}
-		return false;
-	}
+	/*
+	 * @Override
+	 * public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+	 * EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+	 * if(!worldIn.isRemote) {
+	 * if(ItemStackUtils.isItemNonNull(heldItem)) {
+	 * if(OreDictionary.containsMatch(false, OreDictionary.getOres("sand"), new ItemStack[] {heldItem})) {
+	 * if(worldIn.getTileEntity(pos) instanceof TileEntityLiquidConcrete) {
+	 * ((TileEntityLiquidConcrete) worldIn.getTileEntity(pos)).setDryingTicks(1);
+	 * }
+	 * }
+	 * }
+	 * return true;
+	 * }
+	 * return false;
+	 * }
+	 */
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {

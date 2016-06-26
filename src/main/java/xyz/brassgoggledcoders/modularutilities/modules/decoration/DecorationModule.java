@@ -49,7 +49,6 @@ public class DecorationModule extends ModuleBase {
 		/*
 		 * TODO:
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
-		 * - Smooth Glowstone https://i.imgur.com/lywsYXl.jpg
 		 * - Ender Pearl storage block
 		 * - Clear glass?
 		 */

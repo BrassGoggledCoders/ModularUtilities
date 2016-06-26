@@ -95,9 +95,12 @@ public class ModularUtilities extends BoilerplateModBase {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void displayAllRelevantItems(List<ItemStack> items) {
-			if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction"))
+			if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction")) {
 				items.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket,
 						ConstructionModule.filler_fluid));
+				items.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket,
+						ConstructionModule.concrete_fluid));
+			}
 			super.displayAllRelevantItems(items);
 		}
 

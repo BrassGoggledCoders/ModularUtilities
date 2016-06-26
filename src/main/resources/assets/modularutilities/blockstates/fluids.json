@@ -7,7 +7,7 @@
         "filler_fluid": [{
             "custom": { "fluid": "dirt" }
         }],
-        "concrete":
+        "concrete_fluid":
         [{
         	"custom": { "fluid": "concrete" }
         }]

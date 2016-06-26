@@ -41,7 +41,7 @@ public class ClientProxy extends CommonProxy {
 			registerFluidModel(ConstructionModule.filler_fluid_block,
 					new ModelResourceLocation(ModularUtilities.MODID + ":fluids", "filler_fluid"));
 			registerFluidModel(ConstructionModule.concrete_fluid_block,
-					new ModelResourceLocation(ModularUtilities.MODID + ":fluids", "concrete"));
+					new ModelResourceLocation(ModularUtilities.MODID + ":fluids", "concrete_fluid"));
 		}
 	}
 
