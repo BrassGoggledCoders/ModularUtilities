@@ -29,11 +29,13 @@ import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
 public class BlockLeafCover extends BlockThin implements ISimpleVariant {
 
 	public static PropertyEnum<EnumBlockType> type = PropertyEnum.create("type", EnumBlockType.class);
+	private boolean opaque;
 
-	public BlockLeafCover() {
+	public BlockLeafCover(String name, boolean opaque) {
 		super(Material.LEAVES, EnumBlockType.names());
-		this.setUnlocalizedName("leaf_cover");
+		this.setUnlocalizedName(name);
 		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumBlockType.OAK));
+		this.opaque = opaque;
 	}
 
 	@Override
@@ -55,7 +57,7 @@ public class BlockLeafCover extends BlockThin implements ISimpleVariant {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.CUTOUT;
+		return (opaque) ? BlockRenderLayer.SOLID : BlockRenderLayer.CUTOUT;
 	}
 
 	@Override

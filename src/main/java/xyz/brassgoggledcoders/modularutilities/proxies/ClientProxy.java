@@ -69,10 +69,10 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerColors() {
 		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Decoration")) {
-			Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new LeafColors(),
-					new Block[] {DecorationModule.leaf_cover, DecorationModule.hedge, DecorationModule.hedge_opaque});
-			Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new LeafColors(),
-					new Block[] {DecorationModule.leaf_cover, DecorationModule.hedge, DecorationModule.hedge_opaque});
+			Block[] toColourise = new Block[] {DecorationModule.leaf_cover, DecorationModule.hedge,
+					DecorationModule.hedge_opaque, DecorationModule.leaf_cover_opaque};
+			Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new LeafColors(), toColourise);
+			Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new LeafColors(), toColourise);
 		}
 	}
 

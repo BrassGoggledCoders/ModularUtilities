@@ -21,12 +21,12 @@ import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
-import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover.EnumBlockType;
 
 @Module(mod = ModularUtilities.MODID)
 public class DecorationModule extends ModuleBase {
 
-	public static Block turf, leaf_cover, stone_decor, smooth_glowstone, hedge, hedge_opaque, soul_glass;
+	public static Block turf, leaf_cover, leaf_cover_opaque, stone_decor, smooth_glowstone, hedge, hedge_opaque,
+			soul_glass;
 
 	@Override
 	public String getName() {
@@ -38,8 +38,11 @@ public class DecorationModule extends ModuleBase {
 		turf = new BlockTurf();
 		this.getBlockRegistry().registerBlock(turf);
 
-		leaf_cover = new BlockLeafCover();
+		leaf_cover = new BlockLeafCover("leaf_cover", false);
 		this.getBlockRegistry().registerBlock(leaf_cover);
+
+		leaf_cover_opaque = new BlockLeafCover("leaf_cover_opaque", true);
+		this.getBlockRegistry().registerBlock(leaf_cover_opaque);
 
 		hedge = new BlockHedge("hedge", false);
 		getBlockRegistry().registerBlock(hedge);
@@ -67,10 +70,19 @@ public class DecorationModule extends ModuleBase {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
-		for(int i = 0; i < EnumBlockType.VALUES.length - 2; i++)
-			GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, i), "XX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
-		GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, 4), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
-		GameRegistry.addRecipe(new ItemStack(leaf_cover, 1, 5), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
+		for(int i = 0; i < BlockLeafCover.EnumBlockType.VALUES.length - 2; i++) {
+			GameRegistry.addRecipe(new ItemStack(leaf_cover, 2, i), "XX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
+			GameRegistry.addRecipe(new ItemStack(hedge, 6, i), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
+		}
+		GameRegistry.addRecipe(new ItemStack(leaf_cover, 2, 4), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(leaf_cover, 2, 5), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(hedge, 6, 4), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(hedge, 6, 5), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
+		for(int i = 0; i < BlockLeafCover.EnumBlockType.VALUES.length; i++) {
+			GameRegistry.addShapelessRecipe(new ItemStack(leaf_cover_opaque, 1, i), Blocks.SAND,
+					new ItemStack(leaf_cover, 1, i));
+			GameRegistry.addShapelessRecipe(new ItemStack(hedge_opaque, 1, i), Blocks.SAND, new ItemStack(hedge, 1, i));
+		}
 
 		GameRegistry.addRecipe(new ItemStack(stone_decor, 4, 0), "NB", "BN", 'N', Blocks.NETHER_BRICK, 'B',
 				Blocks.BRICK_BLOCK);
