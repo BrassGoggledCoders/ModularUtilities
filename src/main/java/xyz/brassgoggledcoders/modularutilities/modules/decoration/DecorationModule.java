@@ -26,7 +26,7 @@ import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockLeafCover
 @Module(mod = ModularUtilities.MODID)
 public class DecorationModule extends ModuleBase {
 
-	public static Block turf, leaf_cover, stone_decor, smooth_glowstone, hedge, soul_glass;
+	public static Block turf, leaf_cover, stone_decor, smooth_glowstone, hedge, hedge_opaque, soul_glass;
 
 	@Override
 	public String getName() {
@@ -41,15 +41,17 @@ public class DecorationModule extends ModuleBase {
 		leaf_cover = new BlockLeafCover();
 		this.getBlockRegistry().registerBlock(leaf_cover);
 
+		hedge = new BlockHedge("hedge", false);
+		getBlockRegistry().registerBlock(hedge);
+
+		hedge_opaque = new BlockHedge("hedge_opaque", true);
+		getBlockRegistry().registerBlock(hedge_opaque);
+
 		stone_decor = new BlockStoneDecor();
 		getBlockRegistry().registerBlock(stone_decor);
 
 		smooth_glowstone = new BlockBase(Material.GLASS, "smooth_glowstone").setLightLevel(1F);
 		getBlockRegistry().registerBlock(smooth_glowstone);
-
-		// TODO Fix z-fighting. Allow vertical connections
-		hedge = new BlockHedge("hedge");
-		getBlockRegistry().registerBlock(hedge);
 
 		soul_glass = new BlockSoulGlass(Material.GLASS, "soul_glass");
 		getBlockRegistry().registerBlock(soul_glass);

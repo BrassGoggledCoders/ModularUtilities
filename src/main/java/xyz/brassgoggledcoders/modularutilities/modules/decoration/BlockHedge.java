@@ -17,6 +17,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -58,8 +59,9 @@ public class BlockHedge extends BlockSubBase {
 			AABB_BY_INDEX[7].setMaxY(1.5D), AABB_BY_INDEX[8].setMaxY(1.5D), AABB_BY_INDEX[9].setMaxY(1.5D),
 			AABB_BY_INDEX[10].setMaxY(1.5D), AABB_BY_INDEX[11].setMaxY(1.5D), AABB_BY_INDEX[12].setMaxY(1.5D),
 			AABB_BY_INDEX[13].setMaxY(1.5D), AABB_BY_INDEX[14].setMaxY(1.5D), AABB_BY_INDEX[15].setMaxY(1.5D)};
+	private boolean opaque;
 
-	public BlockHedge(String name) {
+	public BlockHedge(String name, boolean opaque) {
 		super(Material.LEAVES, EnumBlockType.names());
 		this.setHardness(0.2F);
 		this.setResistance(0F);
@@ -68,6 +70,13 @@ public class BlockHedge extends BlockSubBase {
 				.withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false))
 				.withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false))
 				.withProperty(WEST, Boolean.valueOf(false)));
+		this.opaque = opaque;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer() {
+		return (opaque) ? BlockRenderLayer.SOLID : BlockRenderLayer.CUTOUT;
 	}
 
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

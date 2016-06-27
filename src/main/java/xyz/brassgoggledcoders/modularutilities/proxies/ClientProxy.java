@@ -1,20 +1,14 @@
 package xyz.brassgoggledcoders.modularutilities.proxies;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Maps;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.IStateMapper;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -23,6 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 import xyz.brassgoggledcoders.modularutilities.modules.construction.ConstructionModule;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockHedge;
@@ -40,35 +35,44 @@ public class ClientProxy extends CommonProxy {
 					new ModelResourceLocation(ModularUtilities.MODID + ":fluids", "concrete_fluid"));
 		}
 		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Decoration")) {
-
-			ModelLoader.setCustomStateMapper(DecorationModule.hedge, new IStateMapper() {
-				StateMap stateMap = new StateMap.Builder().withName(BlockHedge.TYPE).withSuffix("_hedge").build();
-
-				@Override
-				public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block block) {
-					Map<IBlockState, ModelResourceLocation> map =
-							(Map<IBlockState, ModelResourceLocation>) stateMap.putStateModelLocations(block);
-					Map<IBlockState, ModelResourceLocation> newMap = Maps.newHashMap();
-
-					for(Entry<IBlockState, ModelResourceLocation> e : map.entrySet()) {
-						ModelResourceLocation loc = e.getValue();
-						newMap.put(e.getKey(), new ModelResourceLocation("modularutilities:" + loc.getResourcePath(),
-								loc.getVariant()));
-					}
-
-					return newMap;
-				}
-			});
+			for(int i = 0; i < BlockHedge.EnumBlockType.values().length; i++) {
+				ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(DecorationModule.hedge), i,
+						new ModelResourceLocation(ForgeRegistries.BLOCKS.getKey(DecorationModule.hedge).toString(),
+								"inventory"));
+				ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(DecorationModule.hedge_opaque), i,
+						new ModelResourceLocation(
+								ForgeRegistries.BLOCKS.getKey(DecorationModule.hedge_opaque).toString(), "inventory"));
+			}
 		}
 	}
+
+	// TODO Generalise. 'Typed/Suffixed StateMapper'
+	/*
+	 * public class HedgeStateMapper implements IStateMapper {
+	 * // TODO Ideally withName should be removed.
+	 * StateMap stateMap = new StateMap.Builder().withName(BlockHedge.TYPE).withSuffix("_hedge").build();
+	 * @Override
+	 * public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block block) {
+	 * Map<IBlockState, ModelResourceLocation> map =
+	 * (Map<IBlockState, ModelResourceLocation>) stateMap.putStateModelLocations(block);
+	 * Map<IBlockState, ModelResourceLocation> newMap = Maps.newHashMap();
+	 * for(Entry<IBlockState, ModelResourceLocation> e : map.entrySet()) {
+	 * ModelResourceLocation loc = e.getValue();
+	 * newMap.put(e.getKey(),
+	 * new ModelResourceLocation("modularutilities:" + loc.getResourcePath(), loc.getVariant()));
+	 * }
+	 * return newMap;
+	 * }
+	 * }
+	 */
 
 	@Override
 	public void registerColors() {
 		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Decoration")) {
 			Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new LeafColors(),
-					new Block[] {DecorationModule.leaf_cover, DecorationModule.hedge});
+					new Block[] {DecorationModule.leaf_cover, DecorationModule.hedge, DecorationModule.hedge_opaque});
 			Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new LeafColors(),
-					new Block[] {DecorationModule.leaf_cover, DecorationModule.hedge});
+					new Block[] {DecorationModule.leaf_cover, DecorationModule.hedge, DecorationModule.hedge_opaque});
 		}
 	}
 

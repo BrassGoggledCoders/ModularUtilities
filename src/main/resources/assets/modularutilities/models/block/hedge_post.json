@@ -3,8 +3,8 @@
         "particle": "#wall"
     },
     "elements": [
-        {   "from": [ 5, 0, 5 ],
-            "to": [ 11, 13, 11 ],
+        {   "from": [ 4, 0, 4 ],
+            "to": [ 12, 16, 12 ],
             "faces": {
                 "down":  { "texture": "#wall", "tintindex": 0, "cullface": "down" },
                 "up":    { "texture": "#wall", "tintindex": 0, "cullface": "up"   },
