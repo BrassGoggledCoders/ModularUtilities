@@ -120,6 +120,8 @@ public class EnchantmentsModule extends ModuleBase {
 			if(event.getSource().getSourceOfDamage() == null)
 				return;
 			EntityLivingBase ent = (EntityLivingBase) event.getSource().getSourceOfDamage();
+			if(ent.getHeldItemMainhand() == null)
+				return;
 			for(Enchantment ench : EnchantmentHelper.getEnchantments(ent.getHeldItemMainhand()).keySet()) {
 				if(ench instanceof CustomEnchantment) {
 					((CustomEnchantment) ench).onEntityAttacked(event);
