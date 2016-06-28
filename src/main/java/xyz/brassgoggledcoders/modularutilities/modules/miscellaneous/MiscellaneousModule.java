@@ -2,10 +2,12 @@ package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
 import java.util.Arrays;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
@@ -22,8 +24,9 @@ import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
 public class MiscellaneousModule extends ModuleBase {
-	public static BlockBase feathers;
+	public static BlockBase feathers, magmagold;
 	public static ItemMachete machete;
+	public static Item goldpetal;
 
 	@Override
 	public String getName() {
@@ -34,6 +37,12 @@ public class MiscellaneousModule extends ModuleBase {
 	public void preInit(FMLPreInitializationEvent event) {
 		feathers = new BlockFeathers();
 		this.getBlockRegistry().registerBlock(feathers);
+
+		goldpetal = new ItemGoldPetal("goldpetal");
+		this.getItemRegistry().registerItem(goldpetal);
+
+		magmagold = new BlockMagmagold(Material.ROCK, "magmagold");
+		this.getBlockRegistry().registerBlock(magmagold);
 
 		machete = new ItemMachete();
 		this.getItemRegistry().registerItem(machete);

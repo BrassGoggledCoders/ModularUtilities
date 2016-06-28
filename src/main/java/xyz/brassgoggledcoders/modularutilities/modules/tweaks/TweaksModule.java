@@ -25,7 +25,6 @@ public class TweaksModule extends ModuleBase {
 		 * - Fire converts grass to dirt
 		 * - Make portal particles overridable
 		 * - Ability to defuse tnt by right clicking with shears
-		 * - Garunteed Pearl drop from endermens
 		 */
 	}
 }

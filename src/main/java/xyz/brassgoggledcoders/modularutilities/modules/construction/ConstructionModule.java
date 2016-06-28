@@ -1,7 +1,9 @@
 package xyz.brassgoggledcoders.modularutilities.modules.construction;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialLiquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -51,7 +53,7 @@ public class ConstructionModule extends ModuleBase {
 			FluidRegistry.addBucketForFluid(concrete_fluid);
 		}
 
-		concrete_fluid_block = new BlockConcreteFluid(Material.WATER, "concrete_fluid", concrete_fluid);
+		concrete_fluid_block = new BlockConcreteFluid(new MaterialConcrete(), "concrete_fluid", concrete_fluid);
 		getBlockRegistry().registerBlock(concrete_fluid_block);
 
 		concrete = new BlockBase(Material.ROCK, "concrete").setHardness(3).setResistance(18);
@@ -60,6 +62,9 @@ public class ConstructionModule extends ModuleBase {
 		 * TODO:
 		 * - Quickdry Concrete
 		 * - Rebar: Makes solid concrete harder
+		 * - 'polished' concrete
+		 * - Paintable concrete
+		 * - Tar?
 		 * - Laser level
 		 * - Scaffolding
 		 * - Blast resistant door, pushable blast blocks.
@@ -74,5 +79,17 @@ public class ConstructionModule extends ModuleBase {
 				UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, filler_fluid),
 				new Object[] {"CDC", "DWD", /* AMX */"CDC", 'C', Blocks.CLAY, 'D', Blocks.DIRT, 'W',
 						Items.WATER_BUCKET});
+		GameRegistry.addShapedRecipe(
+				UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, concrete_fluid),
+				new Object[] {"CDC", "DWD", /* AMX */"CDC", 'C', Blocks.COBBLESTONE, 'D', Blocks.SAND, 'W',
+						Items.WATER_BUCKET});
+	}
+
+	public class MaterialConcrete extends MaterialLiquid {
+
+		public MaterialConcrete() {
+			super(MapColor.CLAY);
+		}
+
 	}
 }

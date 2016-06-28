@@ -48,10 +48,12 @@ tile.hedge_opaque.birch.name=Opaque Birch Hedge
 tile.hedge_opaque.jungle.name=Opaque Jungle Hedge
 tile.hedge_opaque.acacia.name=Opaque Acacia Hedge
 tile.hedge_opaque.big_oak.name=Opaque Dark Oak Hedge
+tile.magmagold.name=Magmagold
 
 item.machete.name=Machete
 item.ender_glove.name=Ender Glove
 item.ender_pocket.name=Ender Pocket
+item.goldpetal.name=Golden Petal
 
 enchantment.affluency=Affluency
 enchantment.flame_touch=Flame Touch
