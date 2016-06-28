@@ -91,5 +91,9 @@ public class ConstructionModule extends ModuleBase {
 			super(MapColor.CLAY);
 		}
 
+		@Override
+		public boolean blocksMovement() {
+			return true;
+		}
 	}
 }

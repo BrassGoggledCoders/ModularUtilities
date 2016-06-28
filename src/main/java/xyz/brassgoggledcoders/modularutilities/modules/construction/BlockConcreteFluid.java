@@ -5,8 +5,11 @@ import java.util.Random;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockModFluid;
@@ -17,6 +20,22 @@ public class BlockConcreteFluid extends BlockModFluid implements IHasTileEntity,
 	public BlockConcreteFluid(Material mat, String name, Fluid fluid) {
 		super(mat, name, fluid);
 		this.setQuantaPerBlock(6);
+		this.setDensity(this.definedFluid.getDensity());
+	}
+
+	@Override
+	public Boolean isAABBInsideMaterial(World world, BlockPos pos, AxisAlignedBB boundingBox, Material materialIn) {
+		if(materialIn == Material.WATER)
+			return Boolean.TRUE;
+		return null;
+	}
+
+	@Override
+	public Boolean isEntityInsideMaterial(IBlockAccess world, BlockPos blockpos, IBlockState iblockstate, Entity entity,
+			double yToTest, Material materialIn, boolean testingHead) {
+		if(materialIn == Material.WATER)
+			return Boolean.TRUE;
+		return null;
 	}
 
 	// Method identical to that in BlockFluidClassic, except for removing 'total decay'. Better way?
