@@ -7,7 +7,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityDamageSource;
@@ -81,6 +80,9 @@ public class EnchantmentsModule extends ModuleBase {
 
 	@SubscribeEvent
 	public void onBlockBreak(BlockEvent.BreakEvent event) {
+		if(event.getPlayer().getHeldItemMainhand() == null
+				|| !(event.getPlayer().getHeldItemMainhand().isItemEnchanted()))
+			return;
 		for(Enchantment ench : EnchantmentHelper.getEnchantments(event.getPlayer().getHeldItemMainhand()).keySet()) {
 			if(ench instanceof CustomEnchantment) {
 				((CustomEnchantment) ench).onBlockBreak(event);
@@ -90,6 +92,9 @@ public class EnchantmentsModule extends ModuleBase {
 
 	@SubscribeEvent
 	public void onLivingXPDrop(LivingExperienceDropEvent event) {
+		if(event.getAttackingPlayer() == null || event.getAttackingPlayer().getHeldItemMainhand() == null
+				|| !(event.getAttackingPlayer().getHeldItemMainhand().isItemEnchanted()))
+			return;
 		for(Enchantment ench : EnchantmentHelper.getEnchantments(event.getAttackingPlayer().getHeldItemMainhand())
 				.keySet()) {
 			if(ench instanceof CustomEnchantment) {
@@ -100,14 +105,13 @@ public class EnchantmentsModule extends ModuleBase {
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onBlockHarvest(BlockEvent.HarvestDropsEvent event) {
-		if(event.getHarvester() != null && event.getHarvester() instanceof EntityPlayer) {
-			{
-				for(Enchantment ench : EnchantmentHelper.getEnchantments(event.getHarvester().getHeldItemMainhand())
-						.keySet()) {
-					if(ench instanceof CustomEnchantment) {
-						((CustomEnchantment) ench).onBlockHarvest(event);
-					}
-				}
+		if(event.getHarvester() == null || event.getHarvester().getHeldItemMainhand() == null
+				|| !(event.getHarvester().getHeldItemMainhand().isItemEnchanted()))
+			return;
+
+		for(Enchantment ench : EnchantmentHelper.getEnchantments(event.getHarvester().getHeldItemMainhand()).keySet()) {
+			if(ench instanceof CustomEnchantment) {
+				((CustomEnchantment) ench).onBlockHarvest(event);
 			}
 		}
 	}
@@ -120,7 +124,7 @@ public class EnchantmentsModule extends ModuleBase {
 			if(event.getSource().getSourceOfDamage() == null)
 				return;
 			EntityLivingBase ent = (EntityLivingBase) event.getSource().getSourceOfDamage();
-			if(ent.getHeldItemMainhand() == null)
+			if(ent.getHeldItemMainhand() == null || !(ent.getHeldItemMainhand().isItemEnchanted()))
 				return;
 			for(Enchantment ench : EnchantmentHelper.getEnchantments(ent.getHeldItemMainhand()).keySet()) {
 				if(ench instanceof CustomEnchantment) {
@@ -130,6 +134,7 @@ public class EnchantmentsModule extends ModuleBase {
 		}
 	}
 
+	// Special handling for soulbound
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onPlayerDrops(PlayerDropsEvent event) {
 		Iterator<EntityItem> drops = event.getDrops().iterator();
@@ -142,7 +147,6 @@ public class EnchantmentsModule extends ModuleBase {
 		}
 	}
 
-	// For soulbound
 	@SubscribeEvent
 	public void onPlayerRespawn(PlayerEvent.Clone event) {
 		if(event.isWasDeath())
