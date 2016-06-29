@@ -48,6 +48,7 @@ public class MiscellaneousModule extends ModuleBase {
 		this.getItemRegistry().registerItem(machete);
 
 		MinecraftForge.EVENT_BUS.register(this);
+		GameRegistry.registerWorldGenerator(new WorldGeneratorModularUtils(), 2);
 
 		/*
 		 * TODO:
@@ -60,6 +61,7 @@ public class MiscellaneousModule extends ModuleBase {
 		 * - Villager Blacksmith Slab -> Anvil
 		 * - Red Netherbrick for floor in Nether Fortresses
 		 * ---
+		 * - Baubles
 		 * - Commands
 		 * - Achievement Extension
 		 * - Jump Pad: Increases Jump height, slime block + piston
@@ -127,6 +129,7 @@ public class MiscellaneousModule extends ModuleBase {
 		GameRegistry.addRecipe(new ItemStack(feathers), new Object[] {"XXX", "XXX", "XXX", 'X', Items.FEATHER});
 		GameRegistry.addRecipe(new ItemStack(machete),
 				new Object[] {"SI", 'S', Items.IRON_SWORD, 'I', Items.IRON_INGOT});
+		GameRegistry.addRecipe(new ItemStack(Items.GOLD_INGOT), new Object[] {"XXX", "XXX", "XXX", 'X', goldpetal});
 	}
 
 	@SubscribeEvent
@@ -138,4 +141,5 @@ public class MiscellaneousModule extends ModuleBase {
 			event.setCanceled(true);
 		}
 	}
+
 }
