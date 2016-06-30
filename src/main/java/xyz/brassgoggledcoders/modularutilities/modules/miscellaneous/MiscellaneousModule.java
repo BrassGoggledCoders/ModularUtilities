@@ -97,6 +97,7 @@ public class MiscellaneousModule extends ModuleBase {
 		 * - Barrels, maybe
 		 * - Some simple charset stuff?
 		 * - Mob spawner relocation method?
+		 * - Battlesuits
 		 */
 	}
 

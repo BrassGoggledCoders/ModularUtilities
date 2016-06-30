@@ -63,3 +63,9 @@ enchantment.soulbound=Soulbound
 
 achievment.banker=Banker
 achievement.banker.desc=Aquire a full stack of diamonds.
+achievement.hired_help=Hired Help!
+achievement.hired_help.desc=Construct an Iron Golem. [MoU]
+achievement.unstoppable=Unstoppable
+achievement.unstoppable.desc=Equip a full set of diamond armor [MoU] 
+achievement.demigod=Demigod
+achievement.demigod.desc=Equip a full set of enchanted diamond equipment [MoU]
