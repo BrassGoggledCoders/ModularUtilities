@@ -37,10 +37,10 @@ public class ConstructionModule extends ModuleBase {
 
 		filler_fluid = new Fluid("dirt", new ResourceLocation(ModularUtilities.MODID, "blocks/filler_fluid"),
 				new ResourceLocation(ModularUtilities.MODID, "blocks/filler_fluid_flow"));
-		if(!FluidRegistry.isFluidRegistered("dirt")) {
-			FluidRegistry.registerFluid(filler_fluid);
-			FluidRegistry.addBucketForFluid(filler_fluid);
-		}
+		// if(!FluidRegistry.isFluidRegistered("dirt")) {
+		FluidRegistry.registerFluid(filler_fluid);
+		FluidRegistry.addBucketForFluid(filler_fluid);
+		// }
 
 		filler_fluid_block = new BlockFillerFluid(Material.WATER, "filler_fluid", filler_fluid);
 		getBlockRegistry().registerBlock(filler_fluid_block);
@@ -48,10 +48,10 @@ public class ConstructionModule extends ModuleBase {
 		concrete_fluid = new Fluid("concrete", new ResourceLocation(ModularUtilities.MODID, "blocks/concrete_fluid"),
 				new ResourceLocation(ModularUtilities.MODID, "blocks/concrete_fluid_flow")).setDensity(2000)
 						.setViscosity(2000);
-		if(!FluidRegistry.isFluidRegistered("concrete")) {
-			FluidRegistry.registerFluid(concrete_fluid);
-			FluidRegistry.addBucketForFluid(concrete_fluid);
-		}
+		// if(!FluidRegistry.isFluidRegistered("concrete")) {
+		FluidRegistry.registerFluid(concrete_fluid);
+		FluidRegistry.addBucketForFluid(concrete_fluid);
+		// }
 
 		concrete_fluid_block = new BlockConcreteFluid(new MaterialConcrete(), "concrete_fluid", concrete_fluid);
 		getBlockRegistry().registerBlock(concrete_fluid_block);
