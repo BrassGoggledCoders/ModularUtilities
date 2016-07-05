@@ -6,8 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import xyz.brassgoggledcoders.boilerplate.api.IDebuggable;
 
-public class TileEntityLiquidConcrete extends TileEntity implements ITickable, IDebuggable { // TODO Find a better
-																								// way...
+public class TileEntityLiquidConcrete extends TileEntity implements ITickable { // TODO Tick in block?
 
 	private int dryingTicks = 150;
 
@@ -24,12 +23,5 @@ public class TileEntityLiquidConcrete extends TileEntity implements ITickable, I
 		else {
 			dryingTicks--;
 		}
-	}
-
-	@Override
-	public LinkedHashMap<String, String> getDebugStrings() {
-		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-		map.put("dryingTicks", String.valueOf(dryingTicks));
-		return map;
 	}
 }
