@@ -121,7 +121,7 @@ public class EnchantmentsModule extends ModuleBase {
 		if(event.getAmount() == 0)
 			return;
 		if(event.getSource() instanceof EntityDamageSource) {
-			if(event.getSource().getSourceOfDamage() == null)
+			if(event.getSource().getSourceOfDamage() == null || !(event.getSource().getSourceOfDamage() instanceof EntityLivingBase))
 				return;
 			EntityLivingBase ent = (EntityLivingBase) event.getSource().getSourceOfDamage();
 			if(ent.getHeldItemMainhand() == null || !(ent.getHeldItemMainhand().isItemEnchanted()))
