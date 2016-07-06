@@ -55,6 +55,8 @@ item.ender_glove.name=Ender Glove
 item.ender_pocket.name=Ender Pocket
 item.goldpetal.name=Golden Petal
 
+entity.Villager.modularutilities.explorer=Explorer
+
 enchantment.affluency=Affluency
 enchantment.flame_touch=Flame Touch
 enchantment.prospector=Prospector
