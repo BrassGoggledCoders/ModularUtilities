@@ -62,9 +62,9 @@ public class MiscellaneousModule extends ModuleBase {
 		 * Different variants for different biomes.
 		 */
 		VillagerProfession explorer =
-				new VillagerProfession("modularutilities.explorer", "modularutilities:textures/entity/explorer.png",
+				new VillagerProfession("modularutilities:explorer", "modularutilities:textures/entity/explorer.png",
 						"minecraft:textures/entity/zombie_villager/zombie_villager.png");
-		VillagerCareer explorer_career = new VillagerCareer(explorer, "modularutilities.explorer");
+		VillagerCareer explorer_career = new VillagerCareer(explorer, "modularutilities:explorer");
 		VillagerUtils.addSellTrade(explorer_career, new ItemStack(Blocks.SAND, 6, 1), 2, 4);
 		VillagerUtils.addSellTrade(explorer_career, new ItemStack(Blocks.DIRT, 3, 1), 1, 2);
 		VillagerUtils.addSellTrade(2, explorer_career, new ItemStack(Blocks.PACKED_ICE, 2), 3, 6);
