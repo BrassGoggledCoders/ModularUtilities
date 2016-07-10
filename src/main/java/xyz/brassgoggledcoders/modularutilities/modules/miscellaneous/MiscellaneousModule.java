@@ -16,14 +16,10 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
-import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
-import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 import net.minecraftforge.oredict.OreDictionary;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
-import xyz.brassgoggledcoders.boilerplate.utils.VillagerUtils;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
@@ -53,23 +49,6 @@ public class MiscellaneousModule extends ModuleBase {
 
 		MinecraftForge.EVENT_BUS.register(this);
 		GameRegistry.registerWorldGenerator(new WorldGeneratorModularUtils(), 2);
-
-		/*
-		 * TODO
-		 * Custom 'house'.
-		 * Random spawns outside of villages.
-		 * Travelling?
-		 * Different variants for different biomes.
-		 */
-		VillagerProfession explorer =
-				new VillagerProfession("modularutilities:explorer", "modularutilities:textures/entity/explorer.png",
-						"minecraft:textures/entity/zombie_villager/zombie_villager.png");
-		VillagerCareer explorer_career = new VillagerCareer(explorer, "modularutilities:explorer");
-		VillagerUtils.addSellTrade(explorer_career, new ItemStack(Blocks.SAND, 6, 1), 2, 4);
-		VillagerUtils.addSellTrade(explorer_career, new ItemStack(Blocks.DIRT, 3, 1), 1, 2);
-		VillagerUtils.addSellTrade(2, explorer_career, new ItemStack(Blocks.PACKED_ICE, 2), 3, 6);
-		VillagerUtils.addSellTrade(2, explorer_career, new ItemStack(Blocks.DIRT, 1, 2), 1, 2);
-		VillagerRegistry.instance().register(explorer);
 		/*
 		 * TODO:
 		 * Gen
