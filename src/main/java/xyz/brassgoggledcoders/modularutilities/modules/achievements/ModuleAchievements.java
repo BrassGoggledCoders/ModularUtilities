@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
@@ -17,17 +19,20 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
+import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-// @Module(mod = ModularUtilities.MODID)
+@Module(mod = ModularUtilities.MODID)
 public class ModuleAchievements extends ModuleBase {
 
-	public static Achievement banker, stockbroker, hired_help, unstoppable, demigod, audiophile, doctor;
+	public static Achievement banker, stockbroker, hired_help, unstoppable, demigod, audiophile, doctor, undersea;
 	// public static AchievementPage page = new AchievementPage("Modular Utilities", hired_help);
 
 	@Override
@@ -41,13 +46,17 @@ public class ModuleAchievements extends ModuleBase {
 		// banker = addAchievement("banker", "banker", -5, 5, new ItemStack(Blocks.DIAMOND_BLOCK),
 		// AchievementList.DIAMONDS);
 		// stockbroker = addAchievement("stockbroker", "stockbroker", -7, 5, new ItemStack(Items.EMERALD), banker);
-		hired_help = addAchievement("hired_help", "hired_help", -4, -4, new ItemStack(Blocks.PUMPKIN),
-				AchievementList.ACQUIRE_IRON);
-		unstoppable = addAchievement("unstoppable", "unstoppable", -6, -4, new ItemStack(Items.DIAMOND_CHESTPLATE),
-				AchievementList.DIAMONDS);
+
+		// Horizontal, Vertical
+		hired_help = addAchievement("hired_help", -4, -4, new ItemStack(Blocks.PUMPKIN), AchievementList.ACQUIRE_IRON);
+		unstoppable =
+				addAchievement("unstoppable", -6, 5, new ItemStack(Items.DIAMOND_CHESTPLATE), AchievementList.DIAMONDS);
 		ItemStack stack = new ItemStack(Items.DIAMOND_SWORD);
 		stack.addEnchantment(Enchantment.getEnchantmentByLocation("mending"), 1);
-		demigod = addAchievement("demigod", "demigod", -6, -6, stack, AchievementList.ENCHANTMENTS).setSpecial();
+		demigod = addAchievement("demigod", -6, 4, stack, AchievementList.ENCHANTMENTS).setSpecial();
+		undersea = addAchievement("undersea", 10, -1,
+				new ItemStack(Items.FISH, 1, ItemFishFood.FishType.PUFFERFISH.getMetadata()),
+				AchievementList.KILL_ENEMY);
 		// AchievementPage.registerAchievementPage(page);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
@@ -64,9 +73,9 @@ public class ModuleAchievements extends ModuleBase {
 				.playSound(SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.arrow.hit_player")), 1F, 1F);
 	}
 
-	private static Achievement addAchievement(String unlocalizedName, String identifier, int column, int row,
-			ItemStack iconStack, Achievement parent) {
-		Achievement achievement = new Achievement(unlocalizedName, identifier, column, row, iconStack, parent);
+	private static Achievement addAchievement(String unlocalizedName, int column, int row, ItemStack iconStack,
+			Achievement parent) {
+		Achievement achievement = new Achievement(unlocalizedName, unlocalizedName, column, row, iconStack, parent);
 		achievement.registerStat();
 		AchievementList.ACHIEVEMENTS.add(achievement);
 		// TODO
@@ -111,6 +120,16 @@ public class ModuleAchievements extends ModuleBase {
 					&& ItemStackUtils.doItemsMatch(event.player.getHeldItemMainhand(), Items.DIAMOND_SWORD)
 					&& event.player.getHeldItemMainhand().isItemEnchanted())
 				event.player.addStat(demigod);
+		}
+	}
+
+	@SubscribeEvent
+	public void onLivingDeath(LivingDeathEvent event) {
+		if(event.getEntityLiving() instanceof EntityGuardian && ((EntityGuardian) event.getEntityLiving()).isElder()) {
+			if(event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
+				EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
+				player.addStat(undersea);
+			}
 		}
 	}
 }
