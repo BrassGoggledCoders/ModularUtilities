@@ -64,6 +64,7 @@ public class DecorationModule extends ModuleBase {
 		 * - Ender Pearl storage block
 		 * - Ghost glass - can be walked through
 		 * - Clear glass?
+		 * - https://www.reddit.com/r/minecraftsuggestions/comments/4s6j64/glow_rods/?st=iqh3p22q&sh=84b6b566
 		 */
 		MinecraftForge.EVENT_BUS.register(this);
 	}
