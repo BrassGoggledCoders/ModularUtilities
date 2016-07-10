@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -20,6 +21,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
+import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(mod = ModularUtilities.MODID)
@@ -27,6 +29,7 @@ public class MiscellaneousModule extends ModuleBase {
 	public static BlockBase feathers, magmagold;
 	public static ItemMachete machete;
 	public static Item goldpetal;
+	public static Item swiss_army_knife;
 
 	@Override
 	public String getName() {
@@ -46,6 +49,9 @@ public class MiscellaneousModule extends ModuleBase {
 
 		machete = new ItemMachete();
 		this.getItemRegistry().registerItem(machete);
+
+		swiss_army_knife = new ItemSwissArmyKnife();
+		this.getItemRegistry().registerItem(swiss_army_knife);
 
 		MinecraftForge.EVENT_BUS.register(this);
 		GameRegistry.registerWorldGenerator(new WorldGeneratorModularUtils(), 2);
@@ -139,6 +145,27 @@ public class MiscellaneousModule extends ModuleBase {
 				|| Arrays.asList(rareStuff).contains(event.getEntityItem().getEntityItem())) {
 			event.setExtraLife(600);
 			event.setCanceled(true);
+		}
+	}
+
+	@SubscribeEvent
+	public void onItemInteract(PlayerInteractEvent.RightClickItem event) {
+		if(event.getEntityPlayer().isSneaking()) {
+			if(event.getItemStack().hasTagCompound()) {
+				if(ItemStackUtils.doItemsMatch(event.getItemStack(), Items.IRON_AXE)
+						|| ItemStackUtils.doItemsMatch(event.getItemStack(), Items.IRON_HOE)
+						|| ItemStackUtils.doItemsMatch(event.getItemStack(), Items.IRON_PICKAXE)
+						|| ItemStackUtils.doItemsMatch(event.getItemStack(), Items.IRON_SHOVEL)
+						|| ItemStackUtils.doItemsMatch(event.getItemStack(), Items.IRON_SWORD)) {
+					if(event.getItemStack().getTagCompound().getBoolean("isSwiss")) {
+						// TODO Must be a neater way to do this.
+						event.getEntityPlayer().inventory.setInventorySlotContents(
+								event.getEntityPlayer().inventory.currentItem,
+								new ItemStack(MiscellaneousModule.swiss_army_knife));
+						// TODO Damage and enchantments transfer over.
+					}
+				}
+			}
 		}
 	}
 
