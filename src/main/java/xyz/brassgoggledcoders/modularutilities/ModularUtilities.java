@@ -29,7 +29,8 @@ import xyz.brassgoggledcoders.modularutilities.modules.enchantments.CustomEnchan
 import xyz.brassgoggledcoders.modularutilities.modules.ender.EnderModule;
 import xyz.brassgoggledcoders.modularutilities.proxies.CommonProxy;
 
-@Mod(modid = ModularUtilities.MODID, name = ModularUtilities.MODNAME, version = ModularUtilities.MODVERSION)
+@Mod(modid = ModularUtilities.MODID, name = ModularUtilities.MODNAME, version = ModularUtilities.MODVERSION,
+		dependencies = "required-after:boilerplate")
 public class ModularUtilities extends BoilerplateModBase {
 	public ModularUtilities() {
 		super(MODID, MODNAME, MODVERSION, tab);
