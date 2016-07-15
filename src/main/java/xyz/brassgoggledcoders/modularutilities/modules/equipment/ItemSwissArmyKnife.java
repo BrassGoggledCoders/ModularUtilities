@@ -1,4 +1,4 @@
-package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
+package xyz.brassgoggledcoders.modularutilities.modules.equipment;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -11,6 +11,7 @@ public class ItemSwissArmyKnife extends ItemBase {
 	public ItemSwissArmyKnife() {
 		super("swiss_army_knife");
 		this.setMaxStackSize(1);
+		this.setMaxDamage(ToolMaterial.IRON.getMaxUses());
 	}
 
 	@Override
@@ -23,6 +24,7 @@ public class ItemSwissArmyKnife extends ItemBase {
 		tag.setBoolean("isSwiss", true);
 		ItemStack stack = new ItemStack(Items.IRON_PICKAXE);
 		stack.setTagCompound(tag);
+		stack.damageItem(itemstack.getItemDamage(), player);
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
 		return true;
 	}
