@@ -20,6 +20,7 @@ build
 # other
 eclipse
 run
+libs/
 
 *.txt
 gradle/wrapper/gradle-wrapper.jar
