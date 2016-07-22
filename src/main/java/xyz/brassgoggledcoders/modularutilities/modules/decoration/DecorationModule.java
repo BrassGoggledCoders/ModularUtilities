@@ -2,6 +2,7 @@ package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
+import net.minecraft.block.BlockPrismarine;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
@@ -26,7 +27,7 @@ import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 public class DecorationModule extends ModuleBase {
 
 	public static Block turf, leaf_cover, leaf_cover_opaque, stone_decor, smooth_glowstone, hedge, hedge_opaque,
-			soul_glass;
+			soul_glass, elder_sea_lantern;
 
 	@Override
 	public String getName() {
@@ -52,6 +53,9 @@ public class DecorationModule extends ModuleBase {
 
 		stone_decor = new BlockStoneDecor();
 		getBlockRegistry().registerBlock(stone_decor);
+
+		elder_sea_lantern = new BlockBase(Material.GLASS, "elder_sea_lantern").setLightLevel(15);
+		getBlockRegistry().registerBlock(elder_sea_lantern);
 
 		smooth_glowstone = new BlockBase(Material.GLASS, "smooth_glowstone").setLightLevel(1F);
 		getBlockRegistry().registerBlock(smooth_glowstone);
@@ -88,6 +92,11 @@ public class DecorationModule extends ModuleBase {
 		GameRegistry.addRecipe(new ItemStack(stone_decor, 4, 0), "NB", "BN", 'N', Blocks.NETHER_BRICK, 'B',
 				Blocks.BRICK_BLOCK);
 		GameRegistry.addRecipe(new ItemStack(stone_decor, 4, 1), "NB", "BN", 'N', Blocks.STONE, 'B', Blocks.STONEBRICK);
+		for(int i = 0; i < BlockPrismarine.VARIANT.getAllowedValues().size(); i++) {
+			GameRegistry.addShapelessRecipe(new ItemStack(stone_decor, 1, i + 2),
+					new ItemStack(Blocks.PRISMARINE, 1, i), Items.GUNPOWDER);
+		}
+		GameRegistry.addShapelessRecipe(new ItemStack(elder_sea_lantern), Items.GUNPOWDER, Blocks.SEA_LANTERN);
 
 		GameRegistry.addSmelting(Blocks.GLOWSTONE, new ItemStack(smooth_glowstone), 0);
 		GameRegistry.addSmelting(Blocks.SOUL_SAND, new ItemStack(soul_glass), 0.3F);
