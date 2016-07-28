@@ -64,10 +64,15 @@ item.goldpetal.name=Golden Petal
 entity.Villager.explorer=Explorer
 
 enchantment.affluency=Affluency
+description.enchantment.affluency=Increases experience from mining and killing
 enchantment.flame_touch=Flame Touch
+description.enchantment.flame_touch=Automatically attempts to smelt mined items
 enchantment.prospector=Prospector
+description.enchantment.prospector=Chance of finding gold when mining rocky blocks
 enchantment.vampirism=Vampirism
+description.enchantment.vampirism=Lifesteal. Lower tier works only on hostile mobs
 enchantment.soulbound=Soulbound
+description.enchantment.soulbound=Prevents item from being lost upon death
 
 achievment.banker=Banker
 achievement.banker.desc=Aquire a full stack of diamonds
