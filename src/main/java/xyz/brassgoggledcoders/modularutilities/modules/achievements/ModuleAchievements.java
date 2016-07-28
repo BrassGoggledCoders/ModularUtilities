@@ -1,7 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.achievements;
 
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.monster.EntityGuardian;
@@ -9,12 +8,12 @@ import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
@@ -63,14 +62,17 @@ public class ModuleAchievements extends ModuleBase {
 
 	@SubscribeEvent
 	public void onAchievementUnlocked(AchievementEvent event) {
-		Random rand = new Random();
-		if(event.getAchievement().getSpecial())
-			event.getEntityPlayer().addExperienceLevel(1 + rand.nextInt(3));
-		else
-			event.getEntityPlayer().addExperience(rand.nextInt(6));
+		// Definitely needed. No idea why.
+		if(event.getEntityPlayer().hasAchievement(event.getAchievement()))
+			return;
 
-		event.getEntityPlayer()
-				.playSound(SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.arrow.hit_player")), 1F, 1F);
+		if(event.getAchievement().getSpecial())
+			event.getEntityPlayer().addExperienceLevel(1 + event.getEntityPlayer().getRNG().nextInt(3));
+		else
+			event.getEntityPlayer().addExperience(event.getEntityPlayer().getRNG().nextInt(6));
+
+		event.getEntityPlayer().getEntityWorld().playSound(null, event.getEntityPlayer().getPosition(),
+				SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS, 10F, 1F);
 	}
 
 	private static Achievement addAchievement(String unlocalizedName, int column, int row, ItemStack iconStack,
