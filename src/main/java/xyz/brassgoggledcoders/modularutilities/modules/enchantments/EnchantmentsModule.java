@@ -17,6 +17,8 @@ import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -68,11 +70,14 @@ public class EnchantmentsModule extends ModuleBase {
 		soulbound = addEnchantment("soulbound", new CustomEnchantment(Enchantment.Rarity.VERY_RARE,
 				EnumEnchantmentType.ALL, EntityEquipmentSlot.values(), 30, 0, 1).setTreasureEnchantment());
 
+		if(Loader.isModLoaded("enderio")) {
+			FMLInterModComms.sendMessage("enderio", "recipe:enchanter", "EnchanterRecipes_MoU.xml");
+		}
+
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	private Enchantment addEnchantment(String name, Enchantment ench) {
-		// TODO Is this the correct way to do things?
 		Enchantment.REGISTRY.register(0, new ResourceLocation(ModularUtilities.MODID, name), ench);
 		ench.setName(name);
 		return ench;
@@ -121,7 +126,8 @@ public class EnchantmentsModule extends ModuleBase {
 		if(event.getAmount() == 0)
 			return;
 		if(event.getSource() instanceof EntityDamageSource) {
-			if(event.getSource().getSourceOfDamage() == null || !(event.getSource().getSourceOfDamage() instanceof EntityLivingBase))
+			if(event.getSource().getSourceOfDamage() == null
+					|| !(event.getSource().getSourceOfDamage() instanceof EntityLivingBase))
 				return;
 			EntityLivingBase ent = (EntityLivingBase) event.getSource().getSourceOfDamage();
 			if(ent.getHeldItemMainhand() == null || !(ent.getHeldItemMainhand().isItemEnchanted()))

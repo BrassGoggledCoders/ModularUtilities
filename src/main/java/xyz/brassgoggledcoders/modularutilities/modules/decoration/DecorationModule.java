@@ -115,7 +115,7 @@ public class DecorationModule extends ModuleBase {
 			boolean flag = false;
 
 			if(bl == Blocks.GRASS) {
-				Biome b = event.getWorld().getBiome(event.getPos());
+				Biome b = event.getWorld().getBiomeGenForCoords(event.getPos());
 
 				if(BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.SANDY))
 					meta = 1;

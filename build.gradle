@@ -24,6 +24,9 @@ repositories {
     maven {
     	url "http://dvs1.progwml6.com/files/maven"
     }
+    maven {
+	url "http://maven.tterrag.com"
+    }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -47,7 +50,9 @@ minecraft {
 
 dependencies {
     	compile "xyz.brassgoggledcoders.boilerplate:Boilerplate:${minecraft_version}-${boilerplate_version}:deobf"
-	deobfCompile "mezz.jei:jei_1.9.4:3.6.3.212"
+	deobfCompile "mezz.jei:jei_1.10.2:3.7.8.234"
+	deobfCompile "com.enderio.core:EnderCore:1.10.2-0.4.1.41-beta"
+	deobfCompile "com.enderio:EnderIO:1.10.2-3.0.1.75_beta"
 }
 
 compileJava {

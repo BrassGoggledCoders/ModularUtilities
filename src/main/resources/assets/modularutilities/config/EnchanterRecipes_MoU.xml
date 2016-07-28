@@ -1,0 +1,7 @@
+<enchaterRecipes>
+
+  <enchantment name="modularutilities:afflucency" costPerLevel="1" >
+    <itemStack modID="minecraft" itemName="brick_block" number="16" />
+  </enchantment>
+
+</enchaterRecipes>
