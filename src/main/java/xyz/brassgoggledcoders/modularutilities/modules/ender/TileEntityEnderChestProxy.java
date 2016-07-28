@@ -16,13 +16,15 @@ public class TileEntityEnderChestProxy extends TileEntity {
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
-		this.playerID = UUID.fromString(compound.getString("player_id"));
+		if(!compound.getString("player_id").isEmpty())
+			this.playerID = UUID.fromString(compound.getString("player_id"));
 		super.readFromNBT(compound);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setString("player_id", this.playerID.toString());
+		if(this.playerID != null)
+			compound.setString("player_id", this.playerID.toString());
 		super.writeToNBT(compound);
 		return compound;
 	}
