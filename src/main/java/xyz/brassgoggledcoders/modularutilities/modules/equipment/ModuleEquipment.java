@@ -13,6 +13,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
@@ -40,6 +42,8 @@ public class ModuleEquipment extends ModuleBase {
 	public void postInit(FMLPostInitializationEvent event) {
 		GameRegistry.addRecipe(new ItemStack(machete),
 				new Object[] {"SI", 'S', Items.IRON_SWORD, 'I', Items.IRON_INGOT});
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(swiss_army_knife),
+				new Object[] { Items.IRON_SWORD, Items.IRON_AXE, Items.IRON_HOE, Items.IRON_PICKAXE, Items.IRON_SHOVEL, "dyeRed", "ingotIron", "ingotIron", "plankWood"}));
 	}
 
 	@Override
