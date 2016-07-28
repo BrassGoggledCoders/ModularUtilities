@@ -54,7 +54,7 @@ public class BlockStoneDecor extends BlockSubBase implements ISimpleVariant {
 
 	public enum EnumBlockType implements IBlockType {
 		CLINKER_BRICK(0), CARVED_STONE(1), ELDER_PRISMARINE_ROUGH(2), ELDER_PRISMARINE_BRICKS(3),
-		ELDER_PRISMARINE_DARK(4);
+		ELDER_PRISMARINE_DARK(4), MORTARLESS_BRICK(5);
 
 		public static final EnumBlockType[] VALUES = values();
 

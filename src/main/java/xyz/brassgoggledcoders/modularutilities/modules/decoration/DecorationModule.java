@@ -100,6 +100,7 @@ public class DecorationModule extends ModuleBase {
 
 		GameRegistry.addSmelting(Blocks.GLOWSTONE, new ItemStack(smooth_glowstone), 0);
 		GameRegistry.addSmelting(Blocks.SOUL_SAND, new ItemStack(soul_glass), 0.3F);
+		GameRegistry.addSmelting(new ItemStack(Blocks.BRICK_BLOCK), new ItemStack(stone_decor, 1, 5), 0.05F);
 	}
 
 	@SubscribeEvent

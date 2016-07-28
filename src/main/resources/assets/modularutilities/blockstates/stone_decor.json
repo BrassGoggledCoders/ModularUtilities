@@ -9,6 +9,7 @@
     	"type=carved_stone": [{ "textures": { "all": "modularutilities:blocks/carved_stone", "particle": "#all" } }],
     	"type=elder_prismarine_rough": [{ "textures": { "all": "modularutilities:blocks/elder_prismarine_rough", "particle": "#all" } }],
     	"type=elder_prismarine_bricks": [{ "textures": { "all": "modularutilities:blocks/elder_prismarine_bricks", "particle": "#all" } }],
-    	"type=elder_prismarine_dark": [{ "textures": { "all": "modularutilities:blocks/elder_prismarine_dark", "particle": "#all" } }]
+    	"type=elder_prismarine_dark": [{ "textures": { "all": "modularutilities:blocks/elder_prismarine_dark", "particle": "#all" } }],
+    	"type=mortarless_brick": [{ "textures": { "all": "modularutilities:blocks/mortarless_brick", "particle": "#all" } }]
     }
 } 	
