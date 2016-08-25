@@ -73,16 +73,14 @@ public class ConstructionModule extends ModuleBase {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
-		GameRegistry.addShapedRecipe(new ItemStack(blast_glass, 9),
-				new Object[] {"OGO", "GOG", "OGO", 'O', Blocks.OBSIDIAN, 'G', Blocks.GLASS});
+		GameRegistry.addShapedRecipe(new ItemStack(blast_glass, 9), "OGO", "GOG", "OGO", 'O', Blocks.OBSIDIAN, 'G',
+				Blocks.GLASS);
 		GameRegistry.addShapedRecipe(
-				UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, filler_fluid),
-				new Object[] {"CDC", "DWD", /* AMX */"CDC", 'C', Blocks.CLAY, 'D', Blocks.DIRT, 'W',
-						Items.WATER_BUCKET});
+				UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, filler_fluid), "CDC",
+				"DWD", /* AMX */"CDC", 'C', Blocks.CLAY, 'D', Blocks.DIRT, 'W', Items.WATER_BUCKET);
 		GameRegistry.addShapedRecipe(
-				UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, concrete_fluid),
-				new Object[] {"CDC", "DWD", /* AMX */"CDC", 'C', Blocks.COBBLESTONE, 'D', Blocks.SAND, 'W',
-						Items.WATER_BUCKET});
+				UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, concrete_fluid), "CDC",
+				"DWD", /* AMX */"CDC", 'C', Blocks.COBBLESTONE, 'D', Blocks.SAND, 'W', Items.WATER_BUCKET);
 	}
 
 	public class MaterialConcrete extends MaterialLiquid {
