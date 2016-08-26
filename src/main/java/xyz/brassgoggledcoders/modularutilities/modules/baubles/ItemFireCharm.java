@@ -1,25 +1,25 @@
 package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 
 import baubles.api.BaubleType;
-import baubles.api.IBauble;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Optional;
 
-public class ItemFireCharm extends ItemBaubleBase implements IBauble {
+public class ItemFireCharm extends ItemBaubleBase {
 
 	public ItemFireCharm() {
 		super("fire_charm");
-		this.setMaxStackSize(1);
 	}
 
 	@Override
+	@Optional.Method(modid = "Baubles")
 	public BaubleType getBaubleType(ItemStack arg0) {
 		return BaubleType.AMULET;
 	}
 
 	@Override
-	// TODO Perform on server and sync
+	@Optional.Method(modid = "Baubles")
 	public void onWornTick(ItemStack stack, EntityLivingBase living) {
 		if(living instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) living;

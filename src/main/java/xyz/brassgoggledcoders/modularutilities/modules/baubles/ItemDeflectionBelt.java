@@ -3,26 +3,27 @@ package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 import java.util.List;
 
 import baubles.api.BaubleType;
-import baubles.api.IBauble;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Optional;
 
-public class ItemDeflectionBelt extends ItemBaubleBase implements IBauble {
+public class ItemDeflectionBelt extends ItemBaubleBase {
 
 	public ItemDeflectionBelt() {
 		super("deflection_belt");
-		this.setMaxStackSize(1);
 	}
 
 	@Override
+	@Optional.Method(modid = "Baubles")
 	public BaubleType getBaubleType(ItemStack arg0) {
 		return BaubleType.BELT;
 	}
 
 	@Override
+	@Optional.Method(modid = "Baubles")
 	public void onWornTick(ItemStack stack, EntityLivingBase living) {
 		World world = living.worldObj;
 		List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(living,
