@@ -23,6 +23,7 @@ import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
 import xyz.brassgoggledcoders.boilerplate.module.Module;
 import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
@@ -41,6 +42,8 @@ public class ModuleAchievements extends ModuleBase {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
+		this.getConfigRegistry().addEntry(new ConfigEntry("options", "achievementXP",
+				xyz.brassgoggledcoders.boilerplate.config.Type.BOOLEAN, "true"));
 		// TODO How to trigger?
 		// banker = addAchievement("banker", "banker", -5, 5, new ItemStack(Blocks.DIAMOND_BLOCK),
 		// AchievementList.DIAMONDS);
@@ -66,13 +69,15 @@ public class ModuleAchievements extends ModuleBase {
 		if(event.getEntityPlayer().hasAchievement(event.getAchievement()))
 			return;
 
-		if(event.getAchievement().getSpecial())
-			event.getEntityPlayer().addExperienceLevel(1 + event.getEntityPlayer().getRNG().nextInt(3));
-		else
-			event.getEntityPlayer().addExperience(event.getEntityPlayer().getRNG().nextInt(6));
+		if(this.getConfigRegistry().getBoolean("achievementXP", true)) {
+			if(event.getAchievement().getSpecial())
+				event.getEntityPlayer().addExperienceLevel(1 + event.getEntityPlayer().getRNG().nextInt(3));
+			else
+				event.getEntityPlayer().addExperience(event.getEntityPlayer().getRNG().nextInt(6));
 
-		event.getEntityPlayer().getEntityWorld().playSound(null, event.getEntityPlayer().getPosition(),
-				SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS, 10F, 1F);
+			event.getEntityPlayer().getEntityWorld().playSound(null, event.getEntityPlayer().getPosition(),
+					SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS, 10F, 1F);
+		}
 	}
 
 	private static Achievement addAchievement(String unlocalizedName, int column, int row, ItemStack iconStack,
