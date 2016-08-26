@@ -29,7 +29,7 @@ public class ItemBloodboundRing extends ItemBaubleBase implements IBauble {
 		if(living.getHealth() == living.getMaxHealth()) {
 			living.setHealth(living.getMaxHealth() * 0.75F);
 			living.addPotionEffect(
-					new PotionEffect(Potion.getPotionFromResourceLocation("strength"), 30, 3, false, false));
+					new PotionEffect(Potion.getPotionFromResourceLocation("strength"), 120, 2, false, false));
 		}
 	}
 }
