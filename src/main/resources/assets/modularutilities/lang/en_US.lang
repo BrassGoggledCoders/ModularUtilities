@@ -60,6 +60,9 @@ item.swiss_army_knife.name=Swiss Army Knife
 item.ender_glove.name=Ender Glove
 item.ender_pocket.name=Ender Pocket
 item.goldpetal.name=Golden Petal
+item.fire_charm.name=Fire Charm
+item.deflection_belt.name=Deflection Belt
+item.bloodbound_ring.name=Bloodbound Ring
 
 entity.Villager.explorer=Explorer
 
