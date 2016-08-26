@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Optional;
+import xyz.brassgoggledcoders.boilerplate.items.ItemBaubleBase;
 
 public class ItemFireCharm extends ItemBaubleBase {
 

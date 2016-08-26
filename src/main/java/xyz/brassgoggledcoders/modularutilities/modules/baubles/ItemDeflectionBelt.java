@@ -9,6 +9,7 @@ import net.minecraft.entity.IProjectile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
+import xyz.brassgoggledcoders.boilerplate.items.ItemBaubleBase;
 
 public class ItemDeflectionBelt extends ItemBaubleBase {
 
