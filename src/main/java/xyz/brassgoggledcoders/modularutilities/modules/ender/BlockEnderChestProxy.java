@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.UsernameCache;
 import xyz.brassgoggledcoders.boilerplate.blocks.BlockTEBase;
 
-public class BlockEnderChestProxy extends BlockTEBase {
+public class BlockEnderChestProxy extends BlockTEBase<TileEntityEnderChestProxy> {
 	public BlockEnderChestProxy() {
 		super(Material.ROCK, "ender_proxy");
 	}
@@ -68,13 +68,13 @@ public class BlockEnderChestProxy extends BlockTEBase {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityEnderChestProxy();
-	}
-
-	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		worldIn.updateComparatorOutputLevel(pos, this);
 		super.breakBlock(worldIn, pos, state);
+	}
+
+	@Override
+	public TileEntity createTileEntity(World world, IBlockState blockState) {
+		return new TileEntityEnderChestProxy();
 	}
 }
