@@ -25,14 +25,14 @@ repositories {
     	url "http://dvs1.progwml6.com/files/maven"
     }
     maven {
-	url "http://maven.tterrag.com"
+	    url "http://maven.tterrag.com"
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-def build = System.getenv("bamboo_buildNumber") != null ? "." + build : ""
-version = "${minecraft_version}-${mod_version}" + build
+def buildNumber = System.getenv("bamboo_buildNumber") != null ? "." + System.getenv("bamboo_buildNumber") : ""
+version = "${minecraft_version}-${mod_version}" + buildNumber
 
 group= "xyz.brassgoggledcoders.modularutilities"
 archivesBaseName = "${mod_name}"
