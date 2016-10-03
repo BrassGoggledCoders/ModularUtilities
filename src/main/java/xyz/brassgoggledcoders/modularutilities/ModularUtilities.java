@@ -99,9 +99,9 @@ public class ModularUtilities extends BoilerplateModBase {
 		public void displayAllRelevantItems(List<ItemStack> items) {
 			if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction")) {
 				items.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket,
-						ConstructionModule.filler_fluid));
+						FluidRegistry.getFluid("dirt")));
 				items.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket,
-						ConstructionModule.concrete_fluid));
+						FluidRegistry.getFluid("concrete")));
 			}
 			super.displayAllRelevantItems(items);
 		}
