@@ -23,7 +23,3 @@ run
 libs/
 
 *.txt
-gradle/wrapper/gradle-wrapper.jar
-gradlew.bat
-gradlew
-gradle/wrapper/gradle-wrapper.properties
