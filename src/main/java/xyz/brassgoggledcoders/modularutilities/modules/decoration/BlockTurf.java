@@ -22,7 +22,7 @@ public class BlockTurf extends BlockFlat {
 	public static final PropertyEnum<EnumDirtType> type = PropertyEnum.create("type", EnumDirtType.class);
 
 	public BlockTurf() {
-		super(Material.GRASS, new EnumUtils().getNames(EnumDirtType.class));
+		super(Material.GRASS, EnumUtils.getNames(EnumDirtType.class));
 		this.setUnlocalizedName("turf");
 		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumDirtType.NORMAL));
 	}

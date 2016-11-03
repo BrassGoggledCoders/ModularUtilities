@@ -46,12 +46,7 @@ public class BlockSoulGlass extends BlockBase {
 		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 		Block block = iblockstate.getBlock();
 
-		if(blockState != iblockstate)
-			return true;
+		return blockState != iblockstate || block != this && block != this && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 
-		if(block == this)
-			return false;
-
-		return block == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
 }

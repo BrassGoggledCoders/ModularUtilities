@@ -1,12 +1,12 @@
 package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 
 import baubles.api.BaubleType;
+import com.teamacronymcoders.base.items.ItemBaubleBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.Optional;
-import xyz.brassgoggledcoders.boilerplate.items.ItemBaubleBase;
 
 public class ItemBloodboundRing extends ItemBaubleBase {
 

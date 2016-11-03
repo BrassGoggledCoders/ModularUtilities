@@ -1,15 +1,15 @@
 package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 
-import java.util.List;
-
 import baubles.api.BaubleType;
+import com.teamacronymcoders.base.items.ItemBaubleBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
-import xyz.brassgoggledcoders.boilerplate.items.ItemBaubleBase;
+
+import java.util.List;
 
 public class ItemDeflectionBelt extends ItemBaubleBase {
 

@@ -1,11 +1,11 @@
 package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 
 import baubles.api.BaubleType;
+import com.teamacronymcoders.base.items.ItemBaubleBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Optional;
-import xyz.brassgoggledcoders.boilerplate.items.ItemBaubleBase;
 
 public class ItemFireCharm extends ItemBaubleBase {
 
@@ -15,7 +15,7 @@ public class ItemFireCharm extends ItemBaubleBase {
 
 	@Override
 	@Optional.Method(modid = "Baubles")
-	public BaubleType getBaubleType(ItemStack arg0) {
+	public BaubleType getBaubleType(ItemStack bauble) {
 		return BaubleType.AMULET;
 	}
 

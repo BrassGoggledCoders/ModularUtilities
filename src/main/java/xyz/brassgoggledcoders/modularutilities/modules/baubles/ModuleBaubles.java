@@ -39,7 +39,7 @@ public class ModuleBaubles extends ModuleBase {
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
 		GameRegistry.addRecipe(new ItemStack(fire_charm), "SSS", "MDM", "OOO", 'S', Items.STRING, 'M',
-				Blocks.field_189877_df, 'D', Items.DIAMOND, 'O', Blocks.OBSIDIAN);
+				Blocks.MAGMA, 'D', Items.DIAMOND, 'O', Blocks.OBSIDIAN);
 		GameRegistry.addRecipe(new ItemStack(deflection_belt), "LLL", "LDL", "LLL", 'L', Items.LEATHER, 'D',
 				Items.DRAGON_BREATH);
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(bloodbound_ring), "IBI", "I I", "III", 'I',

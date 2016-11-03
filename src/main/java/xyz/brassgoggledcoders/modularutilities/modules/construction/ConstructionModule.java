@@ -1,5 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.construction;
 
+import com.teamacronymcoders.base.blocks.BlockBase;
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import net.minecraft.block.Block;
@@ -32,7 +33,7 @@ public class ConstructionModule extends ModuleBase {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		blast_glass = new BlockBlastGlass().setHardness(25F).setResistance(500F);
-		getBlockRegistry().registerBlock(blast_glass);
+		getBlockRegistry().register(blast_glass);
 
 		filler_fluid = new Fluid("dirt", new ResourceLocation(ModularUtilities.MODID, "blocks/filler_fluid"),
 				new ResourceLocation(ModularUtilities.MODID, "blocks/filler_fluid_flow")).setUnlocalizedName("dirt");
@@ -40,7 +41,7 @@ public class ConstructionModule extends ModuleBase {
 		FluidRegistry.addBucketForFluid(filler_fluid);
 
 		filler_fluid_block = new BlockFillerFluid(Material.WATER, "filler_fluid", filler_fluid);
-		getBlockRegistry().registerBlock(filler_fluid_block);
+		getBlockRegistry().register(filler_fluid_block);
 
 		concrete_fluid = new Fluid("concrete", new ResourceLocation(ModularUtilities.MODID, "blocks/concrete_fluid"),
 				new ResourceLocation(ModularUtilities.MODID, "blocks/concrete_fluid_flow")).setDensity(2000)
@@ -49,10 +50,15 @@ public class ConstructionModule extends ModuleBase {
 		FluidRegistry.addBucketForFluid(concrete_fluid);
 
 		concrete_fluid_block = new BlockConcreteFluid(new MaterialConcrete(), "concrete_fluid", concrete_fluid);
-		getBlockRegistry().registerBlock(concrete_fluid_block);
+		getBlockRegistry().register(concrete_fluid_block);
 
 		concrete = new BlockBase(Material.ROCK, "concrete").setHardness(3).setResistance(18);
-		getBlockRegistry().registerBlock(concrete);
+		getBlockRegistry().register(concrete);
+
+		this.getMod().getModelLoader().registerFluidModel(filler_fluid_block,
+				new ResourceLocation(ModularUtilities.MODID + ":fluids", "filler_fluid"));
+		this.getMod().getModelLoader().registerFluidModel(concrete_fluid_block,
+				new ResourceLocation(ModularUtilities.MODID + ":fluids", "concrete_fluid"));
 		/*
 		 * TODO:
 		 * - Quickdry Concrete

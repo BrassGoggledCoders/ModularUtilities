@@ -61,7 +61,7 @@ public class BlockHedge extends BlockSubBase {
 	private boolean opaque;
 
 	public BlockHedge(String name, boolean opaque) {
-		super(Material.LEAVES, new EnumUtils().getNames(EnumWoodBlock.class));
+		super(Material.LEAVES, EnumUtils.getNames(EnumWoodBlock.class));
 		this.setHardness(0.2F);
 		this.setResistance(0F);
 		this.setUnlocalizedName(name);

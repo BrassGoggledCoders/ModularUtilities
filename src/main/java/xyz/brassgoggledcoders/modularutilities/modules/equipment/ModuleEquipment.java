@@ -2,6 +2,7 @@ package xyz.brassgoggledcoders.modularutilities.modules.equipment;
 
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
+import com.teamacronymcoders.base.util.ItemStackUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;

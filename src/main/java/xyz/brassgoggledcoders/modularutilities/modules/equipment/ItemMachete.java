@@ -1,5 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.equipment;
 
+import com.teamacronymcoders.base.items.tools.ItemSwordBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -10,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemMachete extends BaseSword {
+public class ItemMachete extends ItemSwordBase {
 
 	public ItemMachete() {
 		super(Item.ToolMaterial.IRON, "machete");

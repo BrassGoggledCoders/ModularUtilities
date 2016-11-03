@@ -18,7 +18,7 @@ public class BlockStoneDecor extends BlockSubBase {
 	public static final PropertyEnum<EnumStoneType> type = PropertyEnum.create("type", EnumStoneType.class);
 
 	public BlockStoneDecor() {
-		super(Material.ROCK, new EnumUtils().getNames(EnumStoneType.class));
+		super(Material.ROCK, EnumUtils.getNames(EnumStoneType.class));
 		this.setUnlocalizedName("stone_decor");
 		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumStoneType.CLINKER_BRICK));
 	}
