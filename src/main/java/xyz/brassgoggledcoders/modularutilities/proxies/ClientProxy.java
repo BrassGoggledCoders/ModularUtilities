@@ -22,6 +22,7 @@ import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 import xyz.brassgoggledcoders.modularutilities.modules.construction.ConstructionModule;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.BlockHedge;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.DecorationModule;
+import xyz.brassgoggledcoders.modularutilities.modules.decoration.EnumWoodBlock;
 
 public class ClientProxy extends CommonProxy {
 	@Override
@@ -35,7 +36,7 @@ public class ClientProxy extends CommonProxy {
 					new ModelResourceLocation(ModularUtilities.MODID + ":fluids", "concrete_fluid"));
 		}
 		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Decoration")) {
-			for(int i = 0; i < BlockHedge.EnumBlockType.values().length; i++) {
+			for(int i = 0; i < EnumWoodBlock.values().length; i++) {
 				ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(DecorationModule.hedge), i,
 						new ModelResourceLocation(ForgeRegistries.BLOCKS.getKey(DecorationModule.hedge).toString(),
 								"inventory"));

@@ -1,7 +1,5 @@
 package xyz.brassgoggledcoders.modularutilities.modules.enchantments;
 
-import java.util.Random;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -9,6 +7,8 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
+
+import java.util.Random;
 
 public class EnchantmentProspector extends CustomEnchantment {
 
@@ -19,7 +19,7 @@ public class EnchantmentProspector extends CustomEnchantment {
 
 	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack) {
-		return stack.getItem().getToolClasses(stack).contains("axe") ? false : super.canApplyAtEnchantingTable(stack);
+		return !stack.getItem().getToolClasses(stack).contains("axe") && super.canApplyAtEnchantingTable(stack);
 	}
 
 	@Override

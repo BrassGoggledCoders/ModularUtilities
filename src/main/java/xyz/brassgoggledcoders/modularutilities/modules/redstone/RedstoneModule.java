@@ -24,9 +24,9 @@ public class RedstoneModule extends ModuleBase {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		fused_quartz = new BlockFusedQuartz();
-		this.getBlockRegistry().registerBlock(fused_quartz);
+		this.getBlockRegistry().register(fused_quartz);
 		redstone_sand = new BlockRedstoneSand();
-		this.getBlockRegistry().registerBlock(redstone_sand);
+		this.getBlockRegistry().register(redstone_sand);
 		/*
 		 * TODO:
 		 * - Resistor: opposite of repeater, changing settings changes resistance rather than delay

@@ -5,15 +5,15 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import xyz.brassgoggledcoders.boilerplate.items.BaseSword;
 
 public class ItemMachete extends BaseSword {
 
 	public ItemMachete() {
-		super(ToolMaterial.IRON, "machete");
+		super(Item.ToolMaterial.IRON, "machete");
 	}
 
 	@Override
@@ -33,11 +33,11 @@ public class ItemMachete extends BaseSword {
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos,
 			EntityLivingBase entityLiving) {
 		stack.damageItem(1, entityLiving);
-		return getStrVsBlock(state) == 15 ? true : false;
+		return getStrVsBlock(state) == 15;
 	}
 
 	@Override
 	public boolean canHarvestBlock(IBlockState blockIn) {
-		return getStrVsBlock(blockIn.getBlock().getDefaultState()) == 15 ? true : false;
+		return getStrVsBlock(blockIn.getBlock().getDefaultState()) == 15;
 	}
 }

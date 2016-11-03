@@ -1,12 +1,12 @@
 package xyz.brassgoggledcoders.modularutilities.modules.ender;
 
+import com.teamacronymcoders.base.items.ItemBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import xyz.brassgoggledcoders.boilerplate.items.ItemBase;
 
 public class ItemEnderPocket extends ItemBase {
 

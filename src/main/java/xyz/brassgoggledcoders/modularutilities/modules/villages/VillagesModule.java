@@ -1,6 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.villages;
 
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
+import com.teamacronymcoders.base.util.VillagerUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

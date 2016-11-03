@@ -2,7 +2,6 @@ package xyz.brassgoggledcoders.modularutilities.modules.destruction;
 
 import com.teamacronymcoders.base.blocks.IHasItemBlock;
 import com.teamacronymcoders.base.client.models.IHasModel;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -71,11 +70,4 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
 		return new ItemBlock(this);
 	}
 
-	@Override
-	public String[] getResourceLocations() {
-		String name = this.getUnlocalizedName();
-		if(name.startsWith("tile."))
-			name = name.substring(5);
-		return new String[] {name};
-	}
 }

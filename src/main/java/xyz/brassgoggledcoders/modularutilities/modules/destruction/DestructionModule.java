@@ -1,18 +1,28 @@
 package xyz.brassgoggledcoders.modularutilities.modules.destruction;
 
+import com.teamacronymcoders.base.modulesystem.Module;
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
+import com.teamacronymcoders.base.registry.BlockRegistry;
+import com.teamacronymcoders.base.registry.config.ConfigRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import xyz.brassgoggledcoders.boilerplate.module.Module;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+@Module(ModularUtilities.MODID)
 public class DestructionModule extends ModuleBase {
+	/*
+	* TODO:
+	* - Incendiary TNT
+	* - Modular TNT
+	* - Mining Charge: drops all exploded blocks
+	* - Flamethrower
+	* - Gunpowder + String = Fuses. Place like redstone, light one end, and fire will quickly travel down it
+	* - Method of land flattening
+	*/
 	public static Block splitter_tnt;
 
 	@Override
@@ -21,18 +31,8 @@ public class DestructionModule extends ModuleBase {
 	}
 
 	@Override
-	public void preInit(FMLPreInitializationEvent event) {
-		splitter_tnt = new BlockSplitterTNT("splitter_tnt");
-		getBlockRegistry().registerBlock(splitter_tnt);
-		/*
-		 * TODO:
-		 * - Incendiary TNT
-		 * - Modular TNT
-		 * - Mining Charge: drops all exploded blocks
-		 * - Flamethrower
-		 * - Gunpowder + String = Fuses. Place like redstone, light one end, and fire will quickly travel down it
-		 * - Method of land flattening
-		 */
+	public void registerBlocks(ConfigRegistry configRegistry, BlockRegistry blockRegistry) {
+		getBlockRegistry().register(splitter_tnt = new BlockSplitterTNT("splitter_tnt"));
 	}
 
 	@Override

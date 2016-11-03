@@ -1,5 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.equipment;
 
+import com.teamacronymcoders.base.modulesystem.Module;
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -13,14 +15,10 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import xyz.brassgoggledcoders.boilerplate.module.Module;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
-import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+@Module(ModularUtilities.MODID)
 public class ModuleEquipment extends ModuleBase {
 
 	public static Item swiss_army_knife;
@@ -29,11 +27,11 @@ public class ModuleEquipment extends ModuleBase {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		machete = new ItemMachete();
-		this.getItemRegistry().registerItem(machete);
+		this.getItemRegistry().register(machete);
 
 		// TODO Enchantment stuff. Manual cycling of tools.
 		swiss_army_knife = new ItemSwissArmyKnife();
-		this.getItemRegistry().registerItem(swiss_army_knife);
+		this.getItemRegistry().register(swiss_army_knife);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

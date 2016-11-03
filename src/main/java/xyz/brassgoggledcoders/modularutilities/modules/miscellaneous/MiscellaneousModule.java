@@ -1,5 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
+import com.teamacronymcoders.base.blocks.BlockBase;
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import net.minecraft.block.material.Material;
