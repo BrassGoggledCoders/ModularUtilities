@@ -18,8 +18,8 @@ buildscript {
 
 repositories {
     maven {
-        name "BrassGoggledCoders maven"
-        url "https://maven.brassgoggledcoders.xyz"
+        name "TAC maven"
+        url "http://blamejared.com/maven"
     }
     maven {
     	url "http://dvs1.progwml6.com/files/maven"
@@ -49,7 +49,7 @@ minecraft {
 }
 
 dependencies {
-    	compile "xyz.brassgoggledcoders.boilerplate:Boilerplate:${minecraft_version}-${boilerplate_version}:deobf"
+    	compile "com.teamacronymcoders.base:base:${minecraft_version}-${base_version}-Snapshot.+:deobf"
 	deobfCompile "mezz.jei:jei_1.10.2:3.7.8.234"
 	deobfCompile "com.enderio.core:EnderCore:1.10.2-0.4.1.41-beta"
 	deobfCompile "com.enderio:EnderIO:1.10.2-3.0.1.75_beta"
