@@ -1,19 +1,19 @@
 package xyz.brassgoggledcoders.modularutilities.modules.construction;
 
-import java.util.Random;
-
+import com.teamacronymcoders.base.blocks.BlockFluidBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockModFluid;
 
-public class BlockFillerFluid extends BlockModFluid {
+import java.util.Random;
+
+public class BlockFillerFluid extends BlockFluidBase {
 
 	public BlockFillerFluid(Material mat, String name, Fluid fluid) {
-		super(mat, name, fluid);
+		super(name, fluid, mat);
 		this.setTickRandomly(true);
 	}
 

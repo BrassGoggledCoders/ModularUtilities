@@ -1,5 +1,9 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
+import com.teamacronymcoders.base.blocks.BlockBase;
+import com.teamacronymcoders.base.modulesystem.Module;
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
+import com.teamacronymcoders.base.util.ItemStackUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockPrismarine;
@@ -17,13 +21,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
-import xyz.brassgoggledcoders.boilerplate.module.Module;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
-import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+@Module(ModularUtilities.MODID)
 public class DecorationModule extends ModuleBase {
 
 	public static Block turf, leaf_cover, leaf_cover_opaque, stone_decor, smooth_glowstone, hedge, hedge_opaque,
@@ -37,31 +37,31 @@ public class DecorationModule extends ModuleBase {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		turf = new BlockTurf();
-		this.getBlockRegistry().registerBlock(turf);
+		this.getBlockRegistry().register(turf);
 
 		leaf_cover = new BlockLeafCover("leaf_cover", false);
-		this.getBlockRegistry().registerBlock(leaf_cover);
+		this.getBlockRegistry().register(leaf_cover);
 
 		leaf_cover_opaque = new BlockLeafCover("leaf_cover_opaque", true);
-		this.getBlockRegistry().registerBlock(leaf_cover_opaque);
+		this.getBlockRegistry().register(leaf_cover_opaque);
 
 		hedge = new BlockHedge("hedge", false);
-		getBlockRegistry().registerBlock(hedge);
+		getBlockRegistry().register(hedge);
 
 		hedge_opaque = new BlockHedge("hedge_opaque", true);
-		getBlockRegistry().registerBlock(hedge_opaque);
+		getBlockRegistry().register(hedge_opaque);
 
 		stone_decor = new BlockStoneDecor();
-		getBlockRegistry().registerBlock(stone_decor);
+		getBlockRegistry().register(stone_decor);
 
 		elder_sea_lantern = new BlockBase(Material.GLASS, "elder_sea_lantern").setLightLevel(15);
-		getBlockRegistry().registerBlock(elder_sea_lantern);
+		getBlockRegistry().register(elder_sea_lantern);
 
 		smooth_glowstone = new BlockBase(Material.GLASS, "smooth_glowstone").setLightLevel(1F);
-		getBlockRegistry().registerBlock(smooth_glowstone);
+		getBlockRegistry().register(smooth_glowstone);
 
 		soul_glass = new BlockSoulGlass(Material.GLASS, "soul_glass");
-		getBlockRegistry().registerBlock(soul_glass);
+		getBlockRegistry().register(soul_glass);
 		/*
 		 * TODO:
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
@@ -75,7 +75,7 @@ public class DecorationModule extends ModuleBase {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
-		for(int i = 0; i < BlockLeafCover.EnumBlockType.VALUES.length - 2; i++) {
+		for(int i = 0; i < EnumWoodBlock.values().length - 2; i++) {
 			GameRegistry.addRecipe(new ItemStack(leaf_cover, 2, i), "XX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
 			GameRegistry.addRecipe(new ItemStack(hedge, 6, i), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
 		}
@@ -83,7 +83,7 @@ public class DecorationModule extends ModuleBase {
 		GameRegistry.addRecipe(new ItemStack(leaf_cover, 2, 5), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
 		GameRegistry.addRecipe(new ItemStack(hedge, 6, 4), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
 		GameRegistry.addRecipe(new ItemStack(hedge, 6, 5), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
-		for(int i = 0; i < BlockLeafCover.EnumBlockType.VALUES.length; i++) {
+		for(int i = 0; i < EnumWoodBlock.values().length; i++) {
 			GameRegistry.addShapelessRecipe(new ItemStack(leaf_cover_opaque, 1, i), Blocks.SAND,
 					new ItemStack(leaf_cover, 1, i));
 			GameRegistry.addShapelessRecipe(new ItemStack(hedge_opaque, 1, i), Blocks.SAND, new ItemStack(hedge, 1, i));
@@ -115,7 +115,7 @@ public class DecorationModule extends ModuleBase {
 			boolean flag = false;
 
 			if(bl == Blocks.GRASS) {
-				Biome b = event.getWorld().getBiomeGenForCoords(event.getPos());
+				Biome b = event.getWorld().getBiome(event.getPos());
 
 				if(BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.SANDY))
 					meta = 1;

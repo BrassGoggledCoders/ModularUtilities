@@ -1,90 +1,59 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.block.Block;
+import com.teamacronymcoders.base.blocks.BlockSubBase;
+import com.teamacronymcoders.base.util.EnumUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockSubBase;
-import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
-import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
-import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
+import net.minecraft.util.IStringSerializable;
 
-public class BlockStoneDecor extends BlockSubBase implements ISimpleVariant {
-	public static final PropertyEnum<EnumBlockType> type = PropertyEnum.create("type", EnumBlockType.class);
+import javax.annotation.Nonnull;
+import java.util.List;
+
+public class BlockStoneDecor extends BlockSubBase {
+	public static final PropertyEnum<EnumStoneType> type = PropertyEnum.create("type", EnumStoneType.class);
 
 	public BlockStoneDecor() {
-		super(Material.ROCK, EnumBlockType.names());
+		super(Material.ROCK, new EnumUtils().getNames(EnumStoneType.class));
 		this.setUnlocalizedName("stone_decor");
-		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumBlockType.CLINKER_BRICK));
-	}
-
-	@Override
-	public ItemBlock getItemBlockClass(Block block) {
-		return new ItemSubBlock(block, EnumBlockType.names());
+		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumStoneType.CLINKER_BRICK));
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(type).getMeta();
+		return state.getValue(type).ordinal();
 	}
 
 	@Override
+    @Nonnull
 	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, type);
 	}
 
 	@Override
+    @Nonnull
+    @SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(type, EnumBlockType.VALUES[meta]);
+		return getDefaultState().withProperty(type, EnumStoneType.values()[meta]);
 	}
 
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
-		for(EnumBlockType resourceType : EnumBlockType.VALUES)
-			itemList.add(new ItemStack(item, 1, resourceType.getMeta()));
+	public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
+		for(EnumStoneType resourceType : EnumStoneType.values())
+			itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
 	}
 
-	public enum EnumBlockType implements IBlockType {
-		CLINKER_BRICK(0), CARVED_STONE(1), ELDER_PRISMARINE_ROUGH(2), ELDER_PRISMARINE_BRICKS(3),
-		ELDER_PRISMARINE_DARK(4), MORTARLESS_BRICK(5);
-
-		public static final EnumBlockType[] VALUES = values();
-
-		private final int meta;
-
-		EnumBlockType(int meta) {
-			this.meta = meta;
-		}
-
-		@Override
-		public int getMeta() {
-			return meta;
-		}
+	public enum EnumStoneType implements IStringSerializable {
+		CLINKER_BRICK, CARVED_STONE, ELDER_PRISMARINE_ROUGH, ELDER_PRISMARINE_BRICKS,
+		ELDER_PRISMARINE_DARK, MORTARLESS_BRICK;
 
 		@Override
 		public String getName() {
 			return name().toLowerCase();
 		}
-
-		public static String[] names() {
-			ArrayList<String> names = new ArrayList<String>();
-			for(EnumBlockType element : VALUES)
-				names.add(element.toString().toLowerCase());
-
-			return names.toArray(new String[0]);
-		}
-	}
-
-	@Override
-	public Class<? extends IBlockType> getEnumToSwitch() {
-		return BlockStoneDecor.EnumBlockType.class;
 	}
 }

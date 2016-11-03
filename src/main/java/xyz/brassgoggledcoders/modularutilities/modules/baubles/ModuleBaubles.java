@@ -1,7 +1,9 @@
 package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 
-import java.util.List;
-
+import com.teamacronymcoders.base.modulesystem.Module;
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
+import com.teamacronymcoders.base.modulesystem.dependencies.IDependency;
+import com.teamacronymcoders.base.modulesystem.dependencies.ModDependency;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -10,13 +12,11 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import xyz.brassgoggledcoders.boilerplate.module.Module;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
-import xyz.brassgoggledcoders.boilerplate.module.dependencies.IDependency;
-import xyz.brassgoggledcoders.boilerplate.module.dependencies.ModDependency;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+import java.util.List;
+
+@Module(ModularUtilities.MODID)
 public class ModuleBaubles extends ModuleBase {
 
 	public static Item fire_charm, deflection_belt, bloodbound_ring;
@@ -29,11 +29,11 @@ public class ModuleBaubles extends ModuleBase {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		fire_charm = new ItemFireCharm();
-		this.getItemRegistry().registerItem(fire_charm);
+		this.getItemRegistry().register(fire_charm);
 		deflection_belt = new ItemDeflectionBelt();
-		this.getItemRegistry().registerItem(deflection_belt);
+		this.getItemRegistry().register(deflection_belt);
 		bloodbound_ring = new ItemBloodboundRing();
-		this.getItemRegistry().registerItem(bloodbound_ring);
+		this.getItemRegistry().register(bloodbound_ring);
 	}
 
 	@Override

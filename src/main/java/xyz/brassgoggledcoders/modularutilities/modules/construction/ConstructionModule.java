@@ -1,5 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.construction;
 
+import com.teamacronymcoders.base.modulesystem.Module;
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -15,12 +17,9 @@ import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
-import xyz.brassgoggledcoders.boilerplate.module.Module;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+@Module(ModularUtilities.MODID)
 public class ConstructionModule extends ModuleBase {
 	public static Block blast_glass, filler_fluid_block, concrete_fluid_block, concrete;
 	public static Fluid filler_fluid, concrete_fluid;

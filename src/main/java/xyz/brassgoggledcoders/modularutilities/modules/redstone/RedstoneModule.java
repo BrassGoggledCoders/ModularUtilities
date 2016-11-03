@@ -1,5 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.redstone;
 
+import com.teamacronymcoders.base.modulesystem.Module;
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -7,11 +9,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import xyz.brassgoggledcoders.boilerplate.module.Module;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+@Module(ModularUtilities.MODID)
 public class RedstoneModule extends ModuleBase {
 
 	public static Block fused_quartz, redstone_sand;
