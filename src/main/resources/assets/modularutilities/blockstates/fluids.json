@@ -1,15 +1,22 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "forge:fluid"
-    },
-    "variants": {
-        "filler_fluid": [{
-            "custom": { "fluid": "dirt" }
-        }],
-        "concrete_fluid":
-        [{
-        	"custom": { "fluid": "concrete" }
-        }]
-    }
+  "forge_marker": 1,
+  "defaults": {
+    "model": "forge:fluid"
+  },
+  "variants": {
+    "filler_fluid": [
+      {
+        "custom": {
+          "fluid": "dirt"
+        }
+      }
+    ],
+    "concrete_fluid": [
+      {
+        "custom": {
+          "fluid": "concrete"
+        }
+      }
+    ]
+  }
 }

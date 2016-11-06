@@ -1,18 +1,19 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "textures": {
-        	"top": "modularutilities:blocks/splitter_tnt_top",
-        	"bottom": "modularutilities:blocks/splitter_tnt_bottom",
-            "side": "modularutilities:blocks/splitter_tnt_side"
-        },
-        "model": "cube_bottom_top",
-        "uvlock": true,
-        "transform": "forge:default-block"
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "top": "modularutilities:blocks/splitter_tnt_top",
+      "bottom": "modularutilities:blocks/splitter_tnt_bottom",
+      "side": "modularutilities:blocks/splitter_tnt_side"
     },
-    "variants": {
-        "explode=true": [{}],
-        "explode=false": [{}],
-        "inventory": [{}]
-    }
+    "model": "cube_bottom_top",
+    "uvlock": true,
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "explode=true": [{}],
+    "explode=false": [{}],
+    "inventory": [{}],
+    "normal": [{}]
+  }
 }

@@ -1,18 +1,31 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "textures": {
-            "crop": "modularutilities:blocks/magmagold_1"
-        },
-        "model": "crop",
-        "uvlock": true,
-        "transform": "forge:default-block"
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "crop": "modularutilities:blocks/magmagold_1"
     },
-    "variants": {
-    	"age": {
-    		"0": {"textures": {"crop": "modularutilities:blocks/magmagold_0"}},
-    		"1": {"textures": {"crop": "modularutilities:blocks/magmagold_1"}}
-    	},
-        "inventory": [{}]
-    }
+    "model": "crop",
+    "uvlock": true,
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "crop": "modularutilities:blocks/magmagold_0"
+        }
+      },
+      "1": {
+        "textures": {
+          "crop": "modularutilities:blocks/magmagold_1"
+        }
+      }
+    },
+    "inventory": [
+      {}
+    ],
+    "normal": [
+      {}
+    ]
+  }
 }
