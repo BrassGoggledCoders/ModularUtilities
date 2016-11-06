@@ -30,13 +30,13 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 @Mod(modid = ModularUtilities.MODID, name = ModularUtilities.MODNAME, version = ModularUtilities.MODVERSION,
-		dependencies = "required-after:boilerplate")
+		dependencies = "required-after:base")
 public class ModularUtilities extends BaseModFoundation {
 	public ModularUtilities() {
 		super(MODID, MODNAME, MODVERSION, tab);
 	}
 
-	@Instance("modularutilities")
+	@Instance(ModularUtilities.MODID)
 	public static ModularUtilities instance;
 
 	@SidedProxy(clientSide = "xyz.brassgoggledcoders.modularutilities.proxies.ClientProxy",
