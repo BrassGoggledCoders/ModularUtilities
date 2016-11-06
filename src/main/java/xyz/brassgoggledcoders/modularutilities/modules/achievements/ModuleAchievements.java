@@ -92,19 +92,19 @@ public class ModuleAchievements extends ModuleBase {
 
 	@SubscribeEvent
 	public void onJoined(EntityJoinWorldEvent event) {
-		if(event.getWorld().isRemote)
-			return;
-		if(event.getEntity() instanceof EntityIronGolem) {
-			EntityIronGolem golem = (EntityIronGolem) event.getEntity();
-			if(!golem.isPlayerCreated())
-				return;
-			AxisAlignedBB axisalignedbb =
-					new AxisAlignedBB(new BlockPos(golem.posX, golem.posY, golem.posZ)).expandXyz(5);
-			List<EntityPlayer> list =
-					event.getWorld().<EntityPlayer> getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+		if(!event.getWorld().isRemote) {
+			if(event.getEntity() instanceof EntityIronGolem) {
+				EntityIronGolem golem = (EntityIronGolem) event.getEntity();
+				if(golem.isPlayerCreated()) {
+					AxisAlignedBB axisalignedbb =
+						new AxisAlignedBB(new BlockPos(golem.posX, golem.posY, golem.posZ)).expandXyz(5);
+					List<EntityPlayer> list =
+						event.getWorld().getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
-			for(EntityPlayer entityplayer : list) {
-				entityplayer.addStat(hired_help);
+					for(EntityPlayer entityplayer : list) {
+						entityplayer.addStat(hired_help);
+					}
+				}
 			}
 		}
 	}
