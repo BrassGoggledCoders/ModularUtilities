@@ -11,6 +11,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 public class BlockBlastGlass extends BlockBase {
 
 	public BlockBlastGlass() {
@@ -19,6 +21,7 @@ public class BlockBlastGlass extends BlockBase {
 
 	@SideOnly(Side.CLIENT)
 	@Override
+	@Nonnull
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
@@ -40,17 +43,11 @@ public class BlockBlastGlass extends BlockBase {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos,
+	public boolean shouldSideBeRendered(IBlockState blockState, @Nonnull IBlockAccess blockAccess,@Nonnull BlockPos pos,
 			EnumFacing side) {
 		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 		Block block = iblockstate.getBlock();
 
-		if(blockState != iblockstate)
-			return true;
-
-		if(block == this)
-			return false;
-
-		return block == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+		return blockState != iblockstate || block != this && (block != this && super.shouldSideBeRendered(blockState, blockAccess, pos, side));
 	}
 }
