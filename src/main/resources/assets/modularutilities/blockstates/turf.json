@@ -5,6 +5,8 @@
         "transform": "forge:default-block"
     },
     "variants": {
+		"inventory": [{}],
+		"normal": [{}],
     	"type=normal": [{ "textures": { "wool": "modularutilities:blocks/turf_normal", "particle": "#wool" } }],
     	"type=dry": [{ "textures": { "wool": "modularutilities:blocks/turf_dry", "particle": "#wool" } }],
     	"type=frozen": [{ "textures": { "wool": "modularutilities:blocks/turf_frozen", "particle": "#wool" } }],
