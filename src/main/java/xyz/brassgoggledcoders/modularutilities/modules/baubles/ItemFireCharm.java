@@ -1,13 +1,20 @@
 package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 
 import baubles.api.BaubleType;
+import com.teamacronymcoders.base.items.IHasRecipe;
 import com.teamacronymcoders.base.items.ItemBaubleBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
-public class ItemFireCharm extends ItemBaubleBase {
+import java.util.List;
+
+public class ItemFireCharm extends ItemBaubleBase implements IHasRecipe {
 
 	public ItemFireCharm() {
 		super("fire_charm");
@@ -35,5 +42,12 @@ public class ItemFireCharm extends ItemBaubleBase {
 				// }
 			}
 		}
+	}
+
+	@Override
+	public List<IRecipe> getRecipes(List<IRecipe> recipes) {
+		recipes.add(new ShapedOreRecipe(new ItemStack(this), "SSS", "MDM", "OOO", 'S', Items.STRING, 'M', Blocks.MAGMA,
+				'D', Items.DIAMOND, 'O', Blocks.OBSIDIAN));
+		return recipes;
 	}
 }
