@@ -7,16 +7,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -61,8 +55,6 @@ public class ConstructionModule extends ModuleBase {
 		concrete = new BlockBase(Material.ROCK, "concrete").setHardness(3).setResistance(18);
 		getBlockRegistry().register(concrete);
 
-		registerFluidBlockRendering(concrete_fluid, concrete_fluid.getName());
-		registerFluidBlockRendering(filler_fluid, filler_fluid.getName());
 		/*
 		 * TODO:
 		 * - Quickdry Concrete
@@ -74,21 +66,6 @@ public class ConstructionModule extends ModuleBase {
 		 * - Scaffolding
 		 * - Blast resistant door, pushable blast blocks.
 		 */
-	}
-
-	public void registerFluidBlockRendering(Fluid fluid, String name) {
-
-		FluidStateMapper mapper = new FluidStateMapper(fluid, name);
-		Block block = fluid.getBlock();
-		Item item = Item.getItemFromBlock(block);
-
-		// item-model
-		if (item != null) {
-			ModelLoader.registerItemVariants(item);
-			ModelLoader.setCustomMeshDefinition(item, mapper);
-		}
-		// block-model
-		ModelLoader.setCustomStateMapper(block, mapper);
 	}
 
 	@Override
@@ -114,32 +91,6 @@ public class ConstructionModule extends ModuleBase {
 		@Override
 		public boolean blocksMovement() {
 			return true;
-		}
-	}
-
-	public static class FluidStateMapper extends StateMapperBase implements ItemMeshDefinition {
-
-		public final Fluid fluid;
-		public final ModelResourceLocation location;
-
-		public FluidStateMapper(Fluid fluid, String name) {
-			this.fluid = fluid;
-			location = new ModelResourceLocation(ModularUtilities.MODID + ":fluids", name);
-		}
-
-		public FluidStateMapper(Fluid fluid) {
-			this(fluid, fluid.getName());
-		}
-
-
-		@Override
-		protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-			return location;
-		}
-
-		@Override
-		public ModelResourceLocation getModelLocation(ItemStack stack) {
-			return location;
 		}
 	}
 }
