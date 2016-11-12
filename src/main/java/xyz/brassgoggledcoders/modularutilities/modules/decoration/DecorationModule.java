@@ -75,7 +75,7 @@ public class DecorationModule extends ModuleBase {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
-		for(int i = 0; i < EnumWoodBlock.values().length - 2; i++) {
+		for(int i = 0; i < EnumLeaveType.values().length - 2; i++) {
 			GameRegistry.addRecipe(new ItemStack(leaf_cover, 2, i), "XX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
 			GameRegistry.addRecipe(new ItemStack(hedge, 6, i), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
 		}
@@ -83,7 +83,7 @@ public class DecorationModule extends ModuleBase {
 		GameRegistry.addRecipe(new ItemStack(leaf_cover, 2, 5), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
 		GameRegistry.addRecipe(new ItemStack(hedge, 6, 4), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
 		GameRegistry.addRecipe(new ItemStack(hedge, 6, 5), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
-		for(int i = 0; i < EnumWoodBlock.values().length; i++) {
+		for(int i = 0; i < EnumLeaveType.values().length; i++) {
 			GameRegistry.addShapelessRecipe(new ItemStack(leaf_cover_opaque, 1, i), Blocks.SAND,
 					new ItemStack(leaf_cover, 1, i));
 			GameRegistry.addShapelessRecipe(new ItemStack(hedge_opaque, 1, i), Blocks.SAND, new ItemStack(hedge, 1, i));

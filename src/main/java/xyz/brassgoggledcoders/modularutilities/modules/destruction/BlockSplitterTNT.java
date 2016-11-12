@@ -10,6 +10,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class BlockSplitterTNT extends BlockCustomTNT {
 
 	public BlockSplitterTNT(String name) {
@@ -34,7 +36,7 @@ public class BlockSplitterTNT extends BlockCustomTNT {
 	@Override
 	public void explode(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase igniter) {
 		if(!worldIn.isRemote)
-			if(state.getValue(EXPLODE).booleanValue()) {
+			if(state.getValue(EXPLODE)) {
 				EntityTNTPrimed entitytntprimed =
 						new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, igniter);
 				worldIn.spawnEntityInWorld(entitytntprimed);
@@ -47,6 +49,12 @@ public class BlockSplitterTNT extends BlockCustomTNT {
 				worldIn.playSound((EntityPlayer) null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ,
 						SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
+	}
+
+	@Override
+	public List<String> getModelNames(List<String> modelNames) {
+		modelNames.add("splitter_tnt");
+		return modelNames;
 	}
 
 }

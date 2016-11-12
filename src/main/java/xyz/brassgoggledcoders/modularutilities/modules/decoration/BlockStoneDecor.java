@@ -6,10 +6,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -45,6 +48,15 @@ public class BlockStoneDecor extends BlockSubBase {
 	public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
 		for(EnumStoneType resourceType : EnumStoneType.values())
 			itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public List<ModelResourceLocation> getModelResourceLocations(List<ModelResourceLocation> models) {
+		for(EnumStoneType stoneType : EnumStoneType.values()) {
+			models.add(new ModelResourceLocation(getMod().getPrefix() + "stone_decor", "type=" + stoneType.getName()));
+		}
+		return models;
 	}
 
 	public enum EnumStoneType implements IStringSerializable {
