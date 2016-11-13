@@ -103,6 +103,11 @@ public class DecorationModule extends ModuleBase {
 		GameRegistry.addSmelting(new ItemStack(Blocks.BRICK_BLOCK), new ItemStack(stone_decor, 1, 5), 0.05F);
 	}
 
+	@Override
+	public String getClientProxyPath() {
+		return "xyz.brassgoggledcoders.modules.decoration.proxy.DecorationClient";
+	}
+
 	@SubscribeEvent
 	public void onBlockRightClicked(RightClickBlock event) {
 		if(event.getWorld().isRemote)
