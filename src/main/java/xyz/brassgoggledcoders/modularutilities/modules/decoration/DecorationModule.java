@@ -3,6 +3,8 @@ package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 import com.teamacronymcoders.base.blocks.BlockBase;
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
+import com.teamacronymcoders.base.registry.BlockRegistry;
+import com.teamacronymcoders.base.registry.config.ConfigRegistry;
 import com.teamacronymcoders.base.util.ItemStackUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
@@ -36,32 +38,7 @@ public class DecorationModule extends ModuleBase {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		turf = new BlockTurf();
-		this.getBlockRegistry().register(turf);
-
-		leaf_cover = new BlockLeafCover("leaf_cover", false);
-		this.getBlockRegistry().register(leaf_cover);
-
-		leaf_cover_opaque = new BlockLeafCover("leaf_cover_opaque", true);
-		this.getBlockRegistry().register(leaf_cover_opaque);
-
-		hedge = new BlockHedge("hedge", false);
-		getBlockRegistry().register(hedge);
-
-		hedge_opaque = new BlockHedge("hedge_opaque", true);
-		getBlockRegistry().register(hedge_opaque);
-
-		stone_decor = new BlockStoneDecor();
-		getBlockRegistry().register(stone_decor);
-
-		elder_sea_lantern = new BlockBase(Material.GLASS, "elder_sea_lantern").setLightLevel(15);
-		getBlockRegistry().register(elder_sea_lantern);
-
-		smooth_glowstone = new BlockBase(Material.GLASS, "smooth_glowstone").setLightLevel(1F);
-		getBlockRegistry().register(smooth_glowstone);
-
-		soul_glass = new BlockSoulGlass(Material.GLASS, "soul_glass");
-		getBlockRegistry().register(soul_glass);
+		super.preInit(event);
 		/*
 		 * TODO:
 		 * - Stairs version of Path/Grass/Dirt/Smoothstone
@@ -71,6 +48,20 @@ public class DecorationModule extends ModuleBase {
 		 * - https://www.reddit.com/r/minecraftsuggestions/comments/4s6j64/glow_rods/?st=iqh3p22q&sh=84b6b566
 		 */
 		MinecraftForge.EVENT_BUS.register(this);
+	}
+
+	@Override
+	public void registerBlocks(ConfigRegistry configRegistry, BlockRegistry blockRegistry) {
+		blockRegistry.register(turf = new BlockTurf());
+		blockRegistry.register(leaf_cover = new BlockLeafCover("leaf_cover", false));
+		blockRegistry.register(leaf_cover_opaque = new BlockLeafCover("leaf_cover_opaque", true));
+		blockRegistry.register(hedge = new BlockHedge("hedge", false));
+		blockRegistry.register(hedge_opaque = new BlockHedge("hedge_opaque", true));
+		blockRegistry.register(stone_decor = new BlockStoneDecor());
+		blockRegistry.register(stone_decor = new BlockStoneDecor());
+		blockRegistry.register(elder_sea_lantern = new BlockBase(Material.GLASS, "elder_sea_lantern").setLightLevel(15));
+		blockRegistry.register(smooth_glowstone = new BlockBase(Material.GLASS, "smooth_glowstone").setLightLevel(1F));
+		blockRegistry.register(soul_glass = new BlockSoulGlass(Material.GLASS, "soul_glass"));
 	}
 
 	@Override

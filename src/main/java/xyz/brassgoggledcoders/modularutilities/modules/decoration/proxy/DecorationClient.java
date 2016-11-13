@@ -1,6 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration.proxy;
 
-import com.teamacronymcoders.base.modulesystem.IModuleProxy;
+import com.teamacronymcoders.base.modulesystem.proxies.ModuleProxyBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -12,30 +12,18 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.DecorationModule;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class DecorationClient implements IModuleProxy {
+public class DecorationClient extends ModuleProxyBase {
 	@Override
-	public void preInit(FMLPreInitializationEvent event) {
+	public void init(FMLInitializationEvent event) {
 		Block[] toColourise = new Block[] {DecorationModule.leaf_cover, DecorationModule.hedge,
 				DecorationModule.hedge_opaque, DecorationModule.leaf_cover_opaque};
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new LeafColors(), toColourise);
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new LeafColors(), toColourise);
-	}
-
-	@Override
-	public void init(FMLInitializationEvent event) {
-
-	}
-
-	@Override
-	public void postInit(FMLPostInitializationEvent event) {
-
 	}
 
 	// TODO Birch/Spruce Specialcasing
