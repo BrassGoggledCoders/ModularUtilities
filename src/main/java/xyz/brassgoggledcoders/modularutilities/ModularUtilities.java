@@ -29,8 +29,9 @@ import xyz.brassgoggledcoders.modularutilities.proxies.CommonProxy;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-@Mod(modid = ModularUtilities.MODID, name = ModularUtilities.MODNAME, version = ModularUtilities.MODVERSION,
-		dependencies = "required-after:base")
+import static xyz.brassgoggledcoders.modularutilities.ModularUtilities.*;
+
+@Mod(modid = MODID, name = MODNAME, version = MODVERSION, dependencies = DEPENDS)
 public class ModularUtilities extends BaseModFoundation {
 	public ModularUtilities() {
 		super(MODID, MODNAME, MODVERSION, tab);
@@ -46,6 +47,7 @@ public class ModularUtilities extends BaseModFoundation {
 	public static final String MODID = "modularutilities";
 	public static final String MODNAME = "Modular Utilities";
 	public static final String MODVERSION = "@VERSION@";
+	public static final String DEPENDS = "required-after:base@[0.0.0,];";
 
 	public static CreativeTabs tab = new MUTab();
 

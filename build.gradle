@@ -46,10 +46,12 @@ minecraft {
 
     replace "@VERSION@", project.version
     replaceIn "${mod_name}.java"
+
+    replace "base@[0.0.0,];", "base@[" + base_version +  ",];"
 }
 
 dependencies {
-    	compile "com.teamacronymcoders.base:base:${minecraft_version}-${base_version}-Snapshot.+:deobf"
+    compile "com.teamacronymcoders.base:base:${minecraft_version}-${base_version}-Snapshot.+:deobf"
 	deobfCompile "mezz.jei:jei_1.10.2:3.7.8.234"
 	deobfCompile "com.enderio.core:EnderCore:1.10.2-0.4.1.41-beta"
 	deobfCompile "com.enderio:EnderIO:1.10.2-3.0.1.75_beta"
