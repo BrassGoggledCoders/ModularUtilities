@@ -23,18 +23,24 @@ public class BlockEnderChestProxy extends BlockTEBase<TileEntityEnderChestProxy>
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if(!worldIn.isRemote) {
-			TileEntityEnderChestProxy ex = (TileEntityEnderChestProxy) worldIn.getTileEntity(pos);
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+			@Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if(!player.isSneaking()) {
+			TileEntityEnderChestProxy ex = this.getTileEntity(world, pos);
 			UUID placerID = ex.getPlacerUUID();
-			if(placerID != null)
-				playerIn.addChatMessage(
-						new TextComponentString("Linked Player is: " + UsernameCache.getMap().get(placerID)));
-			else
-				playerIn.addChatMessage(new TextComponentString("No linked player"));
+			if(!world.isRemote) {
+				TextComponentString text;
+				if(placerID != null) {
+					text = new TextComponentString("Linked Player is: " + UsernameCache.getMap().get(placerID));
+				} else {
+					text = new TextComponentString("No linked player");
+				}
+				player.addChatMessage(text);
+			}
+
 			return true;
 		}
+
 		return false;
 	}
 
