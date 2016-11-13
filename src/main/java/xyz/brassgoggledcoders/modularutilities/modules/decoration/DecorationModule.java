@@ -105,7 +105,7 @@ public class DecorationModule extends ModuleBase {
 
 	@Override
 	public String getClientProxyPath() {
-		return "xyz.brassgoggledcoders.modules.decoration.proxy.DecorationClient";
+		return "xyz.brassgoggledcoders.modularutilities.modules.decoration.proxy.DecorationClient";
 	}
 
 	@SubscribeEvent
