@@ -1,5 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
+import com.teamacronymcoders.base.blocks.BlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -9,7 +10,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
 
 public class BlockSoulGlass extends BlockBase {
 
@@ -46,12 +46,7 @@ public class BlockSoulGlass extends BlockBase {
 		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 		Block block = iblockstate.getBlock();
 
-		if(blockState != iblockstate)
-			return true;
+		return blockState != iblockstate || block != this && block != this && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 
-		if(block == this)
-			return false;
-
-		return block == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
 }

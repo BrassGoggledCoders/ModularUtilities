@@ -1,8 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.enchantments;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
+import com.teamacronymcoders.base.util.ItemStackUtils;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -10,8 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
-import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class EnchantmentFlameTouch extends CustomEnchantment {
 	public EnchantmentFlameTouch(Rarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot[] slots,

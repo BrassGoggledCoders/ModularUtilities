@@ -1,7 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.enchantments;
 
-import java.util.Iterator;
-
+import com.teamacronymcoders.base.modulesystem.Module;
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -22,11 +22,11 @@ import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import xyz.brassgoggledcoders.boilerplate.module.Module;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+import java.util.Iterator;
+
+@Module(ModularUtilities.MODID)
 public class EnchantmentsModule extends ModuleBase {
 
 	static EntityEquipmentSlot[] hand = new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND};

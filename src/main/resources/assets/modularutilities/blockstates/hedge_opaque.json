@@ -1,46 +1,107 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "transform": "forge:default-block",
-        "textures": { "wall": "minecraft:blocks/leaves_oak" },
-        "model": "modularutilities:hedge_post",
-        "uvlock": true
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "textures": {
+      "wall": "minecraft:blocks/leaves_oak"
     },
-    "variants": {
-    	"north": {
-			"true": {"submodel": "modularutilities:hedge_connect"},
-			"false": {}
-		},
-		"south": {
-			"true": {"submodel": "modularutilities:hedge_connect", "y": 180},
-			"false": {}
-		},
-		"east": {
-			"true": {"submodel": "modularutilities:hedge_connect", "y": 90},
-			"false": {}
-		},
-		"west": {
-			"true": {"submodel": "modularutilities:hedge_connect", "y": 270},
-			"false": {}
-		},
-		"up": {"true": {}, "false": {}},
-		"type": {
-			"oak":{},
-			"spruce":{"textures": { "wall": "minecraft:blocks/leaves_spruce" }},
-			"birch":{"textures": { "wall": "minecraft:blocks/leaves_birch" }},
-			"jungle":{"textures": { "wall": "minecraft:blocks/leaves_jungle" }},
-			"acacia":{"textures": { "wall": "minecraft:blocks/leaves_acacia" }},
-			"big_oak":{"textures": { "wall": "minecraft:blocks/leaves_big_oak" }}
-		},
-		"inventory": [{
-		"type": {
-			"oak":{},
-			"spruce":{"textures": { "wall": "minecraft:blocks/leaves_spruce" }},
-			"birch":{"textures": { "wall": "minecraft:blocks/leaves_birch" }},
-			"jungle":{"textures": { "wall": "minecraft:blocks/leaves_jungle" }},
-			"acacia":{"textures": { "wall": "minecraft:blocks/leaves_acacia" }},
-			"big_oak":{"textures": { "wall": "minecraft:blocks/leaves_big_oak" }}
-		}
-		}]
-    }
+    "model": "modularutilities:hedge_post",
+    "uvlock": true
+  },
+  "variants": {
+    "normal": [
+      {}
+    ],
+    "north": {
+      "true": {
+        "submodel": "modularutilities:hedge_connect"
+      },
+      "false": {}
+    },
+    "south": {
+      "true": {
+        "submodel": "modularutilities:hedge_connect",
+        "y": 180
+      },
+      "false": {}
+    },
+    "east": {
+      "true": {
+        "submodel": "modularutilities:hedge_connect",
+        "y": 90
+      },
+      "false": {}
+    },
+    "west": {
+      "true": {
+        "submodel": "modularutilities:hedge_connect",
+        "y": 270
+      },
+      "false": {}
+    },
+    "up": {
+      "true": {},
+      "false": {}
+    },
+    "type": {
+      "oak": {},
+      "spruce": {
+        "textures": {
+          "wall": "minecraft:blocks/leaves_spruce"
+        }
+      },
+      "birch": {
+        "textures": {
+          "wall": "minecraft:blocks/leaves_birch"
+        }
+      },
+      "jungle": {
+        "textures": {
+          "wall": "minecraft:blocks/leaves_jungle"
+        }
+      },
+      "acacia": {
+        "textures": {
+          "wall": "minecraft:blocks/leaves_acacia"
+        }
+      },
+      "big_oak": {
+        "textures": {
+          "wall": "minecraft:blocks/leaves_big_oak"
+        }
+      }
+    },
+    "inventory": [
+      {
+        "type": {
+          "oak": {},
+          "spruce": {
+            "textures": {
+              "wall": "minecraft:blocks/leaves_spruce"
+            }
+          },
+          "birch": {
+            "textures": {
+              "wall": "minecraft:blocks/leaves_birch"
+            }
+          },
+          "jungle": {
+            "textures": {
+              "wall": "minecraft:blocks/leaves_jungle"
+            }
+          },
+          "acacia": {
+            "textures": {
+              "wall": "minecraft:blocks/leaves_acacia"
+            }
+          },
+          "big_oak": {
+            "textures": {
+              "wall": "minecraft:blocks/leaves_big_oak"
+            }
+          }
+        }
+      }
+    ]
+  }
 } 	

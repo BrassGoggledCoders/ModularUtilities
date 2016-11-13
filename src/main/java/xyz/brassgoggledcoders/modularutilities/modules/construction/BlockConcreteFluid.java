@@ -1,7 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.construction;
 
-import java.util.Random;
-
+import com.teamacronymcoders.base.blocks.BlockFluidBase;
+import com.teamacronymcoders.base.blocks.IHasTileEntity;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -12,13 +12,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockModFluid;
-import xyz.brassgoggledcoders.boilerplate.blocks.IHasTileEntity;
 
-public class BlockConcreteFluid extends BlockModFluid implements IHasTileEntity, ITileEntityProvider {
+import java.util.Random;
+
+public class BlockConcreteFluid extends BlockFluidBase implements IHasTileEntity, ITileEntityProvider {
 
 	public BlockConcreteFluid(Material mat, String name, Fluid fluid) {
-		super(mat, name, fluid);
+		super(name, fluid, mat);
 		this.setQuantaPerBlock(6);
 		this.setDensity(this.definedFluid.getDensity());
 	}

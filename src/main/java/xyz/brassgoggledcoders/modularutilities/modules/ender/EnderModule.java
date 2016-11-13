@@ -1,8 +1,9 @@
 package xyz.brassgoggledcoders.modularutilities.modules.ender;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
+import com.teamacronymcoders.base.items.ItemBase;
+import com.teamacronymcoders.base.modulesystem.Module;
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
+import com.teamacronymcoders.base.util.ItemStackUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,13 +20,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import xyz.brassgoggledcoders.boilerplate.items.ItemBase;
-import xyz.brassgoggledcoders.boilerplate.module.Module;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
-import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+import java.util.ArrayList;
+import java.util.Iterator;
+
+@Module(ModularUtilities.MODID)
 public class EnderModule extends ModuleBase {
 	public static Item ender_glove, ender_pocket;
 
@@ -40,13 +40,13 @@ public class EnderModule extends ModuleBase {
 	public void preInit(FMLPreInitializationEvent event) {
 		// TODO EnderStorage compatibility.
 		ender_glove = new ItemBase("ender_glove").setMaxStackSize(1);
-		getItemRegistry().registerItem(ender_glove);
+		getItemRegistry().register(ender_glove);
 		ender_pocket = new ItemEnderPocket();
-		getItemRegistry().registerItem(ender_pocket);
+		getItemRegistry().register(ender_pocket);
 		// TODO Ender Totem (experience) and Ender Dispenser/Dropper. Also inverse ender glove...
 
 		ender_proxy = new BlockEnderChestProxy();
-		getBlockRegistry().registerBlock(ender_proxy);
+		getBlockRegistry().register(ender_proxy);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

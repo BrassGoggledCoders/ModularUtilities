@@ -1,7 +1,8 @@
 package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
-import java.util.Arrays;
-
+import com.teamacronymcoders.base.blocks.BlockBase;
+import com.teamacronymcoders.base.modulesystem.Module;
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -17,12 +18,11 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
-import xyz.brassgoggledcoders.boilerplate.module.Module;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+import java.util.Arrays;
+
+@Module(ModularUtilities.MODID)
 public class MiscellaneousModule extends ModuleBase {
 	public static BlockBase feathers, magmagold;
 	public static Item goldpetal;
@@ -35,13 +35,13 @@ public class MiscellaneousModule extends ModuleBase {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		feathers = new BlockFeathers();
-		this.getBlockRegistry().registerBlock(feathers);
+		this.getBlockRegistry().register(feathers);
 
 		goldpetal = new ItemGoldPetal("goldpetal");
-		this.getItemRegistry().registerItem(goldpetal);
+		this.getItemRegistry().register(goldpetal);
 
 		magmagold = new BlockMagmagold(Material.ROCK, "magmagold");
-		this.getBlockRegistry().registerBlock(magmagold);
+		this.getBlockRegistry().register(magmagold);
 
 		MinecraftForge.EVENT_BUS.register(this);
 		GameRegistry.registerWorldGenerator(new WorldGeneratorModularUtils(), 2);

@@ -1,7 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.tweaks;
 
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
 
 // @Module(mod = ModularUtilities.MODID)
 public class TweaksModule extends ModuleBase {

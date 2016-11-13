@@ -1,13 +1,13 @@
 package xyz.brassgoggledcoders.modularutilities.modules.villages;
 
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
+import com.teamacronymcoders.base.util.VillagerUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
-import xyz.brassgoggledcoders.boilerplate.utils.VillagerUtils;
 
 // @Module(mod = ModularUtilities.MODID)
 public class VillagesModule extends ModuleBase {

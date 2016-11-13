@@ -1,10 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
-import java.util.List;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
+import com.teamacronymcoders.base.blocks.BlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -26,7 +22,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockBase;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 public class BlockMagmagold extends BlockBase implements IGrowable {
 	// TODO Raise number of stages

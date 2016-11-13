@@ -1,7 +1,9 @@
 package xyz.brassgoggledcoders.modularutilities.modules.achievements;
 
-import java.util.List;
-
+import com.teamacronymcoders.base.modulesystem.Module;
+import com.teamacronymcoders.base.modulesystem.ModuleBase;
+import com.teamacronymcoders.base.registry.config.ConfigEntry;
+import com.teamacronymcoders.base.util.ItemStackUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntityIronGolem;
@@ -17,19 +19,18 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import xyz.brassgoggledcoders.boilerplate.config.ConfigEntry;
-import xyz.brassgoggledcoders.boilerplate.module.Module;
-import xyz.brassgoggledcoders.boilerplate.module.ModuleBase;
-import xyz.brassgoggledcoders.boilerplate.utils.ItemStackUtils;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
-@Module(mod = ModularUtilities.MODID)
+import java.util.List;
+
+@Module(ModularUtilities.MODID)
 public class ModuleAchievements extends ModuleBase {
 
 	public static Achievement banker, stockbroker, hired_help, unstoppable, demigod, audiophile, doctor, undersea;
@@ -42,8 +43,7 @@ public class ModuleAchievements extends ModuleBase {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		this.getConfigRegistry().addEntry(new ConfigEntry("options", "achievementXP",
-				xyz.brassgoggledcoders.boilerplate.config.Type.BOOLEAN, "true"));
+		this.getConfigRegistry().addEntry(new ConfigEntry("options", "achievementXP", Property.Type.BOOLEAN, "true"));
 		// TODO How to trigger?
 		// banker = addAchievement("banker", "banker", -5, 5, new ItemStack(Blocks.DIAMOND_BLOCK),
 		// AchievementList.DIAMONDS);
@@ -92,19 +92,19 @@ public class ModuleAchievements extends ModuleBase {
 
 	@SubscribeEvent
 	public void onJoined(EntityJoinWorldEvent event) {
-		if(event.getWorld().isRemote)
-			return;
-		if(event.getEntity() instanceof EntityIronGolem) {
-			EntityIronGolem golem = (EntityIronGolem) event.getEntity();
-			if(!golem.isPlayerCreated())
-				return;
-			AxisAlignedBB axisalignedbb =
-					new AxisAlignedBB(new BlockPos(golem.posX, golem.posY, golem.posZ)).expandXyz(5);
-			List<EntityPlayer> list =
-					event.getWorld().<EntityPlayer> getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+		if(!event.getWorld().isRemote) {
+			if(event.getEntity() instanceof EntityIronGolem) {
+				EntityIronGolem golem = (EntityIronGolem) event.getEntity();
+				if(golem.isPlayerCreated()) {
+					AxisAlignedBB axisalignedbb =
+						new AxisAlignedBB(new BlockPos(golem.posX, golem.posY, golem.posZ)).expandXyz(5);
+					List<EntityPlayer> list =
+						event.getWorld().getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
-			for(EntityPlayer entityplayer : list) {
-				entityplayer.addStat(hired_help);
+					for(EntityPlayer entityplayer : list) {
+						entityplayer.addStat(hired_help);
+					}
+				}
 			}
 		}
 	}

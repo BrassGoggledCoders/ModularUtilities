@@ -1,9 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.ender;
 
-import java.util.UUID;
-
-import javax.annotation.Nullable;
-
+import com.teamacronymcoders.base.blocks.BlockTEBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,7 +13,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.UsernameCache;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockTEBase;
+
+import javax.annotation.Nullable;
+import java.util.UUID;
 
 public class BlockEnderChestProxy extends BlockTEBase<TileEntityEnderChestProxy> {
 	public BlockEnderChestProxy() {
@@ -24,18 +23,25 @@ public class BlockEnderChestProxy extends BlockTEBase<TileEntityEnderChestProxy>
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if(!worldIn.isRemote) {
-			TileEntityEnderChestProxy ex = (TileEntityEnderChestProxy) worldIn.getTileEntity(pos);
-			UUID placerID = ex.getPlacerUUID();
-			if(placerID != null)
-				playerIn.addChatMessage(
-						new TextComponentString("Linked Player is: " + UsernameCache.getMap().get(placerID)));
-			else
-				playerIn.addChatMessage(new TextComponentString("No linked player"));
-			return true;
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+			@Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if(!player.isSneaking()) {
+			TileEntityEnderChestProxy ex = this.getTileEntity(world, pos);
+			if(ex != null) {
+				UUID placerID = ex.getPlacerUUID();
+				if(!world.isRemote) {
+					TextComponentString text;
+					if(placerID != null) {
+						text = new TextComponentString("Linked Player is: " + UsernameCache.getMap().get(placerID));
+					} else {
+						text = new TextComponentString("No linked player");
+					}
+					player.addChatMessage(text);
+				}
+				return true;
+			}
 		}
+
 		return false;
 	}
 
@@ -58,8 +64,6 @@ public class BlockEnderChestProxy extends BlockTEBase<TileEntityEnderChestProxy>
 	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {
 		// TODO
 		return 0;
-		// return Container.calcRedstoneFromInventory(
-		// ((TileEntityEnderChestProxy) worldIn.getTileEntity(pos)).getEnderInventory());
 	}
 
 	@Override

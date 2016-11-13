@@ -1,8 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.destruction;
 
-import javax.annotation.Nonnull;
-
-import net.minecraft.block.Block;
+import com.teamacronymcoders.base.blocks.IHasItemBlock;
+import com.teamacronymcoders.base.client.models.IHasModel;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,13 +13,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import xyz.brassgoggledcoders.boilerplate.IBoilerplateMod;
-import xyz.brassgoggledcoders.boilerplate.IModAware;
-import xyz.brassgoggledcoders.boilerplate.blocks.IHasItemBlock;
-import xyz.brassgoggledcoders.boilerplate.client.models.IHasModel;
 
-public class BlockCustomTNT extends BlockTNT implements IModAware, IHasItemBlock, IHasModel {
-	IBoilerplateMod mod;
+import javax.annotation.Nonnull;
+
+public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel {
 
 	public BlockCustomTNT(String name) {
 		super();
@@ -70,26 +66,8 @@ public class BlockCustomTNT extends BlockTNT implements IModAware, IHasItemBlock
 	}
 
 	@Override
-	public IBoilerplateMod getMod() {
-		return this.mod;
-	}
-
-	@Override
-	public void setMod(IBoilerplateMod mod) {
-		this.mod = mod;
-	}
-
-	@Override
-	public ItemBlock getItemBlockClass(Block block) {
-		return new ItemBlock(block);
-	}
-
-	@Override
-	public String[] getResourceLocations() {
-		String name = this.getUnlocalizedName();
-		if(name.startsWith("tile."))
-			name = name.substring(5);
-		return new String[] {name};
+	public ItemBlock getItemBlock() {
+		return new ItemBlock(this);
 	}
 
 }

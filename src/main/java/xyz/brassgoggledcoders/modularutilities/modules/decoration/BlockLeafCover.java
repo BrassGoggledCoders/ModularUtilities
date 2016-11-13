@@ -1,18 +1,14 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.block.Block;
+import com.teamacronymcoders.base.blocks.BlockFlat;
+import com.teamacronymcoders.base.util.EnumUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -21,26 +17,20 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import xyz.brassgoggledcoders.boilerplate.blocks.BlockThin;
-import xyz.brassgoggledcoders.boilerplate.blocks.IBlockType;
-import xyz.brassgoggledcoders.boilerplate.blocks.ItemSubBlock;
-import xyz.brassgoggledcoders.boilerplate.client.models.ISimpleVariant;
 
-public class BlockLeafCover extends BlockThin implements ISimpleVariant {
+import javax.annotation.Nullable;
+import java.util.List;
 
-	public static PropertyEnum<EnumBlockType> type = PropertyEnum.create("type", EnumBlockType.class);
+public class BlockLeafCover extends BlockFlat {
+
+	public static PropertyEnum<EnumLeaveType> type = PropertyEnum.create("type", EnumLeaveType.class);
 	private boolean opaque;
 
 	public BlockLeafCover(String name, boolean opaque) {
-		super(Material.LEAVES, EnumBlockType.names());
+		super(Material.LEAVES, EnumUtils.getNames(EnumLeaveType.class));
 		this.setUnlocalizedName(name);
-		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumBlockType.OAK));
+		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumLeaveType.OAK));
 		this.opaque = opaque;
-	}
-
-	@Override
-	public ItemBlock getItemBlockClass(Block block) {
-		return new ItemSubBlock(block, EnumBlockType.names());
 	}
 
 	@Override
@@ -67,18 +57,18 @@ public class BlockLeafCover extends BlockThin implements ISimpleVariant {
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(type).getMeta();
+		return state.getValue(type).ordinal();
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(type, EnumBlockType.VALUES[meta]);
+		return getDefaultState().withProperty(type, EnumLeaveType.values()[meta]);
 	}
 
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
-		for(EnumBlockType resourceType : EnumBlockType.VALUES)
-			itemList.add(new ItemStack(item, 1, resourceType.getMeta()));
+		for(EnumLeaveType resourceType : EnumLeaveType.values())
+			itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
 	}
 
 	@Override
@@ -86,38 +76,13 @@ public class BlockLeafCover extends BlockThin implements ISimpleVariant {
 		return new BlockStateContainer(this, type);
 	}
 
-	public enum EnumBlockType implements IBlockType {
-		OAK(0), SPRUCE(1), BIRCH(2), JUNGLE(3), ACACIA(4), BIG_OAK(5);
-
-		public static final EnumBlockType[] VALUES = values();
-
-		private final int meta;
-
-		EnumBlockType(int meta) {
-			this.meta = meta;
-		}
-
-		@Override
-		public int getMeta() {
-			return meta;
-		}
-
-		@Override
-		public String getName() {
-			return name().toLowerCase();
-		}
-
-		public static String[] names() {
-			ArrayList<String> names = new ArrayList<String>();
-			for(EnumBlockType element : VALUES)
-				names.add(element.toString().toLowerCase());
-
-			return names.toArray(new String[0]);
-		}
-	}
-
 	@Override
-	public Class<? extends IBlockType> getEnumToSwitch() {
-		return BlockLeafCover.EnumBlockType.class;
+	@SideOnly(Side.CLIENT)
+	public List<ModelResourceLocation> getModelResourceLocations(List<ModelResourceLocation> models) {
+		String modelName = "leaf_cover" + ((this.opaque) ? "_opaque" : "");
+		for(EnumLeaveType leaveType : EnumLeaveType.values()) {
+			models.add(new ModelResourceLocation(getMod().getPrefix() + modelName, "type=" + leaveType.getName()));
+		}
+		return models;
 	}
 }
