@@ -31,8 +31,7 @@ repositories {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-def buildNumber = System.getenv("bamboo_buildNumber") != null ? "." + System.getenv("bamboo_buildNumber") : ""
-version = "${minecraft_version}-${mod_version}" + buildNumber
+version = "${minecraft_version}-${mod_version}" + getBuildNumber()
 
 group= "xyz.brassgoggledcoders.modularutilities"
 archivesBaseName = "${mod_name}"
@@ -100,12 +99,12 @@ idea {
 
 task("uploadJars", dependsOn: "reobf") {
     description = "uploads JARs"
-    if (System.getenv("bamboo_local_maven") != null) {
+    if (System.getenv("bamboo_local_maven") != null || System.getenv("local_maven") != null) {
         apply plugin: 'maven'
         uploadArchives {
             repositories {
                 mavenDeployer {
-                    repository(url: "file://" + System.getenv("bamboo_local_maven"))
+                    repository(url: "file://" + (System.getenv("local_maven") != null ? System.getenv("local_maven") : System.getenv("bamboo_local_maven")))
                     pom {
                         groupId = project.group
                         version = project.version
@@ -137,7 +136,7 @@ task("uploadJars", dependsOn: "reobf") {
                                     name 'SkySom'
                                     roles { role 'developer' }
                                 }
-				developer {
+                                developer {
                                     id 'warlordjones'
                                     name 'warlordjones'
                                     roles { role 'developer' }
@@ -149,4 +148,15 @@ task("uploadJars", dependsOn: "reobf") {
             }
         }
     }
+}
+
+static String getBuildNumber() {
+    String buildNumber = System.getenv("BUILD_NUMBER") != null ? System.getenv("BUILD_NUMBER") : ""
+    if(buildNumber == "") {
+        buildNumber = System.getenv("bamboo_buildNumber") != null ? "." + System.getenv("bamboo_buildNumber") : ""
+    }
+    if(buildNumber != "") {
+        buildNumber = "-" + buildNumber
+    }
+    return buildNumber
 }
