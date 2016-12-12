@@ -8,6 +8,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -15,6 +16,7 @@ import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
+import net.minecraft.stats.StatisticsManagerServer;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -33,6 +35,8 @@ import java.util.List;
 @Module(ModularUtilities.MODID)
 public class ModuleAchievements extends ModuleBase {
 
+	boolean giveEXPForAchievements;
+
 	public static Achievement banker, stockbroker, hired_help, unstoppable, demigod, audiophile, doctor, undersea;
 	// public static AchievementPage page = new AchievementPage("Modular Utilities", hired_help);
 
@@ -44,6 +48,8 @@ public class ModuleAchievements extends ModuleBase {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		this.getConfigRegistry().addEntry(new ConfigEntry("options", "achievementXP", Property.Type.BOOLEAN, "true"));
+		giveEXPForAchievements = this.getConfigRegistry().getBoolean("achievementXP", true);
+
 		// TODO How to trigger?
 		// banker = addAchievement("banker", "banker", -5, 5, new ItemStack(Blocks.DIAMOND_BLOCK),
 		// AchievementList.DIAMONDS);
@@ -65,18 +71,22 @@ public class ModuleAchievements extends ModuleBase {
 
 	@SubscribeEvent
 	public void onAchievementUnlocked(AchievementEvent event) {
-		// Definitely needed. No idea why.
-		if(event.getEntityPlayer().hasAchievement(event.getAchievement()))
-			return;
+		if(event.getEntityPlayer() instanceof EntityPlayerMP) {
+			EntityPlayerMP entityPlayerMP = (EntityPlayerMP)event.getEntityPlayer();
+			StatisticsManagerServer file = entityPlayerMP.getStatFile();
+			Achievement achievement = event.getAchievement();
+			if(file.canUnlockAchievement(achievement) && !file.hasAchievementUnlocked(achievement)) {
+				if(giveEXPForAchievements) {
+					if(achievement.getSpecial()) {
+						entityPlayerMP.addExperienceLevel(1 + entityPlayerMP.getRNG().nextInt(3));
+					} else {
+						entityPlayerMP.addExperience(entityPlayerMP.getRNG().nextInt(6));
+					}
 
-		if(this.getConfigRegistry().getBoolean("achievementXP", true)) {
-			if(event.getAchievement().getSpecial())
-				event.getEntityPlayer().addExperienceLevel(1 + event.getEntityPlayer().getRNG().nextInt(3));
-			else
-				event.getEntityPlayer().addExperience(event.getEntityPlayer().getRNG().nextInt(6));
-
-			event.getEntityPlayer().getEntityWorld().playSound(null, event.getEntityPlayer().getPosition(),
-					SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS, 10F, 1F);
+					entityPlayerMP.getEntityWorld().playSound(null, entityPlayerMP.getPosition(),
+							SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS, 10F, 1F);
+				}
+			}
 		}
 	}
 
