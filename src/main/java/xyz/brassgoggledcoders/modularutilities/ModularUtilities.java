@@ -59,14 +59,12 @@ public class ModularUtilities extends BaseModFoundation {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
-		proxy.registerModels();
 	}
 
 	@Override
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		super.init(event);
-		proxy.registerColors();
 	}
 
 	@Override
