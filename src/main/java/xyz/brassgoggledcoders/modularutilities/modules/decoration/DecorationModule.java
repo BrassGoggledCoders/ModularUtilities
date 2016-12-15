@@ -58,7 +58,6 @@ public class DecorationModule extends ModuleBase {
 		blockRegistry.register(hedge = new BlockHedge("hedge", false));
 		blockRegistry.register(hedge_opaque = new BlockHedge("hedge_opaque", true));
 		blockRegistry.register(stone_decor = new BlockStoneDecor());
-		blockRegistry.register(stone_decor = new BlockStoneDecor());
 		blockRegistry.register(elder_sea_lantern = new BlockBase(Material.GLASS, "elder_sea_lantern").setLightLevel(15));
 		blockRegistry.register(smooth_glowstone = new BlockBase(Material.GLASS, "smooth_glowstone").setLightLevel(1F));
 		blockRegistry.register(soul_glass = new BlockSoulGlass(Material.GLASS, "soul_glass"));
