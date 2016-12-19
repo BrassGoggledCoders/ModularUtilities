@@ -7,36 +7,6 @@ import net.minecraft.world.World;
 
 public class ClientProxy extends CommonProxy {
 	@Override
-	public void registerModels() {
-
-	}
-
-	// TODO Generalise. 'Typed/Suffixed StateMapper'
-	/*
-	 * public class HedgeStateMapper implements IStateMapper {
-	 * // TODO Ideally withName should be removed.
-	 * StateMap stateMap = new StateMap.Builder().withName(BlockHedge.TYPE).withSuffix("_hedge").build();
-	 * @Override
-	 * public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block block) {
-	 * Map<IBlockState, ModelResourceLocation> map =
-	 * (Map<IBlockState, ModelResourceLocation>) stateMap.putStateModelLocations(block);
-	 * Map<IBlockState, ModelResourceLocation> newMap = Maps.newHashMap();
-	 * for(Entry<IBlockState, ModelResourceLocation> e : map.entrySet()) {
-	 * ModelResourceLocation loc = e.getValue();
-	 * newMap.put(e.getKey(),
-	 * new ModelResourceLocation("modularutilities:" + loc.getResourcePath(), loc.getVariant()));
-	 * }
-	 * return newMap;
-	 * }
-	 * }
-	 */
-
-	@Override
-	public void registerColors() {
-
-	}
-
-	@Override
 	public void spawnFX(EnumParticleTypes type, BlockPos pos) {
 		World world = Minecraft.getMinecraft().theWorld;
 		if(type == EnumParticleTypes.PORTAL)
