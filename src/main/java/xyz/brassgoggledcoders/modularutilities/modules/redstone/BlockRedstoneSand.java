@@ -5,6 +5,7 @@ import com.teamacronymcoders.base.client.models.IHasModel;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -39,5 +40,11 @@ public class BlockRedstoneSand extends BlockFalling implements IHasItemBlock, IH
             name = name.substring(5);
         modelNames.add(name);
         return modelNames;
+    }
+
+    @Override
+    public List<ItemStack> getAllSubItems(List<ItemStack> itemStacks) {
+        itemStacks.add(new ItemStack(this));
+        return itemStacks;
     }
 }
