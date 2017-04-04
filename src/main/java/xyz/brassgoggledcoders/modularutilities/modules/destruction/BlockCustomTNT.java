@@ -7,6 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
@@ -19,6 +20,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel {
+	private ItemBlock itemBlock;
 
 	public BlockCustomTNT(String name) {
 		super();
@@ -69,12 +71,20 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
 
 	@Override
 	public ItemBlock getItemBlock() {
-		return new ItemBlock(this);
+		if (this.itemBlock == null) {
+			this.itemBlock = new ItemBlock(this);
+		}
+		return this.itemBlock;
 	}
 
 	@Override
 	public List<ItemStack> getAllSubItems(List<ItemStack> itemStacks) {
 		itemStacks.add(new ItemStack(this));
 		return itemStacks;
+	}
+
+	@Override
+	public Item getItem() {
+		return this.getItemBlock();
 	}
 }
