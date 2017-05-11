@@ -18,14 +18,16 @@ buildscript {
 
 repositories {
     maven {
-        name "TAC maven"
+        name "BASE"
         url "http://blamejared.com/maven"
     }
     maven {
-    	url "http://dvs1.progwml6.com/files/maven"
+        name "JEI"
+        url "http://dvs1.progwml6.com/files/maven"
     }
     maven {
-	    url "http://maven.tterrag.com"
+        name "EnderIO"
+        url "http://maven.tterrag.com"
     }
 }
 
@@ -33,7 +35,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = "${minecraft_version}-${mod_version}" + getBuildNumber()
 
-group= "xyz.brassgoggledcoders.modularutilities"
+group = "xyz.brassgoggledcoders.modularutilities"
 archivesBaseName = "${mod_name}"
 
 minecraft {
@@ -46,30 +48,27 @@ minecraft {
     replace "@VERSION@", project.version
     replaceIn "${mod_name}.java"
 
-    replace "base@[0.0.0,];", "base@[" + base_version +  ",];"
+    replace "base@[0.0.0,];", "base@[" + base_version + ",];"
 }
 
 dependencies {
     deobfCompile "com.teamacronymcoders.base:base:${minecraft_version}-${base_version}"
-	deobfCompile "mezz.jei:jei_1.10.2:3.7.8.234"
-	deobfCompile "com.enderio.core:EnderCore:1.10.2-0.4.1.41-beta"
-	deobfCompile "com.enderio:EnderIO:1.10.2-3.0.1.75_beta"
+    deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
+    deobfCompile "com.enderio.core:EnderCore:${minecraft_version}-${endercore_version}"
+    //deobfCompile "com.enderio:EnderIO:${minecraft_version}-${enderio_version}"
 }
 
-compileJava {
-    sourceCompatibility = 1.7
-    targetCompatibility = 1.7
-}
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
-processResources
-{
+processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
 
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version': project.version, 'mcversion': project.minecraft.version
     }
 
     from(sourceSets.main.resources.srcDirs) {
@@ -152,10 +151,10 @@ task("uploadJars", dependsOn: "reobf") {
 
 static String getBuildNumber() {
     String buildNumber = System.getenv("BUILD_NUMBER") != null ? System.getenv("BUILD_NUMBER") : ""
-    if(buildNumber == "") {
+    if (buildNumber == "") {
         buildNumber = System.getenv("bamboo_buildNumber") != null ? "." + System.getenv("bamboo_buildNumber") : ""
     }
-    if(buildNumber != "") {
+    if (buildNumber != "") {
         buildNumber = "-" + buildNumber
     }
     return buildNumber
