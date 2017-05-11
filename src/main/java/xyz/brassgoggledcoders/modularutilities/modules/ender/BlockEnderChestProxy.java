@@ -14,6 +14,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.UsernameCache;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
@@ -24,7 +25,7 @@ public class BlockEnderChestProxy extends BlockTEBase<TileEntityEnderChestProxy>
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
-			@Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumFacing side, float hitX, float hitY, float hitZ) {
 		if(!player.isSneaking()) {
 			TileEntityEnderChestProxy ex = this.getTileEntity(world, pos);
 			if(ex != null) {
@@ -36,7 +37,7 @@ public class BlockEnderChestProxy extends BlockTEBase<TileEntityEnderChestProxy>
 					} else {
 						text = new TextComponentString("No linked player");
 					}
-					player.addChatMessage(text);
+					player.sendStatusMessage(text, false);
 				}
 				return true;
 			}
@@ -49,18 +50,22 @@ public class BlockEnderChestProxy extends BlockTEBase<TileEntityEnderChestProxy>
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
 			ItemStack stack) {
 		if(placer instanceof EntityPlayer) {
-			TileEntityEnderChestProxy ex = (TileEntityEnderChestProxy) worldIn.getTileEntity(pos);
-			ex.setPlacerUUID(placer.getPersistentID());
+			TileEntityEnderChestProxy ex = this.getTileEntity(worldIn, pos);
+			if (ex != null) {
+				ex.setPlacerUUID(placer.getPersistentID());
+			}
 			// TODO Print linked player
 		}
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean hasComparatorInputOverride(IBlockState state) {
 		return true;
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {
 		// TODO
 		return 0;
@@ -72,13 +77,14 @@ public class BlockEnderChestProxy extends BlockTEBase<TileEntityEnderChestProxy>
 	}
 
 	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		worldIn.updateComparatorOutputLevel(pos, this);
-		super.breakBlock(worldIn, pos, state);
+	public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
+		world.updateComparatorOutputLevel(pos, this);
+		super.breakBlock(world, pos, state);
 	}
 
 	@Override
-	public TileEntity createTileEntity(World world, IBlockState blockState) {
+	@Nonnull
+	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState blockState) {
 		return new TileEntityEnderChestProxy();
 	}
 }

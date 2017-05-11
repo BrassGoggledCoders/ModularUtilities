@@ -3,6 +3,7 @@ package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 import com.teamacronymcoders.base.items.ItemBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -13,6 +14,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 
+import javax.annotation.Nonnull;
+
 public class ItemGoldPetal extends ItemBase implements IPlantable {
 
 	public ItemGoldPetal(String name) {
@@ -20,14 +23,16 @@ public class ItemGoldPetal extends ItemBase implements IPlantable {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		net.minecraft.block.state.IBlockState state = worldIn.getBlockState(pos);
-		if(facing == EnumFacing.UP && playerIn.canPlayerEdit(pos.offset(facing), facing, stack)
+	@Nonnull
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand,
+									  EnumFacing facing, float hitX, float hitY, float hitZ) {
+		IBlockState state = worldIn.getBlockState(pos);
+		ItemStack stack = player.getHeldItem(hand);
+		if(facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, stack)
 				&& state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP, this)
 				&& worldIn.isAirBlock(pos.up())) {
 			worldIn.setBlockState(pos.up(), MiscellaneousModule.magmagold.getDefaultState());
-			--stack.stackSize;
+			stack.shrink(1);
 			return EnumActionResult.SUCCESS;
 		}
 		else {

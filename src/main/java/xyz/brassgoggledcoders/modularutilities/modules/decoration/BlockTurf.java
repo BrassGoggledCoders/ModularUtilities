@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,7 +38,8 @@ public class BlockTurf extends BlockFlat {
 	}
 
 	@Override
-	public boolean isVisuallyOpaque() {
+	@SuppressWarnings("deprecation")
+	public boolean isFullyOpaque(IBlockState blockState) {
 		return false;
 	}
 
@@ -65,7 +67,7 @@ public class BlockTurf extends BlockFlat {
 	}
 
 	@Override
-	public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
+	public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> itemList) {
 		for(EnumDirtType resourceType : EnumDirtType.values())
 			itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
 	}

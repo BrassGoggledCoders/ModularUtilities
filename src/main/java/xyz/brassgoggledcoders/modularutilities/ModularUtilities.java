@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.UniversalBucket;
@@ -96,7 +97,7 @@ public class ModularUtilities extends BaseModFoundation {
 
 		@Override
 		@SideOnly(Side.CLIENT)
-		public void displayAllRelevantItems(@Nonnull List<ItemStack> items) {
+		public void displayAllRelevantItems(@Nonnull NonNullList<ItemStack> items) {
 			if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction")) {
 				items.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket,
 						FluidRegistry.getFluid("dirt")));
@@ -108,13 +109,13 @@ public class ModularUtilities extends BaseModFoundation {
 
 		@Override
 		@Nonnull
-		public Item getTabIconItem() {
+		public ItemStack getTabIconItem() {
 			if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Ender"))
-				return EnderModule.ender_glove;
+				return new ItemStack(EnderModule.ender_glove);
 			else if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction"))
-				return Item.getItemFromBlock(ConstructionModule.blast_glass);
+				return new ItemStack(ConstructionModule.blast_glass);
 			else
-				return Item.getItemFromBlock(Blocks.SPONGE);
+				return new ItemStack(Blocks.SPONGE);
 		}
 	}
 }

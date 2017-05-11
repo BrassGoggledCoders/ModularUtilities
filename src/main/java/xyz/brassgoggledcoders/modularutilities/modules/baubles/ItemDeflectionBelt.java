@@ -30,7 +30,7 @@ public class ItemDeflectionBelt extends ItemBaubleBase implements IHasRecipe {
 	@Override
 	@Optional.Method(modid = "Baubles")
 	public void onWornTick(ItemStack stack, EntityLivingBase living) {
-		World world = living.worldObj;
+		World world = living.getEntityWorld();
 		List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(living,
 				living.getEntityBoundingBox().expand(5.0D, 5.0D, 5.0D));
 		for(int i = 0; i < entities.size(); i++) {

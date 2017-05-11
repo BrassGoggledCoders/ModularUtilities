@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class BlockSplitterTNT extends BlockCustomTNT {
@@ -23,30 +24,30 @@ public class BlockSplitterTNT extends BlockCustomTNT {
 		if(!worldIn.isRemote) {
 			EntityTNTPrimed entitytntprimed =
 					new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, null);
-			worldIn.spawnEntityInWorld(entitytntprimed);
+			worldIn.spawnEntity(entitytntprimed);
 			for(int i = 0; i < 3; i++) {
 				EntityTNTPrimed entitytntprimed2 =
 						new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, null);
 				entitytntprimed2.setFuse(120);
-				worldIn.spawnEntityInWorld(entitytntprimed2);
+				worldIn.spawnEntity(entitytntprimed2);
 			}
 		}
 	}
 
 	@Override
-	public void explode(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase igniter) {
+	public void explode(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull EntityLivingBase igniter) {
 		if(!worldIn.isRemote)
 			if(state.getValue(EXPLODE)) {
 				EntityTNTPrimed entitytntprimed =
 						new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, igniter);
-				worldIn.spawnEntityInWorld(entitytntprimed);
+				worldIn.spawnEntity(entitytntprimed);
 				for(int i = 0; i < 3; i++) {
 					EntityTNTPrimed entitytntprimed2 =
 							new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, igniter);
 					entitytntprimed2.setFuse(120);
-					worldIn.spawnEntityInWorld(entitytntprimed2);
+					worldIn.spawnEntity(entitytntprimed2);
 				}
-				worldIn.playSound((EntityPlayer) null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ,
+				worldIn.playSound(null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ,
 						SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 	}

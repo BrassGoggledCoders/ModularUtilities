@@ -2,6 +2,7 @@ package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
 import com.teamacronymcoders.base.blocks.BlockFlat;
 import com.teamacronymcoders.base.util.EnumUtils;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -11,6 +12,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -18,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -34,17 +37,20 @@ public class BlockLeafCover extends BlockFlat {
 	}
 
 	@Override
+	@Nonnull
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return AABB;
 	}
 
 	@Override
 	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+	@SuppressWarnings("deprecation")
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
 		return NULL_AABB;
 	}
 
 	@Override
+	@Nonnull
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {
 		return (opaque) ? BlockRenderLayer.SOLID : BlockRenderLayer.CUTOUT;
@@ -61,17 +67,20 @@ public class BlockLeafCover extends BlockFlat {
 	}
 
 	@Override
+	@Nonnull
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(type, EnumLeaveType.values()[meta]);
 	}
 
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
+	public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> itemList) {
 		for(EnumLeaveType resourceType : EnumLeaveType.values())
 			itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
 	}
 
 	@Override
+	@Nonnull
 	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, type);
 	}

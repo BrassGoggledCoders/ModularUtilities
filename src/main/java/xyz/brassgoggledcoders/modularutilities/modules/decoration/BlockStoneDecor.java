@@ -11,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -45,7 +46,7 @@ public class BlockStoneDecor extends BlockSubBase {
 	}
 
 	@Override
-	public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, List<ItemStack> itemList) {
+	public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> itemList) {
 		for(EnumStoneType resourceType : EnumStoneType.values())
 			itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
 	}

@@ -17,6 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel {
@@ -28,22 +29,22 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
 	}
 
 	@Override
-	public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
+	public void onBlockDestroyedByExplosion(World worldIn, @Nonnull BlockPos pos, @Nonnull Explosion explosionIn) {
 		if(!worldIn.isRemote) {
 			EntityCustomTNTPrimed entitytntprimed =
 					new EntityCustomTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, null);
-			worldIn.spawnEntityInWorld(entitytntprimed);
+			worldIn.spawnEntity(entitytntprimed);
 		}
 	}
 
 	@Override
-	public void explode(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase igniter) {
+	public void explode(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull EntityLivingBase igniter) {
 		if(!worldIn.isRemote)
-			if(state.getValue(EXPLODE).booleanValue()) {
+			if(state.getValue(EXPLODE)) {
 				EntityCustomTNTPrimed entitytntprimed =
 						new EntityCustomTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, igniter);
-				worldIn.spawnEntityInWorld(entitytntprimed);
-				worldIn.playSound((EntityPlayer) null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ,
+				worldIn.spawnEntity(entitytntprimed);
+				worldIn.playSound(null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ,
 						SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 	}
@@ -56,7 +57,7 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
 	}
 
 	@Override
-	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+	public void onBlockAdded(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
 		this.updateState(worldIn, pos, state);
 	}
 

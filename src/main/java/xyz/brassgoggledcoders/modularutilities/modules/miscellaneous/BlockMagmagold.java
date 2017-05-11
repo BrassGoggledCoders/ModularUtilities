@@ -23,6 +23,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
@@ -42,20 +43,20 @@ public class BlockMagmagold extends BlockBase implements IGrowable {
 
 	public BlockMagmagold(Material mat, String name) {
 		super(mat, name);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), 0));
 		this.setTickRandomly(true);
-		this.setCreativeTab((CreativeTabs) null);
 		this.setHardness(0.0F);
 		this.setSoundType(SoundType.PLANT);
 	}
 
 	@Override
-	public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
+	public boolean canHarvestBlock(IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player) {
 		return true;
 	}
 
 	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+	@Nonnull
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
 		List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
 		int age = getAge(state);
 		Random rand = world instanceof World ? ((World) world).rand : new Random();
@@ -68,34 +69,40 @@ public class BlockMagmagold extends BlockBase implements IGrowable {
 
 	@Override
 	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+	@SuppressWarnings("deprecation")
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
 		return NULL_AABB;
 	}
 
 	@Override
+	@Nonnull
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
+	@Nonnull
+	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return CROPS_AABB[state.getValue(this.getAgeProperty()).intValue()];
+		return CROPS_AABB[state.getValue(this.getAgeProperty())];
 	}
 
 	// TODO Change to magma blocks in 1.10
 	protected boolean canSustainPlant(IBlockState state) {
-		return state.getBlock() == Blocks.SOUL_SAND;
+		return state.getBlock() == Blocks.MAGMA;
 	}
 
 	protected PropertyInteger getAgeProperty() {
@@ -107,15 +114,15 @@ public class BlockMagmagold extends BlockBase implements IGrowable {
 	}
 
 	protected int getAge(IBlockState state) {
-		return state.getValue(this.getAgeProperty()).intValue();
+		return state.getValue(this.getAgeProperty());
 	}
 
 	public IBlockState withAge(int age) {
-		return this.getDefaultState().withProperty(this.getAgeProperty(), Integer.valueOf(age));
+		return this.getDefaultState().withProperty(this.getAgeProperty(), age);
 	}
 
 	public boolean isMaxAge(IBlockState state) {
-		return state.getValue(this.getAgeProperty()).intValue() >= this.getMaxAge();
+		return state.getValue(this.getAgeProperty()) >= this.getMaxAge();
 	}
 
 	@Override
@@ -147,26 +154,29 @@ public class BlockMagmagold extends BlockBase implements IGrowable {
 	}
 
 	@Override
+	@Nonnull
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return this.getDrop();
 	}
 
 	@Override
-	public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
+	public boolean canSilkHarvest(World world, BlockPos pos, @Nonnull IBlockState state, EntityPlayer player) {
 		return false;
 	}
 
 	@Override
-	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+	public boolean canGrow(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, boolean isClient) {
 		return !this.isMaxAge(state);
 	}
 
 	@Override
-	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+	public void grow(@Nonnull World worldIn, @Nonnull Random rand, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
 		this.grow(worldIn, pos, state);
 	}
 
 	@Override
+	@Nonnull
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
 		return this.withAge(meta);
 	}
@@ -177,19 +187,20 @@ public class BlockMagmagold extends BlockBase implements IGrowable {
 	}
 
 	@Override
+	@Nonnull
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {AGE});
+		return new BlockStateContainer(this, AGE);
 	}
 
 	@Override
-	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+	public boolean canUseBonemeal(@Nonnull World worldIn, @Nonnull Random rand, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
 		return false;
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
-		super.neighborChanged(state, worldIn, pos, blockIn);
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos blockPos) {
+		super.neighborChanged(state, worldIn, pos, blockIn, blockPos);
 		this.checkAndDropBlock(worldIn, pos, state);
 	}
 

@@ -121,11 +121,6 @@ public class BlockHedge extends BlockSubBase {
 		return false;
 	}
 
-	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
-		return false;
-	}
-
 	/**
 	 * Used to determine ambient occlusion and culling when rebuilding chunks for render
 	 */

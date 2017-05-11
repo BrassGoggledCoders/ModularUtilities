@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 public class BlockFillerFluid extends BlockFluidBase {
@@ -18,7 +19,7 @@ public class BlockFillerFluid extends BlockFluidBase {
 	}
 
 	@Override
-	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+	public void updateTick(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Random rand) {
 		int quantaRemaining = quantaPerBlock - state.getValue(LEVEL);
 		int expQuanta = -101;
 
@@ -51,7 +52,7 @@ public class BlockFillerFluid extends BlockFluidBase {
 				else {
 					world.setBlockState(pos, state.withProperty(LEVEL, quantaPerBlock - expQuanta), 2);
 					world.scheduleUpdate(pos, this, tickRate);
-					world.notifyNeighborsOfStateChange(pos, this);
+					world.notifyNeighborsOfStateChange(pos, this, true);
 				}
 			}
 		}

@@ -13,9 +13,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
-public class BlockConcreteFluid extends BlockFluidBase implements IHasTileEntity, ITileEntityProvider {
+public class BlockConcreteFluid extends BlockFluidBase implements IHasTileEntity {
 
 	public BlockConcreteFluid(Material mat, String name, Fluid fluid) {
 		super(name, fluid, mat);
@@ -40,7 +41,7 @@ public class BlockConcreteFluid extends BlockFluidBase implements IHasTileEntity
 
 	// Method identical to that in BlockFluidClassic, except for removing 'total decay'. Better way?
 	@Override
-	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+	public void updateTick(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Random rand) {
 		int quantaRemaining = quantaPerBlock - state.getValue(LEVEL);
 		int expQuanta = -101;
 
@@ -73,7 +74,7 @@ public class BlockConcreteFluid extends BlockFluidBase implements IHasTileEntity
 				else {
 					world.setBlockState(pos, state.withProperty(LEVEL, quantaPerBlock - expQuanta), 2);
 					world.scheduleUpdate(pos, this, tickRate);
-					world.notifyNeighborsOfStateChange(pos, this);
+					world.notifyNeighborsOfStateChange(pos, this, true);
 				}
 			}
 		}
@@ -131,7 +132,7 @@ public class BlockConcreteFluid extends BlockFluidBase implements IHasTileEntity
 	 */
 
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
+	public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
 		return new TileEntityLiquidConcrete();
 	}
 

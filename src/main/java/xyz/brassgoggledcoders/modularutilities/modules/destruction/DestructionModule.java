@@ -2,8 +2,8 @@ package xyz.brassgoggledcoders.modularutilities.modules.destruction;
 
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
-import com.teamacronymcoders.base.registry.BlockRegistry;
-import com.teamacronymcoders.base.registry.config.ConfigRegistry;
+import com.teamacronymcoders.base.registrysystem.BlockRegistry;
+import com.teamacronymcoders.base.registrysystem.config.ConfigRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

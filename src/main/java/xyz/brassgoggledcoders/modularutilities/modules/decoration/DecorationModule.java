@@ -3,8 +3,8 @@ package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 import com.teamacronymcoders.base.blocks.BlockBase;
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
-import com.teamacronymcoders.base.registry.BlockRegistry;
-import com.teamacronymcoders.base.registry.config.ConfigRegistry;
+import com.teamacronymcoders.base.registrysystem.BlockRegistry;
+import com.teamacronymcoders.base.registrysystem.config.ConfigRegistry;
 import com.teamacronymcoders.base.util.ItemStackUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
@@ -111,14 +111,14 @@ public class DecorationModule extends ModuleBase {
 
 			if(bl == Blocks.GRASS) {
 				Biome b = event.getWorld().getBiome(event.getPos());
-
-				if(BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.SANDY))
+				
+				if(BiomeDictionary.hasType(b, BiomeDictionary.Type.SANDY))
 					meta = 1;
-				else if(BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.COLD))
+				else if(BiomeDictionary.hasType(b, BiomeDictionary.Type.COLD))
 					meta = 2;
-				else if(BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.JUNGLE))
+				else if(BiomeDictionary.hasType(b, BiomeDictionary.Type.JUNGLE))
 					meta = 3;
-				else if(BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.SWAMP))
+				else if(BiomeDictionary.hasType(b, BiomeDictionary.Type.SWAMP))
 					meta = 4;
 
 				flag = true;

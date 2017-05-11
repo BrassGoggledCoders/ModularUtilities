@@ -2,9 +2,10 @@ package xyz.brassgoggledcoders.modularutilities.modules.achievements;
 
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
-import com.teamacronymcoders.base.registry.config.ConfigEntry;
+import com.teamacronymcoders.base.registrysystem.config.ConfigEntry;
 import com.teamacronymcoders.base.util.ItemStackUtils;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.monster.EntityElderGuardian;
 import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -121,19 +122,19 @@ public class ModuleAchievements extends ModuleBase {
 
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event) {
-		if(event.player == null || event.player.inventory.armorInventory[0] == null)
+		if(event.player == null || !ItemStackUtils.isValid(event.player.inventory.armorInventory.get(0)))
 			return;
 
-		if(ItemStackUtils.doItemsMatch(event.player.inventory.armorInventory[0], Items.DIAMOND_BOOTS)
-				&& ItemStackUtils.doItemsMatch(event.player.inventory.armorInventory[1], Items.DIAMOND_LEGGINGS)
-				&& ItemStackUtils.doItemsMatch(event.player.inventory.armorInventory[2], Items.DIAMOND_CHESTPLATE)
-				&& ItemStackUtils.doItemsMatch(event.player.inventory.armorInventory[3], Items.DIAMOND_HELMET)) {
+		if(ItemStackUtils.doItemsMatch(event.player.inventory.armorInventory.get(0), Items.DIAMOND_BOOTS)
+				&& ItemStackUtils.doItemsMatch(event.player.inventory.armorInventory.get(1), Items.DIAMOND_LEGGINGS)
+				&& ItemStackUtils.doItemsMatch(event.player.inventory.armorInventory.get(2), Items.DIAMOND_CHESTPLATE)
+				&& ItemStackUtils.doItemsMatch(event.player.inventory.armorInventory.get(3), Items.DIAMOND_HELMET)) {
 			event.player.addStat(unstoppable);
 			// N.B. We know the armour slots have diamond armour in, no need to nullcheck them.
-			if(event.player.inventory.armorInventory[0].isItemEnchanted()
-					&& event.player.inventory.armorInventory[1].isItemEnchanted()
-					&& event.player.inventory.armorInventory[2].isItemEnchanted()
-					&& event.player.inventory.armorInventory[3].isItemEnchanted()
+			if(event.player.inventory.armorInventory.get(0).isItemEnchanted()
+					&& event.player.inventory.armorInventory.get(1).isItemEnchanted()
+					&& event.player.inventory.armorInventory.get(2).isItemEnchanted()
+					&& event.player.inventory.armorInventory.get(3).isItemEnchanted()
 					&& ItemStackUtils.doItemsMatch(event.player.getHeldItemMainhand(), Items.DIAMOND_SWORD)
 					&& event.player.getHeldItemMainhand().isItemEnchanted())
 				event.player.addStat(demigod);
@@ -142,7 +143,7 @@ public class ModuleAchievements extends ModuleBase {
 
 	@SubscribeEvent
 	public void onLivingDeath(LivingDeathEvent event) {
-		if(event.getEntityLiving() instanceof EntityGuardian && ((EntityGuardian) event.getEntityLiving()).isElder()) {
+		if(event.getEntityLiving() instanceof EntityElderGuardian) {
 			if(event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
 				player.addStat(undersea);

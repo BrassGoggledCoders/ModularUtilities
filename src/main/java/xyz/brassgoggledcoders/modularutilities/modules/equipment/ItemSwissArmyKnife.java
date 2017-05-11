@@ -11,6 +11,8 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 /*
  * @formatter:off
  * ||##############################|
@@ -42,13 +44,13 @@ public class ItemSwissArmyKnife extends ItemBase {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World worldIn, EntityPlayer player,
-			EnumHand hand) {
-		if(Items.IRON_HOE.onItemRightClick(stack, worldIn, player,
-				hand) == new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack)) {
+	@Nonnull
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, @Nonnull EnumHand hand) {
+		ItemStack stack = player.getHeldItem(hand);
+		if(Items.IRON_HOE.onItemRightClick(worldIn, player, hand) == new ActionResult<>(EnumActionResult.SUCCESS, stack)) {
 			ModuleEquipment.convertToTool(stack, Items.IRON_HOE, player);
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+			return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
+		return new ActionResult<>(EnumActionResult.PASS, stack);
 	}
 }

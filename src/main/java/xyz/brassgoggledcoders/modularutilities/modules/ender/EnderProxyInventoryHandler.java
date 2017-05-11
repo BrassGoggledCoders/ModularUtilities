@@ -5,6 +5,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
+import javax.annotation.Nonnull;
+
 public class EnderProxyInventoryHandler implements IItemHandler {
 	private IItemHandler enderChest;
 	public EntityPlayer player;
@@ -21,17 +23,25 @@ public class EnderProxyInventoryHandler implements IItemHandler {
 	}
 
 	@Override
+	@Nonnull
 	public ItemStack getStackInSlot(int slot) {
 		return getEInv().getStackInSlot(slot);
 	}
 
 	@Override
+	@Nonnull
 	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
 		return getEInv().insertItem(slot, stack, simulate);
 	}
 
 	@Override
+	@Nonnull
 	public ItemStack extractItem(int slot, int amount, boolean simulate) {
 		return getEInv().extractItem(slot, amount, simulate);
+	}
+
+	@Override
+	public int getSlotLimit(int slot) {
+		return getEInv().getSlotLimit(slot);
 	}
 }
