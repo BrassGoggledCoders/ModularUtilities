@@ -29,7 +29,7 @@ public class ModuleBaubles extends ModuleBase {
 
 	@Override
 	public List<IDependency> getDependencies(List<IDependency> dependencies) {
-		dependencies.add(new ModDependency("Baubles"));
+		dependencies.add(new ModDependency("baubles"));
 		return dependencies;
 	}
 
