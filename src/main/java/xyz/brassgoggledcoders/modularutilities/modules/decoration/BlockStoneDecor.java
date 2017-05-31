@@ -55,7 +55,7 @@ public class BlockStoneDecor extends BlockSubBase {
 	@SideOnly(Side.CLIENT)
 	public List<ModelResourceLocation> getModelResourceLocations(List<ModelResourceLocation> models) {
 		for(EnumStoneType stoneType : EnumStoneType.values()) {
-			models.add(new ModelResourceLocation(getMod().getPrefix() + "stone_decor", "type=" + stoneType.getName()));
+			models.add(new ModelResourceLocation(getMod().getID() + ":stone_decor", "type=" + stoneType.getName()));
 		}
 		return models;
 	}
