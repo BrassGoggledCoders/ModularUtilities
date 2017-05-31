@@ -212,7 +212,7 @@ public class BlockHedge extends BlockSubBase {
 	public List<ModelResourceLocation> getModelResourceLocations(List<ModelResourceLocation> models) {
 		String modelName = "hedge" + ((this.opaque) ? "_opaque" : "");
 		for(EnumLeaveType leaveType : EnumLeaveType.values()) {
-			models.add(new ModelResourceLocation(getMod().getPrefix() + modelName, "inventory"));
+			models.add(new ModelResourceLocation(getMod() + ":" + modelName, "inventory"));
 		}
 		return models;
 	}

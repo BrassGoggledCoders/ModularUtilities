@@ -81,7 +81,7 @@ public class BlockLeafCover extends BlockFlat {
 	public List<ModelResourceLocation> getModelResourceLocations(List<ModelResourceLocation> models) {
 		String modelName = "leaf_cover" + ((this.opaque) ? "_opaque" : "");
 		for(EnumLeaveType leaveType : EnumLeaveType.values()) {
-			models.add(new ModelResourceLocation(getMod().getPrefix() + modelName, "type=" + leaveType.getName()));
+			models.add(new ModelResourceLocation(getMod() + ":" + modelName, "type=" + leaveType.getName()));
 		}
 		return models;
 	}
