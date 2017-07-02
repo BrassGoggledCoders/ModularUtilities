@@ -30,7 +30,7 @@ public class EnderProxyInventoryHandler implements IItemHandler {
 
 	@Override
 	@Nonnull
-	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+	public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 		return getEInv().insertItem(slot, stack, simulate);
 	}
 
