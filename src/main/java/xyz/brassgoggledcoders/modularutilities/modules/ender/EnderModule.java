@@ -1,9 +1,13 @@
 package xyz.brassgoggledcoders.modularutilities.modules.ender;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import com.teamacronymcoders.base.items.ItemBase;
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import com.teamacronymcoders.base.util.ItemStackUtils;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,9 +25,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 
 @Module(ModularUtilities.MODID)
 public class EnderModule extends ModuleBase {
@@ -64,13 +65,13 @@ public class EnderModule extends ModuleBase {
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event) {
 		if(event.getSource().getDamageType() == "player") {
-			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
+			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove)) {
 				Iterator<EntityItem> drops = event.getDrops().iterator();
 				ArrayList<EntityItem> toRemove = new ArrayList<EntityItem>();
 				while(drops.hasNext()) {
 					EntityItem current = drops.next();
-					if(player.getInventoryEnderChest().addItem(current.getEntityItem()) == null)
+					if(player.getInventoryEnderChest().addItem(current.getItem()) == null)
 						toRemove.add(current);
 				}
 				event.getDrops().removeAll(toRemove);

@@ -1,50 +1,50 @@
-package xyz.brassgoggledcoders.modularutilities.modules.baubles;
-
-import baubles.api.BaubleType;
-import com.teamacronymcoders.base.items.IHasRecipe;
-import com.teamacronymcoders.base.items.ItemBaubleBase;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IProjectile;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-
-import java.util.List;
-
-public class ItemDeflectionBelt extends ItemBaubleBase implements IHasRecipe {
-
-	public ItemDeflectionBelt() {
-		super("deflection_belt");
-	}
-
-	@Override
-	@Optional.Method(modid = "Baubles")
-	public BaubleType getBaubleType(ItemStack arg0) {
-		return BaubleType.BELT;
-	}
-
-	@Override
-	@Optional.Method(modid = "Baubles")
-	public void onWornTick(ItemStack stack, EntityLivingBase living) {
-		World world = living.getEntityWorld();
-		List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(living,
-				living.getEntityBoundingBox().expand(5.0D, 5.0D, 5.0D));
-		for(int i = 0; i < entities.size(); i++) {
-			Entity entity = entities.get(i);
-			if(entity instanceof IProjectile) {
-				entity.setVelocity(-entity.motionX, entity.motionY, -entity.motionZ);
-			}
-		}
-	}
-
-	@Override
-	public List<IRecipe> getRecipes(List<IRecipe> recipes) {
-		recipes.add(new ShapedOreRecipe(new ItemStack(this), "LLL", "LDL", "LLL", 'L', Items.LEATHER, 'D',
-				Items.DRAGON_BREATH));
-		return recipes;
-	}
-}
+// package xyz.brassgoggledcoders.modularutilities.modules.baubles;
+//
+// import baubles.api.BaubleType;
+// import com.teamacronymcoders.base.items.IHasRecipe;
+// import com.teamacronymcoders.base.items.ItemBaubleBase;
+// import net.minecraft.entity.Entity;
+// import net.minecraft.entity.EntityLivingBase;
+// import net.minecraft.entity.IProjectile;
+// import net.minecraft.init.Items;
+// import net.minecraft.item.ItemStack;
+// import net.minecraft.item.crafting.IRecipe;
+// import net.minecraft.world.World;
+// import net.minecraftforge.fml.common.Optional;
+// import net.minecraftforge.oredict.ShapedOreRecipe;
+//
+// import java.util.List;
+//
+// public class ItemDeflectionBelt extends ItemBaubleBase implements IHasRecipe {
+//
+// public ItemDeflectionBelt() {
+// super("deflection_belt");
+// }
+//
+// @Override
+// @Optional.Method(modid = "Baubles")
+// public BaubleType getBaubleType(ItemStack arg0) {
+// return BaubleType.BELT;
+// }
+//
+// @Override
+// @Optional.Method(modid = "Baubles")
+// public void onWornTick(ItemStack stack, EntityLivingBase living) {
+// World world = living.getEntityWorld();
+// List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(living,
+// living.getEntityBoundingBox().expand(5.0D, 5.0D, 5.0D));
+// for(int i = 0; i < entities.size(); i++) {
+// Entity entity = entities.get(i);
+// if(entity instanceof IProjectile) {
+// entity.setVelocity(-entity.motionX, entity.motionY, -entity.motionZ);
+// }
+// }
+// }
+//
+// @Override
+// public List<IRecipe> getRecipes(List<IRecipe> recipes) {
+// recipes.add(new ShapedOreRecipe(new ItemStack(this), "LLL", "LDL", "LLL", 'L', Items.LEATHER, 'D',
+// Items.DRAGON_BREATH));
+// return recipes;
+// }
+// }

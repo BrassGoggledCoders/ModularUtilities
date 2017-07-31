@@ -1,7 +1,10 @@
 package xyz.brassgoggledcoders.modularutilities.modules.enchantments;
 
+import java.util.Iterator;
+
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -23,8 +26,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
-
-import java.util.Iterator;
 
 @Module(ModularUtilities.MODID)
 public class EnchantmentsModule extends ModuleBase {
@@ -126,10 +127,10 @@ public class EnchantmentsModule extends ModuleBase {
 		if(event.getAmount() == 0)
 			return;
 		if(event.getSource() instanceof EntityDamageSource) {
-			if(event.getSource().getSourceOfDamage() == null
-					|| !(event.getSource().getSourceOfDamage() instanceof EntityLivingBase))
+			if(event.getSource().getTrueSource() == null
+					|| !(event.getSource().getTrueSource() instanceof EntityLivingBase))
 				return;
-			EntityLivingBase ent = (EntityLivingBase) event.getSource().getSourceOfDamage();
+			EntityLivingBase ent = (EntityLivingBase) event.getSource().getTrueSource();
 			if(ent.getHeldItemMainhand() == null || !(ent.getHeldItemMainhand().isItemEnchanted()))
 				return;
 			for(Enchantment ench : EnchantmentHelper.getEnchantments(ent.getHeldItemMainhand()).keySet()) {
@@ -145,7 +146,7 @@ public class EnchantmentsModule extends ModuleBase {
 	public void onPlayerDrops(PlayerDropsEvent event) {
 		Iterator<EntityItem> drops = event.getDrops().iterator();
 		while(drops.hasNext()) {
-			ItemStack current = drops.next().getEntityItem();
+			ItemStack current = drops.next().getItem();
 			if(EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.soulbound, current) != 0) {
 				event.getEntityPlayer().inventory.addItemStackToInventory(current);
 				drops.remove();
