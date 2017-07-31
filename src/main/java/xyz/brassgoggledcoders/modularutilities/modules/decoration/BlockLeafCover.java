@@ -1,8 +1,13 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.teamacronymcoders.base.blocks.BlockFlat;
 import com.teamacronymcoders.base.util.EnumUtils;
-import net.minecraft.block.Block;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -19,10 +24,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class BlockLeafCover extends BlockFlat {
 
@@ -44,8 +45,8 @@ public class BlockLeafCover extends BlockFlat {
 
 	@Override
 	@Nullable
-	@SuppressWarnings("deprecation")
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, @Nonnull IBlockAccess world,
+			@Nonnull BlockPos pos) {
 		return NULL_AABB;
 	}
 
@@ -68,7 +69,6 @@ public class BlockLeafCover extends BlockFlat {
 
 	@Override
 	@Nonnull
-	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(type, EnumLeaveType.values()[meta]);
 	}
@@ -90,7 +90,7 @@ public class BlockLeafCover extends BlockFlat {
 	public List<ModelResourceLocation> getModelResourceLocations(List<ModelResourceLocation> models) {
 		String modelName = "leaf_cover" + ((this.opaque) ? "_opaque" : "");
 		for(EnumLeaveType leaveType : EnumLeaveType.values()) {
-			models.add(new ModelResourceLocation(getMod() + ":" + modelName, "type=" + leaveType.getName()));
+			models.add(new ModelResourceLocation(getMod().getID() + ":" + modelName, "type=" + leaveType.getName()));
 		}
 		return models;
 	}

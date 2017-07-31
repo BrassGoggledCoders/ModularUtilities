@@ -18,14 +18,15 @@ public class EnchantmentVampirism extends CustomEnchantment {
 	@Override
 	public void onEntityAttacked(LivingAttackEvent event) {
 
-		if(event.getSource().getSourceOfDamage() instanceof EntityLivingBase) {
-			EntityLivingBase ent = (EntityLivingBase) event.getSource().getSourceOfDamage();
+		if(event.getSource().getTrueSource() instanceof EntityLivingBase) {
+			EntityLivingBase ent = (EntityLivingBase) event.getSource().getTrueSource();
 			ItemStack held = ent.getActiveItemStack();
 			int vampAmount = EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.vampirism, held);
-			if (vampAmount == 1) {
-				if (event.getEntityLiving() instanceof EntityMob)
+			if(vampAmount == 1) {
+				if(event.getEntityLiving() instanceof EntityMob)
 					ent.heal(event.getAmount() * 0.25F);
-			} else if (vampAmount == 2)
+			}
+			else if(vampAmount == 2)
 				ent.heal(event.getAmount() * 0.25F);
 		}
 	}

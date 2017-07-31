@@ -1,8 +1,11 @@
 package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
+import java.util.Arrays;
+
 import com.teamacronymcoders.base.blocks.BlockBase;
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -19,8 +22,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
-
-import java.util.Arrays;
 
 @Module(ModularUtilities.MODID)
 public class MiscellaneousModule extends ModuleBase {
@@ -129,8 +130,8 @@ public class MiscellaneousModule extends ModuleBase {
 	@SubscribeEvent
 	public void onItemExpire(ItemExpireEvent event) {
 		ItemStack[] rareStuff = new ItemStack[] {new ItemStack(Items.ELYTRA)};
-		if(event.getEntityItem().getEntityItem().getRarity() == EnumRarity.EPIC
-				|| Arrays.asList(rareStuff).contains(event.getEntityItem().getEntityItem())) {
+		if(event.getEntityItem().getItem().getRarity() == EnumRarity.EPIC
+				|| Arrays.asList(rareStuff).contains(event.getEntityItem().getItem())) {
 			event.setExtraLife(600);
 			event.setCanceled(true);
 		}

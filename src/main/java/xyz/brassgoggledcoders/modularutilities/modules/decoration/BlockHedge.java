@@ -1,7 +1,13 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.teamacronymcoders.base.blocks.BlockSubBase;
 import com.teamacronymcoders.base.util.EnumUtils;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.material.Material;
@@ -22,10 +28,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class BlockHedge extends BlockSubBase {
 
@@ -66,9 +68,8 @@ public class BlockHedge extends BlockSubBase {
 		this.setResistance(0F);
 		this.setUnlocalizedName(name);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumLeaveType.OAK)
-				.withProperty(UP, Boolean.FALSE).withProperty(NORTH, Boolean.FALSE)
-				.withProperty(EAST, Boolean.FALSE).withProperty(SOUTH, Boolean.FALSE)
-				.withProperty(WEST, Boolean.FALSE));
+				.withProperty(UP, Boolean.FALSE).withProperty(NORTH, Boolean.FALSE).withProperty(EAST, Boolean.FALSE)
+				.withProperty(SOUTH, Boolean.FALSE).withProperty(WEST, Boolean.FALSE));
 		this.opaque = opaque;
 	}
 
@@ -88,7 +89,8 @@ public class BlockHedge extends BlockSubBase {
 
 	@Nullable
 	@SuppressWarnings("deprecation")
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState,@Nonnull World worldIn,@Nonnull BlockPos pos) {
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, @Nonnull World worldIn,
+			@Nonnull BlockPos pos) {
 		blockState = this.getActualState(blockState, worldIn, pos);
 		return CLIP_AABB_BY_INDEX[getAABBIndex(blockState)];
 	}
@@ -133,8 +135,9 @@ public class BlockHedge extends BlockSubBase {
 	private boolean canConnectTo(IBlockAccess worldIn, BlockPos pos) {
 		IBlockState iblockstate = worldIn.getBlockState(pos);
 		Block block = iblockstate.getBlock();
-		return block != Blocks.BARRIER && (!(block != this && !(block instanceof BlockFenceGate)) ||
-				((block.isFullyOpaque(iblockstate) && iblockstate.isFullCube()) && block.getMaterial(iblockstate) != Material.GOURD));
+		return block != Blocks.BARRIER && (!(block != this && !(block instanceof BlockFenceGate))
+				|| ((block.isOpaqueCube(iblockstate) && iblockstate.isFullCube())
+						&& block.getMaterial(iblockstate) != Material.GOURD));
 	}
 
 	/**
@@ -142,7 +145,7 @@ public class BlockHedge extends BlockSubBase {
 	 */
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, List<ItemStack> list) {
-		for(EnumLeaveType blockType: EnumLeaveType.values()) {
+		for(EnumLeaveType blockType : EnumLeaveType.values()) {
 			list.add(new ItemStack(itemIn, 1, blockType.ordinal()));
 		}
 	}
@@ -157,8 +160,8 @@ public class BlockHedge extends BlockSubBase {
 
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings("deprecation")
-	public boolean shouldSideBeRendered(IBlockState blockState, @Nonnull IBlockAccess blockAccess, @Nonnull BlockPos pos,
-										EnumFacing side) {
+	public boolean shouldSideBeRendered(IBlockState blockState, @Nonnull IBlockAccess blockAccess,
+			@Nonnull BlockPos pos, EnumFacing side) {
 		return side != EnumFacing.DOWN || super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
 
@@ -192,9 +195,8 @@ public class BlockHedge extends BlockSubBase {
 		boolean flag2 = this.canConnectTo(worldIn, pos.south());
 		boolean flag3 = this.canConnectTo(worldIn, pos.west());
 		boolean flag4 = flag && !flag1 && flag2 && !flag3 || !flag && flag1 && !flag2 && flag3;
-		return state.withProperty(UP, !flag4 || !worldIn.isAirBlock(pos.up()))
-				.withProperty(NORTH, flag).withProperty(EAST, flag1)
-				.withProperty(SOUTH, flag2).withProperty(WEST, flag3);
+		return state.withProperty(UP, !flag4 || !worldIn.isAirBlock(pos.up())).withProperty(NORTH, flag)
+				.withProperty(EAST, flag1).withProperty(SOUTH, flag2).withProperty(WEST, flag3);
 	}
 
 	@Nonnull
@@ -207,7 +209,7 @@ public class BlockHedge extends BlockSubBase {
 	public List<ModelResourceLocation> getModelResourceLocations(List<ModelResourceLocation> models) {
 		String modelName = "hedge" + ((this.opaque) ? "_opaque" : "");
 		for(EnumLeaveType leaveType : EnumLeaveType.values()) {
-			models.add(new ModelResourceLocation(getMod() + ":" + modelName, "inventory"));
+			models.add(new ModelResourceLocation(getMod().getID() + ":" + modelName, "inventory"));
 		}
 		return models;
 	}

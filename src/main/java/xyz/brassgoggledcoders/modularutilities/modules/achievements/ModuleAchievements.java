@@ -1,12 +1,14 @@
 package xyz.brassgoggledcoders.modularutilities.modules.achievements;
 
+import java.util.List;
+
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import com.teamacronymcoders.base.registrysystem.config.ConfigEntry;
 import com.teamacronymcoders.base.util.ItemStackUtils;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.monster.EntityElderGuardian;
-import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -30,8 +32,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
-
-import java.util.List;
 
 @Module(ModularUtilities.MODID)
 public class ModuleAchievements extends ModuleBase {
@@ -73,14 +73,15 @@ public class ModuleAchievements extends ModuleBase {
 	@SubscribeEvent
 	public void onAchievementUnlocked(AchievementEvent event) {
 		if(event.getEntityPlayer() instanceof EntityPlayerMP) {
-			EntityPlayerMP entityPlayerMP = (EntityPlayerMP)event.getEntityPlayer();
+			EntityPlayerMP entityPlayerMP = (EntityPlayerMP) event.getEntityPlayer();
 			StatisticsManagerServer file = entityPlayerMP.getStatFile();
 			Achievement achievement = event.getAchievement();
 			if(file.canUnlockAchievement(achievement) && !file.hasAchievementUnlocked(achievement)) {
 				if(giveEXPForAchievements) {
 					if(achievement.getSpecial()) {
 						entityPlayerMP.addExperienceLevel(1 + entityPlayerMP.getRNG().nextInt(3));
-					} else {
+					}
+					else {
 						entityPlayerMP.addExperience(entityPlayerMP.getRNG().nextInt(6));
 					}
 
@@ -108,9 +109,8 @@ public class ModuleAchievements extends ModuleBase {
 				EntityIronGolem golem = (EntityIronGolem) event.getEntity();
 				if(golem.isPlayerCreated()) {
 					AxisAlignedBB axisalignedbb =
-						new AxisAlignedBB(new BlockPos(golem.posX, golem.posY, golem.posZ)).expandXyz(5);
-					List<EntityPlayer> list =
-						event.getWorld().getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+							new AxisAlignedBB(new BlockPos(golem.posX, golem.posY, golem.posZ)).grow(5);
+					List<EntityPlayer> list = event.getWorld().getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
 					for(EntityPlayer entityplayer : list) {
 						entityplayer.addStat(hired_help);
@@ -144,8 +144,8 @@ public class ModuleAchievements extends ModuleBase {
 	@SubscribeEvent
 	public void onLivingDeath(LivingDeathEvent event) {
 		if(event.getEntityLiving() instanceof EntityElderGuardian) {
-			if(event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
+			if(event.getSource().getTrueSource() instanceof EntityPlayer) {
+				EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 				player.addStat(undersea);
 			}
 		}
