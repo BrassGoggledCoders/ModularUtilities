@@ -21,9 +21,9 @@ public class ModuleBaubles extends ModuleBase {
 	}
 
 	public void registerItems(ConfigRegistry configRegistry, ItemRegistry itemRegistry) {
-		// itemRegistry.register(bloodboundRing = new ItemBloodboundRing());
-		// itemRegistry.register(fireCharm = new ItemFireCharm());
-		// itemRegistry.register(deflectionBelt = new ItemDeflectionBelt());
+		itemRegistry.register(bloodboundRing = new ItemBloodboundRing());
+		itemRegistry.register(fireCharm = new ItemFireCharm());
+		itemRegistry.register(deflectionBelt = new ItemDeflectionBelt());
 	}
 
 	@Override
