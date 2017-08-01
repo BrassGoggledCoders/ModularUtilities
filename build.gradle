@@ -12,7 +12,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 
@@ -59,12 +59,12 @@ dependencies {
     deobfCompile "com.teamacronymcoders.base:base:${minecraft_version}-${base_version}"
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
     deobfCompile "com.github.Azanor:Baubles:${baubles_version}-SNAPSHOT"
-    deobfCompile "com.enderio.core:EnderCore:${minecraft_version}-${endercore_version}"
+    //deobfCompile "com.enderio.core:EnderCore:${minecraft_version}-${endercore_version}"
     //deobfCompile "com.enderio:EnderIO:${minecraft_version}-${enderio_version}"
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 
+targetCompatibility = JavaVersion.VERSION_1_8
 
 processResources {
     inputs.property "version", project.version
