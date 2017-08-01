@@ -2,9 +2,9 @@ package xyz.brassgoggledcoders.modularutilities.modules.redstone;
 
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -40,7 +40,5 @@ public class RedstoneModule extends ModuleBase {
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
 		GameRegistry.addSmelting(Blocks.QUARTZ_BLOCK, new ItemStack(fused_quartz), 0.2F);
-		GameRegistry.addRecipe(new ItemStack(redstone_sand),
-				new Object[] {"SR", "RS", 'S', Blocks.SAND, 'R', Items.REDSTONE});
 	}
 }

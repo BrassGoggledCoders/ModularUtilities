@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "modularutilities:feathers",
+    "data": 0
+  },
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "minecraft:feather"
+    }
+  }
+}

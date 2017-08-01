@@ -1,18 +1,21 @@
 package xyz.brassgoggledcoders.modularutilities;
 
+import static xyz.brassgoggledcoders.modularutilities.ModularUtilities.DEPENDS;
+import static xyz.brassgoggledcoders.modularutilities.ModularUtilities.MODID;
+import static xyz.brassgoggledcoders.modularutilities.ModularUtilities.MODNAME;
+import static xyz.brassgoggledcoders.modularutilities.ModularUtilities.MODVERSION;
+
+import java.io.File;
+
+import javax.annotation.Nonnull;
+
 import com.teamacronymcoders.base.BaseModFoundation;
+
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -20,20 +23,12 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.modularutilities.modules.construction.ConstructionModule;
-import xyz.brassgoggledcoders.modularutilities.modules.enchantments.CustomEnchantment;
 import xyz.brassgoggledcoders.modularutilities.modules.ender.EnderModule;
 import xyz.brassgoggledcoders.modularutilities.proxies.CommonProxy;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-
-import static xyz.brassgoggledcoders.modularutilities.ModularUtilities.*;
-
 @Mod(modid = MODID, name = MODNAME, version = MODVERSION, dependencies = DEPENDS)
-public class ModularUtilities extends BaseModFoundation {
+public class ModularUtilities extends BaseModFoundation<ModularUtilities> {
 	public ModularUtilities() {
 		super(MODID, MODNAME, MODVERSION, tab);
 	}
@@ -52,6 +47,8 @@ public class ModularUtilities extends BaseModFoundation {
 
 	public static CreativeTabs tab = new MUTab();
 
+	public static File config;
+
 	static {
 		FluidRegistry.enableUniversalBucket();
 	}
@@ -60,6 +57,7 @@ public class ModularUtilities extends BaseModFoundation {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
+		config = event.getSuggestedConfigurationFile();
 	}
 
 	@Override
@@ -75,7 +73,7 @@ public class ModularUtilities extends BaseModFoundation {
 	}
 
 	@Override
-	public Object getInstance() {
+	public ModularUtilities getInstance() {
 		return instance;
 	}
 
@@ -83,28 +81,6 @@ public class ModularUtilities extends BaseModFoundation {
 		public MUTab() {
 			super(MODID);
 			this.setRelevantEnchantmentTypes(EnumEnchantmentType.values());
-		}
-
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void addEnchantmentBooksToList(@Nonnull List<ItemStack> itemList,@Nonnull EnumEnchantmentType... enchantmentType) {
-			for(Enchantment enchantment : Enchantment.REGISTRY)
-				// A little expensive, but its on load, so shouldn't be a big deal
-				if(enchantment instanceof CustomEnchantment)
-					itemList.add(Items.ENCHANTED_BOOK
-							.getEnchantedItemStack(new EnchantmentData(enchantment, enchantment.getMaxLevel())));
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public void displayAllRelevantItems(@Nonnull NonNullList<ItemStack> items) {
-			if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction")) {
-				items.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket,
-						FluidRegistry.getFluid("dirt")));
-				items.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket,
-						FluidRegistry.getFluid("concrete")));
-			}
-			super.displayAllRelevantItems(items);
 		}
 
 		@Override

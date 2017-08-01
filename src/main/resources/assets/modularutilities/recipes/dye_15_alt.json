@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "minecraft:dye",
+    "data": 15,
+    "count": 6
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:bone"
+    },
+    {
+      "item": "minecraft:rotten_flesh"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

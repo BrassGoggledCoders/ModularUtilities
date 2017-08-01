@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "minecraft:quartz",
+    "count": 6
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:quartz_stairs"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "modularutilities:stone_decor",
+    "data": 4
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:prismarine",
+      "data": 2
+    },
+    {
+      "item": "minecraft:gunpowder"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

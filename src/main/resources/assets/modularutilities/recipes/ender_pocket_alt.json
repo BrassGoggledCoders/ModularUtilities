@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "modularutilities:ender_pocket"
+  },
+  "pattern": [
+    "LCL",
+    "LLL"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:ender_chest"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  }
+}

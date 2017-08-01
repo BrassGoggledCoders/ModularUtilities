@@ -16,7 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -104,27 +103,6 @@ public class MiscellaneousModule extends ModuleBase {
 
 		Blocks.DRAGON_EGG.setCreativeTab(CreativeTabs.DECORATIONS);
 		Blocks.FARMLAND.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-	}
-
-	@Override
-	public void postInit(FMLPostInitializationEvent event) {
-		// Extra Vanilla recipes
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.STRING, 2), new Object[] {new ItemStack(Blocks.WOOL)});
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 6, 15), new Object[] {Items.BONE, Items.ROTTEN_FLESH});
-		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.DISPENSER), new Object[] {Blocks.DROPPER, Items.BOW});
-		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PISTON),
-				new Object[] {Blocks.STICKY_PISTON, Items.WATER_BUCKET});
-		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SAND, 4),
-				new Object[] {new ItemStack(Blocks.SANDSTONE, 1, OreDictionary.WILDCARD_VALUE)});
-		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SAND, 4, 1),
-				new Object[] {new ItemStack(Blocks.RED_SANDSTONE, 1, OreDictionary.WILDCARD_VALUE)});
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.QUARTZ, 6), new Object[] {Blocks.QUARTZ_STAIRS});
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.QUARTZ, 2),
-				new Object[] {new ItemStack(Blocks.STONE_SLAB, 1, 7)});
-
-		// Custom Recipes
-		GameRegistry.addRecipe(new ItemStack(feathers), new Object[] {"XXX", "XXX", "XXX", 'X', Items.FEATHER});
-		GameRegistry.addRecipe(new ItemStack(Items.GOLD_INGOT), new Object[] {"XXX", "XXX", "XXX", 'X', goldpetal});
 	}
 
 	@SubscribeEvent

@@ -3,21 +3,16 @@ package xyz.brassgoggledcoders.modularutilities.modules.construction;
 import com.teamacronymcoders.base.blocks.BlockBase;
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(ModularUtilities.MODID)
@@ -70,16 +65,14 @@ public class ConstructionModule extends ModuleBase {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
-		GameRegistry.addShapedRecipe(new ItemStack(blast_glass, 9), "OGO", "GOG", "OGO", 'O', Blocks.OBSIDIAN, 'G',
-				Blocks.GLASS);
-		GameRegistry.addShapedRecipe(
-				UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket,
-						FluidRegistry.getFluid("dirt")),
-				"CDC", "DWD", /* AMX */"CDC", 'C', Blocks.CLAY, 'D', Blocks.DIRT, 'W', Items.WATER_BUCKET);
-		GameRegistry.addShapedRecipe(
-				UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket,
-						FluidRegistry.getFluid("concrete")),
-				"CDC", "DWD", /* AMX */"CDC", 'C', Blocks.COBBLESTONE, 'D', Blocks.SAND, 'W', Items.WATER_BUCKET);
+		// ModularUtilities.addShapedRecipe(
+		// FluidUtil.getFilledBucket(
+		// FluidRegistry.getFluidStack("dirt", Fluid.BUCKET_VOLUME)),
+		// "CDC", "DWD", /* AMX */"CDC", 'C', Blocks.CLAY, 'D', Blocks.DIRT, 'W', Items.WATER_BUCKET);
+		// GameRegistry.addShapedRecipe(
+		// UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket,
+		// FluidRegistry.getFluid("concrete")),
+		// "CDC", "DWD", /* AMX */"CDC", 'C', Blocks.COBBLESTONE, 'D', Blocks.SAND, 'W', Items.WATER_BUCKET);
 	}
 
 	public class MaterialConcrete extends MaterialLiquid {

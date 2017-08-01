@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "modularutilities:hedge",
+    "data": 1,
+    "count": 6
+  },
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "minecraft:leaves",
+      "data": 1
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "modularutilities:leaf_cover",
+    "data": 3,
+    "count": 2
+  },
+  "pattern": [
+    "XX"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "minecraft:leaves",
+      "data": 3
+    }
+  }
+}

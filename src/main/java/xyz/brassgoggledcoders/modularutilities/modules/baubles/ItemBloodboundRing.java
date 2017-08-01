@@ -1,21 +1,16 @@
 package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 
-import java.util.List;
-
-import com.teamacronymcoders.base.items.IHasRecipe;
-import com.teamacronymcoders.base.items.ItemBaubleBase;
+import com.teamacronymcoders.base.items.ItemBase;
 
 import baubles.api.BaubleType;
+import baubles.api.IBauble;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
-public class ItemBloodboundRing extends ItemBaubleBase implements IHasRecipe {
+public class ItemBloodboundRing extends ItemBase implements IBauble {
 
 	public ItemBloodboundRing() {
 		super("bloodbound_ring");
@@ -42,12 +37,5 @@ public class ItemBloodboundRing extends ItemBaubleBase implements IHasRecipe {
 			living.addPotionEffect(
 					new PotionEffect(Potion.getPotionFromResourceLocation("strength"), 120, 2, false, false));
 		}
-	}
-
-	@Override
-	public List<IRecipe> getRecipes(List<IRecipe> recipes) {
-		recipes.add(new ShapedOreRecipe(new ItemStack(this), "IBI", "I I", "III", 'I', "ingotIron", 'B',
-				Items.BLAZE_POWDER));
-		return recipes;
 	}
 }

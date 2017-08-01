@@ -1,0 +1,13 @@
+{
+  "result": {
+    "item": "minecraft:string",
+    "count": 2
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:wool",
+      "data": 0
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

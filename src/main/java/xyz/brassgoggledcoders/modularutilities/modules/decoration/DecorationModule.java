@@ -6,9 +6,9 @@ import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import com.teamacronymcoders.base.registrysystem.BlockRegistry;
 import com.teamacronymcoders.base.registrysystem.config.ConfigRegistry;
 import com.teamacronymcoders.base.util.ItemStackUtils;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
-import net.minecraft.block.BlockPrismarine;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
@@ -58,36 +58,14 @@ public class DecorationModule extends ModuleBase {
 		blockRegistry.register(hedge = new BlockHedge("hedge", false));
 		blockRegistry.register(hedge_opaque = new BlockHedge("hedge_opaque", true));
 		blockRegistry.register(stone_decor = new BlockStoneDecor());
-		blockRegistry.register(elder_sea_lantern = new BlockBase(Material.GLASS, "elder_sea_lantern").setLightLevel(15));
+		blockRegistry
+				.register(elder_sea_lantern = new BlockBase(Material.GLASS, "elder_sea_lantern").setLightLevel(15));
 		blockRegistry.register(smooth_glowstone = new BlockBase(Material.GLASS, "smooth_glowstone").setLightLevel(1F));
 		blockRegistry.register(soul_glass = new BlockSoulGlass(Material.GLASS, "soul_glass"));
 	}
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
-		for(int i = 0; i < EnumLeaveType.values().length - 2; i++) {
-			GameRegistry.addRecipe(new ItemStack(leaf_cover, 2, i), "XX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
-			GameRegistry.addRecipe(new ItemStack(hedge, 6, i), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES, 1, i));
-		}
-		GameRegistry.addRecipe(new ItemStack(leaf_cover, 2, 4), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
-		GameRegistry.addRecipe(new ItemStack(leaf_cover, 2, 5), "XX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
-		GameRegistry.addRecipe(new ItemStack(hedge, 6, 4), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES2, 1, 0));
-		GameRegistry.addRecipe(new ItemStack(hedge, 6, 5), "XXX", "XXX", 'X', new ItemStack(Blocks.LEAVES2, 1, 1));
-		for(int i = 0; i < EnumLeaveType.values().length; i++) {
-			GameRegistry.addShapelessRecipe(new ItemStack(leaf_cover_opaque, 1, i), Blocks.SAND,
-					new ItemStack(leaf_cover, 1, i));
-			GameRegistry.addShapelessRecipe(new ItemStack(hedge_opaque, 1, i), Blocks.SAND, new ItemStack(hedge, 1, i));
-		}
-
-		GameRegistry.addRecipe(new ItemStack(stone_decor, 4, 0), "NB", "BN", 'N', Blocks.NETHER_BRICK, 'B',
-				Blocks.BRICK_BLOCK);
-		GameRegistry.addRecipe(new ItemStack(stone_decor, 4, 1), "NB", "BN", 'N', Blocks.STONE, 'B', Blocks.STONEBRICK);
-		for(int i = 0; i < BlockPrismarine.VARIANT.getAllowedValues().size(); i++) {
-			GameRegistry.addShapelessRecipe(new ItemStack(stone_decor, 1, i + 2),
-					new ItemStack(Blocks.PRISMARINE, 1, i), Items.GUNPOWDER);
-		}
-		GameRegistry.addShapelessRecipe(new ItemStack(elder_sea_lantern), Items.GUNPOWDER, Blocks.SEA_LANTERN);
-
 		GameRegistry.addSmelting(Blocks.GLOWSTONE, new ItemStack(smooth_glowstone), 0);
 		GameRegistry.addSmelting(Blocks.SOUL_SAND, new ItemStack(soul_glass), 0.3F);
 		GameRegistry.addSmelting(new ItemStack(Blocks.BRICK_BLOCK), new ItemStack(stone_decor, 1, 5), 0.05F);
@@ -111,7 +89,7 @@ public class DecorationModule extends ModuleBase {
 
 			if(bl == Blocks.GRASS) {
 				Biome b = event.getWorld().getBiome(event.getPos());
-				
+
 				if(BiomeDictionary.hasType(b, BiomeDictionary.Type.SANDY))
 					meta = 1;
 				else if(BiomeDictionary.hasType(b, BiomeDictionary.Type.COLD))

@@ -2,21 +2,18 @@ package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 
 import java.util.List;
 
-import com.teamacronymcoders.base.items.IHasRecipe;
-import com.teamacronymcoders.base.items.ItemBaubleBase;
+import com.teamacronymcoders.base.items.ItemBase;
 
 import baubles.api.BaubleType;
+import baubles.api.IBauble;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
-public class ItemDeflectionBelt extends ItemBaubleBase implements IHasRecipe {
+public class ItemDeflectionBelt extends ItemBase implements IBauble {
 
 	public ItemDeflectionBelt() {
 		super("deflection_belt");
@@ -40,12 +37,5 @@ public class ItemDeflectionBelt extends ItemBaubleBase implements IHasRecipe {
 				entity.setVelocity(-entity.motionX, entity.motionY, -entity.motionZ);
 			}
 		}
-	}
-
-	@Override
-	public List<IRecipe> getRecipes(List<IRecipe> recipes) {
-		recipes.add(new ShapedOreRecipe(new ItemStack(this), "LLL", "LDL", "LLL", 'L', Items.LEATHER, 'D',
-				Items.DRAGON_BREATH));
-		return recipes;
 	}
 }

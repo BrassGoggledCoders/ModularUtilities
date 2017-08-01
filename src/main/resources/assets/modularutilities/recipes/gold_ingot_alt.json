@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "minecraft:gold_ingot"
+  },
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "modularutilities:goldpetal"
+    }
+  }
+}

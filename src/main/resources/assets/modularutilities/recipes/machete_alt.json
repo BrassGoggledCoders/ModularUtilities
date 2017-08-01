@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "modularutilities:machete"
+  },
+  "pattern": [
+    "SI"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:iron_sword"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  }
+}

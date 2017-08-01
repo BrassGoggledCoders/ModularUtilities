@@ -3,6 +3,7 @@ package xyz.brassgoggledcoders.modularutilities.modules.equipment;
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import com.teamacronymcoders.base.util.ItemStackUtils;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -12,11 +13,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(ModularUtilities.MODID)
@@ -35,14 +33,6 @@ public class ModuleEquipment extends ModuleBase {
 		this.getItemRegistry().register(swiss_army_knife);
 
 		MinecraftForge.EVENT_BUS.register(this);
-	}
-
-	@Override
-	public void postInit(FMLPostInitializationEvent event) {
-		GameRegistry.addRecipe(new ItemStack(machete),
-				new Object[] {"SI", 'S', Items.IRON_SWORD, 'I', Items.IRON_INGOT});
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(swiss_army_knife),
-				new Object[] { Items.IRON_SWORD, Items.IRON_AXE, Items.IRON_HOE, Items.IRON_PICKAXE, Items.IRON_SHOVEL, "dyeRed", "ingotIron", "ingotIron", "plankWood"}));
 	}
 
 	@Override

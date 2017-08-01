@@ -12,12 +12,8 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -67,11 +63,11 @@ public class BlockTurf extends BlockFlat {
 		return getDefaultState().withProperty(type, EnumDirtType.values()[meta]);
 	}
 
-	@Override
-	public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> itemList) {
-		for(EnumDirtType resourceType : EnumDirtType.values())
-			itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
-	}
+	// @Override
+	// public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> itemList) {
+	// for(EnumDirtType resourceType : EnumDirtType.values())
+	// itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
+	// }
 
 	@Override
 	@SideOnly(Side.CLIENT)

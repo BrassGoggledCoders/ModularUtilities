@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "modularutilities:leaf_cover_opaque",
+    "data": 0
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:sand",
+      "data": 0
+    },
+    {
+      "item": "modularutilities:leaf_cover",
+      "data": 0
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

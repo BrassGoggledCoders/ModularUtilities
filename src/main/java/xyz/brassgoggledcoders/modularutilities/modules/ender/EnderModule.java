@@ -11,19 +11,14 @@ import com.teamacronymcoders.base.util.ItemStackUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(ModularUtilities.MODID)
@@ -50,16 +45,6 @@ public class EnderModule extends ModuleBase {
 		getBlockRegistry().register(ender_proxy);
 
 		MinecraftForge.EVENT_BUS.register(this);
-	}
-
-	@Override
-	public void postInit(FMLPostInitializationEvent event) {
-		GameRegistry.addRecipe(new ItemStack(ender_glove),
-				new Object[] {"OOO", "OCO", "O O", 'O', Blocks.OBSIDIAN, 'C', Items.END_CRYSTAL});
-		GameRegistry.addRecipe(new ItemStack(ender_pocket),
-				new Object[] {"LCL", "LLL", 'L', Items.LEATHER, 'C', Blocks.ENDER_CHEST});
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ender_proxy),
-				new Object[] {"OWO", "WCW", "OWO", 'O', Blocks.OBSIDIAN, 'C', Blocks.ENDER_CHEST, 'W', "plankWood"}));
 	}
 
 	@SubscribeEvent

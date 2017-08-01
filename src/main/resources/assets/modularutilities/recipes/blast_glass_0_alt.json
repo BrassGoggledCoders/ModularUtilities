@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "modularutilities:blast_glass",
+    "data": 0,
+    "count": 9
+  },
+  "pattern": [
+    "OGO",
+    "GOG",
+    "OGO"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  }
+}

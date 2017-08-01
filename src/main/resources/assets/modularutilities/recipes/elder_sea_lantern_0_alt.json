@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "modularutilities:elder_sea_lantern",
+    "data": 0
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:sea_lantern"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

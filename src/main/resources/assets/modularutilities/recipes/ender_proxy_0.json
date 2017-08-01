@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "modularutilities:ender_proxy",
+    "data": 0
+  },
+  "pattern": [
+    "OWO",
+    "WCW",
+    "OWO"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:ender_chest"
+    },
+    "W": {
+      "item": "#PLANKWOOD"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  }
+}

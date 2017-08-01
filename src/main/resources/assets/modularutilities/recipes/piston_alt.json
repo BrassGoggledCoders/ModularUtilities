@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "minecraft:piston"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:sticky_piston"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

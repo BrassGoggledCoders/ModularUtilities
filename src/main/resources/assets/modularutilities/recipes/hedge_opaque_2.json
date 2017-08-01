@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "modularutilities:hedge_opaque",
+    "data": 2
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:sand",
+      "data": 0
+    },
+    {
+      "item": "modularutilities:hedge",
+      "data": 2
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

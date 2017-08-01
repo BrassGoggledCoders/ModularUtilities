@@ -1,0 +1,13 @@
+{
+  "result": {
+    "item": "minecraft:quartz",
+    "count": 2
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:stone_slab",
+      "data": 7
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

@@ -1,0 +1,35 @@
+{
+  "result": {
+    "item": "modularutilities:swiss_army_knife"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:iron_sword"
+    },
+    {
+      "item": "minecraft:iron_axe"
+    },
+    {
+      "item": "minecraft:iron_hoe"
+    },
+    {
+      "item": "minecraft:iron_pickaxe"
+    },
+    {
+      "item": "minecraft:iron_shovel"
+    },
+    {
+      "item": "#DYERED"
+    },
+    {
+      "item": "#INGOTIRON"
+    },
+    {
+      "item": "#INGOTIRON"
+    },
+    {
+      "item": "#PLANKWOOD"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

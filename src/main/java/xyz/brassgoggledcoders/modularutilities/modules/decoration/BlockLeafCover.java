@@ -13,11 +13,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -73,11 +69,11 @@ public class BlockLeafCover extends BlockFlat {
 		return getDefaultState().withProperty(type, EnumLeaveType.values()[meta]);
 	}
 
-	@Override
-	public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> itemList) {
-		for(EnumLeaveType resourceType : EnumLeaveType.values())
-			itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
-	}
+	// @Override
+	// public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> itemList) {
+	// for(EnumLeaveType resourceType : EnumLeaveType.values())
+	// itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
+	// }
 
 	@Override
 	@Nonnull

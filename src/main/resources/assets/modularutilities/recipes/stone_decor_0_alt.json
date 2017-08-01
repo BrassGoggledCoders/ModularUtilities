@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "modularutilities:stone_decor",
+    "data": 0,
+    "count": 4
+  },
+  "pattern": [
+    "NB",
+    "BN"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:brick_block"
+    },
+    "N": {
+      "item": "minecraft:nether_brick"
+    }
+  }
+}
