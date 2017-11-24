@@ -21,7 +21,7 @@ pipeline {
                 echo 'Building and Deploying to Maven'
                 script {
                     if (env.BRANCH_NAME.contains("develop")) {
-                        sh './gradlew build --refresh-dependencies -Pbranch=Snapshot uploadArchives'
+                        sh './gradlew build --refresh-dependencies -Pbranch=SNAPSHOT uploadArchives'
                     } else if (env.BRANCH_NAME.contains("release")) {
                         sh './gradlew build --refresh-dependencies uploadArchives'
                     } else {
