@@ -74,7 +74,7 @@ public class BlockTurf extends BlockFlat {
 	@SideOnly(Side.CLIENT)
 	public List<ModelResourceLocation> getModelResourceLocations(List<ModelResourceLocation> models) {
 		for(EnumDirtType leaveType : EnumDirtType.values()) {
-			models.add(new ModelResourceLocation(getMod() + ":turf", "type=" + leaveType.getName()));
+			models.add(new ModelResourceLocation(getMod().getID() + ":turf", "type=" + leaveType.getName()));
 		}
 		return models;
 	}
