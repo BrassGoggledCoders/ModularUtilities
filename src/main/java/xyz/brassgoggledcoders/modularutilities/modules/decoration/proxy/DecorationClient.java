@@ -12,11 +12,14 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.brassgoggledcoders.modularutilities.modules.decoration.DecorationModule;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+@SideOnly(Side.CLIENT)
 public class DecorationClient extends ModuleProxyBase {
     @Override
     public void init(FMLInitializationEvent event) {
@@ -36,7 +39,7 @@ public class DecorationClient extends ModuleProxyBase {
         }
 
         @Override
-        public int getColorFromItemstack(@Nonnull ItemStack stack, int tintIndex) {
+        public int colorMultiplier(@Nonnull ItemStack stack, int tintIndex) {
             return ColorizerFoliage.getFoliageColorBasic();
         }
     }

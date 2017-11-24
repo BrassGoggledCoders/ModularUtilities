@@ -1,5 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.destruction;
 
+import com.teamacronymcoders.base.IBaseMod;
 import com.teamacronymcoders.base.blocks.IHasItemBlock;
 import com.teamacronymcoders.base.client.models.IHasModel;
 import net.minecraft.block.BlockTNT;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel {
     private ItemBlock itemBlock;
+    private IBaseMod mod;
 
     public BlockCustomTNT(String name) {
         super();
@@ -85,5 +87,15 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
     @Override
     public Item getItem() {
         return this.getItemBlock();
+    }
+
+    @Override
+    public IBaseMod getMod() {
+        return mod;
+    }
+
+    @Override
+    public void setMod(IBaseMod mod) {
+        this.mod = mod;
     }
 }

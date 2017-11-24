@@ -60,11 +60,11 @@ public class ModuleEquipment extends ModuleBase {
     public void onBlockLeftClicked(PlayerInteractEvent.LeftClickBlock event) {
         IBlockState state = event.getWorld().getBlockState(event.getPos());
         if (ItemStackUtils.doItemsMatch(event.getItemStack(), swiss_army_knife)) {
-            if (Items.IRON_PICKAXE.getStrVsBlock(event.getItemStack(), state) > 1.0F) {
+            if (Items.IRON_PICKAXE.getDestroySpeed(event.getItemStack(), state) > 1.0F) {
                 convertToTool(event.getItemStack(), Items.IRON_PICKAXE, event.getEntityPlayer());
-            } else if (Items.IRON_AXE.getStrVsBlock(event.getItemStack(), state) > 1.0F) {
+            } else if (Items.IRON_AXE.getDestroySpeed(event.getItemStack(), state) > 1.0F) {
                 convertToTool(event.getItemStack(), Items.IRON_AXE, event.getEntityPlayer());
-            } else if (Items.IRON_SHOVEL.getStrVsBlock(event.getItemStack(), state) > 1.0F) {
+            } else if (Items.IRON_SHOVEL.getDestroySpeed(event.getItemStack(), state) > 1.0F) {
                 convertToTool(event.getItemStack(), Items.IRON_SHOVEL, event.getEntityPlayer());
             }
         }

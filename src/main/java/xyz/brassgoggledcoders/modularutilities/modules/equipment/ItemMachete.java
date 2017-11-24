@@ -11,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 public class ItemMachete extends ItemSwordBase {
 
     public ItemMachete() {
@@ -18,7 +20,7 @@ public class ItemMachete extends ItemSwordBase {
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state) {
+    public float getDestroySpeed(ItemStack stack, IBlockState state) {
         return getStrVsBlock(state);
     }
 
@@ -31,6 +33,7 @@ public class ItemMachete extends ItemSwordBase {
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos,
                                     EntityLivingBase entityLiving) {
         stack.damageItem(1, entityLiving);

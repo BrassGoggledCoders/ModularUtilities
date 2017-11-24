@@ -1,5 +1,6 @@
 package xyz.brassgoggledcoders.modularutilities.modules.redstone;
 
+import com.teamacronymcoders.base.IBaseMod;
 import com.teamacronymcoders.base.blocks.IHasItemBlock;
 import com.teamacronymcoders.base.client.models.IHasModel;
 import net.minecraft.block.BlockFalling;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class BlockRedstoneSand extends BlockFalling implements IHasItemBlock, IHasModel {
     private ItemBlock itemBlock;
+    private IBaseMod mod;
 
     public BlockRedstoneSand() {
         super();
@@ -60,5 +62,15 @@ public class BlockRedstoneSand extends BlockFalling implements IHasItemBlock, IH
     @Override
     public Item getItem() {
         return this.getItemBlock();
+    }
+
+    @Override
+    public IBaseMod getMod() {
+        return mod;
+    }
+
+    @Override
+    public void setMod(IBaseMod mod) {
+        this.mod = mod;
     }
 }
