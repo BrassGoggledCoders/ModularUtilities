@@ -34,10 +34,11 @@ public class ItemDeflectionBelt extends ItemBaubleBase implements IHasRecipe {
 		World world = living.getEntityWorld();
 		List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(living,
 				living.getEntityBoundingBox().expand(5.0D, 5.0D, 5.0D));
-		for(int i = 0; i < entities.size(); i++) {
-			Entity entity = entities.get(i);
-			if(entity instanceof IProjectile) {
-				entity.setVelocity(-entity.motionX, entity.motionY, -entity.motionZ);
+		for (Entity entity : entities) {
+			if (entity instanceof IProjectile) {
+				entity.motionX = -entity.motionX;
+				entity.motionY = -entity.motionY;
+				entity.motionZ = -entity.motionZ;
 			}
 		}
 	}
