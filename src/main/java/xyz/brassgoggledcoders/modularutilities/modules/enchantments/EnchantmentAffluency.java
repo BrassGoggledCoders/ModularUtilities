@@ -9,18 +9,20 @@ import net.minecraft.item.ItemSword;
 import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.event.world.BlockEvent;
 
+import java.util.Optional;
+
 public class EnchantmentAffluency extends CustomEnchantment {
 
-    public EnchantmentAffluency(Rarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot[] slots,
+    public EnchantmentAffluency(Rarity rarity, EnumEnchantmentType type, EntityEquipmentSlot[] slots,
                                 int multiplier, int minEnchant, int maxLevel) {
-        super(rarityIn, typeIn, slots, multiplier, minEnchant, maxLevel);
+        super(rarity, type, slots, multiplier, minEnchant, maxLevel);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof ItemSword)
-            return true;
-        return this.type.canEnchantItem(stack.getItem());
+        return stack.getItem() instanceof ItemSword || Optional.ofNullable(this.type)
+                .map(value -> value.canEnchantItem(stack.getItem()))
+                .orElse(false);
     }
 
     @Override
@@ -37,7 +39,7 @@ public class EnchantmentAffluency extends CustomEnchantment {
         EntityPlayer player = event.getAttackingPlayer();
 
         // Occurs when using /kill...
-        if (player == null || player.getHeldItemMainhand() == null)
+        if (player == null || player.getHeldItemMainhand().isEmpty())
             return;
 
         int affAmount =

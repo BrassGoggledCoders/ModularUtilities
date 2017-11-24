@@ -21,7 +21,7 @@ public class EnchantmentFlameTouch extends CustomEnchantment {
 
     @Override
     public void onBlockHarvest(HarvestDropsEvent event) {
-        ItemStack held = event.getHarvester().getHeldItemMainhand();
+        ItemStack held = event.getHarvester().getActiveItemStack();
         if (EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.flame_touch, held) > 0) {
             Iterator<ItemStack> drops = event.getDrops().iterator();
             ArrayList<ItemStack> toRemove = new ArrayList<ItemStack>();

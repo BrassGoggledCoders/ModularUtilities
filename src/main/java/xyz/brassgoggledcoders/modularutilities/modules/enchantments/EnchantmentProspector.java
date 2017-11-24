@@ -24,7 +24,7 @@ public class EnchantmentProspector extends CustomEnchantment {
 
     @Override
     public void onBlockHarvest(HarvestDropsEvent event) {
-        ItemStack held = event.getHarvester().getHeldItemMainhand();
+        ItemStack held = event.getHarvester().getActiveItemStack();
         if (EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.prospector, held) > 0) {
             int prosAmount = EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.prospector, held);
             Material m = event.getState().getMaterial();

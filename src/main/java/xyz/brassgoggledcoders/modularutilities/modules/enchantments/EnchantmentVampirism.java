@@ -23,10 +23,12 @@ public class EnchantmentVampirism extends CustomEnchantment {
             ItemStack held = ent.getActiveItemStack();
             int vampAmount = EnchantmentHelper.getEnchantmentLevel(EnchantmentsModule.vampirism, held);
             if (vampAmount == 1) {
-                if (event.getEntityLiving() instanceof EntityMob)
+                if (event.getEntityLiving() instanceof EntityMob) {
                     ent.heal(event.getAmount() * 0.25F);
-            } else if (vampAmount == 2)
+                }
+            } else if (vampAmount == 2) {
                 ent.heal(event.getAmount() * 0.25F);
+            }
         }
     }
 }
