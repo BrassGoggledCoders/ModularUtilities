@@ -1,11 +1,8 @@
 package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
-import java.util.Arrays;
-
 import com.teamacronymcoders.base.blocks.BlockBase;
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -22,30 +19,32 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
+import java.util.Arrays;
+
 @Module(ModularUtilities.MODID)
 public class MiscellaneousModule extends ModuleBase {
-	public static BlockBase feathers, magmagold;
-	public static Item goldpetal;
+    public static BlockBase feathers, magmagold;
+    public static Item goldpetal;
 
-	@Override
-	public String getName() {
-		return "Miscellaneous";
-	}
+    @Override
+    public String getName() {
+        return "Miscellaneous";
+    }
 
-	@Override
-	public void preInit(FMLPreInitializationEvent event) {
-		feathers = new BlockFeathers();
-		this.getBlockRegistry().register(feathers);
+    @Override
+    public void preInit(FMLPreInitializationEvent event) {
+        feathers = new BlockFeathers();
+        this.getBlockRegistry().register(feathers);
 
-		goldpetal = new ItemGoldPetal("goldpetal");
-		this.getItemRegistry().register(goldpetal);
+        goldpetal = new ItemGoldPetal("goldpetal");
+        this.getItemRegistry().register(goldpetal);
 
-		magmagold = new BlockMagmagold(Material.ROCK, "magmagold");
-		this.getBlockRegistry().register(magmagold);
+        magmagold = new BlockMagmagold(Material.ROCK, "magmagold");
+        this.getBlockRegistry().register(magmagold);
 
-		MinecraftForge.EVENT_BUS.register(this);
-		GameRegistry.registerWorldGenerator(new WorldGeneratorModularUtils(), 2);
-		/*
+        MinecraftForge.EVENT_BUS.register(this);
+        GameRegistry.registerWorldGenerator(new WorldGeneratorModularUtils(), 2);
+        /*
 		 * TODO:
 		 * Gen
 		 * - Dungeon loot extension
@@ -94,24 +93,24 @@ public class MiscellaneousModule extends ModuleBase {
 		 * - Mob spawner relocation method?
 		 * - Nether Star Block
 		 */
-	}
+    }
 
-	@Override
-	public void init(FMLInitializationEvent event) {
-		OreDictionary.registerOre("wool", feathers);
-		OreDictionary.registerOre("wool", Blocks.WOOL);
+    @Override
+    public void init(FMLInitializationEvent event) {
+        OreDictionary.registerOre("wool", feathers);
+        OreDictionary.registerOre("wool", Blocks.WOOL);
 
-		Blocks.DRAGON_EGG.setCreativeTab(CreativeTabs.DECORATIONS);
-		Blocks.FARMLAND.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-	}
+        Blocks.DRAGON_EGG.setCreativeTab(CreativeTabs.DECORATIONS);
+        Blocks.FARMLAND.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+    }
 
-	@SubscribeEvent
-	public void onItemExpire(ItemExpireEvent event) {
-		ItemStack[] rareStuff = new ItemStack[] {new ItemStack(Items.ELYTRA)};
-		if(event.getEntityItem().getItem().getRarity() == EnumRarity.EPIC
-				|| Arrays.asList(rareStuff).contains(event.getEntityItem().getItem())) {
-			event.setExtraLife(600);
-			event.setCanceled(true);
-		}
-	}
+    @SubscribeEvent
+    public void onItemExpire(ItemExpireEvent event) {
+        ItemStack[] rareStuff = new ItemStack[]{new ItemStack(Items.ELYTRA)};
+        if (event.getEntityItem().getItem().getRarity() == EnumRarity.EPIC
+                || Arrays.asList(rareStuff).contains(event.getEntityItem().getItem())) {
+            event.setExtraLife(600);
+            event.setCanceled(true);
+        }
+    }
 }

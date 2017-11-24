@@ -12,14 +12,14 @@ import javax.annotation.Nonnull;
 
 public class ItemEnderPocket extends ItemBase {
 
-	public ItemEnderPocket() {
-		super("ender_pocket");
-	}
+    public ItemEnderPocket() {
+        super("ender_pocket");
+    }
 
-	@Override
-	@Nonnull
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, @Nonnull EnumHand hand) {
-		playerIn.displayGUIChest(playerIn.getInventoryEnderChest());
-		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
-	}
+    @Override
+    @Nonnull
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, @Nonnull EnumHand hand) {
+        playerIn.displayGUIChest(playerIn.getInventoryEnderChest());
+        return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
+    }
 }

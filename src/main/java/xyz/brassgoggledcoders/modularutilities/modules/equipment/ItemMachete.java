@@ -13,32 +13,32 @@ import net.minecraft.world.World;
 
 public class ItemMachete extends ItemSwordBase {
 
-	public ItemMachete() {
-		super(Item.ToolMaterial.IRON, "machete");
-	}
+    public ItemMachete() {
+        super(Item.ToolMaterial.IRON, "machete");
+    }
 
-	@Override
-	public float getStrVsBlock(ItemStack stack, IBlockState state) {
-		return getStrVsBlock(state);
-	}
+    @Override
+    public float getStrVsBlock(ItemStack stack, IBlockState state) {
+        return getStrVsBlock(state);
+    }
 
-	public float getStrVsBlock(IBlockState state) {
-		Block block = state.getBlock();
-		Material m = state.getMaterial();
-		// Tool can fast-break web and plant type blocks
-		return block == Blocks.WEB || m == Material.LEAVES || m == Material.GOURD || m == Material.CACTUS
-				|| m == Material.PLANTS ? 15.0F : 1.0F;
-	}
+    public float getStrVsBlock(IBlockState state) {
+        Block block = state.getBlock();
+        Material m = state.getMaterial();
+        // Tool can fast-break web and plant type blocks
+        return block == Blocks.WEB || m == Material.LEAVES || m == Material.GOURD || m == Material.CACTUS
+                || m == Material.PLANTS ? 15.0F : 1.0F;
+    }
 
-	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos,
-			EntityLivingBase entityLiving) {
-		stack.damageItem(1, entityLiving);
-		return getStrVsBlock(state) == 15;
-	}
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos,
+                                    EntityLivingBase entityLiving) {
+        stack.damageItem(1, entityLiving);
+        return getStrVsBlock(state) == 15;
+    }
 
-	@Override
-	public boolean canHarvestBlock(IBlockState blockIn) {
-		return getStrVsBlock(blockIn.getBlock().getDefaultState()) == 15;
-	}
+    @Override
+    public boolean canHarvestBlock(IBlockState blockIn) {
+        return getStrVsBlock(blockIn.getBlock().getDefaultState()) == 15;
+    }
 }

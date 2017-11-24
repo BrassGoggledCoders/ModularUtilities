@@ -9,18 +9,18 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockFusedQuartz extends BlockBase {
 
-	public BlockFusedQuartz() {
-		// Non-transparent block
-		super(Material.ROCK, "fused_quartz");
-	}
+    public BlockFusedQuartz() {
+        // Non-transparent block
+        super(Material.ROCK, "fused_quartz");
+    }
 
-	@Override
-	public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side) {
-		return true;
-	}
+    @Override
+    public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+        return true;
+    }
 
-	@Override
-	public boolean shouldCheckWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
-		return false;
-	}
+    @Override
+    public boolean shouldCheckWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+        return false;
+    }
 }
