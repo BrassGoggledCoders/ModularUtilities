@@ -129,6 +129,11 @@ public class BlockConcreteFluid extends BlockFluidBase implements IHasTileEntity
 	 */
 
     @Override
+    public boolean hasTileEntity(IBlockState blockState) {
+        return true;
+    }
+
+    @Override
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         return new TileEntityLiquidConcrete();
     }
