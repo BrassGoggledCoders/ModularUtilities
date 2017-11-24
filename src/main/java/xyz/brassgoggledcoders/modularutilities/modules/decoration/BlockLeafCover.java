@@ -11,12 +11,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -81,7 +83,7 @@ public class BlockLeafCover extends BlockFlat {
 	public List<ModelResourceLocation> getModelResourceLocations(List<ModelResourceLocation> models) {
 		String modelName = "leaf_cover" + ((this.opaque) ? "_opaque" : "");
 		for(EnumLeaveType leaveType : EnumLeaveType.values()) {
-			models.add(new ModelResourceLocation(getMod() + ":" + modelName, "type=" + leaveType.getName()));
+			models.add(new ModelResourceLocation(new ResourceLocation(ModularUtilities.MODID, modelName), "type=" + leaveType.getName()));
 		}
 		return models;
 	}
