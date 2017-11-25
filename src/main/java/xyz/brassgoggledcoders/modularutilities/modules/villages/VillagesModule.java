@@ -4,9 +4,12 @@ import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import com.teamacronymcoders.base.util.VillagerUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
+import net.minecraftforge.registries.GameData;
+import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 // @Module(mod = ModularUtilities.MODID)
 public class VillagesModule extends ModuleBase {
@@ -39,9 +42,8 @@ public class VillagesModule extends ModuleBase {
         VillagerUtils.addSellTrade(2, explorer_career, new ItemStack(Blocks.PACKED_ICE, 2), 3, 6);
         VillagerUtils.addSellTrade(2, explorer_career, new ItemStack(Blocks.DIRT, 1, 2), 1, 2);
         VillagerUtils.addSellTrade(3, explorer_career, new ItemStack(Blocks.MYCELIUM), 3, 4);
-        // TODO
-        // GameData.getWrapper(VillagerProfession.class).register(230,
-        // new ResourceLocation(ModularUtilities.MODID, "explorer"), explorer);
+
+        GameData.getWrapper(VillagerProfession.class).register(230, new ResourceLocation(ModularUtilities.MODID, "explorer"), explorer);
     }
 
 }
