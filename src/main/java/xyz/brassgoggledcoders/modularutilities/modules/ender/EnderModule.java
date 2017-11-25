@@ -48,17 +48,20 @@ public class EnderModule extends ModuleBase {
 
     @SubscribeEvent
     public void onLivingDrops(LivingDropsEvent event) {
-        if (event.getSource().getDamageType() == "player") {
-            EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
-            if (ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove)) {
-                Iterator<EntityItem> drops = event.getDrops().iterator();
-                ArrayList<EntityItem> toRemove = new ArrayList<EntityItem>();
-                while (drops.hasNext()) {
-                    EntityItem current = drops.next();
-                    if (player.getInventoryEnderChest().addItem(current.getItem()) == null)
-                        toRemove.add(current);
+        if (event.getSource().getDamageType().equalsIgnoreCase("player")) {
+            if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
+                if (ItemStackUtils.isPlayerCarrying(ender_glove, player)) {
+                    Iterator<EntityItem> drops = event.getDrops().iterator();
+                    ArrayList<EntityItem> toRemove = new ArrayList<>();
+                    while (drops.hasNext()) {
+                        EntityItem current = drops.next();
+                        if (player.getInventoryEnderChest().addItem(current.getItem()).isEmpty()) {
+                            toRemove.add(current);
+                        }
+                    }
+                    event.getDrops().removeAll(toRemove);
                 }
-                event.getDrops().removeAll(toRemove);
             }
         }
     }
@@ -72,7 +75,7 @@ public class EnderModule extends ModuleBase {
                 ArrayList<ItemStack> toRemove = new ArrayList<ItemStack>();
                 while (drops.hasNext()) {
                     ItemStack current = drops.next();
-                    if (player.getInventoryEnderChest().addItem(current) == null) {
+                    if (player.getInventoryEnderChest().addItem(current).isEmpty()) {
                         toRemove.add(current);
                         ModularUtilities.proxy.spawnFX(EnumParticleTypes.PORTAL, event.getPos());
                     }
