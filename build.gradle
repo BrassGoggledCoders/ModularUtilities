@@ -37,7 +37,7 @@ repositories {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "${minecraft_version}-${mod_version}" + getBuildNumber()
+version = getVersion();
 
 group = "xyz.brassgoggledcoders.modularutilities"
 archivesBaseName = "${mod_name}"
@@ -154,13 +154,28 @@ task("uploadJars", dependsOn: "reobf") {
     }
 }
 
+String getVersion() {
+    String version = "${minecraft_version}-${mod_version}"
+    String branch = System.getenv("branch") != null ? System.getenv("branch") : ""
+    println "Version: " + version
+    println "Branch : " + branch
+    if(branch != "") {
+        version += "-" + branch
+
+        String buildNumber = getBuildNumber()
+        if(buildNumber != "") {
+            version += "." + buildNumber
+        }
+        println "Build Number: " + buildNumber
+    }
+    println "Full Version: " + version
+    return version
+}
+
 static String getBuildNumber() {
     String buildNumber = System.getenv("BUILD_NUMBER") != null ? System.getenv("BUILD_NUMBER") : ""
-    if (buildNumber == "") {
+    if(buildNumber == "") {
         buildNumber = System.getenv("bamboo_buildNumber") != null ? "." + System.getenv("bamboo_buildNumber") : ""
-    }
-    if (buildNumber != "") {
-        buildNumber = "-" + buildNumber
     }
     return buildNumber
 }
