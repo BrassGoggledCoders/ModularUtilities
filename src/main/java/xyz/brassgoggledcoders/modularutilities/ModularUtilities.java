@@ -75,7 +75,6 @@ public class ModularUtilities extends BaseModFoundation<ModularUtilities> {
     public static class MUTab extends CreativeTabs {
         public MUTab() {
             super(MODID);
-            this.setRelevantEnchantmentTypes(EnumEnchantmentType.values());
         }
 
         @Override
