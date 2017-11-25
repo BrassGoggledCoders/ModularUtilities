@@ -156,7 +156,7 @@ task("uploadJars", dependsOn: "reobf") {
 
 String getVersion() {
     String version = "${minecraft_version}-${mod_version}"
-    String branch = System.getenv("branch") != null ? System.getenv("branch") : ""
+    String branch = project.hasProperty("branch") ? project.branch : ""
     println "Version: " + version
     println "Branch : " + branch
     if(branch != "") {
