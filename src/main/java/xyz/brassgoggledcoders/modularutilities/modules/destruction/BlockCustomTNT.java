@@ -3,6 +3,7 @@ package xyz.brassgoggledcoders.modularutilities.modules.destruction;
 import com.teamacronymcoders.base.IBaseMod;
 import com.teamacronymcoders.base.blocks.IHasItemBlock;
 import com.teamacronymcoders.base.client.models.IHasModel;
+import com.teamacronymcoders.base.items.itemblocks.ItemBlockModel;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -58,6 +59,7 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
 
     @Override
     public void onBlockAdded(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
+        super.onBlockAdded(worldIn, pos, state);
         this.updateState(worldIn, pos, state);
     }
 
@@ -73,7 +75,7 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
     @Override
     public ItemBlock getItemBlock() {
         if (this.itemBlock == null) {
-            this.itemBlock = new ItemBlock(this);
+            this.itemBlock = new ItemBlockModel<>(this);
         }
         return this.itemBlock;
     }

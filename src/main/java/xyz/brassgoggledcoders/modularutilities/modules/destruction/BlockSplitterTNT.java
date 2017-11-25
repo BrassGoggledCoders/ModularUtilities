@@ -10,6 +10,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockSplitterTNT extends BlockCustomTNT {
@@ -34,7 +35,7 @@ public class BlockSplitterTNT extends BlockCustomTNT {
     }
 
     @Override
-    public void explode(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull EntityLivingBase igniter) {
+    public void explode(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nullable EntityLivingBase igniter) {
         if (!worldIn.isRemote)
             if (state.getValue(EXPLODE)) {
                 EntityTNTPrimed entitytntprimed =

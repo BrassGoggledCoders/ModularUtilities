@@ -3,6 +3,7 @@ package xyz.brassgoggledcoders.modularutilities.modules.redstone;
 import com.teamacronymcoders.base.IBaseMod;
 import com.teamacronymcoders.base.blocks.IHasItemBlock;
 import com.teamacronymcoders.base.client.models.IHasModel;
+import com.teamacronymcoders.base.items.itemblocks.ItemBlockModel;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -38,7 +39,7 @@ public class BlockRedstoneSand extends BlockFalling implements IHasItemBlock, IH
     @Override
     public ItemBlock getItemBlock() {
         if (this.itemBlock == null) {
-            this.itemBlock = new ItemBlock(this);
+            this.itemBlock = new ItemBlockModel<>(this);
         }
         return this.itemBlock;
     }
