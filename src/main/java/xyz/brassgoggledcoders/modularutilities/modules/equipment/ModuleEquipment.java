@@ -10,18 +10,23 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
+@EventBusSubscriber
 @Module(ModularUtilities.MODID)
 public class ModuleEquipment extends ModuleBase {
 
 	public static Item swiss_army_knife;
 	public static Item machete;
+
+	@Override
+	public String getClientProxyPath() {
+		return "xyz.brassgoggledcoders.modularutilities.modules.equipment.ClientProxy";
+	}
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
@@ -31,8 +36,6 @@ public class ModuleEquipment extends ModuleBase {
 		// TODO Enchantment stuff. Manual cycling of tools.
 		swiss_army_knife = new ItemSwissArmyKnife();
 		this.getItemRegistry().register(swiss_army_knife);
-
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@Override
@@ -44,7 +47,7 @@ public class ModuleEquipment extends ModuleBase {
 	// class.
 
 	@SubscribeEvent
-	public void onItemInteract(PlayerInteractEvent.RightClickItem event) {
+	public static void onItemInteract(PlayerInteractEvent.RightClickItem event) {
 		if(event.getEntityPlayer().isSneaking() && isStackSwiss(event.getItemStack())) {
 
 			ItemStack knife = new ItemStack(swiss_army_knife);
@@ -58,7 +61,7 @@ public class ModuleEquipment extends ModuleBase {
 	}
 
 	@SubscribeEvent
-	public void onBlockLeftClicked(PlayerInteractEvent.LeftClickBlock event) {
+	public static void onBlockLeftClicked(PlayerInteractEvent.LeftClickBlock event) {
 		IBlockState state = event.getWorld().getBlockState(event.getPos());
 		if(ItemStackUtils.doItemsMatch(event.getItemStack(), swiss_army_knife)) {
 			if(Items.IRON_PICKAXE.getDestroySpeed(event.getItemStack(), state) > 1.0F) {
@@ -70,14 +73,6 @@ public class ModuleEquipment extends ModuleBase {
 			else if(Items.IRON_SHOVEL.getDestroySpeed(event.getItemStack(), state) > 1.0F) {
 				convertToTool(event.getItemStack(), Items.IRON_SHOVEL, event.getEntityPlayer());
 			}
-		}
-	}
-
-	@SubscribeEvent
-	public void tooltipEvent(ItemTooltipEvent event) {
-		if(isStackSwiss(event.getItemStack())) {
-			// TODO Lang
-			event.getToolTip().add("\u00A7c" + "Shift-R Click to return to knife");
 		}
 	}
 
