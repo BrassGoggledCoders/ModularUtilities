@@ -1,11 +1,11 @@
 package xyz.brassgoggledcoders.modularutilities.modules.ender;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-
-import javax.annotation.Nonnull;
 
 public class EnderProxyInventoryHandler implements IItemHandler {
     private IItemHandler enderChest;

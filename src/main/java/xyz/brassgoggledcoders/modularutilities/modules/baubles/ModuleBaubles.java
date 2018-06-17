@@ -1,13 +1,14 @@
 package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 
+import java.util.List;
+
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
 import com.teamacronymcoders.base.modulesystem.dependencies.IDependency;
 import com.teamacronymcoders.base.modulesystem.dependencies.ModDependency;
 import com.teamacronymcoders.base.registrysystem.ItemRegistry;
 import com.teamacronymcoders.base.registrysystem.config.ConfigRegistry;
-import net.minecraft.item.Item;
 
-import java.util.List;
+import net.minecraft.item.Item;
 
 // @Module(ModularUtilities.MODID)
 public class ModuleBaubles extends ModuleBase {

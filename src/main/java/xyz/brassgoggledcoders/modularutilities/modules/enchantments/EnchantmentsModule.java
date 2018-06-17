@@ -1,10 +1,11 @@
 package xyz.brassgoggledcoders.modularutilities.modules.enchantments;
 
+import java.util.Iterator;
+
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnumEnchantmentType;
+
+import net.minecraft.enchantment.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -23,8 +24,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
-
-import java.util.Iterator;
 
 @Module(ModularUtilities.MODID)
 @Mod.EventBusSubscriber

@@ -1,5 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.enchantments;
 
+import java.util.Optional;
+
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,8 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.event.world.BlockEvent;
-
-import java.util.Optional;
 
 public class EnchantmentAffluency extends CustomEnchantment {
 

@@ -1,6 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.proxies;
 
 import com.teamacronymcoders.base.client.ClientHelper;
+
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

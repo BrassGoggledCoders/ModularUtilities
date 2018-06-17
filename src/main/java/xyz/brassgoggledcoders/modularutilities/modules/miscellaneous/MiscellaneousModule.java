@@ -1,15 +1,16 @@
 package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
+import java.util.Arrays;
+
 import com.teamacronymcoders.base.blocks.BlockBase;
 import com.teamacronymcoders.base.modulesystem.Module;
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumRarity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -18,8 +19,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
-
-import java.util.Arrays;
 
 @Module(ModularUtilities.MODID)
 public class MiscellaneousModule extends ModuleBase {

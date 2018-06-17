@@ -1,7 +1,12 @@
 package xyz.brassgoggledcoders.modularutilities.modules.construction;
 
+import java.util.Random;
+
+import javax.annotation.Nonnull;
+
 import com.teamacronymcoders.base.blocks.BlockFluidBase;
 import com.teamacronymcoders.base.blocks.IHasTileEntity;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -11,9 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
-
-import javax.annotation.Nonnull;
-import java.util.Random;
 
 public class BlockConcreteFluid extends BlockFluidBase implements IHasTileEntity {
 

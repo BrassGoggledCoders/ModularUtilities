@@ -1,7 +1,12 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import com.teamacronymcoders.base.blocks.BlockSubBase;
 import com.teamacronymcoders.base.util.EnumUtils;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -10,9 +15,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nonnull;
-import java.util.List;
 
 public class BlockStoneDecor extends BlockSubBase {
     public static final PropertyEnum<EnumStoneType> type = PropertyEnum.create("type", EnumStoneType.class);

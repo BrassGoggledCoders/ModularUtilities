@@ -1,6 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.tweaks;
 
 import com.teamacronymcoders.base.modulesystem.ModuleBase;
+
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 // @Module(mod = ModularUtilities.MODID)

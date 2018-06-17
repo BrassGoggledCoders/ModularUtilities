@@ -1,16 +1,15 @@
 package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 
+import java.util.List;
+
+import com.teamacronymcoders.base.items.ItemBase;
+
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import com.teamacronymcoders.base.items.ItemBase;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
-
-import java.util.List;
 
 @Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles")
 public class ItemDeflectionBelt extends ItemBase implements IBauble {

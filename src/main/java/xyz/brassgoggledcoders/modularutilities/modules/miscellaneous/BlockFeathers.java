@@ -1,6 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
 import com.teamacronymcoders.base.blocks.BlockBase;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;

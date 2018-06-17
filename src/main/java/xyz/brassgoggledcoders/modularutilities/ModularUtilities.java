@@ -1,8 +1,14 @@
 package xyz.brassgoggledcoders.modularutilities;
 
+import static xyz.brassgoggledcoders.modularutilities.ModularUtilities.*;
+
+import java.io.File;
+
+import javax.annotation.Nonnull;
+
 import com.teamacronymcoders.base.BaseModFoundation;
+
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -10,17 +16,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 import xyz.brassgoggledcoders.modularutilities.modules.construction.ConstructionModule;
 import xyz.brassgoggledcoders.modularutilities.modules.ender.EnderModule;
 import xyz.brassgoggledcoders.modularutilities.proxies.CommonProxy;
-
-import javax.annotation.Nonnull;
-import java.io.File;
-
-import static xyz.brassgoggledcoders.modularutilities.ModularUtilities.*;
 
 @Mod(modid = MODID, name = MODNAME, version = MODVERSION, dependencies = DEPENDS)
 public class ModularUtilities extends BaseModFoundation<ModularUtilities> {

@@ -1,6 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
 import com.teamacronymcoders.base.blocks.BlockBase;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

@@ -1,5 +1,7 @@
 package xyz.brassgoggledcoders.modularutilities.modules.ender;
 
+import java.util.UUID;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.nbt.NBTTagCompound;
@@ -7,8 +9,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
-
-import java.util.UUID;
 
 public class TileEntityEnderChestProxy extends TileEntity {
     private UUID playerID;

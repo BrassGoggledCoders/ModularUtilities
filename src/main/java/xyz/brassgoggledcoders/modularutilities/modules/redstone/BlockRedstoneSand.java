@@ -1,19 +1,18 @@
 package xyz.brassgoggledcoders.modularutilities.modules.redstone;
 
+import java.util.List;
+
 import com.teamacronymcoders.base.IBaseMod;
 import com.teamacronymcoders.base.blocks.IHasItemBlock;
 import com.teamacronymcoders.base.client.models.IHasModel;
 import com.teamacronymcoders.base.items.itemblocks.ItemBlockModel;
+
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-
-import java.util.List;
 
 public class BlockRedstoneSand extends BlockFalling implements IHasItemBlock, IHasModel {
     private ItemBlock itemBlock;

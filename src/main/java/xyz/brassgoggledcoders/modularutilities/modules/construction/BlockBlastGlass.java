@@ -1,6 +1,9 @@
 package xyz.brassgoggledcoders.modularutilities.modules.construction;
 
+import javax.annotation.Nonnull;
+
 import com.teamacronymcoders.base.blocks.BlockBase;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -10,8 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nonnull;
 
 public class BlockBlastGlass extends BlockBase {
 

@@ -1,7 +1,12 @@
 package xyz.brassgoggledcoders.modularutilities.modules.decoration;
 
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import com.teamacronymcoders.base.blocks.BlockFlat;
 import com.teamacronymcoders.base.util.EnumUtils;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -13,9 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nonnull;
-import java.util.List;
 
 public class BlockTurf extends BlockFlat {
     public static final PropertyEnum<EnumDirtType> type = PropertyEnum.create("type", EnumDirtType.class);

@@ -1,16 +1,17 @@
 package xyz.brassgoggledcoders.modularutilities.modules.baubles;
 
+import java.util.Optional;
+
+import com.teamacronymcoders.base.items.ItemBase;
+
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import com.teamacronymcoders.base.items.ItemBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.Optional.Interface;
 import net.minecraftforge.fml.common.Optional.Method;
-
-import java.util.Optional;
 
 @Interface(iface = "baubles.api.IBauble", modid = "baubles")
 public class ItemBloodboundRing extends ItemBase implements IBauble {

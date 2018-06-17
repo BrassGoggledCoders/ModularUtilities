@@ -1,12 +1,12 @@
 package xyz.brassgoggledcoders.modularutilities.modules.miscellaneous;
 
+import java.util.Random;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
-
-import java.util.Random;
 
 public class WorldGeneratorModularUtils implements IWorldGenerator {
     @Override
