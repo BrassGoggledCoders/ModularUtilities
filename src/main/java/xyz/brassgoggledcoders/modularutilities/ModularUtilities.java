@@ -24,14 +24,13 @@ import xyz.brassgoggledcoders.modularutilities.proxies.CommonProxy;
 @Mod(modid = MODID, name = MODNAME, version = MODVERSION, dependencies = DEPENDS)
 public class ModularUtilities extends BaseModFoundation<ModularUtilities> {
 	public ModularUtilities() {
-		super(MODID, MODNAME, MODVERSION, new CreativeTabBase("runecarved", () -> getTabIconItem()));
+		super(MODID, MODNAME, MODVERSION, new CreativeTabBase(MODID, () -> getTabIconItem()));
 	}
 
 	@Instance(ModularUtilities.MODID)
 	public static ModularUtilities instance;
 
-	@SidedProxy(clientSide = "xyz.brassgoggledcoders.modularutilities.proxies.ClientProxy",
-			serverSide = "xyz.brassgoggledcoders.modularutilities.proxies.CommonProxy")
+	@SidedProxy(clientSide = "xyz.brassgoggledcoders.modularutilities.proxies.ClientProxy", serverSide = "xyz.brassgoggledcoders.modularutilities.proxies.CommonProxy")
 	public static CommonProxy proxy;
 
 	public static final String MODID = "modularutilities";
