@@ -1,5 +1,7 @@
 itemGroup.modularutilities=Modular Utilities
 
+modularutilities.turf.info=Obtain by shearing grass blocks in appropriate biomes
+
 tile.modularutilities.feathers.name=Block of Feathers
 tile.modularutilities.fused_quartz.name=Fused Quartz
 tile.modularutilities.redstone_sand.name=Redstone Sand
