@@ -17,54 +17,54 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockStoneDecor extends BlockSubBase {
-    public static final PropertyEnum<EnumStoneType> type = PropertyEnum.create("type", EnumStoneType.class);
+	public static final PropertyEnum<EnumStoneType> type = PropertyEnum.create("type", EnumStoneType.class);
 
-    public BlockStoneDecor() {
-        super(Material.ROCK, EnumUtils.getNames(EnumStoneType.class));
-        this.setUnlocalizedName("stone_decor");
-        setDefaultState(this.blockState.getBaseState().withProperty(type, EnumStoneType.CLINKER_BRICK));
-    }
+	public BlockStoneDecor() {
+		super(Material.ROCK, EnumUtils.getNames(EnumStoneType.class));
+		setUnlocalizedName("stone_decor");
+		setDefaultState(blockState.getBaseState().withProperty(type, EnumStoneType.CLINKER_BRICK));
+	}
 
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(type).ordinal();
-    }
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(type).ordinal();
+	}
 
-    @Override
-    @Nonnull
-    public BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, type);
-    }
+	@Override
+	@Nonnull
+	public BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, type);
+	}
 
-    @Override
-    @Nonnull
-    @SuppressWarnings("deprecation")
-    public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(type, EnumStoneType.values()[meta]);
-    }
+	@Override
+	@Nonnull
+	@SuppressWarnings("deprecation")
+	public IBlockState getStateFromMeta(int meta) {
+		return getDefaultState().withProperty(type, EnumStoneType.values()[meta]);
+	}
 
-    // @Override
-    // public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> itemList) {
-    // for(EnumStoneType resourceType : EnumStoneType.values())
-    // itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
-    // }
+	// @Override
+	// public void getSubBlocks(@Nonnull Item item, CreativeTabs creativeTabs,
+	// NonNullList<ItemStack> itemList) {
+	// for(EnumStoneType resourceType : EnumStoneType.values())
+	// itemList.add(new ItemStack(item, 1, resourceType.ordinal()));
+	// }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public List<ModelResourceLocation> getModelResourceLocations(List<ModelResourceLocation> models) {
-        for (EnumStoneType stoneType : EnumStoneType.values()) {
-            models.add(new ModelResourceLocation(getMod().getID() + ":stone_decor", "type=" + stoneType.getName()));
-        }
-        return models;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public List<ModelResourceLocation> getModelResourceLocations(List<ModelResourceLocation> models) {
+		for(EnumStoneType stoneType : EnumStoneType.values()) {
+			models.add(new ModelResourceLocation(getMod().getID() + ":stone_decor", "type=" + stoneType.getName()));
+		}
+		return models;
+	}
 
-    public enum EnumStoneType implements IStringSerializable {
-        CLINKER_BRICK, CARVED_STONE, ELDER_PRISMARINE_ROUGH, ELDER_PRISMARINE_BRICKS, ELDER_PRISMARINE_DARK,
-        MORTARLESS_BRICK;
+	public enum EnumStoneType implements IStringSerializable {
+		CLINKER_BRICK, CARVED_STONE, ELDER_PRISMARINE_ROUGH, ELDER_PRISMARINE_BRICKS, ELDER_PRISMARINE_DARK, MORTARLESS_BRICK;
 
-        @Override
-        public String getName() {
-            return name().toLowerCase();
-        }
-    }
+		@Override
+		public String getName() {
+			return name().toLowerCase();
+		}
+	}
 }

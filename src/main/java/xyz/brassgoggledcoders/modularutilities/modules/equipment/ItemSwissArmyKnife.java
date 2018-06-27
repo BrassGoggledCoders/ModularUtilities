@@ -28,28 +28,29 @@ import net.minecraft.world.World;
  * @formatter:on
  */
 public class ItemSwissArmyKnife extends ItemBase {
-    public ItemSwissArmyKnife() {
-        super("swiss_army_knife");
-        this.setMaxStackSize(1);
-        this.setMaxDamage(Item.ToolMaterial.IRON.getMaxUses());
-    }
+	public ItemSwissArmyKnife() {
+		super("swiss_army_knife");
+		setMaxStackSize(1);
+		setMaxDamage(Item.ToolMaterial.IRON.getMaxUses());
+	}
 
-    // Sword & Hoe handling. The rest is in ModuleEquipment.class
+	// Sword & Hoe handling. The rest is in ModuleEquipment.class
 
-    @Override
-    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
-        ModuleEquipment.convertToTool(stack, Items.IRON_SWORD, player);
-        return false;
-    }
+	@Override
+	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+		ModuleEquipment.convertToTool(stack, Items.IRON_SWORD, player);
+		return false;
+	}
 
-    @Override
-    @Nonnull
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, @Nonnull EnumHand hand) {
-        ItemStack stack = player.getHeldItem(hand);
-        if (Items.IRON_HOE.onItemRightClick(worldIn, player, hand) == new ActionResult<>(EnumActionResult.SUCCESS, stack)) {
-            ModuleEquipment.convertToTool(stack, Items.IRON_HOE, player);
-            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-        }
-        return new ActionResult<>(EnumActionResult.PASS, stack);
-    }
+	@Override
+	@Nonnull
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, @Nonnull EnumHand hand) {
+		ItemStack stack = player.getHeldItem(hand);
+		if(Items.IRON_HOE.onItemRightClick(worldIn, player, hand) == new ActionResult<>(EnumActionResult.SUCCESS,
+				stack)) {
+			ModuleEquipment.convertToTool(stack, Items.IRON_HOE, player);
+			return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+		}
+		return new ActionResult<>(EnumActionResult.PASS, stack);
+	}
 }

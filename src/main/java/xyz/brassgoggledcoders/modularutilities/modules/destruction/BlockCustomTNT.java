@@ -25,14 +25,14 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
 
 	public BlockCustomTNT(String name) {
 		super();
-		this.setUnlocalizedName(name);
+		setUnlocalizedName(name);
 	}
 
 	@Override
 	public void onBlockDestroyedByExplosion(World worldIn, @Nonnull BlockPos pos, @Nonnull Explosion explosionIn) {
 		if(!worldIn.isRemote) {
-			EntityCustomTNTPrimed entitytntprimed =
-					new EntityCustomTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, null);
+			EntityCustomTNTPrimed entitytntprimed = new EntityCustomTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(),
+					pos.getZ() + 0.5F, null);
 			worldIn.spawnEntity(entitytntprimed);
 		}
 	}
@@ -40,14 +40,15 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
 	@Override
 	public void explode(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state,
 			@Nonnull EntityLivingBase igniter) {
-		if(!worldIn.isRemote)
+		if(!worldIn.isRemote) {
 			if(state.getValue(EXPLODE)) {
-				EntityCustomTNTPrimed entitytntprimed =
-						new EntityCustomTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, igniter);
+				EntityCustomTNTPrimed entitytntprimed = new EntityCustomTNTPrimed(worldIn, pos.getX() + 0.5F,
+						pos.getY(), pos.getZ() + 0.5F, igniter);
 				worldIn.spawnEntity(entitytntprimed);
 				worldIn.playSound(null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ,
 						SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
+		}
 	}
 
 	@Override
@@ -60,12 +61,12 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
 	@Override
 	public void onBlockAdded(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
 		super.onBlockAdded(worldIn, pos, state);
-		this.updateState(worldIn, pos, state);
+		updateState(worldIn, pos, state);
 	}
 
 	@Override
 	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighborPos) {
-		this.updateState(world, pos, world.getBlockState(neighborPos));
+		updateState(world, pos, world.getBlockState(neighborPos));
 	}
 
 	protected void updateState(IBlockAccess world, BlockPos pos, IBlockState state) {
@@ -74,10 +75,10 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
 
 	@Override
 	public ItemBlock getItemBlock() {
-		if(this.itemBlock == null) {
-			this.itemBlock = new ItemBlockModel<>(this);
+		if(itemBlock == null) {
+			itemBlock = new ItemBlockModel<>(this);
 		}
-		return this.itemBlock;
+		return itemBlock;
 	}
 
 	@Override
@@ -88,7 +89,7 @@ public class BlockCustomTNT extends BlockTNT implements IHasItemBlock, IHasModel
 
 	@Override
 	public Item getItem() {
-		return this.getItemBlock();
+		return getItemBlock();
 	}
 
 	@Override

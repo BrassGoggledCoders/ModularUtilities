@@ -16,47 +16,49 @@ import net.minecraft.world.World;
 
 public class BlockSplitterTNT extends BlockCustomTNT {
 
-    public BlockSplitterTNT(String name) {
-        super(name);
-    }
+	public BlockSplitterTNT(String name) {
+		super(name);
+	}
 
-    @Override
-    public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
-        if (!worldIn.isRemote) {
-            EntityTNTPrimed entitytntprimed =
-                    new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, null);
-            worldIn.spawnEntity(entitytntprimed);
-            for (int i = 0; i < 3; i++) {
-                EntityTNTPrimed entitytntprimed2 =
-                        new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, null);
-                entitytntprimed2.setFuse(120);
-                worldIn.spawnEntity(entitytntprimed2);
-            }
-        }
-    }
+	@Override
+	public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
+		if(!worldIn.isRemote) {
+			EntityTNTPrimed entitytntprimed = new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(),
+					pos.getZ() + 0.5F, null);
+			worldIn.spawnEntity(entitytntprimed);
+			for(int i = 0; i < 3; i++) {
+				EntityTNTPrimed entitytntprimed2 = new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(),
+						pos.getZ() + 0.5F, null);
+				entitytntprimed2.setFuse(120);
+				worldIn.spawnEntity(entitytntprimed2);
+			}
+		}
+	}
 
-    @Override
-    public void explode(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nullable EntityLivingBase igniter) {
-        if (!worldIn.isRemote)
-            if (state.getValue(EXPLODE)) {
-                EntityTNTPrimed entitytntprimed =
-                        new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, igniter);
-                worldIn.spawnEntity(entitytntprimed);
-                for (int i = 0; i < 3; i++) {
-                    EntityTNTPrimed entitytntprimed2 =
-                            new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, igniter);
-                    entitytntprimed2.setFuse(120);
-                    worldIn.spawnEntity(entitytntprimed2);
-                }
-                worldIn.playSound(null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ,
-                        SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            }
-    }
+	@Override
+	public void explode(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state,
+			@Nullable EntityLivingBase igniter) {
+		if(!worldIn.isRemote) {
+			if(state.getValue(EXPLODE)) {
+				EntityTNTPrimed entitytntprimed = new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(),
+						pos.getZ() + 0.5F, igniter);
+				worldIn.spawnEntity(entitytntprimed);
+				for(int i = 0; i < 3; i++) {
+					EntityTNTPrimed entitytntprimed2 = new EntityTNTPrimed(worldIn, pos.getX() + 0.5F, pos.getY(),
+							pos.getZ() + 0.5F, igniter);
+					entitytntprimed2.setFuse(120);
+					worldIn.spawnEntity(entitytntprimed2);
+				}
+				worldIn.playSound(null, entitytntprimed.posX, entitytntprimed.posY, entitytntprimed.posZ,
+						SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			}
+		}
+	}
 
-    @Override
-    public List<String> getModelNames(List<String> modelNames) {
-        modelNames.add("splitter_tnt");
-        return modelNames;
-    }
+	@Override
+	public List<String> getModelNames(List<String> modelNames) {
+		modelNames.add("splitter_tnt");
+		return modelNames;
+	}
 
 }

@@ -70,11 +70,14 @@ public class ModularUtilities extends BaseModFoundation<ModularUtilities> {
 
 	@Nonnull
 	public static ItemStack getTabIconItem() {
-		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Ender"))
+		if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Ender")) {
 			return new ItemStack(EnderModule.ender_glove);
-		else if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction"))
+		}
+		else if(ModularUtilities.instance.getModuleHandler().isModuleEnabled("Construction")) {
 			return new ItemStack(ConstructionModule.blast_glass);
-		else
+		}
+		else {
 			return new ItemStack(Blocks.SPONGE);
+		}
 	}
 }

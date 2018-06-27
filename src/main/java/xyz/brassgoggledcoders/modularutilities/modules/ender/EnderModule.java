@@ -39,7 +39,8 @@ public class EnderModule extends ModuleBase {
 		getItemRegistry().register(ender_glove);
 		ender_pocket = new ItemEnderPocket();
 		getItemRegistry().register(ender_pocket);
-		// TODO Ender Totem (experience) and Ender Dispenser/Dropper. Also inverse ender glove...
+		// TODO Ender Totem (experience) and Ender Dispenser/Dropper. Also inverse ender
+		// glove...
 
 		ender_proxy = new BlockEnderChestProxy();
 		getBlockRegistry().register(ender_proxy);

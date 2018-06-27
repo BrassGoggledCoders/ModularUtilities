@@ -31,11 +31,11 @@ public class ModuleEquipment extends ModuleBase {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		machete = new ItemMachete();
-		this.getItemRegistry().register(machete);
+		getItemRegistry().register(machete);
 
 		// TODO Enchantment stuff. Manual cycling of tools.
 		swiss_army_knife = new ItemSwissArmyKnife();
-		this.getItemRegistry().register(swiss_army_knife);
+		getItemRegistry().register(swiss_army_knife);
 	}
 
 	@Override
@@ -43,7 +43,8 @@ public class ModuleEquipment extends ModuleBase {
 		return "Equipment";
 	}
 
-	// Everything below this line deals with the swiss army knife. Sword & hoe handling is done in the Knife's Item
+	// Everything below this line deals with the swiss army knife. Sword & hoe
+	// handling is done in the Knife's Item
 	// class.
 
 	@SubscribeEvent

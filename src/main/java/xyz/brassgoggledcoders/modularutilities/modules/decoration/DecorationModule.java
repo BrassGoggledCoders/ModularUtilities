@@ -76,8 +76,9 @@ public class DecorationModule extends ModuleBase {
 
 	@SubscribeEvent
 	public void onBlockRightClicked(RightClickBlock event) {
-		if(event.getWorld().isRemote)
+		if(event.getWorld().isRemote) {
 			return;
+		}
 
 		if(ItemStackUtils.doItemsMatch(event.getEntityPlayer().getHeldItemMainhand(), Items.SHEARS)) {
 			Block bl = event.getWorld().getBlockState(event.getPos()).getBlock();
@@ -88,14 +89,18 @@ public class DecorationModule extends ModuleBase {
 			if(bl == Blocks.GRASS) {
 				Biome b = event.getWorld().getBiome(event.getPos());
 
-				if(BiomeDictionary.hasType(b, BiomeDictionary.Type.SANDY))
+				if(BiomeDictionary.hasType(b, BiomeDictionary.Type.SANDY)) {
 					meta = 1;
-				else if(BiomeDictionary.hasType(b, BiomeDictionary.Type.COLD))
+				}
+				else if(BiomeDictionary.hasType(b, BiomeDictionary.Type.COLD)) {
 					meta = 2;
-				else if(BiomeDictionary.hasType(b, BiomeDictionary.Type.JUNGLE))
+				}
+				else if(BiomeDictionary.hasType(b, BiomeDictionary.Type.JUNGLE)) {
 					meta = 3;
-				else if(BiomeDictionary.hasType(b, BiomeDictionary.Type.SWAMP))
+				}
+				else if(BiomeDictionary.hasType(b, BiomeDictionary.Type.SWAMP)) {
 					meta = 4;
+				}
 
 				flag = true;
 			}

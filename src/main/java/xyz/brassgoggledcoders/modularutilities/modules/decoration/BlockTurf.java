@@ -29,8 +29,8 @@ public class BlockTurf extends BlockFlat {
 
 	public BlockTurf() {
 		super(Material.GRASS, EnumUtils.getNames(EnumDirtType.class));
-		this.setUnlocalizedName("turf");
-		setDefaultState(this.blockState.getBaseState().withProperty(type, EnumDirtType.NORMAL));
+		setUnlocalizedName("turf");
+		setDefaultState(blockState.getBaseState().withProperty(type, EnumDirtType.NORMAL));
 	}
 
 	@Override

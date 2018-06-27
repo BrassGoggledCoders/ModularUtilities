@@ -24,8 +24,8 @@ import xyz.brassgoggledcoders.modularutilities.modules.decoration.DecorationModu
 public class DecorationClient extends ModuleProxyBase {
 	@Override
 	public void init(FMLInitializationEvent event) {
-		Block[] toColourise = new Block[] {DecorationModule.leaf_cover, DecorationModule.hedge,
-				DecorationModule.hedge_opaque, DecorationModule.leaf_cover_opaque};
+		Block[] toColourise = new Block[] { DecorationModule.leaf_cover, DecorationModule.hedge,
+				DecorationModule.hedge_opaque, DecorationModule.leaf_cover_opaque };
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new LeafColors(), toColourise);
 		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new LeafColors(), toColourise);
 	}

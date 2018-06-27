@@ -16,39 +16,40 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockBlastGlass extends BlockBase {
 
-    public BlockBlastGlass() {
-        super(Material.GLASS, "blast_glass");
-    }
+	public BlockBlastGlass() {
+		super(Material.GLASS, "blast_glass");
+	}
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    @Nonnull
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
+	@SideOnly(Side.CLIENT)
+	@Override
+	@Nonnull
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT;
+	}
 
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
 
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
 
-    @Override
-    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return false;
-    }
+	@Override
+	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return false;
+	}
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public boolean shouldSideBeRendered(IBlockState blockState, @Nonnull IBlockAccess blockAccess, @Nonnull BlockPos pos,
-                                        EnumFacing side) {
-        IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
-        Block block = iblockstate.getBlock();
+	@SideOnly(Side.CLIENT)
+	@Override
+	public boolean shouldSideBeRendered(IBlockState blockState, @Nonnull IBlockAccess blockAccess,
+			@Nonnull BlockPos pos, EnumFacing side) {
+		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
+		Block block = iblockstate.getBlock();
 
-        return blockState != iblockstate || block != this && (block != this && super.shouldSideBeRendered(blockState, blockAccess, pos, side));
-    }
+		return blockState != iblockstate
+				|| block != this && (block != this && super.shouldSideBeRendered(blockState, blockAccess, pos, side));
+	}
 }

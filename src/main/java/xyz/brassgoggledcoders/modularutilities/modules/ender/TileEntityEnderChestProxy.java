@@ -11,55 +11,58 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 public class TileEntityEnderChestProxy extends TileEntity {
-    private UUID playerID;
-    public EnderProxyInventoryHandler handler;
+	private UUID playerID;
+	public EnderProxyInventoryHandler handler;
 
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        if (!compound.getString("player_id").isEmpty())
-            this.playerID = UUID.fromString(compound.getString("player_id"));
-        super.readFromNBT(compound);
-    }
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		if(!compound.getString("player_id").isEmpty()) {
+			playerID = UUID.fromString(compound.getString("player_id"));
+		}
+		super.readFromNBT(compound);
+	}
 
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        if (this.playerID != null)
-            compound.setString("player_id", this.playerID.toString());
-        super.writeToNBT(compound);
-        return compound;
-    }
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		if(playerID != null) {
+			compound.setString("player_id", playerID.toString());
+		}
+		super.writeToNBT(compound);
+		return compound;
+	}
 
-    public void setPlacerUUID(UUID uniqueID) {
-        this.playerID = uniqueID;
-    }
+	public void setPlacerUUID(UUID uniqueID) {
+		playerID = uniqueID;
+	}
 
-    public UUID getPlacerUUID() {
-        return playerID;
-    }
+	public UUID getPlacerUUID() {
+		return playerID;
+	}
 
-    public EntityPlayer getPlacer() {
-        return this.getWorld().getPlayerEntityByUUID(getPlacerUUID());
-    }
+	public EntityPlayer getPlacer() {
+		return getWorld().getPlayerEntityByUUID(getPlacerUUID());
+	}
 
-    public InventoryEnderChest getEnderInventory() {
-        return this.getWorld().getPlayerEntityByUUID(getPlacerUUID()).getInventoryEnderChest();
-    }
+	public InventoryEnderChest getEnderInventory() {
+		return getWorld().getPlayerEntityByUUID(getPlacerUUID()).getInventoryEnderChest();
+	}
 
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && this.playerID != null)
-            return true;
-        return super.hasCapability(capability, facing);
-    }
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && playerID != null) {
+			return true;
+		}
+		return super.hasCapability(capability, facing);
+	}
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && this.playerID != null) {
-            EnderProxyInventoryHandler handler = new EnderProxyInventoryHandler();
-            handler.player = getWorld().getPlayerEntityByUUID(playerID);
-            return (T) handler;
-        }
-        return super.getCapability(capability, facing);
-    }
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && playerID != null) {
+			EnderProxyInventoryHandler handler = new EnderProxyInventoryHandler();
+			handler.player = getWorld().getPlayerEntityByUUID(playerID);
+			return (T) handler;
+		}
+		return super.getCapability(capability, facing);
+	}
 }
