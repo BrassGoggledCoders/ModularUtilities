@@ -1,6 +1,7 @@
 {
   "result": {
-    "item": "modularutilities:splitter_tnt"
+    "item": "modularutilities:splitter_tnt",
+    "data": 0
   },
   "pattern": [
     "TTT",

@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "forge:bucketfilled",
+    "nbt": {
+			"FluidName": "concrete",
+			"Amount": 1000
+	}
+  },
+  "pattern": [
+    "CDC",
+    "DWD",
+    "CDC"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:clay"
+    },
+    "D": {
+      "item": "minecraft:gravel"
+    },
+    "W": {
+    	"item": "minecraft:water_bucket"
+    }
+  }
+}

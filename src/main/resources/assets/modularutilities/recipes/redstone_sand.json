@@ -1,6 +1,7 @@
 {
   "result": {
-    "item": "modularutilities:redstone_sand"
+    "item": "modularutilities:redstone_sand",
+    "data": 0
   },
   "pattern": [
     "SR",
