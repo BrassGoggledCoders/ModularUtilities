@@ -30,8 +30,8 @@ repositories {
         url "http://maven.tterrag.com"
     }
     maven {
-        name 'Baubles'
-        url 'https://jitpack.io'
+        name = "thiakil"
+        url = "http://maven.thiakil.com"
     }
 }
 
@@ -58,7 +58,7 @@ minecraft {
 dependencies {
     deobfCompile "com.teamacronymcoders.base:base:${minecraft_version}-${base_version}-SNAPSHOT.+"
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
-    deobfCompile "com.github.Azanor:Baubles:${baubles_version}-SNAPSHOT"
+    deobfCompile "com.azanor.baubles:Baubles:${baubles_version}"
     //deobfCompile "com.enderio.core:EnderCore:${minecraft_version}-${endercore_version}"
     //deobfCompile "com.enderio:EnderIO:${minecraft_version}-${enderio_version}"
 }
