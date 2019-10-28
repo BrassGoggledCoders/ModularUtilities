@@ -15,62 +15,62 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 public class BlockRedstoneSand extends BlockFalling implements IHasItemBlock, IHasModel {
-	private ItemBlock itemBlock;
-	private IBaseMod mod;
+    private ItemBlock itemBlock;
+    private IBaseMod mod;
 
-	public BlockRedstoneSand() {
-		super();
-		setUnlocalizedName("redstone_sand");
-	}
+    public BlockRedstoneSand() {
+        super();
+        setTranslationKey("redstone_sand");
+    }
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public boolean canProvidePower(IBlockState state) {
-		return true;
-	}
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean canProvidePower(IBlockState state) {
+        return true;
+    }
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		return 15;
-	}
+    @SuppressWarnings("deprecation")
+    @Override
+    public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+        return 15;
+    }
 
-	@Override
-	public ItemBlock getItemBlock() {
-		if(itemBlock == null) {
-			itemBlock = new ItemBlockModel<>(this);
-		}
-		return itemBlock;
-	}
+    @Override
+    public ItemBlock getItemBlock() {
+        if(itemBlock == null) {
+            itemBlock = new ItemBlockModel<>(this);
+        }
+        return itemBlock;
+    }
 
-	@Override
-	public List<String> getModelNames(List<String> modelNames) {
-		String name = getUnlocalizedName();
-		if(name.startsWith("tile.")) {
-			name = name.substring(5);
-		}
-		modelNames.add(name);
-		return modelNames;
-	}
+    @Override
+    public List<String> getModelNames(List<String> modelNames) {
+        String name = getTranslationKey();
+        if(name.startsWith("tile.")) {
+            name = name.substring(5);
+        }
+        modelNames.add(name);
+        return modelNames;
+    }
 
-	@Override
-	public List<ItemStack> getAllSubItems(List<ItemStack> itemStacks) {
-		itemStacks.add(new ItemStack(this));
-		return itemStacks;
-	}
+    @Override
+    public List<ItemStack> getAllSubItems(List<ItemStack> itemStacks) {
+        itemStacks.add(new ItemStack(this));
+        return itemStacks;
+    }
 
-	@Override
-	public Item getItem() {
-		return getItemBlock();
-	}
+    @Override
+    public Item getItem() {
+        return getItemBlock();
+    }
 
-	@Override
-	public IBaseMod getMod() {
-		return mod;
-	}
+    @Override
+    public IBaseMod getMod() {
+        return mod;
+    }
 
-	@Override
-	public void setMod(IBaseMod mod) {
-		this.mod = mod;
-	}
+    @Override
+    public void setMod(IBaseMod mod) {
+        this.mod = mod;
+    }
 }
