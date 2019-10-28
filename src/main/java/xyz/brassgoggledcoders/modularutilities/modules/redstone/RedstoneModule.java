@@ -14,29 +14,29 @@ import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 @Module(ModularUtilities.MODID)
 public class RedstoneModule extends ModuleBase {
 
-	public static Block fused_quartz, redstone_sand;
+    public static Block fused_quartz, redstone_sand;
 
-	@Override
-	public String getName() {
-		return "Redstone";
-	}
+    @Override
+    public String getName() {
+        return "Redstone";
+    }
 
-	@Override
-	public void preInit(FMLPreInitializationEvent event) {
-		fused_quartz = new BlockFusedQuartz();
-		getBlockRegistry().register(fused_quartz);
-		redstone_sand = new BlockRedstoneSand();
-		getBlockRegistry().register(redstone_sand);
-		/*
-		 * TODO: - Resistor: opposite of repeater, changing settings changes resistance
-		 * rather than delay - Redstone cable that's waterproof and freestanding -
-		 * Second colour of redstone. Wire only. - Very basic Logic Gates - Variable
-		 * strength emmitter
-		 */
-	}
+    @Override
+    public void preInit(FMLPreInitializationEvent event) {
+        fused_quartz = new BlockFusedQuartz();
+        getBlockRegistry().register(fused_quartz);
+        redstone_sand = new BlockRedstoneSand();
+        getBlockRegistry().register(redstone_sand);
+        /*
+         * TODO: - Resistor: opposite of repeater, changing settings changes resistance
+         * rather than delay - Redstone cable that's waterproof and freestanding -
+         * Second colour of redstone. Wire only. - Very basic Logic Gates - Variable
+         * strength emmitter
+         */
+    }
 
-	@Override
-	public void postInit(FMLPostInitializationEvent event) {
-		GameRegistry.addSmelting(Blocks.QUARTZ_BLOCK, new ItemStack(fused_quartz), 0.2F);
-	}
+    @Override
+    public void postInit(FMLPostInitializationEvent event) {
+        GameRegistry.addSmelting(Blocks.QUARTZ_BLOCK, new ItemStack(fused_quartz), 0.2F);
+    }
 }

@@ -17,36 +17,36 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 @Interface(iface = "baubles.api.IBauble", modid = "baubles")
 public class ItemFireCharm extends ItemBase implements IBauble {
 
-	@ObjectHolder("minecraft:block.furnace.fire_crackle")
-	private static SoundEvent FIRE_CRACKLE;
+    @ObjectHolder("minecraft:block.furnace.fire_crackle")
+    private static SoundEvent FIRE_CRACKLE;
 
-	public ItemFireCharm() {
-		super("fire_charm");
-	}
+    public ItemFireCharm() {
+        super("fire_charm");
+    }
 
-	@Override
-	@Method(modid = "Baubles")
-	public BaubleType getBaubleType(ItemStack bauble) {
-		return BaubleType.AMULET;
-	}
+    @Override
+    @Method(modid = "Baubles")
+    public BaubleType getBaubleType(ItemStack bauble) {
+        return BaubleType.AMULET;
+    }
 
-	@Override
-	@Method(modid = "Baubles")
-	public void onWornTick(ItemStack stack, EntityLivingBase living) {
-		if(living instanceof EntityPlayerMP) {
-			EntityPlayerMP player = (EntityPlayerMP) living;
-			if(player.isBurning() && !(player.isInLava()) && !(player.isImmuneToFire())) {
-				player.extinguish();
-				if(stack.attemptDamageItem(1, player.getRNG(), player)) {
-					if(player.hasCapability(BaublesCapabilities.CAPABILITY_BAUBLES, null)) {
-						player.getCapability(BaublesCapabilities.CAPABILITY_BAUBLES, null).setStackInSlot(0,
-								ItemStack.EMPTY);
-					}
-					player.setFire(5);
-					player.getEntityWorld().playSound(player, player.getPosition(), FIRE_CRACKLE, SoundCategory.AMBIENT,
-							1F, 1F);
-				}
-			}
-		}
-	}
+    @Override
+    @Method(modid = "Baubles")
+    public void onWornTick(ItemStack stack, EntityLivingBase living) {
+        if(living instanceof EntityPlayerMP) {
+            EntityPlayerMP player = (EntityPlayerMP) living;
+            if(player.isBurning() && !(player.isInLava()) && !(player.isImmuneToFire())) {
+                player.extinguish();
+                if(stack.attemptDamageItem(1, player.getRNG(), player)) {
+                    if(player.hasCapability(BaublesCapabilities.CAPABILITY_BAUBLES, null)) {
+                        player.getCapability(BaublesCapabilities.CAPABILITY_BAUBLES, null).setStackInSlot(0,
+                                ItemStack.EMPTY);
+                    }
+                    player.setFire(5);
+                    player.getEntityWorld().playSound(player, player.getPosition(), FIRE_CRACKLE, SoundCategory.AMBIENT,
+                            1F, 1F);
+                }
+            }
+        }
+    }
 }

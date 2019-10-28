@@ -23,68 +23,68 @@ import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(ModularUtilities.MODID)
 public class EnderModule extends ModuleBase {
-	public static Item ender_glove, ender_pocket;
+    public static Item ender_glove, ender_pocket;
 
-	public static Block ender_proxy;
+    public static Block ender_proxy;
 
-	@Override
-	public String getName() {
-		return "Ender";
-	}
+    @Override
+    public String getName() {
+        return "Ender";
+    }
 
-	@Override
-	public void preInit(FMLPreInitializationEvent event) {
-		// TODO EnderStorage compatibility.
-		ender_glove = new ItemBase("ender_glove").setMaxStackSize(1);
-		getItemRegistry().register(ender_glove);
-		ender_pocket = new ItemEnderPocket();
-		getItemRegistry().register(ender_pocket);
-		// TODO Ender Totem (experience) and Ender Dispenser/Dropper. Also inverse ender
-		// glove...
+    @Override
+    public void preInit(FMLPreInitializationEvent event) {
+        // TODO EnderStorage compatibility.
+        ender_glove = new ItemBase("ender_glove").setMaxStackSize(1);
+        getItemRegistry().register(ender_glove);
+        ender_pocket = new ItemEnderPocket();
+        getItemRegistry().register(ender_pocket);
+        // TODO Ender Totem (experience) and Ender Dispenser/Dropper. Also inverse ender
+        // glove...
 
-		ender_proxy = new BlockEnderChestProxy();
-		getBlockRegistry().register(ender_proxy);
+        ender_proxy = new BlockEnderChestProxy();
+        getBlockRegistry().register(ender_proxy);
 
-		MinecraftForge.EVENT_BUS.register(this);
-	}
+        MinecraftForge.EVENT_BUS.register(this);
+    }
 
-	@SubscribeEvent
-	public void onLivingDrops(LivingDropsEvent event) {
-		if(event.getSource().getDamageType().equalsIgnoreCase("player")) {
-			if(event.getSource().getTrueSource() instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
-				if(player.getHeldItemMainhand().getItem() == ender_glove
-						|| player.getHeldItemOffhand().getItem() == ender_glove) {
-					Iterator<EntityItem> drops = event.getDrops().iterator();
-					ArrayList<EntityItem> toRemove = new ArrayList<>();
-					while(drops.hasNext()) {
-						EntityItem current = drops.next();
-						if(player.getInventoryEnderChest().addItem(current.getItem()).isEmpty()) {
-							toRemove.add(current);
-						}
-					}
-					event.getDrops().removeAll(toRemove);
-				}
-			}
-		}
-	}
+    @SubscribeEvent
+    public void onLivingDrops(LivingDropsEvent event) {
+        if(event.getSource().getDamageType().equalsIgnoreCase("player")) {
+            if(event.getSource().getTrueSource() instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
+                if(player.getHeldItemMainhand().getItem() == ender_glove
+                        || player.getHeldItemOffhand().getItem() == ender_glove) {
+                    Iterator<EntityItem> drops = event.getDrops().iterator();
+                    ArrayList<EntityItem> toRemove = new ArrayList<>();
+                    while(drops.hasNext()) {
+                        EntityItem current = drops.next();
+                        if(player.getInventoryEnderChest().addItem(current.getItem()).isEmpty()) {
+                            toRemove.add(current);
+                        }
+                    }
+                    event.getDrops().removeAll(toRemove);
+                }
+            }
+        }
+    }
 
-	@SubscribeEvent
-	public void onBlockDrops(HarvestDropsEvent event) {
-		if(event.getHarvester() != null) {
-			EntityPlayer player = event.getHarvester();
-			if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove)) {
-				Iterator<ItemStack> drops = event.getDrops().iterator();
-				ArrayList<ItemStack> toRemove = new ArrayList<ItemStack>();
-				while(drops.hasNext()) {
-					ItemStack current = drops.next();
-					if(player.getInventoryEnderChest().addItem(current).isEmpty()) {
-						toRemove.add(current);
-						ModularUtilities.proxy.spawnFX(EnumParticleTypes.PORTAL, event.getPos());
-					}
-				}
-				event.getDrops().removeAll(toRemove);
-			}
-		}
-	}
+    @SubscribeEvent
+    public void onBlockDrops(HarvestDropsEvent event) {
+        if(event.getHarvester() != null) {
+            EntityPlayer player = event.getHarvester();
+            if(ItemStackUtils.doItemsMatch(player.getHeldItemOffhand(), ender_glove)) {
+                Iterator<ItemStack> drops = event.getDrops().iterator();
+                ArrayList<ItemStack> toRemove = new ArrayList<ItemStack>();
+                while(drops.hasNext()) {
+                    ItemStack current = drops.next();
+                    if(player.getInventoryEnderChest().addItem(current).isEmpty()) {
+                        toRemove.add(current);
+                        ModularUtilities.proxy.spawnFX(EnumParticleTypes.PORTAL, event.getPos());
+                    }
+                }
+                event.getDrops().removeAll(toRemove);
+            }
+        }
+    }
 }
