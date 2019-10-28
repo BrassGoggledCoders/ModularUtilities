@@ -39,16 +39,6 @@ public class EnchantmentsModule extends ModuleBase {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
-        /*
-         * TODO Magnetism (attracts items) Salvage (like prospector for glass etc) Reach
-         * Teleport Spelunker (gives night vision when tool is held) Armour Enchant that
-         * increases regen Exploding arrow enchant Lightning arrow enchant Homing arrow
-         * enchant Critical arrow enchant May only have one of the above arrow enchs
-         * Perm jump/speed boost boots - generalise? Shield Enchant: repel mobs/arrows,
-         * explosive absorbtion, convert blocked damage to health Flamethorns Infinity
-         * II that doesn't need an arrow Elytra enchants Pass handling to enchantment
-         * classes themselves
-         */
         affluency = addEnchantment("affluency",
                 new EnchantmentAffluency(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.DIGGER, hand, 11, 0, 3));
         flame_touch = addEnchantment("flame_touch",

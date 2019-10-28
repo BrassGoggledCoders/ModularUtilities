@@ -27,12 +27,6 @@ public class RedstoneModule extends ModuleBase {
         getBlockRegistry().register(fused_quartz);
         redstone_sand = new BlockRedstoneSand();
         getBlockRegistry().register(redstone_sand);
-        /*
-         * TODO: - Resistor: opposite of repeater, changing settings changes resistance
-         * rather than delay - Redstone cable that's waterproof and freestanding -
-         * Second colour of redstone. Wire only. - Very basic Logic Gates - Variable
-         * strength emmitter
-         */
     }
 
     @Override

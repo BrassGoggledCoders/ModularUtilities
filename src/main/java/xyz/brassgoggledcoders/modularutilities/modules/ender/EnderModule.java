@@ -34,13 +34,10 @@ public class EnderModule extends ModuleBase {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
-        // TODO EnderStorage compatibility.
         ender_glove = new ItemBase("ender_glove").setMaxStackSize(1);
         getItemRegistry().register(ender_glove);
         ender_pocket = new ItemEnderPocket();
         getItemRegistry().register(ender_pocket);
-        // TODO Ender Totem (experience) and Ender Dispenser/Dropper. Also inverse ender
-        // glove...
 
         ender_proxy = new BlockEnderChestProxy();
         getBlockRegistry().register(ender_proxy);

@@ -10,12 +10,6 @@ import xyz.brassgoggledcoders.modularutilities.ModularUtilities;
 
 @Module(ModularUtilities.MODID)
 public class DestructionModule extends ModuleBase {
-    /*
-     * TODO: - Incendiary TNT - Modular TNT - Mining Charge: drops all exploded
-     * blocks - Flamethrower - Gunpowder + String = Fuses. Place like redstone,
-     * light one end, and fire will quickly travel down it - Method of land
-     * flattening
-     */
     public static Block splitter_tnt;
 
     @Override

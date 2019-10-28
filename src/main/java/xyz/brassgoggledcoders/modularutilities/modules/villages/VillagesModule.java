@@ -22,10 +22,6 @@ public class VillagesModule extends ModuleBase {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
-        /*
-         * TODO Custom 'house'. Random spawns outside of villages. Travelling?
-         * Nether/End Variants
-         */
         VillagerProfession explorer = new VillagerProfession("modularutilities:explorer",
                 "modularutilities:textures/entity/explorer.png",
                 "minecraft:textures/entity/zombie_villager/zombie_villager.png");

@@ -46,12 +46,6 @@ public class ConstructionModule extends ModuleBase {
 
         concrete = new BlockBase(Material.ROCK, "concrete").setHardness(3).setResistance(18);
         getBlockRegistry().register(concrete);
-
-        /*
-         * TODO: - Quickdry Concrete - Rebar: Makes solid concrete harder - 'polished'
-         * concrete - Paintable concrete - Tar? - Laser level - Scaffolding - Blast
-         * resistant door, pushable blast blocks.
-         */
     }
 
     public class MaterialConcrete extends MaterialLiquid {
